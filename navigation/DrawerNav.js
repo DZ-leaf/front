@@ -5,6 +5,7 @@ import { createDrawerNavigator, DrawerNavigatorItems } from "react-navigation-dr
 
 import HomeScreen from '../screens/HomeScreen';
 import ProfileScreen from '../screens/ProfileScreen';
+import Register from '../screens/Register';
 
 const CustomDrawerComponent = (props) => (
     <SafeAreaView>
@@ -24,9 +25,6 @@ const styles = StyleSheet.create({
         paddingLeft: '5%',
         paddingTop: '15%',
     },
-    // container: {
-    //     backgroundColor: '#F0F2F0',
-    // }
 })
 
 const AppDrawerNavigator = createDrawerNavigator({
@@ -35,6 +33,9 @@ const AppDrawerNavigator = createDrawerNavigator({
     },
     Profile: {
         screen: ProfileScreen,
+    },
+    Register: {
+        screen: Register
     }
 }, {
     initialRouteName: 'Home',
