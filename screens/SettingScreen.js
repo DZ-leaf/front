@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-class HomeScreen extends Component {
+class SettingScreen extends Component {
     
     render() {
         return (
             <View style={styles.container}>
-                <Text>홈</Text>
+                <Text>세팅</Text>
             </View>
         );
     }
@@ -20,4 +20,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default HomeScreen;
+export default SettingScreen;

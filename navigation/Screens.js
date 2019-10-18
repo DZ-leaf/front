@@ -1,19 +1,24 @@
 import React from "react";
 import { Easing, Animated } from "react-native";
 import { createAppContainer } from "react-navigation";
-import { createDrawerNavigator, DrawerNavigatorItems } from "react-navigation-drawer";
+import { createDrawerNavigator } from "react-navigation-drawer";
 import { createStackNavigator } from 'react-navigation-stack';
+import { createBottomTabNavigator } from "react-navigation-tabs";
 
 import { Block } from "galio-framework";
+
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 // screens
 import HomeScreen from "../screens/HomeScreen";
 import Login from "../screens/Login";
-import Pro from "../screens/Pro";
 import Profile from "../screens/Profile";
 import Register from "../screens/Register";
 import Elements from "../screens/Elements";
 import Articles from "../screens/Articles";
+import ChatScreen from '../screens/ChatScreen';
+import AlarmScreen from '../screens/AlarmScreen';
+import SettingScreen from '../screens/SettingScreen';
 // drawer
 import Menu from "./Menu";
 import DrawerItem from "../components/DrawerItem";
@@ -57,6 +62,20 @@ const transitionConfig = (transitionProps, prevTransitionProps) => ({
     }
     return { transform: [{ translateX }] };
   }
+});
+
+const ChatStack = createStackNavigator({
+  Chat: {
+    screen: ChatScreen,
+    navigationOptions: ({ navigation }) => ({
+      header: <Header title="Chat" navigation={navigation} />
+    })
+  }
+}, {
+  cardStyle: {
+    backgroundColor: "#F8F9FE"
+  },
+  transitionConfig
 });
 
 const ElementsStack = createStackNavigator({
@@ -105,14 +124,14 @@ const ProfileStack = createStackNavigator(
   }
 );
 
-const RegisterStack = createStackNavigator(
+const HomeStack = createStackNavigator(
   {
-    Register: {
-      screen: Register,
+    Home: {
+      screen: HomeScreen,
       navigationOptions: ({ navigation }) => ({
-        header: <Header search options title="Register" navigation={navigation} />
+        header: <Header search options title="Home" navigation={navigation} />
       })
-    }
+    },
   },
   {
     cardStyle: {
@@ -122,23 +141,14 @@ const RegisterStack = createStackNavigator(
   }
 );
 
-const HomeStack = createStackNavigator(
+const AlarmStack = createStackNavigator(
   {
-    Home: {
-      screen: HomeScreen,
+    Alarm: {
+      screen: AlarmScreen,
       navigationOptions: ({ navigation }) => ({
-        header: <Header search options title="Home" navigation={navigation} />
+        header: <Header search options title="Alarm" navigation={navigation} />
       })
     },
-    Pro: {
-      screen: Pro,
-      navigationOptions: ({ navigation }) => ({
-        header: (
-          <Header left={<Block />} white transparent title="" navigation={navigation} />
-        ),
-        headerTransparent: true
-      })
-    }
   },
   {
     cardStyle: {
@@ -147,7 +157,59 @@ const HomeStack = createStackNavigator(
     transitionConfig
   }
 );
-// divideru se baga ca si cum ar fi un ecrna dar nu-i nimic duh
+
+const SettingStack = createStackNavigator(
+  {
+    Setting: {
+      screen: SettingScreen,
+      navigationOptions: ({ navigation }) => ({
+        header: <Header search options title="Setting" navigation={navigation} />
+      })
+    },
+  },
+  {
+    cardStyle: {
+      backgroundColor: "#F8F9FE"
+    },
+    transitionConfig
+  }
+);
+
+const BottomStack = createBottomTabNavigator({
+  Home: {
+    screen: HomeStack,
+    navigationOptions: () => ({
+      tabBarIcon: () => (
+        <Icon name="home" size={20}/>
+      )
+    })
+  },
+  Chat: {
+    screen: ChatStack,
+    navigationOptions: () => ({
+      tabBarIcon: () => (
+        <Icon name="chat-bubble-outline" size={20}/>
+      )
+    })
+  },
+  Alarm: {
+    screen: AlarmStack,
+    navigationOptions: () => ({
+      tabBarIcon: () => (
+        <Icon name="alarm" size={20}/>
+      )
+    })
+  },
+  Setting: {
+    screen: SettingStack,
+    navigationOptions: () => ({
+      tabBarIcon: () => (
+        <Icon name="settings" size={20}/>
+      )
+    })
+  }
+})
+
 const AppStack = createDrawerNavigator(
   {
     Login: {
@@ -158,6 +220,7 @@ const AppStack = createDrawerNavigator(
     },
     Home: {
       screen: HomeStack,
+      screen: BottomStack,
       navigationOptions: navOpt => ({
         drawerLabel: ({ focused }) => (
           <DrawerItem focused={focused} title="Home" />
@@ -184,7 +247,9 @@ const AppStack = createDrawerNavigator(
       screen: ArticlesStack,
       navigationOptions: navOpt => ({
         drawerLabel: ({ focused }) => (
-          <DrawerItem focused={focused} screen="Articles" title="Articles" />
+          <DrawerItem focused={focused} screen="Articles" title="Articles">
+            
+          </DrawerItem>
         )
       })
     }
@@ -192,5 +257,5 @@ const AppStack = createDrawerNavigator(
   Menu
 );
 
-const AppContainer = createAppContainer(AppStack, RegisterStack);
+const AppContainer = createAppContainer(AppStack);
 export default AppContainer;

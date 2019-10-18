@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-class HomeScreen extends Component {
-    
+class AlarmScreen extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text>홈</Text>
+                <Text>알람</Text>
             </View>
         );
     }
@@ -20,4 +19,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default HomeScreen;
+export default AlarmScreen;
