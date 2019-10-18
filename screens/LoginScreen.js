@@ -40,7 +40,7 @@ class LoginScreen extends React.Component {
             </Button>
             <View style={styles.textView}>
               <Text style={styles.text}
-                onPress={() => navigation.navigate("Home")}>
+                onPress={() => navigation.navigate("Find")}>
                 아이디 비밀번호 찾기 {'\u00A0'}{'\u00A0'}{'\u00A0'}
               </Text>
               <Text style={styles.text}>

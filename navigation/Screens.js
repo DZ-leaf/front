@@ -19,6 +19,7 @@ import Articles from "../screens/Articles";
 import ChatScreen from '../screens/ChatScreen';
 import AlarmScreen from '../screens/AlarmScreen';
 import SettingScreen from '../screens/SettingScreen';
+import FindScreen from '../screens/FindScreen';
 // drawer
 import Menu from "./Menu";
 import DrawerItem from "../components/DrawerItem";
@@ -217,10 +218,15 @@ const AppStack = createDrawerNavigator(
       navigationOptions: {
         drawerLabel: () => { }
       },
-
     },
     Register: {
       screen: RegisterScreen,
+      navigationOptions: {
+        drawerLabel: () => { }
+      }
+    },
+    Find: {
+      screen: FindScreen,
       navigationOptions: {
         drawerLabel: () => { }
       }
