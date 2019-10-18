@@ -11,7 +11,6 @@ class ChatScreen extends Component {
     }
 }
 
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,

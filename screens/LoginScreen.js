@@ -1,16 +1,14 @@
 import React from "react";
 import { Image, StyleSheet, StatusBar, Dimensions, View, CheckBox } from "react-native";
-import { Block, Button, Text, theme } from "galio-framework";
-import { Input} from "../components";
+import { Block, Button, Text, theme, Input } from "galio-framework";
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const { width } = Dimensions.get("screen");
 
-import argonTheme from "../constants/Theme";
 import Images from "../constants/Images";
 
-class Onboarding extends React.Component {
+class LoginScreen extends React.Component {
 
   render() {
     const { navigation } = this.props;
@@ -18,8 +16,8 @@ class Onboarding extends React.Component {
     return (
       <Block flex style={styles.container}>
         <StatusBar hidden />
-        <Block center>
-          <Image source={Images.LogoOnboarding} style={styles.logo} />
+        <Block center style={{paddingTop: '8%'}}>
+          <Image source={Images.LogoOnboarding}/>
         </Block>
         <Block flex space="between" style={styles.padded}>
           <Block style={{ paddingHorizontal: theme.SIZES.BASE }}>
@@ -37,9 +35,7 @@ class Onboarding extends React.Component {
             </View>
             <Button
               style={styles.button}
-              color={argonTheme.COLORS.SECONDARY}
-              onPress={() => navigation.navigate("Home")}
-              textStyle={{ color: argonTheme.COLORS.WHITE }}>
+              onPress={() => navigation.navigate("Home")}>
               로그인
             </Button>
             <View style={styles.textView}>
@@ -78,9 +74,6 @@ const styles = StyleSheet.create({
     shadowRadius: 0,
     shadowOpacity: 0,
   },
-  logo: {
-    paddingTop: '10%'
-  },
   title: {
     marginTop: '-5%'
   },
@@ -104,4 +97,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Onboarding;
+export default LoginScreen;

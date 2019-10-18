@@ -11,9 +11,9 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 // screens
 import HomeScreen from "../screens/HomeScreen";
-import Login from "../screens/Login";
+import LoginScreen from "../screens/LoginScreen";
 import Profile from "../screens/Profile";
-import Register from "../screens/Register";
+import RegisterScreen from "../screens/RegisterScreen";
 import Elements from "../screens/Elements";
 import Articles from "../screens/Articles";
 import ChatScreen from '../screens/ChatScreen';
@@ -180,7 +180,7 @@ const BottomStack = createBottomTabNavigator({
     screen: HomeStack,
     navigationOptions: () => ({
       tabBarIcon: () => (
-        <Icon name="home" size={20}/>
+        <Icon name="home" size={20} />
       )
     })
   },
@@ -188,7 +188,7 @@ const BottomStack = createBottomTabNavigator({
     screen: ChatStack,
     navigationOptions: () => ({
       tabBarIcon: () => (
-        <Icon name="chat-bubble-outline" size={20}/>
+        <Icon name="chat-bubble-outline" size={20} />
       )
     })
   },
@@ -196,7 +196,7 @@ const BottomStack = createBottomTabNavigator({
     screen: AlarmStack,
     navigationOptions: () => ({
       tabBarIcon: () => (
-        <Icon name="alarm" size={20}/>
+        <Icon name="alarm" size={20} />
       )
     })
   },
@@ -204,7 +204,7 @@ const BottomStack = createBottomTabNavigator({
     screen: SettingStack,
     navigationOptions: () => ({
       tabBarIcon: () => (
-        <Icon name="settings" size={20}/>
+        <Icon name="settings" size={20} />
       )
     })
   }
@@ -213,7 +213,14 @@ const BottomStack = createBottomTabNavigator({
 const AppStack = createDrawerNavigator(
   {
     Login: {
-      screen: Login,
+      screen: LoginScreen,
+      navigationOptions: {
+        drawerLabel: () => { }
+      },
+
+    },
+    Register: {
+      screen: RegisterScreen,
       navigationOptions: {
         drawerLabel: () => { }
       }
@@ -247,9 +254,7 @@ const AppStack = createDrawerNavigator(
       screen: ArticlesStack,
       navigationOptions: navOpt => ({
         drawerLabel: ({ focused }) => (
-          <DrawerItem focused={focused} screen="Articles" title="Articles">
-            
-          </DrawerItem>
+          <DrawerItem focused={focused} screen="Articles" title="Articles" />
         )
       })
     }

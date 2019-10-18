@@ -3,7 +3,7 @@ import { ScrollView, StyleSheet, Dimensions, TouchableOpacity } from "react-nati
 // Galio components
 import { Block, Text, Button as GaButton, theme } from "galio-framework";
 // Argon themed components
-import { argonTheme, tabs } from "../constants/";
+import { argonTheme } from "../constants/";
 import { Button, Select, Icon, Input, Header, Switch } from "../components/";
 
 const { width } = Dimensions.get("screen");

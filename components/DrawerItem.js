@@ -90,8 +90,7 @@ class DrawerItem extends React.Component {
           <Text
             size={15}
             bold={focused ? true : false}
-            color={focused ? "white" : "rgba(0,0,0,0.5)"}
-          >
+            color={focused ? "white" : "rgba(0,0,0,0.5)"}>
             {title}
           </Text>
         </Block>

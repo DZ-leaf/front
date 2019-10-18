@@ -5,7 +5,7 @@ import { Button, Block, NavBar, Text, theme } from 'galio-framework';
 
 import Icon from './Icon';
 import Input from './Input';
-import Tabs from './Tabs';
+// import Tabs from './Tabs';
 import argonTheme from '../constants/Theme';
 
 const { height, width } = Dimensions.get('window');
@@ -85,19 +85,19 @@ class Header extends React.Component {
       </Block>
     );
   }
-  renderTabs = () => {
-    const { tabs, tabIndex, navigation } = this.props;
-    const defaultTab = tabs && tabs[0] && tabs[0].id;
+  // renderTabs = () => {
+  //   const { tabs, tabIndex, navigation } = this.props;
+  //   const defaultTab = tabs && tabs[0] && tabs[0].id;
     
-    if (!tabs) return null;
+  //   if (!tabs) return null;
 
-    return (
-      <Tabs
-        data={tabs || []}
-        initialIndex={tabIndex || defaultTab}
-        onChange={id => navigation.setParams({ tabId: id })} />
-    )
-  }
+  //   return (
+  //     <Tabs
+  //       data={tabs || []}
+  //       initialIndex={tabIndex || defaultTab}
+  //       onChange={id => navigation.setParams({ tabId: id })} />
+  //   )
+  // }
   render() {
     const { back, title, white, transparent, bgColor, iconColor, titleColor, navigation, ...props } = this.props;
     const { routeName } = navigation.state;
