@@ -1,15 +1,18 @@
 import React from 'react';
 import { StyleSheet, Dimensions, FlatList, Animated } from 'react-native';
-import { Block, theme } from 'galio-framework';
+import { Block,  theme  } from 'galio-framework';
+// import {theme} from '../constants/Theme';
 
 const { width } = Dimensions.get('screen');
 import argonTheme from '../constants/Theme';
 
 const defaultMenu = [
-  { id: 'popular', title: 'Popular', },
-  { id: 'beauty', title: 'Beauty', },
-  { id: 'cars', title: 'Cars', },
-  { id: 'motocycles', title: 'Motocycles', },
+  { id: 'findId', title: '아이디 찾기', },
+  { id: 'findPW', title: '비밀번호 찾기', },
+  // { id: 'popular', title: 'Popular', },
+  // { id: 'beauty', title: 'Beauty', },
+  // { id: 'cars', title: 'Cars', },
+  // { id: 'motocycles', title: 'Motocycles', },
 ];
 
 export default class Tabs extends React.Component {
@@ -19,7 +22,7 @@ export default class Tabs extends React.Component {
   }
 
   state = {
-    active: null,
+    active: 'findId',
   }
 
   componentDidMount() {
@@ -61,7 +64,7 @@ export default class Tabs extends React.Component {
   }
 
   renderItem = (item) => {
-    const isActive = this.state.active === item.id;
+    const isActive = this.state.active === item.id;  
 
     const textColor = this.animatedValue.interpolate({
       inputRange: [0, 1],
@@ -71,7 +74,7 @@ export default class Tabs extends React.Component {
     
     const containerStyles = [
       styles.titleContainer,
-      !isActive && { backgroundColor: argonTheme.COLORS.SECONDARY },
+      !isActive && { backgroundColor: '#F0F2F0' },
       isActive && styles.containerShadow
     ];
 
@@ -122,38 +125,47 @@ const styles = StyleSheet.create({
     width: width,
     backgroundColor: theme.COLORS.WHITE,
     zIndex: 2,
+    backgroundColor: '#F0F2F0',
+    marginBottom: -15,
   },
-  shadow: {
-    shadowColor: theme.COLORS.BLACK,
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 8,
-    shadowOpacity: 0.2,
-    elevation: 4,
-  },
+  // shadow: {
+  //   shadowColor: theme.COLORS.BLACK,
+  //   shadowOffset: { width: 0, height: 2 },
+  //   shadowRadius: 8,
+  //   shadowOpacity: 0.2,
+  //   elevation: 4,
+  // },
   menu: {
-    paddingHorizontal: theme.SIZES.BASE * 2.5,
+    // paddingHorizontal: theme.SIZES.BASE * 4,
+    paddingLeft: 51,
     paddingTop: 8,
-    paddingBottom: 16,
+    paddingBottom: 0,
   },
   titleContainer: {
     alignItems: 'center',
     backgroundColor: argonTheme.COLORS.ACTIVE,
-    borderRadius: 4,
-    marginRight: 9
+    paddingHorizontal: theme.SIZES.BASE * 0.5,
+    // borderRadius: 2,
+    // marginRight: 1,
+    // borderWidth: 1,
+    // borderBottomColor: '#25A731',
+    borderColor: '#25A731',
+    // borderBottomWidth: 2
   },
-  containerShadow: {
-    shadowColor: 'black',
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 4,
-    shadowOpacity: 0.1,
-    elevation: 1,
-  },
+  // containerShadow: {
+  //   shadowColor: 'black',
+  //   shadowOffset: { width: 0, height: 2 },
+  //   shadowRadius: 4,
+  //   shadowOpacity: 0.1,
+  //   elevation: 1,
+  // },
   menuTitle: {
-    fontWeight: '600',
-    fontSize: 14,
+    fontWeight: '500',
+    fontSize: 18,
     // lineHeight: 28,
-    paddingVertical: 10,
-    paddingHorizontal: 16,
+    paddingVertical: 15,  //10
+    paddingHorizontal: 30,  //18
+    paddingBottom: 25,
     color: argonTheme.COLORS.MUTED
   },
 });
