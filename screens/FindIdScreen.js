@@ -12,20 +12,19 @@ import Tab from '../components/Tabs';
 class FindIdScreen extends React.Component {
 
     render() {
-        const { navigation } = this.props;
-
+        const { navigation } = this.props;    
 
         return (
             <Block flex>
                 <StatusBar hidden />
                 <Block style={styles.textView}>
-                    <Text style={[styles.text, { fontWeight: 'bold' }, { fontSize: 16 }]}>비밀번호 찾기</Text>
+                    <Text style={[styles.text, { fontWeight: 'bold' }, { fontSize: 16 }]}>아이디 찾기</Text>
                     <Text style={styles.text}>가입 당시 입력한 이메일을 통해 인증하세요</Text>
                 </Block>
                 <Block flex space="between" style={styles.padded}>
                     <Block style={{ paddingHorizontal: theme.SIZES.BASE }}>
                         <Block style={styles.input}>
-                            <Input placeholder="아이디" />
+                            <Input placeholder="이름" />
                         </Block>
                         <Block style={styles.input}>
                             <View style={styles.inputButton}>
@@ -41,7 +40,7 @@ class FindIdScreen extends React.Component {
                         <Button
                             style={styles.button}
                             onPress={() => navigation.navigate("Home")}>
-                            비밀번호 찾기
+                            아이디 찾기
                          </Button>
                     </Block>
                 </Block>

@@ -1,13 +1,13 @@
 import React from 'react';
-import { StyleSheet, Dimensions, FlatList, Animated, } from 'react-native';
-import { Block,  theme  } from 'galio-framework';
+import { StyleSheet, Dimensions, FlatList, Animated, Text } from 'react-native';
+import { Block, theme } from 'galio-framework';
 import { Navigation } from 'react-native-navigation';
 
 // import {theme} from '../constants/Theme';
 
 const { width } = Dimensions.get('screen');
 import argonTheme from '../constants/Theme';
-import FindScreen from '../screens/FindScreen';
+import FindIdScreen from '../screens/FindIdScreen';
 import FindPwScreen from '../screens/FindPwScreen';
 
 const defaultMenu = [
@@ -20,11 +20,10 @@ const defaultMenu = [
 ];
 
 export default class Tabs extends React.Component {
-  
+
   static defaultProps = {
     data: defaultMenu,
     initialIndex: null,
-    initialId: null,
   }
 
   state = {
@@ -34,8 +33,8 @@ export default class Tabs extends React.Component {
 
   componentDidMount() {
     // console.log(this.props);
-    
-    const { initialIndex, initialId } = this.props;
+
+    const { initialIndex } = this.props;
     initialIndex && this.selectMenu(initialIndex);
   }
 
@@ -63,7 +62,8 @@ export default class Tabs extends React.Component {
   selectMenu = (id) => {
     console.log("zz", id)
     this.setState({ active: id });
-
+    // console.log(this.state.active);
+    
     this.menuRef.current.scrollToIndex({
       index: this.props.data.findIndex(item => item.id === id),
       viewPosition: 0.5,
@@ -75,14 +75,14 @@ export default class Tabs extends React.Component {
 
 
   renderItem = (item) => {
-    const isActive = this.state.active === item.id;  
+    const isActive = this.state.active === item.id;
 
     const textColor = this.animatedValue.interpolate({
       inputRange: [0, 1],
       outputRange: [argonTheme.COLORS.BLACK, isActive ? argonTheme.COLORS.WHITE : argonTheme.COLORS.BLACK],
       extrapolate: 'clamp',
     });
-    
+
     const containerStyles = [
       styles.titleContainer,
       !isActive && { backgroundColor: '#F0F2F0' },
@@ -123,9 +123,15 @@ export default class Tabs extends React.Component {
   }
 
   render() {
+    console.log(this.state.active);
     return (
       <Block style={styles.container}>
-        {this.renderMenu()}
+        <Block style={[styles.textView, styles.tab]}>
+          <Block style={styles.menuContainer}>
+          {this.renderMenu()}            
+          </Block>
+        </Block>
+        {this.state.active == 'Id'? <FindIdScreen/>:<FindPwScreen/>}
       </Block>
     )
   }
@@ -133,6 +139,11 @@ export default class Tabs extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+    backgroundColor: '#F0F2F0',
+    paddingTop: 50,
+  },
+  menuContainer: {
     width: width,
     backgroundColor: theme.COLORS.WHITE,
     zIndex: 2,
@@ -178,5 +189,19 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,  //18
     paddingBottom: 25,
     color: argonTheme.COLORS.MUTED
+  },
+  textView: {
+    paddingHorizontal: theme.SIZES.BASE * 3.5,
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+    paddingTop: '3%',
+  },
+  tab: {
+    alignItems: 'center',
+    marginVertical: 20,
+    marginHorizontal: 50,
+    borderColor: '#F0F2F0',
+    borderBottomColor: '#25A731',
+    borderWidth: 8,
   },
 });
