@@ -1,11 +1,16 @@
 import React from "react";
-import { StyleSheet, StatusBar, Dimensions, View, } from "react-native";
+import { StyleSheet, StatusBar, Dimensions, View } from "react-native";
 import { Block, Button, Text, theme, Input } from "galio-framework";
+<<<<<<< HEAD
 import { withNavigation } from 'react-navigation'
 
 const { width } = Dimensions.get("screen");
 const order = 2;
 
+=======
+
+const { width } = Dimensions.get("screen");
+>>>>>>> 5134d221f2915c1774c3e0fc684d212dd881a6ef
 class FindIdScreen extends React.Component {
 
     render() {

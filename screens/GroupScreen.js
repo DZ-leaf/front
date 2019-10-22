@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { Block, theme } from "galio-framework";
 
-import GroupAtHome from './Home/GroupAtHome';
-
-class HomeScreen extends Component {
-
+class GroupScreen extends Component {
+    
     render() {
         return (
-            <GroupAtHome />
+            <View style={styles.container}>
+                <Text>그룹</Text>
+            </View>
         );
     }
 }
@@ -21,4 +20,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default HomeScreen;
+export default GroupScreen;

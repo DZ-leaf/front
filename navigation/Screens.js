@@ -14,16 +14,19 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 // screens
 import HomeScreen from "../screens/HomeScreen";
 import LoginScreen from "../screens/LoginScreen";
-import Profile from "../screens/Profile";
+import ProfileScreen from "../screens/ProfileScreen";
 import RegisterScreen from "../screens/RegisterScreen";
-import Elements from "../screens/Elements";
-import Articles from "../screens/Articles";
 import ChatScreen from '../screens/ChatScreen';
 import AlarmScreen from '../screens/AlarmScreen';
 import SettingScreen from '../screens/SettingScreen';
 import FindScreen from '../screens/FindScreen';
+<<<<<<< HEAD
 import IdconfirmScreen from '../screens/IdConfirmScreen';
 import PwResetScreen from '../screens/PwResetScreen';
+=======
+import GroupScreen from '../screens/GroupScreen';
+import CompanyScreen from '../screens/CompanyScreen';
+>>>>>>> 5134d221f2915c1774c3e0fc684d212dd881a6ef
 
 // drawer
 import Menu from "./Menu";
@@ -74,35 +77,7 @@ const ChatStack = createStackNavigator({
   Chat: {
     screen: ChatScreen,
     navigationOptions: ({ navigation }) => ({
-      header: <Header title="Chat" navigation={navigation} />
-    })
-  }
-}, {
-  cardStyle: {
-    backgroundColor: "#F8F9FE"
-  },
-  transitionConfig
-});
-
-const ElementsStack = createStackNavigator({
-  Elements: {
-    screen: Elements,
-    navigationOptions: ({ navigation }) => ({
-      header: <Header title="Elements" navigation={navigation} />
-    })
-  }
-}, {
-  cardStyle: {
-    backgroundColor: "#F8F9FE"
-  },
-  transitionConfig
-});
-
-const ArticlesStack = createStackNavigator({
-  Articles: {
-    screen: Articles,
-    navigationOptions: ({ navigation }) => ({
-      header: <Header title="Articles" navigation={navigation} />
+      header: <Header title="채팅" navigation={navigation} />
     })
   }
 }, {
@@ -115,10 +90,10 @@ const ArticlesStack = createStackNavigator({
 const ProfileStack = createStackNavigator(
   {
     Profile: {
-      screen: Profile,
+      screen: ProfileScreen,
       navigationOptions: ({ navigation }) => ({
         header: (
-          <Header white transparent title="Profile" iconColor={'#FFF'} navigation={navigation} />
+          <Header white transparent title="프로필" iconColor={'#FFF'} navigation={navigation} />
         ),
         headerTransparent: true
       })
@@ -135,7 +110,7 @@ const HomeStack = createStackNavigator(
     Home: {
       screen: HomeScreen,
       navigationOptions: ({ navigation }) => ({
-        header: <Header search options title="Home" navigation={navigation} />
+        header: <Header search options title="홈" navigation={navigation} />
       })
     },
   },
@@ -152,7 +127,7 @@ const AlarmStack = createStackNavigator(
     Alarm: {
       screen: AlarmScreen,
       navigationOptions: ({ navigation }) => ({
-        header: <Header search options title="Alarm" navigation={navigation} />
+        header: <Header search options title="알림" navigation={navigation} />
       })
     },
   },
@@ -169,7 +144,41 @@ const SettingStack = createStackNavigator(
     Setting: {
       screen: SettingScreen,
       navigationOptions: ({ navigation }) => ({
-        header: <Header search options title="Setting" navigation={navigation} />
+        header: <Header search options title="설정" navigation={navigation} />
+      })
+    },
+  },
+  {
+    cardStyle: {
+      backgroundColor: "#F8F9FE"
+    },
+    transitionConfig
+  }
+);
+
+const GroupStack = createStackNavigator(
+  {
+    Setting: {
+      screen: GroupScreen,
+      navigationOptions: ({ navigation }) => ({
+        header: <Header search options title="그룹" navigation={navigation} />
+      })
+    },
+  },
+  {
+    cardStyle: {
+      backgroundColor: "#F8F9FE"
+    },
+    transitionConfig
+  }
+);
+
+const CompanyStack = createStackNavigator(
+  {
+    Setting: {
+      screen: CompanyScreen,
+      navigationOptions: ({ navigation }) => ({
+        header: <Header search options title="회사" navigation={navigation} />
       })
     },
   },
@@ -241,7 +250,7 @@ const AppStack = createDrawerNavigator(
       screen: BottomStack,
       navigationOptions: navOpt => ({
         drawerLabel: ({ focused }) => (
-          <DrawerItem focused={focused} title="Home" />
+          <DrawerItem focused={focused} title="홈" />
         )
       })
     },
@@ -261,26 +270,26 @@ const AppStack = createDrawerNavigator(
       screen: ProfileStack,
       navigationOptions: navOpt => ({
         drawerLabel: ({ focused }) => (
-          <DrawerItem focused={focused} screen="Profile" title="Profile" />
+          <DrawerItem focused={focused} title="프로필" />
         )
       })
     },
-    Elements: {
-      screen: ElementsStack,
+    Company: {
+      screen: CompanyStack,
       navigationOptions: navOpt => ({
         drawerLabel: ({ focused }) => (
-          <DrawerItem focused={focused} screen="Elements" title="Elements" />
+          <DrawerItem focused={focused} title="회사" />
         )
       })
     },
-    Articles: {
-      screen: ArticlesStack,
+    Group: {
+      screen: GroupStack,
       navigationOptions: navOpt => ({
         drawerLabel: ({ focused }) => (
-          <DrawerItem focused={focused} screen="Articles" title="Articles" />
+          <DrawerItem focused={focused} title="그룹" />
         )
       })
-    }
+    },
   },
   Menu
 );

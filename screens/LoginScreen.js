@@ -7,15 +7,13 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const { width } = Dimensions.get("screen");
 
-// import Images from "../constants/Images";
-
 import { AjaxUser } from "../lib/url/user/userUrl";
 
 class LoginScreen extends React.Component {
 
   state = {
-    user_id:'',
-    user_pw:'',
+    userId:'',
+    userPw:'',
   }
 
   handleSubmit = () => {
@@ -47,17 +45,14 @@ class LoginScreen extends React.Component {
               placeholder="ID"
               iconContent={<Icon size={20} style={{ marginRight: 10 }} name="person" />} 
               color={argonTheme.COLORS.BLACK}
-              onChangeText={(text) => { this.setState({ user_id: text }) }}/>
+              onChangeText={(text) => { this.setState({ userId: text }) }}/>
             <Input
               placeholder="Password"
               iconContent={<Icon size={20} style={{ marginRight: 10 }} name="lock" />} 
               color={argonTheme.COLORS.BLACK}
-              onChangeText={(text) => { this.setState({ user_pw: text }) }}/>
+              onChangeText={(text) => { this.setState({ userPw: text }) }}/>
             <View style={styles.textAuto}>
             <Checkbox color="primary" labelStyle={{ color: '#707070' }} label="자동 로그인" />
-              {/* <Text style={styles.text}>
-                자동 로그인
-                </Text> */}
             </View>
             <Button
               style={styles.button}

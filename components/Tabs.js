@@ -3,8 +3,6 @@ import { StyleSheet, Dimensions, FlatList, Animated, Text } from 'react-native';
 import { Block, theme } from 'galio-framework';
 import { Navigation } from 'react-native-navigation';
 
-// import {theme} from '../constants/Theme';
-
 const { width } = Dimensions.get('screen');
 import argonTheme from '../constants/Theme';
 import FindIdScreen from '../screens/FindIdScreen';
@@ -15,10 +13,6 @@ import PwResetScreen from '../screens/PwResetScreen'
 const defaultMenu = [
   { id: 'Id', title: '아이디 찾기', },
   { id: 'PW', title: '비밀번호 찾기', },
-  // { id: 'popular', title: 'Popular', },
-  // { id: 'beauty', title: 'Beauty', },
-  // { id: 'cars', title: 'Cars', },
-  // { id: 'motocycles', title: 'Motocycles', },
 ];
 
 export default class Tabs extends React.Component {
@@ -29,7 +23,6 @@ export default class Tabs extends React.Component {
   }
 
   state = {
-    // active: defaultProps.initialId,
     active: 'Id',
     order: 1,
   }
@@ -51,7 +44,6 @@ export default class Tabs extends React.Component {
     Animated.timing(this.animatedValue, {
       toValue: 1,
       duration: 300,
-      // useNativeDriver: true, // color not supported
     }).start()
   }
 
@@ -64,10 +56,15 @@ export default class Tabs extends React.Component {
     });
   }
 
+<<<<<<< HEAD
   selectMenu = (id, order) => {
     this.setState({ active: id, order: order });
     // console.log(this.state.active);
 
+=======
+  selectMenu = (id) => {
+    this.setState({ active: id });
+>>>>>>> 5134d221f2915c1774c3e0fc684d212dd881a6ef
     this.menuRef.current.scrollToIndex({
       index: this.props.data.findIndex(item => item.id === id),
       viewPosition: 0.5,
@@ -139,8 +136,11 @@ export default class Tabs extends React.Component {
   }
 
   render() {
+<<<<<<< HEAD
     console.log(this.state.active, this.state.order);
 
+=======
+>>>>>>> 5134d221f2915c1774c3e0fc684d212dd881a6ef
     return (
       <Block style={styles.container}>
         <Block style={[styles.textView, styles.tab]}>
@@ -148,8 +148,12 @@ export default class Tabs extends React.Component {
             {this.renderMenu()}
           </Block>
         </Block>
+<<<<<<< HEAD
         {/* {this.state.active == 'Id'? <FindIdScreen/>:<FindPwScreen/>} */}
         {this.selectScreen()}
+=======
+        {this.state.active == 'Id' ? <FindIdScreen /> : <FindPwScreen />}
+>>>>>>> 5134d221f2915c1774c3e0fc684d212dd881a6ef
       </Block>
     )
   }
@@ -168,15 +172,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#F0F2F0',
     marginBottom: -15,
   },
-  // shadow: {
-  //   shadowColor: theme.COLORS.BLACK,
-  //   shadowOffset: { width: 0, height: 2 },
-  //   shadowRadius: 8,
-  //   shadowOpacity: 0.2,
-  //   elevation: 4,
-  // },
   menu: {
-    // paddingHorizontal: theme.SIZES.BASE * 4,
     paddingLeft: 51,
     paddingTop: 8,
     paddingBottom: 0,
@@ -185,24 +181,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: argonTheme.COLORS.ACTIVE,
     paddingHorizontal: theme.SIZES.BASE * 0.5,
-    // borderRadius: 2,
-    // marginRight: 1,
-    // borderWidth: 1,
-    // borderBottomColor: '#25A731',
     borderColor: '#25A731',
-    // borderBottomWidth: 2
   },
-  // containerShadow: {
-  //   shadowColor: 'black',
-  //   shadowOffset: { width: 0, height: 2 },
-  //   shadowRadius: 4,
-  //   shadowOpacity: 0.1,
-  //   elevation: 1,
-  // },
   menuTitle: {
     fontWeight: '500',
     fontSize: 18,
-    // lineHeight: 28,
     paddingVertical: 15,  //10
     paddingHorizontal: 30,  //18
     paddingBottom: 25,

@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet } from "react-native";
 import { Block, Text, theme } from "galio-framework";
 
-import Icon from "./Icon";
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import argonTheme from "../constants/Theme";
 
 class DrawerItem extends React.Component {
@@ -10,57 +10,35 @@ class DrawerItem extends React.Component {
     const { title, focused } = this.props;
 
     switch (title) {
-      case "Home":
+      case "홈":
         return (
           <Icon
-            name="shop"
-            family="ArgonExtra"
-            size={10}
+            name="home"
+            size={20}
             color={focused ? "white" : argonTheme.COLORS.ICON}
           />
         );
-      case "Elements":
+        case "프로필":
         return (
           <Icon
-            name="map-big"
-            family="ArgonExtra"
-            size={12}
+          name="person"
+            size={20}
             color={focused ? "white" : argonTheme.COLORS.ICON}
           />
         );
-      case "Components":
+        case "회사":
         return (
           <Icon
-            name="map-big"
-            family="ArgonExtra"
-            size={12}
+          name="computer"
+            size={20}
             color={focused ? "white" : argonTheme.COLORS.ICON}
           />
         );
-      case "Articles":
+        case "그룹":
         return (
           <Icon
-            name="spaceship"
-            family="ArgonExtra"
-            size={12}
-            color={focused ? "white" : argonTheme.COLORS.ICON}
-          />
-        );
-      case "Profile":
-        return (
-          <Icon
-            name="chart-pie-35"
-            family="ArgonExtra"
-            size={12}
-            color={focused ? "white" : argonTheme.COLORS.ICON}
-          />
-        );
-      case "Account":
-        return (
-          <Icon
-            name="calendar-date"
-            family="ArgonExtra"
-            size={12}
+          name="group"
+            size={20}
             color={focused ? "white" : argonTheme.COLORS.ICON}
           />
         );
