@@ -31,9 +31,9 @@ class Register extends React.Component {
     console.log("zz" + data)
     return AjaxUser.register(data)
     // .then((response) => response.json())
-    .then((responseJson) => {
-      console.log(responseJson);
-    })
+    // .then((responseJson) => {
+    //   console.log(responseJson);
+    // })
     .catch((error) => {
       console.error(error);
     });
