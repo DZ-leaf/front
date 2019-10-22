@@ -21,7 +21,7 @@ class FindScreen extends React.Component {
                 <StatusBar hidden />
                 <Block style={[styles.textView, styles.tab]}>
                     <Tab initialId='findId'/>    
-                      {console.log('tab', Tab.props)}                
+                      {/* {console.log('tab', Tab.props)}                 */}
                 </Block>
                 <Block style={styles.textView}>
                     <Text style={[styles.text, { fontWeight: 'bold' }, { fontSize: 16 }]}>등록된 이메일로 찾기</Text>
