@@ -13,19 +13,16 @@ class FindScreen extends React.Component {
 
     render() {
         const { navigation } = this.props;
-        console.log('render', this.props);
-        
 
         return (
             <Block flex style={[styles.container, { paddingTop: 50 }]}>
                 <StatusBar hidden />
                 <Block style={[styles.textView, styles.tab]}>
-                    <Tab initialId='findId'/>    
-                      {console.log('tab', Tab.props)}                
+                    <Tab initialId='findPw'/>
                 </Block>
                 <Block style={styles.textView}>
                     <Text style={[styles.text, { fontWeight: 'bold' }, { fontSize: 16 }]}>등록된 이메일로 찾기</Text>
-                    <Text style={styles.text}>가입 당시 입력한 이메일을 통해 인증하세요</Text>
+                    <Text style={styles.text}>비밀번호 찾기!!!!!!!!!!!!!!!!!!!!!!!</Text>
                 </Block>
                 <Block flex space="between" style={styles.padded}>
                     <Block style={{ paddingHorizontal: theme.SIZES.BASE }}>

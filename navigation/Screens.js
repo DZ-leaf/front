@@ -4,6 +4,8 @@ import { createAppContainer } from "react-navigation";
 import { createDrawerNavigator } from "react-navigation-drawer";
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from "react-navigation-tabs";
+import { TabNavigator } from 'react-navigation';
+import { Navigation } from 'react-native-navigation';
 
 import { Block } from "galio-framework";
 
@@ -20,6 +22,7 @@ import ChatScreen from '../screens/ChatScreen';
 import AlarmScreen from '../screens/AlarmScreen';
 import SettingScreen from '../screens/SettingScreen';
 import FindScreen from '../screens/FindScreen';
+import FindPwScreen from '../screens/FindPwScreen';
 // drawer
 import Menu from "./Menu";
 import DrawerItem from "../components/DrawerItem";
@@ -267,6 +270,16 @@ const AppStack = createDrawerNavigator(
   },
   Menu
 );
+
+export const findTab = () => {
+  Navigation.registerComponent('findId', () => FindScreen);
+  Navigation.registerComponent('findPw', () => FindPwScreen)
+}
+// const TabBar = TabNavigator({
+//   findID: {
+//     screen: FindScreen,
+//   }
+// })
 
 const AppContainer = createAppContainer(AppStack);
 export default AppContainer;

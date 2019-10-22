@@ -1,14 +1,18 @@
 import React from 'react';
-import { StyleSheet, Dimensions, FlatList, Animated } from 'react-native';
+import { StyleSheet, Dimensions, FlatList, Animated, } from 'react-native';
 import { Block,  theme  } from 'galio-framework';
+import { Navigation } from 'react-native-navigation';
+
 // import {theme} from '../constants/Theme';
 
 const { width } = Dimensions.get('screen');
 import argonTheme from '../constants/Theme';
+import FindScreen from '../screens/FindScreen';
+import FindPwScreen from '../screens/FindPwScreen';
 
 const defaultMenu = [
-  { id: 'findId', title: '아이디 찾기', },
-  { id: 'findPW', title: '비밀번호 찾기', },
+  { id: 'Id', title: '아이디 찾기', },
+  { id: 'PW', title: '비밀번호 찾기', },
   // { id: 'popular', title: 'Popular', },
   // { id: 'beauty', title: 'Beauty', },
   // { id: 'cars', title: 'Cars', },
@@ -16,17 +20,22 @@ const defaultMenu = [
 ];
 
 export default class Tabs extends React.Component {
+  
   static defaultProps = {
     data: defaultMenu,
     initialIndex: null,
+    initialId: null,
   }
 
   state = {
-    active: 'findId',
+    // active: defaultProps.initialId,
+    active: 'Id',
   }
 
   componentDidMount() {
-    const { initialIndex } = this.props;
+    // console.log(this.props);
+    
+    const { initialIndex, initialId } = this.props;
     initialIndex && this.selectMenu(initialIndex);
   }
 
@@ -47,7 +56,7 @@ export default class Tabs extends React.Component {
   onScrollToIndexFailed = () => {
     this.menuRef.current.scrollToIndex({
       index: 0,
-      viewPosition: 0.5
+      viewPosition: 0.5,
     });
   }
 
@@ -56,12 +65,13 @@ export default class Tabs extends React.Component {
 
     this.menuRef.current.scrollToIndex({
       index: this.props.data.findIndex(item => item.id === id),
-      viewPosition: 0.5
+      viewPosition: 0.5,
     });
 
     this.animate();
     this.props.onChange && this.props.onChange(id);
   }
+
 
   renderItem = (item) => {
     const isActive = this.state.active === item.id;  
