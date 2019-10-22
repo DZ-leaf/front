@@ -1,13 +1,23 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { Block, theme } from "galio-framework";
+
+import GroupAtHome from './Home/GroupAtHome';
 
 class HomeScreen extends Component {
-    
+
+    renderGroup = () => {
+        return(<GroupAtHome />);
+    }
+
     render() {
         return (
-            <View style={styles.container}>
+            <Block>
+            <View>
+                {this.renderGroup()}
                 <Text>홈</Text>
             </View>
+            </Block>
         );
     }
 }

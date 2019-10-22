@@ -1,14 +1,34 @@
 import React from "react";
-import { Image, StyleSheet, StatusBar, Dimensions, View, CheckBox } from "react-native";
-import { Block, Button, Text, theme, Input } from "galio-framework";
+import { Image, StyleSheet, StatusBar, Dimensions, View } from "react-native";
+import { Block, Button, Text, theme, Input, Checkbox } from "galio-framework";
+import { Images, argonTheme } from "../constants";
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const { width } = Dimensions.get("screen");
 
-import Images from "../constants/Images";
+// import Images from "../constants/Images";
+
+import { AjaxUser } from "../lib/url/user/userUrl";
 
 class LoginScreen extends React.Component {
+
+  state = {
+    user_id:'',
+    user_pw:'',
+  }
+
+  handleSubmit = () => {
+    this.loginAjax(this.state);
+    this.props.navigation.navigate("Home");
+  }
+
+  loginAjax = (data) => {
+    return AjaxUser.login(data)
+      .catch((error) => {
+        console.error(error);
+      });
+  }
 
   render() {
     const { navigation } = this.props;
@@ -23,19 +43,23 @@ class LoginScreen extends React.Component {
           <Block style={{ paddingHorizontal: theme.SIZES.BASE }}>
             <Input
               placeholder="ID"
-              iconContent={<Icon size={20} style={{ marginRight: 10 }} name="person" />} />
+              iconContent={<Icon size={20} style={{ marginRight: 10 }} name="person" />} 
+              color={argonTheme.COLORS.BLACK}
+              onChangeText={(text) => { this.setState({ user_id: text }) }}/>
             <Input
               placeholder="Password"
-              iconContent={<Icon size={20} style={{ marginRight: 10 }} name="lock" />} />
+              iconContent={<Icon size={20} style={{ marginRight: 10 }} name="lock" />} 
+              color={argonTheme.COLORS.BLACK}
+              onChangeText={(text) => { this.setState({ user_pw: text }) }}/>
             <View style={styles.textAuto}>
-              <CheckBox />
-              <Text style={styles.text}>
+            <Checkbox color="primary" labelStyle={{ color: '#707070' }} label="자동 로그인" />
+              {/* <Text style={styles.text}>
                 자동 로그인
-                </Text>
+                </Text> */}
             </View>
             <Button
               style={styles.button}
-              onPress={() => navigation.navigate("Home")}>
+              onPress={() => this.handleSubmit()}>
               로그인
             </Button>
             <View style={styles.textView}>

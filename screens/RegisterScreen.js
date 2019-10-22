@@ -5,7 +5,6 @@ import { Images, argonTheme } from "../constants";
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-// import { AjaxSign } from "lib/url/user";
 import { AjaxUser } from "../lib/url/user/userUrl";
 
 const { width, height } = Dimensions.get("screen");
@@ -22,26 +21,18 @@ class Register extends React.Component {
   }
 
   handleSubmit = () => {
-    console.log(this.state);
     this.registerAjax(this.state);
     this.props.navigation.navigate("Login");
   }
 
   registerAjax = (data) => {
-    console.log("zz" + data)
     return AjaxUser.register(data)
-    // .then((response) => response.json())
-    // .then((responseJson) => {
-    //   console.log(responseJson);
-    // })
-    .catch((error) => {
-      console.error(error);
-    });
+      .catch((error) => {
+        console.error(error);
+      });
   }
 
   render() {
-    const { navigation } = this.props;
-
     return (
       <Block flex style={styles.container}>
         <StatusBar hidden />
