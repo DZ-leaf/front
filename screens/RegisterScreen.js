@@ -12,12 +12,14 @@ const { width, height } = Dimensions.get("screen");
 class Register extends React.Component {
 
   state = {
-    user_id: '',
-    user_pw: '',
-    user_nm: '',
-    company_nm: '',
-    department_nm: '',
+    userId: '',
+    userPw: '',
+    userNm: '',
+    companyNm: '',
+    departmentNm: '',
     email: '',
+    position:' ',
+    profile: '안녕하세요',
   }
 
   handleSubmit = () => {
@@ -44,11 +46,11 @@ class Register extends React.Component {
             <View style={styles.inputs}>
               <Input placeholder="이름" iconContent={<Block />}
                 style={{ borderRadius: 0 }} color={argonTheme.COLORS.BLACK}
-                onChangeText={(text) => { this.setState({ user_nm: text }) }} />
+                onChangeText={(text) => { this.setState({ userNm: text }) }} />
             </View>
             <View style={styles.inputs}>
               <Input style={{ borderRadius: 0 }} color={argonTheme.COLORS.BLACK}
-                onChangeText={(text) => { this.setState({ user_id: text }) }}
+                onChangeText={(text) => { this.setState({ userId: text }) }}
                 right
                 placeholder="아이디"
                 iconContent={
@@ -60,7 +62,7 @@ class Register extends React.Component {
             <View style={styles.inputs}>
               <Input placeholder="비밀번호" iconContent={<Block />}
                 style={{ borderRadius: 0 }} color={argonTheme.COLORS.BLACK}
-                onChangeText={(text) => { this.setState({ user_pw: text }) }} />
+                onChangeText={(text) => { this.setState({ userPw: text }) }} />
             </View>
             <View style={styles.inputs}>
               <Input style={{ borderRadius: 0 }} color={argonTheme.COLORS.BLACK}
@@ -78,13 +80,13 @@ class Register extends React.Component {
             <View style={styles.inputs, styles.inputButton}>
               <Input placeholder="회사" iconContent={<Block />}
                 style={{ borderRadius: 0 }} color={argonTheme.COLORS.BLACK}
-                onChangeText={(text) => { this.setState({ company_nm: text }) }} />
+                onChangeText={(text) => { this.setState({ companyNm: text }) }} />
               <Button style={styles.button, { width: '10%' }}>찾기</Button>
             </View>
             <View style={styles.inputs} width={width * 0.9}>
               <Input placeholder="부서" iconContent={<Block />}
                 style={{ borderRadius: 0 }} color={argonTheme.COLORS.BLACK}
-                onChangeText={(text) => { this.setState({ department_nm: text }) }} />
+                onChangeText={(text) => { this.setState({ departmentNm: text }) }} />
             </View>
           </Block>
 

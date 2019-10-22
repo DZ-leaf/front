@@ -170,8 +170,8 @@ class ProfileScreen extends React.Component {
 
 const styles = StyleSheet.create({
   profile: {
-    marginTop: Platform.OS === "android" ? 0 : 0,
-    // marginBottom: -HeaderHeight * 2,
+    marginTop: Platform.OS === "android" ?-HeaderHeight*2 : -HeaderHeight,
+    marginBottom: Platform.OS === "android" ?-HeaderHeight : 0,
     flex: 1
   },
   profileContainer: {
@@ -185,7 +185,7 @@ const styles = StyleSheet.create({
     height: height / 2
   },
   profileCard: {
-    // position: "relative",
+    position: "relative",
     padding: theme.SIZES.BASE,
     marginHorizontal: theme.SIZES.BASE,
     marginTop: 65,
