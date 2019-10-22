@@ -20,6 +20,9 @@ import ChatScreen from '../screens/ChatScreen';
 import AlarmScreen from '../screens/AlarmScreen';
 import SettingScreen from '../screens/SettingScreen';
 import FindScreen from '../screens/FindScreen';
+import GroupScreen from '../screens/GroupScreen';
+import CompanyScreen from '../screens/CompanyScreen';
+
 // drawer
 import Menu from "./Menu";
 import DrawerItem from "../components/DrawerItem";

@@ -2,12 +2,7 @@ import React from "react";
 import { StyleSheet, StatusBar, Dimensions, View, } from "react-native";
 import { Block, Button, Text, theme, Input } from "galio-framework";
 
-import Icon from 'react-native-vector-icons/MaterialIcons';
-
 const { width } = Dimensions.get("screen");
-
-// import Images from "../constants/Images";
-import Tab from '../components/Tabs';
 
 class FindIdScreen extends React.Component {
 
