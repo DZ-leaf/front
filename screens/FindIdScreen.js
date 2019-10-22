@@ -1,19 +1,16 @@
 import React from "react";
 import { StyleSheet, StatusBar, Dimensions, View, } from "react-native";
 import { Block, Button, Text, theme, Input } from "galio-framework";
-
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import { withNavigation } from 'react-navigation'
 
 const { width } = Dimensions.get("screen");
-
-// import Images from "../constants/Images";
-import Tab from '../components/Tabs';
+const order = 2;
 
 class FindIdScreen extends React.Component {
 
     render() {
         const { navigation } = this.props;    
-
+        
         return (
             <Block flex>
                 <StatusBar hidden />
@@ -39,7 +36,7 @@ class FindIdScreen extends React.Component {
                         </Block>
                         <Button
                             style={styles.button}
-                            onPress={() => navigation.navigate("Home")}>
+                            onPress={() => navigation.navigate("Find")}>
                             아이디 찾기
                          </Button>
                     </Block>
@@ -113,4 +110,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default FindIdScreen;
+export default withNavigation(FindIdScreen);

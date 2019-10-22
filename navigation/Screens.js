@@ -22,6 +22,9 @@ import ChatScreen from '../screens/ChatScreen';
 import AlarmScreen from '../screens/AlarmScreen';
 import SettingScreen from '../screens/SettingScreen';
 import FindScreen from '../screens/FindScreen';
+import IdconfirmScreen from '../screens/IdConfirmScreen';
+import PwResetScreen from '../screens/PwResetScreen';
+
 // drawer
 import Menu from "./Menu";
 import DrawerItem from "../components/DrawerItem";
@@ -229,9 +232,9 @@ const AppStack = createDrawerNavigator(
     },
     Find: {
       screen: FindScreen,
-      navigationOptions: {
-        drawerLabel: () => { }
+      navigationOptions: () => {
       }
+
     },
     Home: {
       screen: HomeStack,
@@ -241,6 +244,18 @@ const AppStack = createDrawerNavigator(
           <DrawerItem focused={focused} title="Home" />
         )
       })
+    },
+    Confirm: {
+      screen: IdconfirmScreen,
+      navigationOptions: {
+        drawerLabel: () => { }
+      }
+    },
+    Reset: {
+      screen: PwResetScreen,
+      navigationOptions: {
+        drawerLabel: () => { }
+      }
     },
     Profile: {
       screen: ProfileStack,
@@ -269,16 +284,6 @@ const AppStack = createDrawerNavigator(
   },
   Menu
 );
-
-// export const findTab = () => {
-//   Navigation.registerComponent('findId', () => FindScreen);
-//   Navigation.registerComponent('findPw', () => FindPwScreen)
-// }
-// const TabBar = TabNavigator({
-//   findID: {
-//     screen: FindScreen,
-//   }
-// })
 
 const AppContainer = createAppContainer(AppStack);
 export default AppContainer;

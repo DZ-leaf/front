@@ -9,6 +9,8 @@ const { width } = Dimensions.get('screen');
 import argonTheme from '../constants/Theme';
 import FindIdScreen from '../screens/FindIdScreen';
 import FindPwScreen from '../screens/FindPwScreen';
+import IdConfirmScreen from '../screens/IdConfirmScreen';
+import PwResetScreen from '../screens/PwResetScreen'
 
 const defaultMenu = [
   { id: 'Id', title: '아이디 찾기', },
@@ -29,13 +31,16 @@ export default class Tabs extends React.Component {
   state = {
     // active: defaultProps.initialId,
     active: 'Id',
+    order: 1,
   }
 
   componentDidMount() {
-    // console.log(this.props);
-
     const { initialIndex } = this.props;
     initialIndex && this.selectMenu(initialIndex);
+
+    console.log(this.props);
+    
+    
   }
 
   animatedValue = new Animated.Value(1);
@@ -59,10 +64,10 @@ export default class Tabs extends React.Component {
     });
   }
 
-  selectMenu = (id) => {
-    this.setState({ active: id });
+  selectMenu = (id, order) => {
+    this.setState({ active: id, order: order });
     // console.log(this.state.active);
-    
+
     this.menuRef.current.scrollToIndex({
       index: this.props.data.findIndex(item => item.id === id),
       viewPosition: 0.5,
@@ -95,7 +100,7 @@ export default class Tabs extends React.Component {
             styles.menuTitle,
             { color: textColor }
           ]}
-          onPress={() => this.selectMenu(item.id)}>
+          onPress={() => this.selectMenu(item.id, 1)}>
           {item.title}
         </Animated.Text>
       </Block>
@@ -121,16 +126,30 @@ export default class Tabs extends React.Component {
     )
   }
 
+
+  selectScreen = () => {
+    if (this.state.active == 'Id') {
+      if (this.state.order == 1) return <FindIdScreen />
+      else return <IdConfirmScreen />
+    }
+    else {
+      if (this.state.order == 1) return <FindPwScreen />
+      else return <PwResetScreen />
+    }
+  }
+
   render() {
-    console.log(this.state.active);
+    console.log(this.state.active, this.state.order);
+
     return (
       <Block style={styles.container}>
         <Block style={[styles.textView, styles.tab]}>
           <Block style={styles.menuContainer}>
-          {this.renderMenu()}            
+            {this.renderMenu()}
           </Block>
         </Block>
-        {this.state.active == 'Id'? <FindIdScreen/>:<FindPwScreen/>}
+        {/* {this.state.active == 'Id'? <FindIdScreen/>:<FindPwScreen/>} */}
+        {this.selectScreen()}
       </Block>
     )
   }
