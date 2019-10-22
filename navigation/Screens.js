@@ -22,7 +22,6 @@ import ChatScreen from '../screens/ChatScreen';
 import AlarmScreen from '../screens/AlarmScreen';
 import SettingScreen from '../screens/SettingScreen';
 import FindScreen from '../screens/FindScreen';
-import FindPwScreen from '../screens/FindPwScreen';
 // drawer
 import Menu from "./Menu";
 import DrawerItem from "../components/DrawerItem";
@@ -271,10 +270,10 @@ const AppStack = createDrawerNavigator(
   Menu
 );
 
-export const findTab = () => {
-  Navigation.registerComponent('findId', () => FindScreen);
-  Navigation.registerComponent('findPw', () => FindPwScreen)
-}
+// export const findTab = () => {
+//   Navigation.registerComponent('findId', () => FindScreen);
+//   Navigation.registerComponent('findPw', () => FindPwScreen)
+// }
 // const TabBar = TabNavigator({
 //   findID: {
 //     screen: FindScreen,
