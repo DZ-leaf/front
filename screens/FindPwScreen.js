@@ -1,24 +1,17 @@
 import React from "react";
 import { StyleSheet, StatusBar, Dimensions, View, } from "react-native";
 import { Block, Button, Text, theme, Input } from "galio-framework";
-<<<<<<< HEAD
 import { withNavigation } from 'react-navigation';
 
 const { width } = Dimensions.get("screen");
 
 // import Images from "../constants/Images";
 
-=======
-
-const { width } = Dimensions.get("screen");
-
->>>>>>> 5134d221f2915c1774c3e0fc684d212dd881a6ef
-class FindIdScreen extends React.Component {
+class FindPwScreen extends React.Component {
 
     render() {
         const { navigation } = this.props;
-
-
+        
         return (
             <Block flex>
                 <StatusBar hidden />
@@ -44,7 +37,8 @@ class FindIdScreen extends React.Component {
                         </Block>
                         <Button
                             style={styles.button}
-                            onPress={() => navigation.navigate("Find")}>
+                            // onPress={this.props.onClickListener}
+                            onPress={() => {navigation.navigate('Find', {order:2})}}>
                             비밀번호 찾기
                          </Button>
                     </Block>
@@ -118,4 +112,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default withNavigation(FindIdScreen);
+export default withNavigation(FindPwScreen);

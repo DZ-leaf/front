@@ -20,13 +20,8 @@ import ChatScreen from '../screens/ChatScreen';
 import AlarmScreen from '../screens/AlarmScreen';
 import SettingScreen from '../screens/SettingScreen';
 import FindScreen from '../screens/FindScreen';
-<<<<<<< HEAD
-import IdconfirmScreen from '../screens/IdConfirmScreen';
-import PwResetScreen from '../screens/PwResetScreen';
-=======
 import GroupScreen from '../screens/GroupScreen';
 import CompanyScreen from '../screens/CompanyScreen';
->>>>>>> 5134d221f2915c1774c3e0fc684d212dd881a6ef
 
 // drawer
 import Menu from "./Menu";
@@ -242,8 +237,8 @@ const AppStack = createDrawerNavigator(
     Find: {
       screen: FindScreen,
       navigationOptions: () => {
+        console.log('find!!!!!!!!!!!!!');
       }
-
     },
     Home: {
       screen: HomeStack,
@@ -254,18 +249,22 @@ const AppStack = createDrawerNavigator(
         )
       })
     },
-    Confirm: {
-      screen: IdconfirmScreen,
-      navigationOptions: {
-        drawerLabel: () => { }
-      }
-    },
-    Reset: {
-      screen: PwResetScreen,
-      navigationOptions: {
-        drawerLabel: () => { }
-      }
-    },
+    // Confirm: {
+    //   screen: FindScreen,
+    //   navigationOptions: {
+    //     drawerLabel: () => {
+    //       console.log("Confirm!!!!!!!!!!");
+    //     }
+    //   }
+    // },
+    // Reset: {
+    //   screen: FindScreen,
+    //   navigationOptions: {
+    //     drawerLabel: () => {
+    //       console.log("Reset!!!!!!!!!!")
+    //     }
+    //   }
+    // },
     Profile: {
       screen: ProfileStack,
       navigationOptions: navOpt => ({
