@@ -62,10 +62,6 @@ export default class Tabs extends React.Component {
     });
   }
 
-<<<<<<< HEAD
-  selectMenu = (id) => {
-    this.setState({ active: id });
-=======
   order = this.props.order;
 
   selectMenu = (id) => {    
@@ -75,7 +71,6 @@ export default class Tabs extends React.Component {
     // this.props.order=1;
       
 
->>>>>>> 3d257508092abacc82b3e415b05449ed83abe5f6
     this.menuRef.current.scrollToIndex({
       index: this.props.data.findIndex(item => item.id === id),
       viewPosition: 0.5,
@@ -137,13 +132,8 @@ export default class Tabs extends React.Component {
 
   selectScreen = () => {
     if (this.state.active == 'Id') {
-<<<<<<< HEAD
-      if (this.state.order == 1) return <FindIdScreen />
-      else return <IdConfirmScreen id="1"/>
-=======
       if (this.props.order == 1) return <FindIdScreen  onClickListener={this.props.onClickListener } />
       else return <IdConfirmScreen />
->>>>>>> 3d257508092abacc82b3e415b05449ed83abe5f6
     }
     else {
       if (this.props.order == 1) return <FindPwScreen  onClickListener={this.props.onClickListener}  />
@@ -152,13 +142,10 @@ export default class Tabs extends React.Component {
   }
 
   render() {
-<<<<<<< HEAD
-=======
     console.log('$$$$$$$$$$$$$$' + this.props.order);
     
     console.log("TABrenders");
     console.log(this.state.active, this.state.order);
->>>>>>> 3d257508092abacc82b3e415b05449ed83abe5f6
     return (
       <Block style={styles.container}>
         <Block style={[styles.textView, styles.tab]}>
@@ -166,10 +153,7 @@ export default class Tabs extends React.Component {
             {this.renderMenu()}
           </Block>
         </Block>
-<<<<<<< HEAD
-=======
         {/* {this.state.active == 'Id'? <FindIdScreen/>:<FindPwScreen/>} */}
->>>>>>> 3d257508092abacc82b3e415b05449ed83abe5f6
         {this.selectScreen()}
       </Block>
     )
