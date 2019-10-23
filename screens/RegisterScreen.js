@@ -1,9 +1,11 @@
-import React from "react";
-import { StyleSheet, Image, Dimensions, StatusBar, View } from "react-native";
+import React from 'react';
+import { StyleSheet, Image, Dimensions, StatusBar, View, Modal, Alert } from "react-native";
 import { Block, theme, Button, Input } from "galio-framework";
 import { Images, argonTheme } from "../constants";
 
-import Icon from 'react-native-vector-icons/MaterialIcons';
+// import Icon from 'react-native-vector-icons/MaterialIcons';
+
+import CompanyFindModal from './CompanyFindModal';
 
 import { AjaxUser } from "../lib/url/user/userUrl";
 
@@ -18,8 +20,10 @@ class Register extends React.Component {
     companyNm: '',
     departmentNm: '',
     email: '',
-    position:' ',
+    // position: ' ',
     profile: '안녕하세요',
+    userPwCheck: '',
+    modalVisible: false,
   }
 
   handleSubmit = () => {
@@ -33,6 +37,40 @@ class Register extends React.Component {
         console.error(error);
       });
   }
+
+  idCheck = (userId) => {
+    console.log(userId);
+    return AjaxUser.idCheck(userId)
+      .then((responseJson) => {
+        console.log(responseJson.message);
+      })
+      .catch((error) => {
+        console.error(error);
+      })
+  }
+
+  setModalVisible(visible) {
+    this.setState({ modalVisible: visible });
+  }
+
+  closeModal = (e) => {
+    if(this.state.modalVisible) {
+      this.setState({
+        modalVisible: false
+      })
+    }
+  }
+
+  findCompany = (data) => {
+    // console.log("aaa" + data)
+    return AjaxUser.findCompany(data)
+      .then((responseJson) => {
+        console.log(responseJson.message);
+      })
+      .catch((error) => {
+        console.error(error);
+      })
+    }
 
   render() {
     return (
@@ -48,31 +86,30 @@ class Register extends React.Component {
                 style={{ borderRadius: 0 }} color={argonTheme.COLORS.BLACK}
                 onChangeText={(text) => { this.setState({ userNm: text }) }} />
             </View>
-            <View style={styles.inputs}>
-              <Input style={{ borderRadius: 0 }} color={argonTheme.COLORS.BLACK}
-                onChangeText={(text) => { this.setState({ userId: text }) }}
-                right
-                placeholder="아이디"
-                iconContent={
-                  <Block>
-                    <Icon size={15} name="check" />
-                  </Block>
-                } />
+            <View style={styles.inputs, styles.inputButton}>
+              <Input placeholder="아이디" iconContent={<Block />}
+                style={{ borderRadius: 0 }} color={argonTheme.COLORS.BLACK}
+                onChangeText={(text) => { this.setState({ userId: text }) }} />
+              <Button style={styles.button, { width: '10%' }} shadowless
+                onPress={() => this.idCheck(this.state.userId)}>확인</Button>
             </View>
             <View style={styles.inputs}>
               <Input placeholder="비밀번호" iconContent={<Block />}
                 style={{ borderRadius: 0 }} color={argonTheme.COLORS.BLACK}
+                secureTextEntry={true}
                 onChangeText={(text) => { this.setState({ userPw: text }) }} />
             </View>
             <View style={styles.inputs}>
               <Input style={{ borderRadius: 0 }} color={argonTheme.COLORS.BLACK}
-                right
+                onChangeText={(text) => { this.setState({ userPwCheck: text }) }}
+                secureTextEntry={true}
                 placeholder="비밀번호 확인"
-                iconContent={
-                  <Block>
-                    <Icon size={15} name="check" />
-                  </Block>
-                } />
+                right
+                icon={this.state.userPwCheck ?
+                  (this.state.userPw === this.state.userPwCheck ? 'check' : 'exclamation') : ''}
+                family="antdesign"
+                iconColor="green"
+              />
             </View>
           </Block>
 
@@ -81,8 +118,15 @@ class Register extends React.Component {
               <Input placeholder="회사" iconContent={<Block />}
                 style={{ borderRadius: 0 }} color={argonTheme.COLORS.BLACK}
                 onChangeText={(text) => { this.setState({ companyNm: text }) }} />
-              <Button style={styles.button, { width: '10%' }}>찾기</Button>
+              <Button style={styles.button, { width: '10%' }} shadowless
+                onPress={() => this.setModalVisible(!this.state.modalVisible)}>찾기</Button>
             </View>
+            <Modal visible={this.state.modalVisible} transparent={false}>
+              <CompanyFindModal closeModal={this.closeModal} width={width * 0.8} 
+              findCompany={this.findCompany}
+              />
+            </Modal>
+
             <View style={styles.inputs} width={width * 0.9}>
               <Input placeholder="부서" iconContent={<Block />}
                 style={{ borderRadius: 0 }} color={argonTheme.COLORS.BLACK}
@@ -95,17 +139,16 @@ class Register extends React.Component {
               <Input placeholder="이메일" iconContent={<Block />}
                 style={{ borderRadius: 0 }} color={argonTheme.COLORS.BLACK}
                 onChangeText={(text) => { this.setState({ email: text }) }} />
-              <Button style={styles.button, { width: '10%' }}>전송</Button>
+              <Button style={styles.button, { width: '10%' }} shadowless>전송</Button>
             </View>
             <View style={styles.inputs, styles.inputButton}>
               <Input placeholder="인증 번호" iconContent={<Block />}
                 style={{ borderRadius: 0 }} color={argonTheme.COLORS.BLACK} />
-              <Button style={styles.button, { width: '10%' }}>확인</Button>
+              <Button style={styles.button, { width: '10%' }} shadowless>확인</Button>
             </View>
           </Block>
 
           <Block style={{ paddingTop: '5%' }}>
-
             <Button
               style={styles.button}
               onPress={() => this.handleSubmit()}>

@@ -20,13 +20,10 @@ import ChatScreen from '../screens/ChatScreen';
 import AlarmScreen from '../screens/AlarmScreen';
 import SettingScreen from '../screens/SettingScreen';
 import FindScreen from '../screens/FindScreen';
-<<<<<<< HEAD
 import IdconfirmScreen from '../screens/IdConfirmScreen';
 import PwResetScreen from '../screens/PwResetScreen';
-=======
 import GroupScreen from '../screens/GroupScreen';
 import CompanyScreen from '../screens/CompanyScreen';
->>>>>>> 5134d221f2915c1774c3e0fc684d212dd881a6ef
 
 // drawer
 import Menu from "./Menu";

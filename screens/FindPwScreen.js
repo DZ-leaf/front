@@ -1,18 +1,12 @@
 import React from "react";
 import { StyleSheet, StatusBar, Dimensions, View, } from "react-native";
 import { Block, Button, Text, theme, Input } from "galio-framework";
-<<<<<<< HEAD
 import { withNavigation } from 'react-navigation';
 
 const { width } = Dimensions.get("screen");
 
 // import Images from "../constants/Images";
 
-=======
-
-const { width } = Dimensions.get("screen");
-
->>>>>>> 5134d221f2915c1774c3e0fc684d212dd881a6ef
 class FindIdScreen extends React.Component {
 
     render() {
@@ -35,7 +29,7 @@ class FindIdScreen extends React.Component {
                             <View style={styles.inputButton}>
                                 <Input placeholder='이메일' iconContent={<Block />} />
                                 <Text>{'\u00A0'}{'\u00A0'}{'\u00A0'}</Text>
-                                <Button style={styles.button, { width: '10%' }}>찾기</Button>
+                                <Button style={styles.button, { width: '10%' }}>전송</Button>
                             </View>
                         </Block>
                         <Block style={styles.input}>

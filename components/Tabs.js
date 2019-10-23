@@ -56,15 +56,8 @@ export default class Tabs extends React.Component {
     });
   }
 
-<<<<<<< HEAD
-  selectMenu = (id, order) => {
-    this.setState({ active: id, order: order });
-    // console.log(this.state.active);
-
-=======
   selectMenu = (id) => {
     this.setState({ active: id });
->>>>>>> 5134d221f2915c1774c3e0fc684d212dd881a6ef
     this.menuRef.current.scrollToIndex({
       index: this.props.data.findIndex(item => item.id === id),
       viewPosition: 0.5,
@@ -127,7 +120,7 @@ export default class Tabs extends React.Component {
   selectScreen = () => {
     if (this.state.active == 'Id') {
       if (this.state.order == 1) return <FindIdScreen />
-      else return <IdConfirmScreen />
+      else return <IdConfirmScreen id="1"/>
     }
     else {
       if (this.state.order == 1) return <FindPwScreen />
@@ -136,11 +129,6 @@ export default class Tabs extends React.Component {
   }
 
   render() {
-<<<<<<< HEAD
-    console.log(this.state.active, this.state.order);
-
-=======
->>>>>>> 5134d221f2915c1774c3e0fc684d212dd881a6ef
     return (
       <Block style={styles.container}>
         <Block style={[styles.textView, styles.tab]}>
@@ -148,12 +136,7 @@ export default class Tabs extends React.Component {
             {this.renderMenu()}
           </Block>
         </Block>
-<<<<<<< HEAD
-        {/* {this.state.active == 'Id'? <FindIdScreen/>:<FindPwScreen/>} */}
         {this.selectScreen()}
-=======
-        {this.state.active == 'Id' ? <FindIdScreen /> : <FindPwScreen />}
->>>>>>> 5134d221f2915c1774c3e0fc684d212dd881a6ef
       </Block>
     )
   }

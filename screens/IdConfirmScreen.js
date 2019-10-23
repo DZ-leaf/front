@@ -6,6 +6,7 @@ const { width } = Dimensions.get("screen");
 
 class IdConfirmScreen extends Component {
     render() {
+        console.log(this.props.id);
         const msg = {
             exist: '이메일 정보와 일치하는 아이디입니다.',
             nonExist: '아이디가 존재하지 않습니다.'
