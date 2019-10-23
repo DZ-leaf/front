@@ -7,12 +7,11 @@ const { width } = Dimensions.get("screen");
 
 // import Images from "../constants/Images";
 
-class FindIdScreen extends React.Component {
+class FindPwScreen extends React.Component {
 
     render() {
         const { navigation } = this.props;
-
-
+        
         return (
             <Block flex>
                 <StatusBar hidden />
@@ -38,7 +37,8 @@ class FindIdScreen extends React.Component {
                         </Block>
                         <Button
                             style={styles.button}
-                            onPress={() => navigation.navigate("Find")}>
+                            // onPress={this.props.onClickListener}
+                            onPress={() => {navigation.navigate('Find', {order:2})}}>
                             비밀번호 찾기
                          </Button>
                     </Block>
@@ -112,4 +112,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default withNavigation(FindIdScreen);
+export default withNavigation(FindPwScreen);

@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet, Dimensions, FlatList, Animated, Text } from 'react-native';
 import { Block, theme } from 'galio-framework';
-import { Navigation } from 'react-native-navigation';
 
 const { width } = Dimensions.get('screen');
 import argonTheme from '../constants/Theme';
@@ -9,31 +8,38 @@ import FindIdScreen from '../screens/FindIdScreen';
 import FindPwScreen from '../screens/FindPwScreen';
 import IdConfirmScreen from '../screens/IdConfirmScreen';
 import PwResetScreen from '../screens/PwResetScreen'
+import { LOADIPHLPAPI } from 'dns';
 
 const defaultMenu = [
   { id: 'Id', title: '아이디 찾기', },
   { id: 'PW', title: '비밀번호 찾기', },
 ];
 
-export default class Tabs extends React.Component {
 
-  static defaultProps = {
+
+export default class Tabs extends React.Component {
+    static defaultProps = {
     data: defaultMenu,
     initialIndex: null,
   }
 
   state = {
     active: 'Id',
-    order: 1,
+    // order: this.props.order,
+    // order: 1,
   }
 
   componentDidMount() {
     const { initialIndex } = this.props;
     initialIndex && this.selectMenu(initialIndex);
+    console.log("CDM@@@");
+  }
 
-    console.log(this.props);
-    
-    
+  onClickListener() {
+    this.setState({
+      ...this.state,
+      order: this.props.order,
+    })
   }
 
   animatedValue = new Animated.Value(1);
@@ -56,8 +62,20 @@ export default class Tabs extends React.Component {
     });
   }
 
+<<<<<<< HEAD
   selectMenu = (id) => {
     this.setState({ active: id });
+=======
+  order = this.props.order;
+
+  selectMenu = (id) => {    
+    console.log("selectMenu!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+    
+    this.setState({ active: id});
+    // this.props.order=1;
+      
+
+>>>>>>> 3d257508092abacc82b3e415b05449ed83abe5f6
     this.menuRef.current.scrollToIndex({
       index: this.props.data.findIndex(item => item.id === id),
       viewPosition: 0.5,
@@ -90,7 +108,7 @@ export default class Tabs extends React.Component {
             styles.menuTitle,
             { color: textColor }
           ]}
-          onPress={() => this.selectMenu(item.id, 1)}>
+          onPress={() => this.selectMenu(item.id)}>
           {item.title}
         </Animated.Text>
       </Block>
@@ -119,16 +137,28 @@ export default class Tabs extends React.Component {
 
   selectScreen = () => {
     if (this.state.active == 'Id') {
+<<<<<<< HEAD
       if (this.state.order == 1) return <FindIdScreen />
       else return <IdConfirmScreen id="1"/>
+=======
+      if (this.props.order == 1) return <FindIdScreen  onClickListener={this.props.onClickListener } />
+      else return <IdConfirmScreen />
+>>>>>>> 3d257508092abacc82b3e415b05449ed83abe5f6
     }
     else {
-      if (this.state.order == 1) return <FindPwScreen />
+      if (this.props.order == 1) return <FindPwScreen  onClickListener={this.props.onClickListener}  />
       else return <PwResetScreen />
     }
   }
 
   render() {
+<<<<<<< HEAD
+=======
+    console.log('$$$$$$$$$$$$$$' + this.props.order);
+    
+    console.log("TABrenders");
+    console.log(this.state.active, this.state.order);
+>>>>>>> 3d257508092abacc82b3e415b05449ed83abe5f6
     return (
       <Block style={styles.container}>
         <Block style={[styles.textView, styles.tab]}>
@@ -136,6 +166,10 @@ export default class Tabs extends React.Component {
             {this.renderMenu()}
           </Block>
         </Block>
+<<<<<<< HEAD
+=======
+        {/* {this.state.active == 'Id'? <FindIdScreen/>:<FindPwScreen/>} */}
+>>>>>>> 3d257508092abacc82b3e415b05449ed83abe5f6
         {this.selectScreen()}
       </Block>
     )

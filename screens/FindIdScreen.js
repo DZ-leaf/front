@@ -4,12 +4,12 @@ import { Block, Button, Text, theme, Input } from "galio-framework";
 import { withNavigation } from 'react-navigation'
 
 const { width } = Dimensions.get("screen");
-const order = 2;
 
 class FindIdScreen extends React.Component {
-
     render() {
         const { navigation } = this.props;    
+        console.log("FISrender");
+        
         
         return (
             <Block flex>
@@ -36,7 +36,8 @@ class FindIdScreen extends React.Component {
                         </Block>
                         <Button
                             style={styles.button}
-                            onPress={() => navigation.navigate("Confirm")}>
+                            // onPress={this.props.onClickListener}
+                            onPress={() => {navigation.navigate('Find', {order:2})}}>
                             아이디 찾기
                          </Button>
                     </Block>

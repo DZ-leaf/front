@@ -239,8 +239,8 @@ const AppStack = createDrawerNavigator(
     Find: {
       screen: FindScreen,
       navigationOptions: () => {
+        console.log('find!!!!!!!!!!!!!');
       }
-
     },
     Home: {
       screen: HomeStack,
@@ -251,18 +251,22 @@ const AppStack = createDrawerNavigator(
         )
       })
     },
-    Confirm: {
-      screen: IdconfirmScreen,
-      navigationOptions: {
-        drawerLabel: () => { }
-      }
-    },
-    Reset: {
-      screen: PwResetScreen,
-      navigationOptions: {
-        drawerLabel: () => { }
-      }
-    },
+    // Confirm: {
+    //   screen: FindScreen,
+    //   navigationOptions: {
+    //     drawerLabel: () => {
+    //       console.log("Confirm!!!!!!!!!!");
+    //     }
+    //   }
+    // },
+    // Reset: {
+    //   screen: FindScreen,
+    //   navigationOptions: {
+    //     drawerLabel: () => {
+    //       console.log("Reset!!!!!!!!!!")
+    //     }
+    //   }
+    // },
     Profile: {
       screen: ProfileStack,
       navigationOptions: navOpt => ({
