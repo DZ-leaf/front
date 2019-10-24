@@ -27,6 +27,7 @@ class ProfileScreen extends React.Component {
             style={styles.profileContainer}
             imageStyle={styles.profileBackground}
           >
+            
             <ScrollView
               showsVerticalScrollIndicator={false}
               style={{ width, marginTop: '25%' }}
@@ -126,6 +127,9 @@ class ProfileScreen extends React.Component {
                       Show more
                     </Button>
                   </Block>
+                  <Block>
+                  <Text>{"\n"}{"\n"}</Text>
+                  </Block>
                   <Block
                     row
                     style={{ paddingVertical: 14, alignItems: "baseline" }}
@@ -158,6 +162,7 @@ class ProfileScreen extends React.Component {
                       ))}
                     </Block>
                   </Block>
+                  
                 </Block>
               </Block>
             </ScrollView>
@@ -170,9 +175,10 @@ class ProfileScreen extends React.Component {
 
 const styles = StyleSheet.create({
   profile: {
-    marginTop: Platform.OS === "android" ?-HeaderHeight*2 : -HeaderHeight,
-    marginBottom: Platform.OS === "android" ?-HeaderHeight : 0,
-    flex: 1
+    marginTop: Platform.OS === "android" ? -theme.SIZES.BASE * 8.5 : -theme.SIZES.BASE * 1.5,
+    // marginBottom: Platform.OS === "android" ? -theme.SIZES.BASE * 7 : 0,
+    // flex: 1
+    paddingBottom: '10%'
   },
   profileContainer: {
     width: width,
@@ -182,7 +188,7 @@ const styles = StyleSheet.create({
   },
   profileBackground: {
     width: width,
-    height: height / 2
+    height: height
   },
   profileCard: {
     position: "relative",

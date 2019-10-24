@@ -1,5 +1,5 @@
 import React from "react";
-import { ScrollView, StyleSheet, Image, TouchableWithoutFeedback, ImageBackground, Dimensions} from "react-native";
+import { ScrollView, StyleSheet, Image, TouchableWithoutFeedback, ImageBackground, Dimensions } from "react-native";
 
 import { Block, Text, theme } from "galio-framework";
 
@@ -101,7 +101,7 @@ class GroupAtHome extends React.Component {
                             snapToInterval={cardWidth + theme.SIZES.BASE * 0.375}
                             contentContainerStyle={{
                                 paddingHorizontal: theme.SIZES.BASE / 2
-                            }} />        
+                            }} />
                     </Block>
                 </Block>
             </Block>

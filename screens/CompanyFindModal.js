@@ -1,25 +1,59 @@
 import React, { useState } from 'react';
-import { StyleSheet, Dimensions, View, Text } from 'react-native';
-import { Block, Button, theme, Input } from 'galio-framework';
-import { Images, argonTheme } from "../constants";
-const { width } = Dimensions.get("screen");
+import { StyleSheet, Dimensions, View, FlatList } from 'react-native';
+import { Block, Button, theme, Input, Text } from 'galio-framework';
+const { width, height } = Dimensions.get("screen");
 
 const CompanyFindModal = (props) => {
 
     const [company, setCompany] = useState('');
 
+    console.log("zz" + props.companyList)
+    console.log(typeof(props.companyList))
+
+    const DATA = [
+        {
+          id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+          title: 'First Item',
+        },
+        {
+          id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+          title: 'Second Item',
+        },
+        {
+          id: '58694a0f-3da1-471f-bd96-145571e29d72',
+          title: 'Third Item',
+        },
+      ];
+
+    function Item({ title }) {
+        return (
+            <Block flex width={width * 0.9}>
+                <View style={styles.item}>
+                    <Text onPress={() => {props.selectCompany(title); props.closeModal()}}>{title}</Text>
+                </View>
+            </Block>
+        );
+    }
+
     return (
-        <Block style={styles.container}>
+        <Block flex style={styles.container}>
             <Block width={width * 0.9}>
                 <View style={styles.inputs, styles.inputButton}>
                     <Input placeholder="회사" iconContent={<Block />}
-                        style={{ borderRadius: 0 }} color={argonTheme.COLORS.BLACK}
+                        style={{ borderRadius: 0 }} color={theme.COLORS.BLACK}
                         onChangeText={(text) => { setCompany(text) }} />
                     <Button style={styles.button, { width: '10%' }} shadowless
                         onPress={() => props.findCompany(company)}>찾기</Button>
                 </View>
+                <FlatList
+                    data={DATA}
+                    renderItem={({ item }) => <Item title={item.title} />}
+                    keyExtractor={item => item.id}
+                />
+                <View style={{ paddingTop: '5%', alignItems: 'center' }}>
+                    <Button style={styles.button} onPress={props.closeModal}>닫기</Button>
+                </View>
             </Block>
-            <Button style={styles.button} onPress={props.closeModal}>확인</Button>
         </Block>
     );
 }
@@ -31,33 +65,9 @@ const styles = StyleSheet.create({
         backgroundColor: '#F0F2F0',
         paddingTop: 50,
     },
-    // text: {
-    //     fontSize: 17,
-    // },
-    // input: {
-    //     alignItems: 'center',
-    //     marginTop: theme.SIZES.BASE * 2,  
-    //     width: width - theme.SIZES.BASE * 6,
-    // },
     button: {
         width: width - theme.SIZES.BASE * 6,
         height: theme.SIZES.BASE * 3,
-        marginTop: 20,
-    },
-    logo: {
-        paddingTop: '10%'
-    },
-    padded: {
-        paddingHorizontal: theme.SIZES.BASE * 2,
-        position: "relative",
-        bottom: theme.SIZES.BASE,
-        zIndex: 2,
-    },
-    button: {
-        width: width - theme.SIZES.BASE * 6,
-        height: theme.SIZES.BASE * 3,
-        shadowRadius: 0,
-        shadowOpacity: 0,
     },
     inputs: {
         marginTop: '-4%',
@@ -67,6 +77,13 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         width: width * 1.43
+    },
+    item: {
+        backgroundColor: 'white',
+        height: height * 0.05,
+        paddingTop: '2.5%',
+        paddingLeft: '4%',
+        marginVertical: '1%',
     },
 });
 

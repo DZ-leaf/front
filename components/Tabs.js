@@ -8,7 +8,7 @@ import FindIdScreen from '../screens/FindIdScreen';
 import FindPwScreen from '../screens/FindPwScreen';
 import IdConfirmScreen from '../screens/IdConfirmScreen';
 import PwResetScreen from '../screens/PwResetScreen'
-import { LOADIPHLPAPI } from 'dns';
+// import { LOADIPHLPAPI } from 'dns';
 
 const defaultMenu = [
   { id: 'Id', title: '아이디 찾기', },
