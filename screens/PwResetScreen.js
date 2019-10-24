@@ -22,7 +22,7 @@ class IdConfirmScreen extends Component {
                     <Input placeholder='비밀번호 재설정' style={{marginTop: -8}}/>
                     <Input placeholder='비밀번호 재설정 확인' />
                 </Block>
-                <Button style={styles.button} onPress={() => {navigate()}}>확인</Button>
+                <Button style={styles.button} onPress={() => {navigate()}} shadowless>확인</Button>
                 </Block>
             </Block>
         );

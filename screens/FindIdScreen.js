@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, StatusBar, Dimensions, View } from "react-native";
+import { StyleSheet, StatusBar, Dimensions } from "react-native";
 import { Block, Button, Text, theme, Input } from "galio-framework";
 import { withNavigation } from 'react-navigation'
 
@@ -7,9 +7,7 @@ const { width } = Dimensions.get("screen");
 
 class FindIdScreen extends React.Component {
     render() {
-        const { navigation } = this.props;    
-        console.log("FISrender");
-        
+        const { navigation } = this.props;           
         
         return (
             <Block flex>
@@ -23,12 +21,10 @@ class FindIdScreen extends React.Component {
                         <Block style={styles.input}>
                             <Input placeholder="이름" />
                         </Block>
-                        <Block style={styles.input}>
-                            <View style={styles.inputButton}>
-                                <Input placeholder='이메일' iconContent={<Block />} />
-                                <Text>{'\u00A0'}{'\u00A0'}{'\u00A0'}</Text>
-                                <Button style={styles.button, { width: '10%' }}>전송</Button>
-                            </View>
+                        <Block style={[styles.input, styles.email]}>
+                                <Input placeholder='이메일' style={[{width: width - theme.SIZES.BASE * 9.5}, {Color:'black'}]}/>
+                                {/* <Input placeholder='이메일' style={[{width: '80rem'}, {Color:'black'}]}/> */}
+                                <Button style={styles.mailButton} shadowless>전송</Button>
                         </Block>
                         <Block style={styles.input}>
                             <Input
@@ -36,7 +32,6 @@ class FindIdScreen extends React.Component {
                         </Block>
                         <Button
                             style={styles.button}
-                            // onPress={this.props.onClickListener}
                             onPress={() => {navigation.navigate('Find', {order:2})}}>
                             아이디 찾기
                          </Button>
@@ -46,7 +41,7 @@ class FindIdScreen extends React.Component {
         );
     }
 }
-/* flex style={[styles.container/* , { paddngTop: 50 } ]} */
+
 const styles = StyleSheet.create({
     container: {
         backgroundColor: '#F0F2F0'
@@ -65,12 +60,6 @@ const styles = StyleSheet.create({
         shadowOpacity: 0,
         marginTop: 20,
     },
-    title: {
-        marginTop: '-5%'
-    },
-    subTitle: {
-        marginTop: 20
-    },
     text: {
         marginTop: '1.5%',
         fontSize: 15,
@@ -81,30 +70,14 @@ const styles = StyleSheet.create({
         alignItems: 'flex-start',
         paddingTop: '3%',
     },
-    textAuto: {
+    email: {
         flexDirection: 'row',
-        paddingTop: '1%',
-        paddingBottom: '3%',
+        alignItems: 'center',
     },
     mailButton: {
-        width: width - theme.SIZES.BASE * 30,
-        height: theme.SIZES.BASE * 2.5,
-        shadowRadius: 0,
-        shadowOpacity: 0,
-        paddingHorizontal: '3%',
-    },
-    inputButton: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        width: width * 1.2
-    },
-    tab: {
-        alignItems: 'center',
-        marginVertical: 20,
-        marginHorizontal: 50,
-        borderColor: '#F0F2F0',
-        borderBottomColor: '#25A731',
-        borderWidth: 8,
+        width: '18%',
+        marginLeft: '1%',
+        borderRadius: 8,
     },
     input: {
         marginBottom: -5,

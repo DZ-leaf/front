@@ -26,7 +26,7 @@ class IdConfirmScreen extends Component {
                 <Block style={styles.msgContiner}>
                     <Text>userid</Text>
                 </Block>
-                <Button style={styles.button} onPress={() => {navigate()}}>확인</Button>
+                <Button style={styles.button} onPress={() => {navigate()}} shadowless>확인</Button>
                 </Block>
             </Block>
         );
