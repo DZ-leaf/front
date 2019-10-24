@@ -7,7 +7,7 @@ import { Images } from "../constants";
 
 import CompanyFindModal from './CompanyFindModal';
 
-import { AjaxUser } from "../lib/url/user/userUrl";
+import { AjaxUser } from "../lib/url/member/userUrl";
 
 const { width } = Dimensions.get("screen");
 
