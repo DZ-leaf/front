@@ -5,15 +5,20 @@ import { withNavigation } from 'react-navigation';
 
 const { width } = Dimensions.get("screen");
 
+
 class IdConfirmScreen extends Component {
     render() {
         const { navigation } = this.props;    
-        
         const msg = {
             exist: '이메일 정보와 일치하는 아이디입니다.',
             nonExist: '아이디가 존재하지 않습니다.'
         }
 
+        const navigate = () => {
+            this.props.onClickListener()
+            navigation.navigate('Login')
+        }
+        
         return (
             <Block flex>
                 <Block style={styles.container}>
@@ -21,7 +26,7 @@ class IdConfirmScreen extends Component {
                 <Block style={styles.msgContiner}>
                     <Text>userid</Text>
                 </Block>
-                <Button style={styles.button} onPress={() => {navigation.navigate("Login")}}>확인</Button>
+                <Button style={styles.button} onPress={() => {navigate()}}>확인</Button>
                 </Block>
             </Block>
         );

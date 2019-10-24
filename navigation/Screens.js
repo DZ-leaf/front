@@ -239,7 +239,6 @@ const AppStack = createDrawerNavigator(
     Find: {
       screen: FindScreen,
       navigationOptions: () => {
-        console.log('find!!!!!!!!!!!!!');
       }
     },
     Home: {

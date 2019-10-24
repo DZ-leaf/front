@@ -1,11 +1,19 @@
 import React, { Component } from 'react';
 import { StyleSheet, Dimensions } from 'react-native';
 import { Block, Button, Text, theme, Input } from 'galio-framework';
+import { withNavigation } from 'react-navigation'
 
 const { width } = Dimensions.get("screen");
 
 class IdConfirmScreen extends Component {
     render() {
+        const { navigation } = this.props
+
+        const navigate = () => {
+            this.props.onClickListener()
+            navigation.navigate('Login')
+        }
+
         return (
             <Block flex>
                 <Block style={styles.container}>
@@ -14,7 +22,7 @@ class IdConfirmScreen extends Component {
                     <Input placeholder='비밀번호 재설정' style={{marginTop: -8}}/>
                     <Input placeholder='비밀번호 재설정 확인' />
                 </Block>
-                <Button style={styles.button}>확인</Button>
+                <Button style={styles.button} onPress={() => {navigate()}}>확인</Button>
                 </Block>
             </Block>
         );
@@ -43,4 +51,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default IdConfirmScreen;
+export default withNavigation(IdConfirmScreen);
