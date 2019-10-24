@@ -24,12 +24,9 @@ class FindPwScreen extends React.Component {
                         <Block style={styles.input}>
                             <Input placeholder="아이디" />
                         </Block>
-                        <Block style={styles.input}>
-                            <View style={styles.inputButton}>
-                                <Input placeholder='이메일' iconContent={<Block />} />
-                                <Text>{'\u00A0'}{'\u00A0'}{'\u00A0'}</Text>
-                                <Button style={styles.button, { width: '10%' }}>전송</Button>
-                            </View>
+                        <Block style={[styles.input, styles.email]}>
+                                <Input placeholder='이메일' style={{width: width - theme.SIZES.BASE * 9.5}}/>
+                                <Button style={styles.mailButton} shadowless>전송</Button>
                         </Block>
                         <Block style={styles.input}>
                             <Input
@@ -55,7 +52,6 @@ const styles = StyleSheet.create({
     padded: {
         paddingTop: 30,
         paddingHorizontal: theme.SIZES.BASE * 2,
-        // position: "relative",
         bottom: theme.SIZES.BASE,
         zIndex: 2,
     },
@@ -65,12 +61,6 @@ const styles = StyleSheet.create({
         shadowRadius: 0,
         shadowOpacity: 0,
         marginTop: 20,
-    },
-    title: {
-        marginTop: '-5%'
-    },
-    subTitle: {
-        marginTop: 20
     },
     text: {
         marginTop: '1.5%',
@@ -82,30 +72,14 @@ const styles = StyleSheet.create({
         alignItems: 'flex-start',
         paddingTop: '3%',
     },
-    textAuto: {
-        flexDirection: 'row',
-        paddingTop: '1%',
-        paddingBottom: '3%',
-    },
     mailButton: {
-        width: width - theme.SIZES.BASE * 30,
-        height: theme.SIZES.BASE * 2.5,
-        shadowRadius: 0,
-        shadowOpacity: 0,
-        paddingHorizontal: '3%',
+        width: '18%',
+        marginLeft: '1%',
+        borderRadius: 8,
     },
-    inputButton: {
+    email: {
         flexDirection: 'row',
         alignItems: 'center',
-        width: width * 1.2
-    },
-    tab: {
-        alignItems: 'center',
-        marginVertical: 20,
-        marginHorizontal: 50,
-        borderColor: '#F0F2F0',
-        borderBottomColor: '#25A731',
-        borderWidth: 8,
     },
     input: {
         marginBottom: -5,
