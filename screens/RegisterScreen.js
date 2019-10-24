@@ -150,9 +150,9 @@ class Register extends React.Component {
   render() {
 
     return (
-      <ScrollView>
         <Block flex style={styles.container}>
           <StatusBar hidden />
+          <ScrollView>
           <Block center style={{ paddingTop: '8%' }}>
             <Image source={Images.LogoOnboarding} style={styles.logo} />
           </Block>
@@ -237,8 +237,8 @@ class Register extends React.Component {
                 회원 가입
           </Button>
           <Text>
-          {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
-          {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
+          {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
+          {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
           </Text>
           <Button
                 style={styles.button}
@@ -247,8 +247,8 @@ class Register extends React.Component {
           </Button>
             </Block>
           </Block>
-        </Block>
       </ScrollView>
+        </Block>
     );
   }
 }
@@ -267,7 +267,7 @@ const styles = StyleSheet.create({
     zIndex: 2,
   },
   button: {
-    width: width - theme.SIZES.BASE * 20,
+    width: width - theme.SIZES.BASE * 16,
     height: theme.SIZES.BASE * 3,
     shadowRadius: 0,
     shadowOpacity: 0,
