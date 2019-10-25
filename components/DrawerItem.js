@@ -11,37 +11,15 @@ class DrawerItem extends React.Component {
 
     switch (title) {
       case "홈":
-        return (
-          <Icon
-            name="home"
-            size={20}
-            color={focused ? "white" : argonTheme.COLORS.ICON}
-          />
-        );
-        case "프로필":
-        return (
-          <Icon
-          name="person"
-            size={20}
-            color={focused ? "white" : argonTheme.COLORS.ICON}
-          />
-        );
-        case "회사":
-        return (
-          <Icon
-          name="computer"
-            size={20}
-            color={focused ? "white" : argonTheme.COLORS.ICON}
-          />
-        );
-        case "그룹":
-        return (
-          <Icon
-          name="group"
-            size={20}
-            color={focused ? "white" : argonTheme.COLORS.ICON}
-          />
-        );
+        return (<Icon name="home" size={20} color={focused ? "white" : argonTheme.COLORS.ICON}/>);
+      case "프로필":
+        return (<Icon name="person" size={20} color={focused ? "white" : argonTheme.COLORS.ICON}/>);
+      case "회사":
+        return (<Icon name="computer" size={20} color={focused ? "white" : argonTheme.COLORS.ICON}/>);
+      case "동아리":
+        return (<Icon name="dashboard" size={20} color={focused ? "white" : argonTheme.COLORS.ICON}/>);
+      case "그룹":
+        return (<Icon name="group" size={20} color={focused ? "white" : argonTheme.COLORS.ICON}/>);
       case "Getting Started":
         return <Icon />;
       case "Log out":

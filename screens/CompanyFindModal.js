@@ -1,31 +1,14 @@
 import React, { useState } from 'react';
-import { StyleSheet, Dimensions, View, FlatList } from 'react-native';
+import { StyleSheet, Dimensions, View, FlatList, ScrollView } from 'react-native';
 import { Block, Button, theme, Input, Text } from 'galio-framework';
+
 const { width, height } = Dimensions.get("screen");
 
 const CompanyFindModal = (props) => {
 
     const [company, setCompany] = useState('');
 
-    console.log("zz" + props.companyList)
-    console.log(typeof(props.companyList))
-
-    const DATA = [
-        {
-          id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-          title: 'First Item',
-        },
-        {
-          id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-          title: 'Second Item',
-        },
-        {
-          id: '58694a0f-3da1-471f-bd96-145571e29d72',
-          title: 'Third Item',
-        },
-      ];
-
-    function Item({ title }) {
+    function Item({title}) {
         return (
             <Block flex width={width * 0.9}>
                 <View style={styles.item}>
@@ -45,13 +28,12 @@ const CompanyFindModal = (props) => {
                     <Button style={styles.button, { width: '10%' }} shadowless
                         onPress={() => props.findCompany(company)}>찾기</Button>
                 </View>
-                <FlatList
-                    data={DATA}
-                    renderItem={({ item }) => <Item title={item.title} />}
-                    keyExtractor={item => item.id}
-                />
+                <FlatList height={height * 0.6}
+                    data={props.companyList}
+                    renderItem={({ item }) => <Item title={item.companyNm} />}
+                    keyExtractor={item => item.companyNm}/>
                 <View style={{ paddingTop: '5%', alignItems: 'center' }}>
-                    <Button style={styles.button} onPress={props.closeModal}>닫기</Button>
+                    <Button style={styles.button} onPress={props.closeModal} shadowless>닫기</Button>
                 </View>
             </Block>
         </Block>

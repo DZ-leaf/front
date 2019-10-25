@@ -1,5 +1,5 @@
 import React from "react";
-import { ScrollView, StyleSheet, Image, TouchableWithoutFeedback, ImageBackground, Dimensions } from "react-native";
+import { ScrollView, StyleSheet, Image, TouchableWithoutFeedback, ImageBackground, Dimensions, View } from "react-native";
 
 import { Block, Text, theme } from "galio-framework";
 
@@ -11,18 +11,18 @@ const { width } = Dimensions.get("screen");
 const thumbMeasure = (width - 48 - 32) / 3;
 const cardWidth = width - theme.SIZES.BASE * 2;
 
-class GroupAtHome extends React.Component {
+class ClubAtHome extends React.Component {
 
     renderCards = () => {
         return (
             <Block flex style={styles.group}>
                 <Text bold size={16} style={styles.title}>
-                {"\n"}{"\n"}
-                    그룹
+                    {"\n"}{"\n"}
+                    동아리
                 </Text>
                 <Block flex>
                     <Block style={{ paddingHorizontal: theme.SIZES.BASE }}>
-                        <Card item={articles[0]} horizontal />
+                        {/* <Card item={articles[0]} horizontal /> */}
                         <ScrollView horizontal showsHorizontalScrollIndicator={false}
                         scrollEventThrottle={10} pagingEnabled>
                         <Block flex row>
@@ -31,8 +31,8 @@ class GroupAtHome extends React.Component {
                             <Card item={articles[1]} style={{ marginRight: theme.SIZES.BASE }}/>
                         </Block>
                         </ScrollView>
-                        {/* <Card item={articles[4]} full /> */}
-                        {/* <Block flex card shadow style={styles.category}>
+                        <Card item={articles[4]} full />
+                        <Block flex card shadow style={styles.category}>
                             <ImageBackground
                                 source={{ uri: Images.Products["View article"] }}
                                 style={[ styles.imageBlock, { width: width - theme.SIZES.BASE * 2, height: 252 }]}
@@ -43,7 +43,7 @@ class GroupAtHome extends React.Component {
                                     </Text>
                                 </Block>
                             </ImageBackground>
-                        </Block> */}
+                        </Block>
                     </Block>
                     {/* <Block flex style={{ marginTop: theme.SIZES.BASE / 2 }}>
                         <ScrollView
@@ -168,4 +168,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default GroupAtHome;
+export default ClubAtHome;

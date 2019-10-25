@@ -1,4 +1,3 @@
-// local imgs
 const Onboarding = require("../assets/imgs/bg.png");
 const Logo = require("../assets/images/c3.png");
 const LogoOnboarding = require("../assets/images/letter1.png");
@@ -8,9 +7,8 @@ const Pro = require("../assets/imgs/getPro-bg.png");
 const ArgonLogo = require("../assets/imgs/argonlogo.png");
 const iOSLogo = require("../assets/imgs/ios.png");
 const androidLogo = require("../assets/imgs/android.png");
-// internet imgs
+const ProfilePicture = require("../assets/images/default.png");
 
-const ProfilePicture = 'https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?fit=crop&w=1650&q=80';
 
 const Viewed = [
   'https://images.unsplash.com/photo-1501601983405-7c7cabaa1581?fit=crop&w=240&q=80',

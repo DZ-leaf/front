@@ -1,14 +1,21 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import { Block, theme } from "galio-framework";
 
+
 import GroupAtHome from './Home/GroupAtHome';
+import CompanyAtHome from './Home/CompanyAtHome';
+import ClubAtHome from './Home/ClubAtHome';
 
 class HomeScreen extends Component {
 
     render() {
         return (
-            <GroupAtHome />
+            <ScrollView>
+                <CompanyAtHome />
+                <ClubAtHome />
+                <GroupAtHome />
+            </ScrollView>
         );
     }
 }

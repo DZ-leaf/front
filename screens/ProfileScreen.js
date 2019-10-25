@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  StyleSheet,
-  Dimensions,
-  ScrollView,
-  Image,
-  ImageBackground,
-  Platform
-} from "react-native";
+import { StyleSheet, Dimensions, ScrollView, Image, ImageBackground, Platform, View, Modal } from "react-native";
 import { Block, Text, theme } from "galio-framework";
 
 import { Button } from "../components";
@@ -17,7 +10,26 @@ const { width, height } = Dimensions.get("screen");
 
 const thumbMeasure = (width - 48 - 32) / 3;
 
+import ProfileEditModal from './ProfileEditModal';
+
 class ProfileScreen extends React.Component {
+
+  state = {
+    modalVisible: false,
+  }
+
+  setModalVisible(visible) {
+    this.setState({ modalVisible: visible });
+  }
+
+  closeModal = (e) => {
+    if (this.state.modalVisible) {
+      this.setState({
+        modalVisible: false
+      })
+    }
+  }
+
   render() {
     return (
       <Block flex style={styles.profile}>
@@ -25,70 +37,38 @@ class ProfileScreen extends React.Component {
           <ImageBackground
             source={Images.ProfileBackground}
             style={styles.profileContainer}
-            imageStyle={styles.profileBackground}
-          >
-            
+            imageStyle={styles.profileBackground}>
+
             <ScrollView
               showsVerticalScrollIndicator={false}
-              style={{ width, marginTop: '25%' }}
-            >
+              style={{ width, marginTop: '25%' }}>
               <Block flex style={styles.profileCard}>
                 <Block middle style={styles.avatarContainer}>
-                  <Image
-                    source={{ uri: Images.ProfilePicture }}
-                    style={styles.avatar}
-                  />
+                  <Image source={Images.ProfilePicture} style={styles.avatar} resizeMode={"center"} />
                 </Block>
                 <Block style={styles.info}>
-                  <Block
-                    middle
-                    row
-                    space="evenly"
-                    style={{ marginTop: 20, paddingBottom: 24 }}
-                  >
-                    <Button
-                      small
-                      style={{ backgroundColor: argonTheme.COLORS.INFO }}
-                    >
-                      CONNECT
-                    </Button>
-                    <Button
-                      small
-                      style={{ backgroundColor: argonTheme.COLORS.DEFAULT }}
-                    >
-                      MESSAGE
-                    </Button>
+                  <Block flex>
+                    <Block middle style={styles.nameInfo}>
+                      <Text bold size={20} color="#32325D">
+                        김아무개
+                    </Text>
+                    </Block>
                   </Block>
-                  <Block row space="between">
+                  <Block row space="between" style={{ marginTop: 20, paddingBottom: '10%' }}>
                     <Block middle>
-                      <Text
-                        bold
-                        size={12}
-                        color="#525F7F"
-                        style={{ marginBottom: 4 }}
-                      >
+                      <Text bold size={12} color="#525F7F" style={{ marginBottom: 4 }}>
                         2K
                       </Text>
                       <Text size={12}>Orders</Text>
                     </Block>
                     <Block middle>
-                      <Text
-                        bold
-                        color="#525F7F"
-                        size={12}
-                        style={{ marginBottom: 4 }}
-                      >
+                      <Text bold color="#525F7F" size={12} style={{ marginBottom: 4 }}>
                         10
                       </Text>
                       <Text size={12}>Photos</Text>
                     </Block>
                     <Block middle>
-                      <Text
-                        bold
-                        color="#525F7F"
-                        size={12}
-                        style={{ marginBottom: 4 }}
-                      >
+                      <Text bold color="#525F7F" size={12} style={{ marginBottom: 4 }}>
                         89
                       </Text>
                       <Text size={12}>Comments</Text>
@@ -96,76 +76,37 @@ class ProfileScreen extends React.Component {
                   </Block>
                 </Block>
                 <Block flex>
-                  <Block middle style={styles.nameInfo}>
-                    <Text bold size={28} color="#32325D">
-                      Jessica Jones, 27
-                    </Text>
-                    <Text size={16} color="#32325D" style={{ marginTop: 10 }}>
-                      San Francisco, USA
-                    </Text>
-                  </Block>
-                  <Block middle style={{ marginTop: 30, marginBottom: 16 }}>
+                  {/* <Block middle style={{ marginTop: 30, marginBottom: 16 }}>
                     <Block style={styles.divider} />
-                  </Block>
+                  </Block> */}
                   <Block middle>
-                    <Text
-                      size={16}
-                      color="#525F7F"
-                      style={{ textAlign: "center" }}
-                    >
-                      An artist of considerable range, Jessica name taken by
-                      Melbourne …
+                    <Text size={16} color="#525F7F" style={{ textAlign: "center", paddingBottom: '5%' }}>
+                      소개글
                     </Text>
-                    <Button
-                      color="transparent"
-                      textStyle={{
-                        color: "#233DD2",
-                        fontWeight: "500",
-                        fontSize: 16
-                      }}
-                    >
-                      Show more
+                    <Button color="transparent"
+                      textStyle={{ color: argonTheme.COLORS.SECONDARY, fontWeight: "500", fontSize: 13 }}
+                      onPress={() => this.setModalVisible(!this.state.modalVisible)}>
+                      프로필 수정
                     </Button>
                   </Block>
+
+                  <Modal middle visible={this.state.modalVisible} transparent={false}>
+                    <ProfileEditModal closeModal={this.closeModal} />
+                  </Modal>
                   <Block>
-                  <Text>{"\n"}{"\n"}</Text>
-                  </Block>
-                  <Block
-                    row
-                    style={{ paddingVertical: 14, alignItems: "baseline" }}
-                  >
-                    <Text bold size={16} color="#525F7F">
-                      Album
-                    </Text>
-                  </Block>
-                  <Block
-                    row
-                    style={{ paddingBottom: 20, justifyContent: "flex-end" }}
-                  >
-                    <Button
-                      small
-                      color="transparent"
-                      textStyle={{ color: "#5E72E4", fontSize: 12 }}
-                    >
-                      View all
-                    </Button>
+                    <Text>{"\n"}{"\n"}</Text>
                   </Block>
                   <Block style={{ paddingBottom: -HeaderHeight * 2 }}>
                     <Block row space="between" style={{ flexWrap: "wrap" }}>
                       {Images.Viewed.map((img, imgIndex) => (
-                        <Image
-                          source={{ uri: img }}
-                          key={`viewed-${img}`}
-                          resizeMode="cover"
-                          style={styles.thumb}
-                        />
-                      ))}
+                        <Image source={{ uri: img }} key={`viewed-${img}`}
+                          resizeMode="cover" style={styles.thumb} />))}
                     </Block>
                   </Block>
-                  
                 </Block>
               </Block>
             </ScrollView>
+
           </ImageBackground>
         </Block>
       </Block>
@@ -195,8 +136,7 @@ const styles = StyleSheet.create({
     padding: theme.SIZES.BASE,
     marginHorizontal: theme.SIZES.BASE,
     marginTop: 65,
-    borderTopLeftRadius: 6,
-    borderTopRightRadius: 6,
+    borderRadius: 6,
     backgroundColor: theme.COLORS.WHITE,
     shadowColor: "black",
     shadowOffset: { width: 0, height: 0 },
@@ -209,16 +149,15 @@ const styles = StyleSheet.create({
   },
   avatarContainer: {
     position: "relative",
-    marginTop: -80
+    marginTop: -80,
   },
   avatar: {
     width: 124,
     height: 124,
-    borderRadius: 62,
-    borderWidth: 0
+    backgroundColor: '#F0F2F0',
   },
   nameInfo: {
-    marginTop: 35
+    marginTop: 20
   },
   divider: {
     width: "90%",

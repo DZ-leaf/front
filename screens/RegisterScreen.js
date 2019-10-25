@@ -9,7 +9,7 @@ import CompanyFindModal from './CompanyFindModal';
 
 import { AjaxUser } from "../lib/url/member/userUrl";
 
-const { width } = Dimensions.get("screen");
+const { width, height } = Dimensions.get("screen");
 
 class Register extends React.Component {
 
@@ -30,6 +30,7 @@ class Register extends React.Component {
     emailCheck: false,
     authNum: '',
     authNumCheck: '',
+    authCheck: false,
     companyList: [],
   }
 
@@ -37,16 +38,16 @@ class Register extends React.Component {
   handleSubmit = () => {
     const nameRe = RegExp(/^[가-힣]+$/);
     const pwRe = RegExp(/^[a-zA-Z0-9]{4,12}$/);
-    if (this.state.data.userNm === '' || this.state.data.userPw === ''
-      || this.state.data.companyNm === '' || this.state.data.departmentNm === '' || this.state.userPwCheck === '') {
+    if (this.state.data.userNm === '' || this.state.data.userPw === ''|| this.state.data.companyNm === '' 
+    || this.state.data.departmentNm === '' || this.state.userPwCheck === '') {
       Alert.alert('입력란이 비어있습니다');
-    } else if(!nameRe.test(this.state.data.userNm)) {
+    } else if (!nameRe.test(this.state.data.userNm)) {
       Alert.alert('이름을 다시 입력해주세요');
     } else if (this.state.data.idCheck === false) {
       Alert.alert('아이디 중복확인을 해주세요');
-    } else if(!pwRe.test(this.state.data.userPw)){
+    } else if (!pwRe.test(this.state.data.userPw)) {
       Alert.alert('비밀번호를 다시 입력해주세요');
-    }else if (this.state.data.userPw !== this.state.userPwCheck) {
+    } else if (this.state.data.userPw !== this.state.userPwCheck) {
       Alert.alert('비밀번호가 서로 맞지 않습니다');
     } else {
       this.register(this.state.data);
@@ -112,7 +113,7 @@ class Register extends React.Component {
     var re = /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
     if (data == '') {
       Alert.alert("입력란이 비어있습니다");
-    } else if(!re.test(data)){
+    } else if (!re.test(data)) {
       Alert.alert("이메일 형식에 맞지 않습니다");
     } else {
       return AjaxUser.sendEmail(data)
@@ -135,12 +136,12 @@ class Register extends React.Component {
 
   authNumCheck = () => {
     console.log("authNum" + this.state.authNum);
-    console.log("check" + this.state.authNumCheck);
     if (this.state.authNumCheck === '') {
       Alert.alert("메일을 통해 인증번호를 받아주세요")
     } else if (this.state.authNumCheck === null) {
       Alert.alert("입력란을 입력해주세요")
     } else if (this.state.authNumCheck == this.state.authNum) {
+      this.setState({ authCheck: true });
       Alert.alert("인증되었습니다")
     } else {
       Alert.alert("다시 확인해주세요")
@@ -150,9 +151,9 @@ class Register extends React.Component {
   render() {
 
     return (
-        <Block flex style={styles.container}>
-          <StatusBar hidden />
-          <ScrollView>
+      <Block flex style={styles.container}>
+        <StatusBar hidden />
+        <ScrollView>
           <Block center style={{ paddingTop: '8%' }}>
             <Image source={Images.LogoOnboarding} style={styles.logo} />
           </Block>
@@ -163,13 +164,22 @@ class Register extends React.Component {
                   style={{ borderRadius: 0 }} color={theme.COLORS.BLACK}
                   onChangeText={(text) => { this.setState({ data: { ...this.state.data, userNm: text } }) }} />
               </View>
-              <View style={styles.inputs, styles.inputButton}>
-                <Input placeholder="아이디" iconContent={<Block />}
-                  style={{ borderRadius: 0 }} color={theme.COLORS.BLACK}
-                  onChangeText={(text) => { this.setState({ data: { ...this.state.data, userId: text } }) }} />
-                <Button style={styles.button, { width: '10%' }} shadowless
-                  onPress={() => this.idCheck(this.state.data.userId)}>확인</Button>
-              </View>
+              {this.state.idCheck == false ?
+                <View style={styles.inputs, styles.inputButton}>
+                  <Input placeholder="아이디" iconContent={<Block />}
+                    style={{ borderRadius: 0 }} color={theme.COLORS.BLACK}
+                    onChangeText={(text) => { this.setState({ data: { ...this.state.data, userId: text } }) }} />
+                  <Button style={styles.button, { width: '10%' }} shadowless
+                    onPress={() => this.idCheck(this.state.data.userId)}>확인</Button>
+                </View>
+                :
+                <View style={styles.inputs}>
+                  <Text>{'\u00A0'}</Text>
+                  <Input right icon="check" iconColor="green" family="antdesign"
+                    style={{ borderRadius: 0 }} color={theme.COLORS.BLACK}
+                    value={this.state.data.userId} editable={false} />
+                </View>
+              }
               <View style={styles.inputs}>
                 <Input placeholder="비밀번호 : 4~12자의 영문 대소문자와 숫자" iconContent={<Block />}
                   style={{ borderRadius: 0 }} color={theme.COLORS.BLACK}
@@ -192,18 +202,28 @@ class Register extends React.Component {
             </Block>
 
             <Block width={width * 0.9}>
-              <View style={styles.inputs, styles.inputButton}>
-                <Input placeholder="회사" iconContent={<Block />}
-                  style={{ borderRadius: 0 }} color={theme.COLORS.BLACK}
-                  editable={false} value={this.state.data.companyNm} />
-                <Button style={styles.button, { width: '10%' }} shadowless
-                  onPress={() => this.setModalVisible(!this.state.modalVisible)}>찾기</Button>
-              </View>
-              <Modal visible={this.state.modalVisible} transparent={false}>
+              {this.state.data.companyNm == '' ?
+                <View style={styles.inputs, styles.inputButton}>
+                  <Input placeholder="회사" iconContent={<Block />}
+                    style={{ borderRadius: 0 }} color={theme.COLORS.BLACK}
+                    editable={false} value={this.state.data.companyNm} />
+                  <Button style={styles.button, { width: '10%' }} shadowless
+                    onPress={() => this.setModalVisible(!this.state.modalVisible)}>찾기</Button>
+                </View>
+                :
+                <View style={styles.inputs} width={width * 0.9}>
+                  <Text>{'\u00A0'}</Text>
+                  <Input icon="check" iconColor="green" family="antdesign" right
+                    style={{ borderRadius: 0 }} color={theme.COLORS.BLACK}
+                    value={this.state.data.companyNm} editable={false} />
+                </View>
+              }
+
+              <Modal middle visible={this.state.modalVisible} transparent={false}>
                 <CompanyFindModal closeModal={this.closeModal} width={width * 0.8}
                   findCompany={this.findCompany} selectCompany={this.selectCompany}
                   companyList={this.state.companyList}
-                />
+                  />
               </Modal>
 
               <View style={styles.inputs} width={width * 0.9}>
@@ -214,20 +234,37 @@ class Register extends React.Component {
             </Block>
 
             <Block width={width * 0.9}>
-              <View style={styles.inputs, styles.inputButton}>
-                <Input placeholder="이메일" iconContent={<Block />}
-                  style={{ borderRadius: 0 }} color={theme.COLORS.BLACK}
-                  onChangeText={(text) => { this.setState({ data: { ...this.state.data, email: text } }) }} />
-                <Button style={styles.button, { width: '10%' }} shadowless
-                  onPress={() => this.sendEmail(this.state.data.email)}>전송</Button>
-              </View>
-              <View style={styles.inputs, styles.inputButton}>
-                <Input placeholder="인증 번호" iconContent={<Block />}
-                  style={{ borderRadius: 0 }} color={theme.COLORS.BLACK}
-                  onChangeText={(text) => { this.setState({ authNumCheck: text }) }} />
-                <Button style={styles.button, { width: '10%' }} shadowless
-                  onPress={() => this.authNumCheck()}>확인</Button>
-              </View>
+              {this.state.emailCheck == false ?
+                <View style={styles.inputs, styles.inputButton}>
+                  <Input placeholder="이메일" iconContent={<Block />}
+                    style={{ borderRadius: 0 }} color={theme.COLORS.BLACK}
+                    onChangeText={(text) => { this.setState({ data: { ...this.state.data, email: text } }) }} />
+                  <Button style={styles.button, { width: '10%' }} shadowless
+                    onPress={() => this.sendEmail(this.state.data.email)}>전송</Button>
+                </View>
+                :
+                <View style={styles.inputs}>
+                  <Text>{'\u00A0'}</Text>
+                  <Input icon="check" iconColor="green" family="antdesign" right
+                    style={{ borderRadius: 0 }} color={theme.COLORS.BLACK}
+                    value={this.state.data.email} editable={false} />
+                </View>
+              }
+              {this.state.authCheck == false ?
+                <View style={styles.inputs, styles.inputButton}>
+                  <Input placeholder="인증 번호" iconContent={<Block />}
+                    style={{ borderRadius: 0 }} color={theme.COLORS.BLACK}
+                    onChangeText={(text) => { this.setState({ authNumCheck: text }) }} />
+                  <Button style={styles.button, { width: '10%' }} shadowless
+                    onPress={() => this.authNumCheck()}>확인</Button>
+                </View>
+                :
+                <View style={styles.inputs}>
+                  <Input icon="check" iconColor="green" family="antdesign" right
+                    style={{ borderRadius: 0 }} color={theme.COLORS.BLACK}
+                    value={this.state.authNumCheck} editable={false} />
+                </View>
+              }
             </Block>
 
             <Block style={{ paddingTop: '5%', flexDirection: 'row' }}>
@@ -236,19 +273,16 @@ class Register extends React.Component {
                 onPress={() => this.handleSubmit()}>
                 회원 가입
           </Button>
-          <Text>
-          {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
-          {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
-          </Text>
-          <Button
-                style={styles.button}
-                onPress={() => this.props.navigation.navigate("Login")}>
-                돌아가기
-          </Button>
+              <Text>
+                {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
+                {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
+              </Text>
+              <Button style={styles.button}
+                onPress={() => this.props.navigation.navigate("Login")}>돌아가기</Button>
             </Block>
           </Block>
-      </ScrollView>
-        </Block>
+        </ScrollView>
+      </Block>
     );
   }
 }
@@ -281,6 +315,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: width * 1.43
   },
+  modal: {
+    // flex: 1,
+    // flexDirection: 'column',
+    // justifyContent: 'center',
+    
+  }
 });
 
 export default Register;

@@ -20,10 +20,9 @@ import ChatScreen from '../screens/ChatScreen';
 import AlarmScreen from '../screens/AlarmScreen';
 import SettingScreen from '../screens/SettingScreen';
 import FindScreen from '../screens/FindScreen';
-import IdconfirmScreen from '../screens/IdConfirmScreen';
-import PwResetScreen from '../screens/PwResetScreen';
 import GroupScreen from '../screens/GroupScreen';
 import CompanyScreen from '../screens/CompanyScreen';
+import ClubScreen from '../screens/ClubScreen';
 
 // drawer
 import Menu from "./Menu";
@@ -187,6 +186,23 @@ const CompanyStack = createStackNavigator(
   }
 );
 
+const ClubStack = createStackNavigator(
+  {
+    Setting: {
+      screen: ClubScreen,
+      navigationOptions: ({ navigation }) => ({
+        header: <Header search options title="동아리" navigation={navigation} />
+      })
+    },
+  },
+  {
+    cardStyle: {
+      backgroundColor: "#F8F9FE"
+    },
+    transitionConfig
+  }
+);
+
 const BottomStack = createBottomTabNavigator({
   Home: {
     screen: HomeStack,
@@ -236,11 +252,6 @@ const AppStack = createDrawerNavigator(
         drawerLabel: () => { }
       }
     },
-    Find: {
-      screen: FindScreen,
-      navigationOptions: () => {
-      }
-    },
     Home: {
       screen: HomeStack,
       screen: BottomStack,
@@ -250,22 +261,6 @@ const AppStack = createDrawerNavigator(
         )
       })
     },
-    // Confirm: {
-    //   screen: FindScreen,
-    //   navigationOptions: {
-    //     drawerLabel: () => {
-    //       console.log("Confirm!!!!!!!!!!");
-    //     }
-    //   }
-    // },
-    // Reset: {
-    //   screen: FindScreen,
-    //   navigationOptions: {
-    //     drawerLabel: () => {
-    //       console.log("Reset!!!!!!!!!!")
-    //     }
-    //   }
-    // },
     Profile: {
       screen: ProfileStack,
       navigationOptions: navOpt => ({
@@ -279,6 +274,14 @@ const AppStack = createDrawerNavigator(
       navigationOptions: navOpt => ({
         drawerLabel: ({ focused }) => (
           <DrawerItem focused={focused} title="회사" />
+        )
+      })
+    },
+    Club: {
+      screen: ClubStack,
+      navigationOptions: navOpt => ({
+        drawerLabel: ({ focused }) => (
+          <DrawerItem focused={focused} title="동아리" />
         )
       })
     },
