@@ -74,6 +74,7 @@ const styles = StyleSheet.create({
   horizontalImage: {
     height: 122,
     width: 'auto',
+    // width: 150,
   },
   horizontalStyles: {
     borderTopRightRadius: 0,

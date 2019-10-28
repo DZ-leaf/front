@@ -24,8 +24,10 @@ class ClubAtHome extends React.Component {
                     <Block style={{ paddingHorizontal: theme.SIZES.BASE }}>
                         {/* <Card item={articles[0]} horizontal /> */}
                         <ScrollView horizontal showsHorizontalScrollIndicator={false}
-                        scrollEventThrottle={10} pagingEnabled>
+                        scrollEventThrottle={10}  pagingEnabled snapToInterval={width-160}  /* snapToAlignment={'center'}  */>
                         <Block flex row>
+                            <Card item={articles[1]} style={{ marginRight: theme.SIZES.BASE }}/>
+                            <Card item={articles[2]} style={{ marginRight: theme.SIZES.BASE }}/>
                             <Card item={articles[1]} style={{ marginRight: theme.SIZES.BASE }}/>
                             <Card item={articles[2]} style={{ marginRight: theme.SIZES.BASE }}/>
                             <Card item={articles[1]} style={{ marginRight: theme.SIZES.BASE }}/>
