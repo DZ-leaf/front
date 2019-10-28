@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, StatusBar, Dimensions, View, } from "react-native";
+import { StyleSheet, StatusBar, Dimensions, Alert, } from "react-native";
 import { Block, Button, Text, theme, Input } from "galio-framework";
 import { withNavigation } from 'react-navigation';
 
@@ -10,7 +10,7 @@ const { width } = Dimensions.get("screen");
 class FindPwScreen extends React.Component {
     state = {
         data: {
-            userId: '',
+            memberId: '',
             email: '',
         },
         emailCheck: false,
@@ -61,6 +61,17 @@ class FindPwScreen extends React.Component {
         }
       }
 
+      findPw = (data, navigation) => {
+        console.log(data);
+        return AjaxUser.findPw(data)
+            .then(() => {
+              navigation.navigate('Find', {order:2, data: data})
+            })
+            .catch((error) => {
+                console.error(error);
+            })
+    }
+
     render() {
         const { navigation } = this.props;
         
@@ -74,20 +85,23 @@ class FindPwScreen extends React.Component {
                 <Block flex space="between" style={styles.padded}>
                     <Block style={{ paddingHorizontal: theme.SIZES.BASE }}>
                         <Block style={styles.input}>
-                            <Input placeholder="아이디" />
+                            <Input placeholder="아이디" color={'black'} onChangeText={(text) => { this.setState({ data: { ...this.state.data, memberId: text } })}}/>
                         </Block>
                         <Block style={[styles.input, styles.email]}>
-                                <Input placeholder='이메일' style={{width: width - theme.SIZES.BASE * 9.5}}/>
+                                <Input placeholder='이메일' style={{width: width - theme.SIZES.BASE * 9.5}} color={'black'}
+                                onChangeText={(text) => { this.setState({ data: { ...this.state.data, email: text } })}}/>
                                 <Button style={styles.mailButton} shadowless onPress={() => {this.sendEmail(this.state.data)}}>전송</Button>
                         </Block>
-                        <Block style={styles.input}>
-                            <Input
-                                placeholder="인증번호" />
+                        <Block style={styles.input, styles.email}>
+                            <Input placeholder="인증번호" style={{width: width - theme.SIZES.BASE * 9.5}} color={'black'} 
+                                onChangeText={(text) => { this.setState({ authNumCheck: text })}}/>
+                                <Button style={styles.mailButton} shadowless onPress={() => {this.authNumCheck()}}>확인</Button>
                         </Block>
                         <Button
                             style={styles.button}
                             // onPress={this.props.onClickListener}
-                            onPress={() => {navigation.navigate('Find', {order:2})}}>
+                            onPress={() => {this.state.emailCheck? 
+                              this.findPw(this.state.data, navigation): Alert.alert("메일을 통해 인증번호를 받아주세요")}}>
                             비밀번호 찾기
                          </Button>
                     </Block>

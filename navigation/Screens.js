@@ -252,6 +252,12 @@ const AppStack = createDrawerNavigator(
         drawerLabel: () => { }
       }
     },
+    Find: {
+      screen: FindScreen,
+      navigationOptions: {
+        drawerLabel: () => { }
+      },
+    },
     Home: {
       screen: HomeStack,
       screen: BottomStack,
