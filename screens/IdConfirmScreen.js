@@ -8,11 +8,7 @@ const { width } = Dimensions.get("screen");
 
 class IdConfirmScreen extends Component {
     render() {
-        const { navigation } = this.props;    
-        const msg = {
-            exist: '이메일 정보와 일치하는 아이디입니다.',
-            nonExist: '아이디가 존재하지 않습니다.'
-        }
+        const { navigation } = this.props;  
 
         const navigate = () => {
             this.props.onClickListener()
@@ -22,9 +18,9 @@ class IdConfirmScreen extends Component {
         return (
             <Block flex>
                 <Block style={styles.container}>
-                <Text style={styles.text}>{true? msg.exist : msg.nonExist}</Text>
+                <Text style={styles.text}>이메일 정보와 일치하는 아이디입니다.</Text>
                 <Block style={styles.msgContiner}>
-                    <Text>userid</Text>
+                    <Text style={{fontSize: 15}}>{navigation.getParam('memberId')}</Text>
                 </Block>
                 <Button style={styles.button} onPress={() => {navigate()}} shadowless>확인</Button>
                 </Block>

@@ -8,6 +8,58 @@ const { width } = Dimensions.get("screen");
 // import Images from "../constants/Images";
 
 class FindPwScreen extends React.Component {
+    state = {
+        data: {
+            userId: '',
+            email: '',
+        },
+        emailCheck: false,
+        authNum: '',
+        authNumCheck: '',
+    }
+
+    sendEmail = (data) => {
+        console.log(data);
+        const mail = data.email;
+        console.log(mail);
+        
+        var re = /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
+        if (mail == '') {
+          Alert.alert("입력란이 비어있습니다");
+        } else if(!re.test(mail)){
+          Alert.alert("이메일 형식에 맞지 않습니다");
+        } else {
+          return AjaxUser.findPwAuthNm(data)
+            .then((responseJson) => {
+              console.log(responseJson.message);
+              if (responseJson.message === "success") {
+                this.setState({ emailCheck: true });
+                Alert.alert("메일을 확인해주세요")
+              } else if (responseJson.message === "fail") {
+                Alert.alert("정보 없음")
+              } 
+              console.log("num__" + responseJson.authNum);
+              this.setState({ authNum: responseJson.authNum })
+            })
+            .catch((error) => {
+              console.error(error);
+            })
+        }
+      }
+
+      authNumCheck = () => {
+        console.log("authNum" + this.state.authNum);
+        console.log("check" + this.state.authNumCheck);
+        if (this.state.authNumCheck === '') {
+          Alert.alert("메일을 통해 인증번호를 받아주세요")
+        } else if (this.state.authNumCheck === null) {
+          Alert.alert("입력란을 입력해주세요")
+        } else if (this.state.authNumCheck == this.state.authNum) {
+          Alert.alert("인증되었습니다")
+        } else {
+          Alert.alert("다시 확인해주세요")
+        }
+      }
 
     render() {
         const { navigation } = this.props;
@@ -26,7 +78,7 @@ class FindPwScreen extends React.Component {
                         </Block>
                         <Block style={[styles.input, styles.email]}>
                                 <Input placeholder='이메일' style={{width: width - theme.SIZES.BASE * 9.5}}/>
-                                <Button style={styles.mailButton} shadowless>전송</Button>
+                                <Button style={styles.mailButton} shadowless onPress={() => {this.sendEmail(this.state.data)}}>전송</Button>
                         </Block>
                         <Block style={styles.input}>
                             <Input
