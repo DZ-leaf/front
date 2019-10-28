@@ -4,10 +4,6 @@ import { createAppContainer } from "react-navigation";
 import { createDrawerNavigator } from "react-navigation-drawer";
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from "react-navigation-tabs";
-import { TabNavigator } from 'react-navigation';
-import { Navigation } from 'react-native-navigation';
-
-import { Block } from "galio-framework";
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -16,13 +12,14 @@ import HomeScreen from "../screens/HomeScreen";
 import LoginScreen from "../screens/LoginScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import RegisterScreen from "../screens/RegisterScreen";
-import ChatScreen from '../screens/ChatScreen';
+import ChatListScreen from '../screens/ChatListScreen';
 import AlarmScreen from '../screens/AlarmScreen';
 import SettingScreen from '../screens/SettingScreen';
 import FindScreen from '../screens/FindScreen';
 import GroupScreen from '../screens/GroupScreen';
 import CompanyScreen from '../screens/CompanyScreen';
 import ClubScreen from '../screens/ClubScreen';
+import CalendarScreen from '../screens/CalendarScreen';
 
 // drawer
 import Menu from "./Menu";
@@ -71,7 +68,7 @@ const transitionConfig = (transitionProps, prevTransitionProps) => ({
 
 const ChatStack = createStackNavigator({
   Chat: {
-    screen: ChatScreen,
+    screen: ChatListScreen,
     navigationOptions: ({ navigation }) => ({
       header: <Header title="채팅" navigation={navigation} />
     })
@@ -203,40 +200,66 @@ const ClubStack = createStackNavigator(
   }
 );
 
+const CalendarStack = createStackNavigator(
+  {
+    Setting: {
+      screen: CalendarScreen,
+      navigationOptions: ({ navigation }) => ({
+        header: <Header search options title="일정" navigation={navigation} />
+      })
+    },
+  },
+  {
+    cardStyle: {
+      backgroundColor: "#F8F9FE"
+    },
+    transitionConfig
+  }
+);
+
 const BottomStack = createBottomTabNavigator({
   Home: {
     screen: HomeStack,
     navigationOptions: () => ({
-      tabBarIcon: () => (
-        <Icon name="home" size={20} />
+      tabBarIcon: ({tintColor}) => (
+        <Icon name="home" size={25} color={tintColor}/>
       )
     })
   },
   Chat: {
     screen: ChatStack,
     navigationOptions: () => ({
-      tabBarIcon: () => (
-        <Icon name="chat-bubble-outline" size={20} />
+      tabBarIcon: ({tintColor}) => (
+        <Icon name="chat" size={25} color={tintColor} />
       )
     })
   },
   Alarm: {
     screen: AlarmStack,
     navigationOptions: () => ({
-      tabBarIcon: () => (
-        <Icon name="alarm" size={20} />
+      tabBarIcon: ({tintColor}) => (
+        <Icon name="alarm" size={25} color={tintColor}/>
       )
     })
   },
   Setting: {
     screen: SettingStack,
     navigationOptions: () => ({
-      tabBarIcon: () => (
-        <Icon name="settings" size={20} />
+      tabBarIcon: ({tintColor}) => (
+        <Icon name="settings" size={25} color={tintColor}/>
       )
     })
-  }
-})
+  },
+}, {
+  tabBarOptions: {
+      showLabel: false, // hide labels
+      activeTintColor: '#25A731', // active icon color
+      inactiveTintColor: '#0B5713',  // inactive icon color
+      // style: {
+      //     backgroundColor: '#0B5713' // TabBar background
+      // }
+    }
+  })
 
 const AppStack = createDrawerNavigator(
   {
@@ -272,6 +295,14 @@ const AppStack = createDrawerNavigator(
       navigationOptions: navOpt => ({
         drawerLabel: ({ focused }) => (
           <DrawerItem focused={focused} title="프로필" />
+        )
+      })
+    },
+    Calendar: {
+      screen: CalendarStack,
+      navigationOptions: navOpt => ({
+        drawerLabel: ({ focused }) => (
+          <DrawerItem focused={focused} title="일정" />
         )
       })
     },

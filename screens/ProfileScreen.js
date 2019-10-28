@@ -91,7 +91,7 @@ class ProfileScreen extends React.Component {
                   </Block>
 
                   <Modal middle visible={this.state.modalVisible} transparent={false}>
-                    <ProfileEditModal closeModal={this.closeModal} />
+                    <ProfileEditModal closeModal={this.closeModal} animationType={'slide'}/>
                   </Modal>
                   <Block>
                     <Text>{"\n"}{"\n"}</Text>

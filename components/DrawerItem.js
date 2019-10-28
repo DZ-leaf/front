@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet } from "react-native";
 import { Block, Text, theme } from "galio-framework";
 
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import argonTheme from "../constants/Theme";
 
 class DrawerItem extends React.Component {
@@ -13,17 +13,17 @@ class DrawerItem extends React.Component {
       case "홈":
         return (<Icon name="home" size={20} color={focused ? "white" : argonTheme.COLORS.ICON}/>);
       case "프로필":
-        return (<Icon name="person" size={20} color={focused ? "white" : argonTheme.COLORS.ICON}/>);
+        return (<Icon name="account" size={20} color={focused ? "white" : argonTheme.COLORS.ICON}/>);
       case "회사":
-        return (<Icon name="computer" size={20} color={focused ? "white" : argonTheme.COLORS.ICON}/>);
+        return (<Icon name="desktop-mac" size={20} color={focused ? "white" : argonTheme.COLORS.ICON}/>);
       case "동아리":
-        return (<Icon name="dashboard" size={20} color={focused ? "white" : argonTheme.COLORS.ICON}/>);
+        return (<Icon name="arrange-bring-forward" size={20} color={focused ? "white" : argonTheme.COLORS.ICON}/>);
       case "그룹":
-        return (<Icon name="group" size={20} color={focused ? "white" : argonTheme.COLORS.ICON}/>);
-      case "Getting Started":
-        return <Icon />;
-      case "Log out":
-        return <Icon />;
+        return (<Icon name="comment-account" size={20} color={focused ? "white" : argonTheme.COLORS.ICON}/>);
+      case "일정":
+        return (<Icon name="calendar-text" size={20} color={focused ? "white" : argonTheme.COLORS.ICON}/>);
+      case "로그아웃":
+        return (<Icon name="logout-variant" size={20} color={focused ? "white" : argonTheme.COLORS.ICON}/>);
       default:
         return null;
     }

@@ -73,9 +73,6 @@ const defaultMenu = [
     this.props.navigation.navigate('Find', { order: 1 })
   }
 
-
-
-
   renderItem = (item) => {
     const isActive = this.state.active === item.id;
 

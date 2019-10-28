@@ -1,8 +1,8 @@
 export default {
   COLORS: {
-    DEFAULT: '#172B4D',
-    PRIMARY: '#25A731',
-    SECONDARY: '#0B5713',
+    DEFAULT: '#172B4D', //남색
+    PRIMARY: '#25A731', //연두색
+    SECONDARY: '#0B5713', //진초록
     LABEL: '#FE2472',
     INFO: '#11CDEF',
     ERROR: '#F5365C',

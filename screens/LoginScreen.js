@@ -30,9 +30,7 @@ class LoginScreen extends React.Component {
 
   render() {
     const { navigation } = this.props;
-    console.log(navigation.navigate);
     
-
     return (
       <Block flex style={styles.container}>
         <StatusBar hidden />
