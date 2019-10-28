@@ -16,6 +16,7 @@ class FindIdScreen extends React.Component {
         emailCheck: false,
         authNum: '',
         authNumCheck: '',
+        authCheck: false,
     }
 
     sendEmail = (data) => {
@@ -55,6 +56,7 @@ class FindIdScreen extends React.Component {
         } else if (this.state.authNumCheck === null) {
           Alert.alert("입력란을 입력해주세요")
         } else if (this.state.authNumCheck == this.state.authNum) {
+          this.setState({authCheck: true})
           Alert.alert("인증되었습니다")
         //   navigation.navigate('Find', {order:2})
         } else {
@@ -108,7 +110,7 @@ class FindIdScreen extends React.Component {
                             style={styles.button}
                             onPress={
                                 () => {
-                                    this.state.emailCheck? 
+                                    this.state.authCheck? 
                                        /*  navigation.navigate('Find', {order:2}) */this.findId(this.state.data, navigation): Alert.alert("메일을 통해 인증번호를 받아주세요")}}>
                             아이디 찾기
                          </Button>

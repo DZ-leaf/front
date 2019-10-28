@@ -3,6 +3,8 @@ import { StyleSheet, StatusBar, Dimensions, Alert, } from "react-native";
 import { Block, Button, Text, theme, Input } from "galio-framework";
 import { withNavigation } from 'react-navigation';
 
+import { AjaxUser } from "../lib/url/member/userUrl";
+
 const { width } = Dimensions.get("screen");
 
 // import Images from "../constants/Images";
@@ -16,6 +18,7 @@ class FindPwScreen extends React.Component {
         emailCheck: false,
         authNum: '',
         authNumCheck: '',
+        authCheck: false,
     }
 
     sendEmail = (data) => {
@@ -55,6 +58,7 @@ class FindPwScreen extends React.Component {
         } else if (this.state.authNumCheck === null) {
           Alert.alert("입력란을 입력해주세요")
         } else if (this.state.authNumCheck == this.state.authNum) {
+          this.setState({authCheck: true})
           Alert.alert("인증되었습니다")
         } else {
           Alert.alert("다시 확인해주세요")
@@ -63,13 +67,7 @@ class FindPwScreen extends React.Component {
 
       findPw = (data, navigation) => {
         console.log(data);
-        return AjaxUser.findPw(data)
-            .then(() => {
-              navigation.navigate('Find', {order:2, data: data})
-            })
-            .catch((error) => {
-                console.error(error);
-            })
+        navigation.navigate('Find', {order:2, memberId: data.memberId})
     }
 
     render() {
@@ -100,7 +98,7 @@ class FindPwScreen extends React.Component {
                         <Button
                             style={styles.button}
                             // onPress={this.props.onClickListener}
-                            onPress={() => {this.state.emailCheck? 
+                            onPress={() => {this.state.authCheck? 
                               this.findPw(this.state.data, navigation): Alert.alert("메일을 통해 인증번호를 받아주세요")}}>
                             비밀번호 찾기
                          </Button>
