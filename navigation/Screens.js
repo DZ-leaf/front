@@ -5,7 +5,7 @@ import { createDrawerNavigator } from "react-navigation-drawer";
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from "react-navigation-tabs";
 
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 // screens
 import HomeScreen from "../screens/HomeScreen";
@@ -238,7 +238,7 @@ const BottomStack = createBottomTabNavigator({
     screen: AlarmStack,
     navigationOptions: () => ({
       tabBarIcon: ({tintColor}) => (
-        <Icon name="alarm" size={25} color={tintColor}/>
+        <Icon name="bell" size={25} color={tintColor}/>
       )
     })
   },
