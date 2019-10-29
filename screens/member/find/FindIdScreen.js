@@ -21,13 +21,14 @@ class FindIdScreen extends React.Component {
 
   sendEmail = (data) => {
     console.log(data);
-    const mail = data.email;
-    console.log(mail);
 
+    const nameRe = RegExp(/^[가-힣]+$/);
     var re = /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
-    if (mail == '') {
+    if (data.email == '' || data.memberNm == '') {
       Alert.alert("입력란이 비어있습니다");
-    } else if (!re.test(mail)) {
+    } else if (!nameRe.test(data.memberNm)) {
+      Alert.alert("이름을 다시 입력해주세요");
+    }else if (!re.test(data.email)) {
       Alert.alert("이메일 형식에 맞지 않습니다");
     } else {
       return AjaxUser.findIdAuthNm(data)
@@ -57,15 +58,24 @@ class FindIdScreen extends React.Component {
       Alert.alert("입력란을 입력해주세요")
     } else if (this.state.authNumCheck == this.state.authNum) {
       this.setState({ authCheck: true })
-      Alert.alert("인증되었습니다")
+      // Alert.alert("인증되었습니다")
     } else {
       Alert.alert("다시 확인해주세요")
     }
   }
 
   findId = (data, navigation) => {
-    console.log(data);
-
+    const nameRe = RegExp(/^[가-힣]+$/);
+    var re = /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
+    if (data.email == '' || data.memberNm == '') {
+      Alert.alert("입력란이 비어있습니다");
+    } else if (!nameRe.test(data.memberNm)) {
+      Alert.alert("이름을 다시 입력해주세요");
+    }else if (!re.test(data.email)) {
+      Alert.alert("이메일 형식에 맞지 않습니다");
+    }else if (!this.state.authCheck || !this.state.emailCheck) {
+      Alert.alert("메일을 통해 인증번호를 받아주세요");
+    }else {
     return AjaxUser.findId(data)
       .then((responseJson) => {
         console.log("message__" + responseJson.memberId);
@@ -74,6 +84,7 @@ class FindIdScreen extends React.Component {
       .catch((error) => {
         console.error(error);
       })
+    }
   }
 
 
@@ -126,10 +137,7 @@ class FindIdScreen extends React.Component {
             <Block middle>
               <Button
                 style={styles.button}
-                onPress={() => {
-                  this.state.authCheck ? this.findId(this.state.data, navigation)
-                    : Alert.alert("메일을 통해 인증번호를 받아주세요")
-                }}>
+                onPress={() => { this.findId(this.state.data, navigation) }}>
                 아이디 찾기
                 </Button>
             </Block>

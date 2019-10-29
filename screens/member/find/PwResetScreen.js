@@ -28,10 +28,11 @@ class IdConfirmScreen extends Component {
     }
 
     changePw = (data, navigation) => {
-        console.log("changePw");
-        // this.props.onClickListener()    //Components/Tabs _ order 초기화
         const pwRe = RegExp(/^[a-zA-Z0-9]{4,12}$/);
-        if (!pwRe.test(this.state.data.memberPw)) {
+        if(this.state.data.memberPw == '' || this.state.data.memberPwCheck == ''){
+            Alert.alert('입력란이 비어있습니다')
+        }
+        else if (!pwRe.test(this.state.data.memberPw)) {
             Alert.alert('비밀번호를 다시 입력해 주세요')
         } else if (this.state.data.memberPw !== this.state.memberPwCheck) {
             Alert.alert('비밀번호가 서로 맞지 않습니다.')

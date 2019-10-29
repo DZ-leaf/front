@@ -23,13 +23,11 @@ class FindPwScreen extends React.Component {
 
   sendEmail = (data) => {
     console.log(data);
-    const mail = data.email;
-    console.log(mail);
 
     var re = /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
-    if (mail == '') {
+    if (data.email == '' || data.memberId == '') {
       Alert.alert("입력란이 비어있습니다");
-    } else if (!re.test(mail)) {
+    } else if (!re.test(data.email)) {
       Alert.alert("이메일 형식에 맞지 않습니다");
     } else {
       return AjaxUser.findPwAuthNm(data)
@@ -39,7 +37,7 @@ class FindPwScreen extends React.Component {
             this.setState({ emailCheck: true });
             Alert.alert("메일을 확인해주세요")
           } else if (responseJson.message === "fail") {
-            Alert.alert("정보 없음")
+            Alert.alert("일치하는 정보가 없습니다.")
           }
           console.log("num__" + responseJson.authNum);
           this.setState({ authNum: responseJson.authNum })
@@ -59,15 +57,24 @@ class FindPwScreen extends React.Component {
       Alert.alert("입력란을 입력해주세요")
     } else if (this.state.authNumCheck == this.state.authNum) {
       this.setState({ authCheck: true })
-      Alert.alert("인증되었습니다")
+      // Alert.alert("인증되었습니다")
     } else {
       Alert.alert("다시 확인해주세요")
     }
   }
 
   findPw = (data, navigation) => {
+    var re = /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
+    if (data.email == '' || data.memberId == '') {
+      Alert.alert("입력란이 비어있습니다");
+    }else if (!re.test(data.email)) {
+      Alert.alert("이메일 형식에 맞지 않습니다");
+    }else if (!this.state.authCheck || !this.state.emailCheck) {
+      Alert.alert("메일을 통해 인증번호를 받아주세요");
+    }else {
     console.log(data);
     navigation.navigate('Find', { order: 2, memberId: data.memberId })
+    }
   }
 
   render() {
@@ -119,10 +126,7 @@ class FindPwScreen extends React.Component {
             <Block middle>
               <Button
                 style={styles.button}
-                onPress={() => {
-                  this.state.authCheck ? this.findPw(this.state.data, navigation)
-                  : Alert.alert("메일을 통해 인증번호를 받아주세요")
-                }}>
+                onPress={() => { this.findPw(this.state.data, navigation) }}>
                 비밀번호 찾기
                 </Button>
             </Block>
