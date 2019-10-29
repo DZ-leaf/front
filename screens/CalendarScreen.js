@@ -1,26 +1,19 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { Calendar } from 'react-native-calendars'
-// import Calendar from '../components/Calendar'
+// import { Calendar } from 'react-native-calendars'
+import Calendars from '../components/Calendars'
+// import {Calendars} from '../components/Calendar/CalendarMain'
 
 class CalendarScreen extends Component {
     
     render() {
         return (
-            <View style={styles.container}>
-                {/* <Text>일정</Text> */}
-                <Calendar/>
+            <View >
+                <Calendars/>
             </View>
         );
     }
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        // alignItems: 'center',
-        // justifyContent: 'center',
-    }
-})
 
 export default CalendarScreen;
