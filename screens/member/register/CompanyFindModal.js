@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Dimensions, View, FlatList, ScrollView } from 'react-native';
+import { StyleSheet, Dimensions, View, FlatList } from 'react-native';
 import { Block, Button, theme, Input, Text } from 'galio-framework';
 
 const { width, height } = Dimensions.get("screen");

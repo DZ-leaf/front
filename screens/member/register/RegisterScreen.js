@@ -9,19 +9,19 @@ import CompanyFindModal from './CompanyFindModal';
 
 import { AjaxUser } from "../../../lib/url/member/userUrl";
 
-const { width, height } = Dimensions.get("screen");
+const { width } = Dimensions.get("screen");
 
 class Register extends React.Component {
 
   state = {
     data: {
-      userId: '',
-      userPw: '',
-      userNm: '',
+      memberId: '',
+      memberPw: '',
+      memberNm: '',
       companyNm: '',
       departmentNm: '',
       email: '',
-      // position: ' ',
+      position: 'ㅋ',
       profile: '안녕하세요',
     },
     userPwCheck: '',
@@ -38,25 +38,32 @@ class Register extends React.Component {
   handleSubmit = () => {
     const nameRe = RegExp(/^[가-힣]+$/);
     const pwRe = RegExp(/^[a-zA-Z0-9]{4,12}$/);
-    if (this.state.data.userNm === '' || this.state.data.userPw === ''|| this.state.data.companyNm === '' 
+    if (this.state.data.memberNm === '' || this.state.data.memberPw === ''|| this.state.data.companyNm === '' 
     || this.state.data.departmentNm === '' || this.state.userPwCheck === '') {
       Alert.alert('입력란이 비어있습니다');
-    } else if (!nameRe.test(this.state.data.userNm)) {
+    } else if (!nameRe.test(this.state.data.memberNm)) {
       Alert.alert('이름을 다시 입력해주세요');
     } else if (this.state.data.idCheck === false) {
       Alert.alert('아이디 중복확인을 해주세요');
-    } else if (!pwRe.test(this.state.data.userPw)) {
+    } else if (!pwRe.test(this.state.data.memberPw)) {
       Alert.alert('비밀번호를 다시 입력해주세요');
-    } else if (this.state.data.userPw !== this.state.userPwCheck) {
+    } else if (this.state.data.memberPw !== this.state.userPwCheck) {
       Alert.alert('비밀번호가 서로 맞지 않습니다');
     } else {
       this.register(this.state.data);
-      this.props.navigation.navigate("Login");
     }
   }
 
   register = (data) => {
     return AjaxUser.register(data)
+    .then((responseJson) => {
+      console.log("회원가입 : " + responseJson.message);
+      if(responseJson.message === 'success'){
+        this.props.navigation.navigate("Login");
+      } else if(responseJson.message === 'fail'){
+        Alert.alert("회원가입에 실패하였습니다");
+      }
+    })
       .catch((error) => {
         console.error(error);
       });
@@ -68,7 +75,7 @@ class Register extends React.Component {
     } else {
       return AjaxUser.idCheck(userId)
         .then((responseJson) => {
-          console.log(responseJson.message);
+          console.log("아이디 확인 : " + responseJson.message);
           if (responseJson.message === 'success') {
             this.setState({ idCheck: true });
             Alert.alert('사용 가능한 아이디 입니다');
@@ -97,7 +104,6 @@ class Register extends React.Component {
   findCompany = (data) => {
     return AjaxUser.findCompany(data)
       .then((responseJson) => {
-        console.log(responseJson.data)
         this.setState({ companyList: responseJson.data })
       })
       .catch((error) => {
@@ -162,29 +168,29 @@ class Register extends React.Component {
               <View style={styles.inputs}>
                 <Input placeholder="이름" iconContent={<Block />}
                   style={{ borderRadius: 0 }} color={theme.COLORS.BLACK}
-                  onChangeText={(text) => { this.setState({ data: { ...this.state.data, userNm: text } }) }} />
+                  onChangeText={(text) => { this.setState({ data: { ...this.state.data, memberNm: text } }) }} />
               </View>
               {this.state.idCheck == false ?
                 <View style={styles.inputs, styles.inputButton}>
                   <Input placeholder="아이디" iconContent={<Block />}
                     style={{ borderRadius: 0 }} color={theme.COLORS.BLACK}
-                    onChangeText={(text) => { this.setState({ data: { ...this.state.data, userId: text } }) }} />
+                    onChangeText={(text) => { this.setState({ data: { ...this.state.data, memberId: text } }) }} />
                   <Button style={styles.button, { width: '10%' }} shadowless
-                    onPress={() => this.idCheck(this.state.data.userId)}>확인</Button>
+                    onPress={() => this.idCheck(this.state.data.memberId)}>확인</Button>
                 </View>
                 :
                 <View style={styles.inputs}>
                   <Text>{'\u00A0'}</Text>
                   <Input right icon="check" iconColor="green" family="antdesign"
                     style={{ borderRadius: 0 }} color={theme.COLORS.BLACK}
-                    value={this.state.data.userId} editable={false} />
+                    value={this.state.data.memberId} editable={false} />
                 </View>
               }
               <View style={styles.inputs}>
                 <Input placeholder="비밀번호 : 4~12자의 영문 대소문자와 숫자" iconContent={<Block />}
                   style={{ borderRadius: 0 }} color={theme.COLORS.BLACK}
                   secureTextEntry={true}
-                  onChangeText={(text) => { this.setState({ data: { ...this.state.data, userPw: text } }) }} />
+                  onChangeText={(text) => { this.setState({ data: { ...this.state.data, memberPw: text } }) }} />
               </View>
               <View style={styles.inputs}>
                 <Input style={{ borderRadius: 0 }} color={theme.COLORS.BLACK}
@@ -193,10 +199,10 @@ class Register extends React.Component {
                   placeholder="비밀번호 확인"
                   right
                   icon={this.state.userPwCheck ?
-                    (this.state.data.userPw === this.state.userPwCheck ? 'check' : 'exclamation') : ''}
+                    (this.state.data.memberPw === this.state.userPwCheck ? 'check' : 'exclamation') : ''}
                   family="antdesign"
                   iconColor={this.state.userPwCheck ?
-                    (this.state.data.userPw === this.state.userPwCheck ? 'green' : 'red') : ''}
+                    (this.state.data.memberPw === this.state.userPwCheck ? 'green' : 'red') : ''}
                 />
               </View>
             </Block>

@@ -60,18 +60,6 @@ const ProfileEditModal = (props) => {
                     </View>
                 </View>
                 <View style={{ flexDirection: 'row' }}>
-                    <View style={styles.padding2}>
-                        <Text size={17}>소개</Text>
-                    </View>
-                    <View style={{ width: width * 0.7, paddingLeft: '4%' }}>
-                        <Content>
-                            <Item>
-                                <Input placeholder="소개글" />
-                            </Item>
-                        </Content>
-                    </View>
-                </View>
-                <View style={{ flexDirection: 'row' }}>
                     <View style={styles.padding3}>
                         <Text size={17}>이메일</Text>
                     </View>
@@ -79,6 +67,18 @@ const ProfileEditModal = (props) => {
                         <Content>
                             <Item>
                                 <Input value={"이메일"} readonly />
+                            </Item>
+                        </Content>
+                    </View>
+                </View>
+                <View style={{ flexDirection: 'row' }}>
+                    <View style={styles.padding2}>
+                        <Text size={17}>소개</Text>
+                    </View>
+                    <View style={{ width: width * 0.7, paddingLeft: '4%' }}>
+                        <Content>
+                            <Item>
+                                <Input placeholder="소개글" />
                             </Item>
                         </Content>
                     </View>
