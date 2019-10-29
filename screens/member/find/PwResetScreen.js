@@ -44,7 +44,7 @@ class IdConfirmScreen extends Component {
                         this.props.onClickListener()    //Components/Tabs _ order 초기화
                         navigation.navigate('Login')
                     } else if (responseJson.message === "fail") {
-                        Alert.alert("실패")
+                        Alert.alert("이전 비밀번호와 같습니다")
                     }
                 })
                 .catch((error) => {

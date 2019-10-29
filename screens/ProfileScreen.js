@@ -1,8 +1,7 @@
 import React from "react";
-import { StyleSheet, Dimensions, ScrollView, Image, ImageBackground, Platform, View, Modal } from "react-native";
-import { Block, Text, theme } from "galio-framework";
+import { StyleSheet, Dimensions, ScrollView, Image, ImageBackground, Platform, Modal } from "react-native";
+import { Block, Text, theme, Button } from "galio-framework";
 
-import { Button } from "../components";
 import { Images, argonTheme } from "../constants";
 import { HeaderHeight } from "../constants/utils";
 
@@ -83,7 +82,7 @@ class ProfileScreen extends React.Component {
                     <Text size={16} color="#525F7F" style={{ textAlign: "center", paddingBottom: '5%' }}>
                       소개글
                     </Text>
-                    <Button color="transparent"
+                    <Button color="#F0F2F0" shadowless
                       textStyle={{ color: argonTheme.COLORS.PRIMARY, fontWeight: "500", fontSize: 13 }}
                       onPress={() => this.setModalVisible(!this.state.modalVisible)}>
                       프로필 수정
@@ -93,9 +92,11 @@ class ProfileScreen extends React.Component {
                   <Modal middle visible={this.state.modalVisible} transparent={false}>
                     <ProfileEditModal closeModal={this.closeModal} animationType={'slide'}/>
                   </Modal>
+
                   <Block>
                     <Text>{"\n"}{"\n"}</Text>
                   </Block>
+                  
                   <Block style={{ paddingBottom: -HeaderHeight * 2 }}>
                     <Block row space="between" style={{ flexWrap: "wrap" }}>
                       {Images.Viewed.map((img, imgIndex) => (
