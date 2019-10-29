@@ -1,104 +1,149 @@
-import React, { Component } from 'react';
-import { Animated, View, StyleSheet, Image, Dimensions, ScrollView } from 'react-native';
-import { Block, Button, Text, theme, Input, Checkbox } from "galio-framework";
-import { articles, Images, argonTheme } from "../../constants/";
+import React from "react";
+import { ScrollView, StyleSheet, Image, Dimensions } from "react-native";
 
-const { width, height } = Dimensions.get("screen");
+import { Block, Text, theme } from "galio-framework";
 
-const FIXED_BAR_WIDTH = 280
-const BAR_SPACE = 10
+import { articles, Images, argonTheme } from "../../constants";
+import { Card } from "../../components";
 
-const images = [
-  'https://s-media-cache-ak0.pinimg.com/originals/ee/51/39/ee5139157407967591081ee04723259a.png',
-  'https://s-media-cache-ak0.pinimg.com/originals/40/4f/83/404f83e93175630e77bc29b3fe727cbe.jpg',
-  'https://s-media-cache-ak0.pinimg.com/originals/8d/1a/da/8d1adab145a2d606c85e339873b9bb0e.jpg',
-  'https://s-media-cache-ak0.pinimg.com/originals/8d/1a/da/8d1adab145a2d606c85e339873b9bb0e.jpg',
-  'https://s-media-cache-ak0.pinimg.com/originals/8d/1a/da/8d1adab145a2d606c85e339873b9bb0e.jpg',
-]
+const { width } = Dimensions.get("screen");
 
-class AtHome extends Component {
-    numItems = images.length
-    itemWidth = (FIXED_BAR_WIDTH / this.numItems) - ((this.numItems - 1) * BAR_SPACE)
-    animVal = new Animated.Value(0)
-  
-    render() {
-      let imageArray = []
-      let barArray = []
-      images.forEach((image, i) => {
-        const thisImage = (
-          <Image key={`image${i}`} source={{uri: image}} style={{ width: width, height: height / 2 }}/>
-        )
-        imageArray.push(thisImage)
-  
-        const scrollBarVal = this.animVal.interpolate({
-          inputRange: [width * (i - 1), width * (i + 1)],
-          outputRange: [-this.itemWidth, this.itemWidth],
-          extrapolate: 'clamp',
-        })
-  
-        const thisBar = (
-          <View key={`bar${i}`} style={[styles.track,{width: this.itemWidth, marginLeft: i === 0 ? 0 : BAR_SPACE,},]}>
-            <Animated.View
-              style={[styles.bar, { width: this.itemWidth, transform: [{ translateX: scrollBarVal }, ],},]}/>
-          </View>
-        )
-        barArray.push(thisBar)
-      })
-  
-      return (
-        <Block>
-          <Text bold size={16} style={styles.title}>
+const thumbMeasure = (width - 48 - 32) / 3;
+const cardWidth = width - theme.SIZES.BASE * 2;
+
+class CompanyAtHome extends React.Component {
+  renderCards = () => {
+    return (
+        <Block flex style={styles.group}>
+            <Text bold size={16} style={styles.title}>
             {"\n"}
-            회사
-          </Text>
-          <Block flex>
-        <View style={styles.container} flex={1}>
-          <ScrollView
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            scrollEventThrottle={10}
-            pagingEnabled
-            onScroll={Animated.event([{ nativeEvent: { contentOffset: { x: this.animVal } } }])}>
-            {imageArray}
-          </ScrollView>
-          <View style={styles.barContainer}>
-            {barArray}
-          </View>
-        </View>
-        </Block>
+                회사
+            </Text>
+            <Block flex>
+                <Block style={{ paddingHorizontal: theme.SIZES.BASE }}>
+                    <Card item={articles[0]} horizontal />
+                    <ScrollView horizontal showsHorizontalScrollIndicator={false}
+                    scrollEventThrottle={10} pagingEnabled>
+                    <Block flex row>
+                        <Card item={articles[1]} style={{ marginRight: theme.SIZES.BASE }}/>
+                        <Card item={articles[2]} style={{ marginRight: theme.SIZES.BASE }}/>
+                        <Card item={articles[1]} style={{ marginRight: theme.SIZES.BASE }}/>
+                        <Card item={articles[2]} style={{ marginRight: theme.SIZES.BASE }}/>
+                        <Card item={articles[1]} style={{ marginRight: theme.SIZES.BASE }}/>
+                    </Block>
+                    </ScrollView>
+                </Block>
+
             </Block>
-      )
-    }
+        </Block>
+    );
+};
+
+renderAlbum = () => {
+    const { navigation } = this.props;
+
+    return (
+        <Block
+            flex
+            style={[styles.group, { paddingBottom: theme.SIZES.BASE * 5 }]}
+        >
+            <Text bold size={16} style={styles.title}>
+                Album
+    </Text>
+            <Block style={{ marginHorizontal: theme.SIZES.BASE * 2 }}>
+                <Block flex right>
+                    <Text
+                        size={12}
+                        color={theme.COLORS.PRIMARY}
+                        onPress={() => navigation.navigate("Home")}
+                    >
+                        View All
+        </Text>
+                </Block>
+                <Block
+                    row
+                    space="between"
+                    style={{ marginTop: theme.SIZES.BASE, flexWrap: "wrap" }}
+                >
+                    {Images.Viewed.map((img, index) => (
+                        <Block key={`viewed-${img}`} style={styles.shadow}>
+                            <Image
+                                resizeMode="cover"
+                                source={{ uri: img }}
+                                style={styles.albumThumb}
+                            />
+                        </Block>
+                    ))}
+                </Block>
+            </Block>
+        </Block>
+    );
+};
+
+render() {
+    return (
+        <Block flex center>
+            <ScrollView showsVerticalScrollIndicator={false}>
+                {this.renderCards()}
+                {/* {this.renderAlbum()} */}
+            </ScrollView>
+        </Block>
+    );
+}
 }
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    title: {
-      paddingHorizontal: theme.SIZES.BASE,
-      color: argonTheme.COLORS.HEADER
-  },
-    barContainer: {
-      position: 'absolute',
-      zIndex: 2,
-      top: 40,
-      flexDirection: 'row',
-    },
-    track: {
-      backgroundColor: '#ccc',
-      overflow: 'hidden',
-      height: 2,
-    },
-    bar: {
-      backgroundColor: '#5294d6',
-      height: 2,
-      position: 'absolute',
-      left: 0,
-      top: 0,
-    },
-  })
+title: {
+    paddingHorizontal: theme.SIZES.BASE,
+    color: argonTheme.COLORS.HEADER
+},
+group: {
+    paddingTop: theme.SIZES.BASE
+},
+albumThumb: {
+    borderRadius: 4,
+    marginVertical: 4,
+    alignSelf: "center",
+    width: thumbMeasure,
+    height: thumbMeasure
+},
+category: {
+    backgroundColor: theme.COLORS.WHITE,
+    marginVertical: theme.SIZES.BASE / 2,
+    borderWidth: 0
+},
+categoryTitle: {
+    height: "100%",
+    paddingHorizontal: theme.SIZES.BASE,
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    justifyContent: "center",
+    alignItems: "center"
+},
+imageBlock: {
+    overflow: "hidden",
+    borderRadius: 4
+},
+productItem: {
+    width: cardWidth - theme.SIZES.BASE * 2,
+    marginHorizontal: theme.SIZES.BASE,
+    shadowColor: "black",
+    shadowOffset: { width: 0, height: 7 },
+    shadowRadius: 10,
+    shadowOpacity: 0.2
+},
+productImage: {
+    width: cardWidth - theme.SIZES.BASE,
+    height: cardWidth - theme.SIZES.BASE,
+    borderRadius: 3
+},
+productPrice: {
+    paddingTop: theme.SIZES.BASE,
+    paddingBottom: theme.SIZES.BASE / 2
+},
+productDescription: {
+    paddingTop: theme.SIZES.BASE
+    // paddingBottom: theme.SIZES.BASE * 2,
+}
+});
 
-export default AtHome;
+export default CompanyAtHome;

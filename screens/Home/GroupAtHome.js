@@ -1,10 +1,10 @@
 import React from "react";
-import { ScrollView, StyleSheet, Image, TouchableWithoutFeedback, ImageBackground, Dimensions } from "react-native";
+import { ScrollView, StyleSheet, Image, Dimensions } from "react-native";
 
 import { Block, Text, theme } from "galio-framework";
 
-import { articles, Images, argonTheme } from "../../constants/";
-import { Card } from "../../components/";
+import { articles, Images, argonTheme } from "../../constants";
+import { Card } from "../../components";
 
 const { width } = Dimensions.get("screen");
 
@@ -31,31 +31,7 @@ class GroupAtHome extends React.Component {
                             <Card item={articles[1]} style={{ marginRight: theme.SIZES.BASE }}/>
                         </Block>
                         </ScrollView>
-                        {/* <Card item={articles[4]} full /> */}
-                        {/* <Block flex card shadow style={styles.category}>
-                            <ImageBackground
-                                source={{ uri: Images.Products["View article"] }}
-                                style={[ styles.imageBlock, { width: width - theme.SIZES.BASE * 2, height: 252 }]}
-                                imageStyle={{ width: width - theme.SIZES.BASE * 2, height: 252 }}>
-                                <Block style={styles.categoryTitle}>
-                                    <Text size={18} bold color={theme.COLORS.WHITE}>
-                                        View article
-                                    </Text>
-                                </Block>
-                            </ImageBackground>
-                        </Block> */}
                     </Block>
-                    {/* <Block flex style={{ marginTop: theme.SIZES.BASE / 2 }}>
-                        <ScrollView
-                            horizontal={true}
-                            pagingEnabled={true}
-                            decelerationRate={0}
-                            scrollEventThrottle={16}
-                            snapToAlignment="center"
-                            showsHorizontalScrollIndicator={false}
-                            snapToInterval={cardWidth + theme.SIZES.BASE * 0.375}
-                            contentContainerStyle={{ paddingHorizontal: theme.SIZES.BASE / 2 }} />
-                    </Block> */}
                 </Block>
             </Block>
         );
@@ -65,35 +41,21 @@ class GroupAtHome extends React.Component {
         const { navigation } = this.props;
 
         return (
-            <Block
-                flex
-                style={[styles.group, { paddingBottom: theme.SIZES.BASE * 5 }]}
-            >
+            <Block flex style={[styles.group, { paddingBottom: theme.SIZES.BASE * 5 }]}>
                 <Text bold size={16} style={styles.title}>
                     Album
-        </Text>
+                </Text>
                 <Block style={{ marginHorizontal: theme.SIZES.BASE * 2 }}>
                     <Block flex right>
-                        <Text
-                            size={12}
-                            color={theme.COLORS.PRIMARY}
-                            onPress={() => navigation.navigate("Home")}
-                        >
+                        <Text size={12} color={theme.COLORS.PRIMARY}
+                            onPress={() => navigation.navigate("Home")}>
                             View All
-            </Text>
+                        </Text>
                     </Block>
-                    <Block
-                        row
-                        space="between"
-                        style={{ marginTop: theme.SIZES.BASE, flexWrap: "wrap" }}
-                    >
+                    <Block row space="between" style={{ marginTop: theme.SIZES.BASE, flexWrap: "wrap" }}>
                         {Images.Viewed.map((img, index) => (
                             <Block key={`viewed-${img}`} style={styles.shadow}>
-                                <Image
-                                    resizeMode="cover"
-                                    source={{ uri: img }}
-                                    style={styles.albumThumb}
-                                />
+                                <Image resizeMode="cover" source={{ uri: img }} style={styles.albumThumb}/>
                             </Block>
                         ))}
                     </Block>
