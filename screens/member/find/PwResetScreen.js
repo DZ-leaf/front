@@ -64,7 +64,7 @@ class IdConfirmScreen extends Component {
                         <Input placeholder='비밀번호 : 4~12자의 영문 대소문자와 숫자' style={{ marginTop: -8 }}
                             color={'black'} secureTextEntry={true}
                             onChangeText={(text) => { this.setState({ data: { ...this.state.data, memberPw: text } }) }} />
-                        <Input style={{ borderRadius: 0 }} color={theme.COLORS.BLACK}
+                        <Input color={theme.COLORS.BLACK}
                             onChangeText={(text) => { this.setState({ memberPwCheck: text }) }}
                             secureTextEntry={true}
                             placeholder="비밀번호 확인"

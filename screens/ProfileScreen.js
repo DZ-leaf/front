@@ -84,7 +84,7 @@ class ProfileScreen extends React.Component {
                       소개글
                     </Text>
                     <Button color="transparent"
-                      textStyle={{ color: argonTheme.COLORS.SECONDARY, fontWeight: "500", fontSize: 13 }}
+                      textStyle={{ color: argonTheme.COLORS.PRIMARY, fontWeight: "500", fontSize: 13 }}
                       onPress={() => this.setModalVisible(!this.state.modalVisible)}>
                       프로필 수정
                     </Button>

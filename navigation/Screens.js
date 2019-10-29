@@ -17,7 +17,7 @@ import AlarmScreen from '../screens/AlarmScreen';
 import SettingScreen from '../screens/SettingScreen';
 import FindScreen from '../screens/member/find/FindScreen';
 import GroupScreen from '../screens/GroupScreen';
-import CompanyScreen from '../screens/CompanyScreen';
+import CompanyScreen from '../screens/company/CompanyScreen';
 import ClubScreen from '../screens/ClubScreen';
 import CalendarScreen from '../screens/CalendarScreen';
 
@@ -27,6 +27,7 @@ import DrawerItem from "../components/DrawerItem";
 
 // header for screens
 import Header from "../components/Header";
+import { argonTheme } from "../constants";
 
 const transitionConfig = (transitionProps, prevTransitionProps) => ({
   transitionSpec: {
@@ -221,43 +222,44 @@ const BottomStack = createBottomTabNavigator({
   Home: {
     screen: HomeStack,
     navigationOptions: () => ({
-      tabBarIcon: ({tintColor}) => (
-        <Icon name="home" size={25} color={tintColor}/>
+      tabBarIcon: ({focused, tintColor}) => (
+        <Icon name={focused? 'home' : 'home-outline'} 
+        size={focused? 30 : 25} color={tintColor}/>
       )
     })
   },
   Chat: {
     screen: ChatStack,
     navigationOptions: () => ({
-      tabBarIcon: ({tintColor}) => (
-        <Icon name="chat" size={25} color={tintColor} />
+      tabBarIcon: ({focused, tintColor}) => (
+        <Icon name={focused? 'comment' : 'comment-outline'} 
+        size={focused? 30 : 25}  color={tintColor} />
       )
     })
   },
   Alarm: {
     screen: AlarmStack,
     navigationOptions: () => ({
-      tabBarIcon: ({tintColor}) => (
-        <Icon name="bell" size={25} color={tintColor}/>
+      tabBarIcon: ({focused, tintColor}) => (
+        <Icon name={focused? 'bell' : 'bell-outline'} 
+        size={focused? 30 : 25} color={tintColor}/>
       )
     })
   },
   Setting: {
     screen: SettingStack,
     navigationOptions: () => ({
-      tabBarIcon: ({tintColor}) => (
-        <Icon name="settings" size={25} color={tintColor}/>
+      tabBarIcon: ({focused, tintColor}) => (
+        <Icon name={focused? 'settings' : 'settings-outline'} 
+        size={focused? 30 : 25} color={tintColor}/>
       )
     })
   },
 }, {
   tabBarOptions: {
       showLabel: false, // hide labels
-      activeTintColor: '#25A731', // active icon color
-      inactiveTintColor: '#0B5713',  // inactive icon color
-      // style: {
-      //     backgroundColor: '#0B5713' // TabBar background
-      // }
+      activeTintColor: argonTheme.COLORS.PRIMARY, // active icon color
+      inactiveTintColor: '#7D7D7D',  // inactive icon color
     }
   })
 

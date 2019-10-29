@@ -83,26 +83,46 @@ class FindPwScreen extends React.Component {
         <Block flex space="between" style={styles.padded}>
           <Block style={{ paddingHorizontal: theme.SIZES.BASE }}>
             <Block style={styles.input}>
-              <Input placeholder="아이디" color={'black'} 
-              onChangeText={(text) => { this.setState({ data: { ...this.state.data, memberId: text } }) }} />
+              <Input placeholder="아이디" color={'black'}
+                onChangeText={(text) => { this.setState({ data: { ...this.state.data, memberId: text } }) }} />
             </Block>
-            <Block style={[styles.input, styles.email]}>
-              <Input placeholder='이메일' style={{ width: width - theme.SIZES.BASE * 9.5 }} color={'black'}
-                onChangeText={(text) => { this.setState({ data: { ...this.state.data, email: text } }) }} />
-              <Button style={styles.mailButton} shadowless 
-              onPress={() => { this.sendEmail(this.state.data) }}>전송</Button>
-            </Block>
-            <Block style={styles.input, styles.email}>
-              <Input placeholder="인증번호" style={{ width: width - theme.SIZES.BASE * 9.5 }} 
-              color={'black'} onChangeText={(text) => { this.setState({ authNumCheck: text }) }} />
-              <Button style={styles.mailButton} shadowless 
-              onPress={() => { this.authNumCheck() }}>확인</Button>
-            </Block>
+
+            {this.state.emailCheck == false ?
+              <Block style={[styles.input, styles.email]}>
+                <Input placeholder='이메일' style={{ width: width - theme.SIZES.BASE * 9.5 }} color={'black'}
+                  onChangeText={(text) => { this.setState({ data: { ...this.state.data, email: text } }) }} />
+                <Button style={styles.mailButton} shadowless
+                  onPress={() => { this.sendEmail(this.state.data) }}>전송</Button>
+              </Block>
+              :
+              <Block style={styles.input}>
+                <Input icon="check" iconColor="green" family="antdesign" right
+                  color={theme.COLORS.BLACK}
+                  value={this.state.data.email} editable={false} />
+              </Block>}
+
+            {this.state.authCheck == false ?
+              <Block style={styles.input, styles.email}>
+                <Input
+                  placeholder="인증번호" style={{ width: width - theme.SIZES.BASE * 9.5 }} color={'black'}
+                  onChangeText={(text) => { this.setState({ authNumCheck: text }) }} />
+                <Button style={styles.mailButton} shadowless
+                  onPress={() => { this.authNumCheck() }}>확인</Button>
+              </Block>
+              :
+              <Block style={styles.input}>
+                <Input icon="check" iconColor="green" family="antdesign" right
+                  color={theme.COLORS.BLACK}
+                  value={this.state.authNumCheck} editable={false} />
+              </Block>}
+
             <Block middle>
               <Button
                 style={styles.button}
-                onPress={() => { this.state.authCheck ? this.findPw(this.state.data, navigation)
-                  : Alert.alert("메일을 통해 인증번호를 받아주세요")}}>
+                onPress={() => {
+                  this.state.authCheck ? this.findPw(this.state.data, navigation)
+                  : Alert.alert("메일을 통해 인증번호를 받아주세요")
+                }}>
                 비밀번호 찾기
                 </Button>
             </Block>

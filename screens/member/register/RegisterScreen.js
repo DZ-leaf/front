@@ -306,12 +306,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: width * 1.43
   },
-  modal: {
-    // flex: 1,
-    // flexDirection: 'column',
-    // justifyContent: 'center',
-    
-  }
 });
 
 export default Register;

@@ -1,8 +1,8 @@
 export default {
   COLORS: {
     DEFAULT: '#172B4D', //남색
-    PRIMARY: '#25A731', //연두색
-    SECONDARY: '#0B5713', //진초록
+    PRIMARY: '#0B5713', //연두색 25A731
+    SECONDARY: '#25A731', //진초록 0B5713
     LABEL: '#FE2472',
     INFO: '#11CDEF',
     ERROR: '#F5365C',
@@ -23,7 +23,7 @@ export default {
     PRICE_COLOR: '#EAD5FB',
     BORDER_COLOR: '#E7E7E7',
     BLOCK: '#E7E7E7',
-    ICON: '#172B4D',
+    ICON: '#0B5713',
     HEADER: '#525F7F',
     BORDER: '#CAD1D7',
     WHITE: '#FFFFFF',

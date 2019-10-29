@@ -24,13 +24,13 @@ const Drawer = props => (
 const Menu = {
   contentComponent: props => <Drawer {...props} />,
   drawerBackgroundColor: "white",
-  drawerWidth: width * 0.8,
+  drawerWidth: width * 0.6,
   contentOptions: {
     activeTintColor: "white",
     inactiveTintColor: "#000",
     activeBackgroundColor: "transparent",
     itemStyle: {
-      width: width * 0.75,
+      width: width * 0.55,
       backgroundColor: "transparent"
     },
     labelStyle: {

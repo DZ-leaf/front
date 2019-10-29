@@ -69,7 +69,6 @@ const defaultMenu = [
 
     this.animate();
     this.props.onChange && this.props.onChange(id);
-
     this.props.navigation.navigate('Find', { order: 1 })
   }
 
@@ -157,7 +156,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   menuContainer: {
-    borderBottomColor: '#25A731',
+    borderBottomColor: '#0B5713',
     borderBottomWidth: 5,
     width: width - theme.SIZES.BASE * 6,
     backgroundColor: '#F0F2F0',
@@ -169,9 +168,9 @@ const styles = StyleSheet.create({
   },
   titleContainer: {
     alignItems: 'center',
-    backgroundColor: argonTheme.COLORS.ACTIVE,
+    backgroundColor: argonTheme.COLORS.PRIMARY,
     width: (width - theme.SIZES.BASE * 6) / 2,
-    borderColor: '#25A731',
+    borderColor: '#0B5713',
     borderWidth: 1
   },
   menuTitle: {

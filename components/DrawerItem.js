@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { Block, Text, theme } from "galio-framework";
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -11,19 +11,19 @@ class DrawerItem extends React.Component {
 
     switch (title) {
       case "홈":
-        return (<Icon name="home" size={20} color={focused ? "white" : argonTheme.COLORS.ICON}/>);
+        return (<Icon name="home" size={20} color={focused ? "white" : argonTheme.COLORS.BLACK}/>);
       case "프로필":
-        return (<Icon name="account" size={20} color={focused ? "white" : argonTheme.COLORS.ICON}/>);
+        return (<Icon name="account" size={20} color={focused ? "white" : argonTheme.COLORS.BLACK}/>);
       case "회사":
-        return (<Icon name="desktop-mac" size={20} color={focused ? "white" : argonTheme.COLORS.ICON}/>);
+        return (<Icon name="desktop-mac" size={20} color={focused ? "white" : argonTheme.COLORS.BLACK}/>);
       case "동아리":
-        return (<Icon name="arrange-bring-forward" size={20} color={focused ? "white" : argonTheme.COLORS.ICON}/>);
+        return (<Icon name="arrange-bring-forward" size={20} color={focused ? "white" : argonTheme.COLORS.BLACK}/>);
       case "그룹":
-        return (<Icon name="comment-account" size={20} color={focused ? "white" : argonTheme.COLORS.ICON}/>);
+        return (<Icon name="comment-account" size={20} color={focused ? "white" : argonTheme.COLORS.BLACK}/>);
       case "일정":
-        return (<Icon name="calendar-text" size={20} color={focused ? "white" : argonTheme.COLORS.ICON}/>);
+        return (<Icon name="calendar-text" size={20} color={focused ? "white" : argonTheme.COLORS.BLACK}/>);
       case "로그아웃":
-        return (<Icon name="logout-variant" size={20} color={focused ? "white" : argonTheme.COLORS.ICON}/>);
+        return (<Icon name="logout-variant" size={20} color={focused ? "white" : argonTheme.COLORS.BLACK}/>);
       default:
         return null;
     }
@@ -39,10 +39,10 @@ class DrawerItem extends React.Component {
 
     return (
       <Block flex row style={containerStyles}>
-        <Block middle flex={0.1} style={{ marginRight: 5 }}>
+        <Block middle flex={0.2}>
           {this.renderIcon()}
         </Block>
-        <Block row center flex={0.9}>
+        <Block row center flex={0.5}>
           <Text
             size={15}
             bold={focused ? true : false}
@@ -57,11 +57,11 @@ class DrawerItem extends React.Component {
 
 const styles = StyleSheet.create({
   defaultStyle: {
-    paddingVertical: 15,
-    paddingHorizontal: 14
+    paddingVertical: 14,
+    paddingHorizontal: 13
   },
   activeStyle: {
-    backgroundColor: argonTheme.COLORS.ACTIVE,
+    backgroundColor: argonTheme.COLORS.PRIMARY,
     borderRadius: 4
   },
   shadow: {
