@@ -1,13 +1,13 @@
 import React from 'react';
 import { StyleSheet, Image, Dimensions, StatusBar, View, Modal, Alert, ScrollView, Text } from "react-native";
 import { Block, theme, Button, Input } from "galio-framework";
-import { Images } from "../constants";
+import { Images } from "../../../constants";
 
 // import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import CompanyFindModal from './CompanyFindModal';
 
-import { AjaxUser } from "../lib/url/member/userUrl";
+import { AjaxUser } from "../../../lib/url/member/userUrl";
 
 const { width, height } = Dimensions.get("screen");
 
@@ -202,7 +202,6 @@ class Register extends React.Component {
             </Block>
 
             <Block width={width * 0.9}>
-              {this.state.data.companyNm == '' ?
                 <View style={styles.inputs, styles.inputButton}>
                   <Input placeholder="회사" iconContent={<Block />}
                     style={{ borderRadius: 0 }} color={theme.COLORS.BLACK}
@@ -210,14 +209,6 @@ class Register extends React.Component {
                   <Button style={styles.button, { width: '10%' }} shadowless
                     onPress={() => this.setModalVisible(!this.state.modalVisible)}>찾기</Button>
                 </View>
-                :
-                <View style={styles.inputs} width={width * 0.9}>
-                  <Text>{'\u00A0'}</Text>
-                  <Input icon="check" iconColor="green" family="antdesign" right
-                    style={{ borderRadius: 0 }} color={theme.COLORS.BLACK}
-                    value={this.state.data.companyNm} editable={false} />
-                </View>
-              }
 
               <Modal middle visible={this.state.modalVisible} transparent={false}>
                 <CompanyFindModal closeModal={this.closeModal} width={width * 0.8}

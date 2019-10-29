@@ -3,7 +3,7 @@ import { StyleSheet, Dimensions, Alert } from 'react-native';
 import { Block, Button, Text, theme, Input } from 'galio-framework';
 import { withNavigation } from 'react-navigation'
 
-import { AjaxUser } from "../lib/url/member/userUrl";
+import { AjaxUser } from "../../../lib/url/member/userUrl";
 
 const { width } = Dimensions.get("screen");
 
@@ -52,7 +52,7 @@ class IdConfirmScreen extends Component {
                 })
         }
     }
-    
+
     render() {
         const { navigation } = this.props
 
@@ -61,7 +61,8 @@ class IdConfirmScreen extends Component {
                 <Block style={styles.container}>
                     <Text style={styles.text}>비밀번호를 다시 설정해 주세요</Text>
                     <Block style={styles.input}>
-                        <Input placeholder='비밀번호 : 4~12자의 영문 대소문자와 숫자' style={{ marginTop: -8 }} color={'black'} secureTextEntry={true}
+                        <Input placeholder='비밀번호 : 4~12자의 영문 대소문자와 숫자' style={{ marginTop: -8 }}
+                            color={'black'} secureTextEntry={true}
                             onChangeText={(text) => { this.setState({ data: { ...this.state.data, memberPw: text } }) }} />
                         <Input style={{ borderRadius: 0 }} color={theme.COLORS.BLACK}
                             onChangeText={(text) => { this.setState({ memberPwCheck: text }) }}
@@ -72,10 +73,13 @@ class IdConfirmScreen extends Component {
                                 (this.state.data.memberPw === this.state.memberPwCheck ? 'check' : 'exclamation') : ''}
                             family="antdesign"
                             iconColor={this.state.memberPwCheck ?
-                                (this.state.data.memberPw === this.state.memberPwCheck ? 'green' : 'red') : ''}
-                        />
+                                (this.state.data.memberPw === this.state.memberPwCheck ? 'green' : 'red') : ''} />
                     </Block>
-                    <Button style={styles.button} onPress={() => { this.changePw(this.state.data, navigation)}} shadowless>확인</Button>
+                    <Block middle>
+                        <Button style={styles.button}
+                            onPress={() => { this.changePw(this.state.data, navigation) }}
+                            shadowless>확인</Button>
+                    </Block>
                 </Block>
             </Block>
         );

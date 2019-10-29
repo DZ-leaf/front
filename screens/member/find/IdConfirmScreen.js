@@ -8,21 +8,24 @@ const { width } = Dimensions.get("screen");
 
 class IdConfirmScreen extends Component {
     render() {
-        const { navigation } = this.props;  
+        const { navigation } = this.props;
 
         const navigate = () => {
             this.props.onClickListener()
             navigation.navigate('Login')
         }
-        
+
         return (
             <Block flex>
                 <Block style={styles.container}>
-                <Text style={styles.text}>이메일 정보와 일치하는 아이디입니다.</Text>
-                <Block style={styles.msgContiner}>
-                    <Text style={{fontSize: 15}}>{navigation.getParam('memberId')}</Text>
-                </Block>
-                <Button style={styles.button} onPress={() => {navigate()}} shadowless>확인</Button>
+                    <Text style={styles.text}>이메일 정보와 일치하는 아이디입니다.</Text>
+                    <Block style={styles.msgContiner}>
+                        <Text style={{ fontSize: 15 }}>{navigation.getParam('memberId')}</Text>
+                    </Block>
+                    <Block middle>
+                        <Button style={styles.button} 
+                        onPress={() => { navigate() }} shadowless>확인</Button>
+                    </Block>
                 </Block>
             </Block>
         );

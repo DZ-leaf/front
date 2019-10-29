@@ -9,13 +9,13 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 // screens
 import HomeScreen from "../screens/HomeScreen";
-import LoginScreen from "../screens/LoginScreen";
+import LoginScreen from "../screens/member/login/LoginScreen";
 import ProfileScreen from "../screens/ProfileScreen";
-import RegisterScreen from "../screens/RegisterScreen";
+import RegisterScreen from "../screens/member/register/RegisterScreen";
 import ChatListScreen from '../screens/ChatListScreen';
 import AlarmScreen from '../screens/AlarmScreen';
 import SettingScreen from '../screens/SettingScreen';
-import FindScreen from '../screens/FindScreen';
+import FindScreen from '../screens/member/find/FindScreen';
 import GroupScreen from '../screens/GroupScreen';
 import CompanyScreen from '../screens/CompanyScreen';
 import ClubScreen from '../screens/ClubScreen';

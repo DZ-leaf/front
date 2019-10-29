@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Tab from '../components/Tabs';
+import Tab from '../../../components/Tabs';
 
 class FindScreen extends Component {
     render() {

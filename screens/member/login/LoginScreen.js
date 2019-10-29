@@ -1,13 +1,13 @@
 import React from "react";
 import { Image, StyleSheet, StatusBar, Dimensions, View } from "react-native";
 import { Block, Button, Text, theme, Input, Checkbox } from "galio-framework";
-import { Images, argonTheme } from "../constants";
+import { Images, argonTheme } from "../../../constants";
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const { width } = Dimensions.get("screen");
 
-import { AjaxUser } from "../lib/url/member/userUrl";
+import { AjaxUser } from "../../../lib/url/member/userUrl";
 
 class LoginScreen extends React.Component {
 
