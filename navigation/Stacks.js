@@ -3,24 +3,15 @@ import { Easing, Animated } from "react-native";
 import { createStackNavigator } from 'react-navigation-stack';
 
 // screens
-<<<<<<< HEAD
-import HomeScreen from "../screens/Home/HomeScreen";
-import ProfileScreen from "../screens/ProfileScreen";
-import ChatListScreen from '../screens/ChatListScreen';
-import AlarmScreen from '../screens/AlarmScreen';
-import SettingScreen from '../screens/SettingScreen';
-import GroupScreen from '../screens/GroupScreen';
-=======
 import HomeScreen from "../screens/home/HomeScreen";
 import ProfileScreen from "../screens/profile/ProfileScreen";
-import ChatListScreen from '../screens/chat/ChatListScreenen';
+import ChatListScreen from '../screens/chat/ChatListScreen';
 import AlarmScreen from '../screens/alarm/AlarmScreen';
 import SettingScreen from '../screens/setting/SettingScreen';
 import GroupScreen from '../screens/group/GroupScreen';
->>>>>>> 4abcc748ed9fddef3ad45d9525bb179916f9b8e1
 import CompanyScreen from '../screens/company/CompanyScreen';
 import ClubScreen from '../screens/club/ClubScreen';
-import CalendarScreen from '../screens/CalendarScreen';
+import CalendarScreen from '../screens/calendar/CalendarScreen';
 
 // header for screens
 import Header from "../components/Header";
@@ -29,7 +20,7 @@ const transitionConfig = (transitionProps, prevTransitionProps) => ({
     transitionSpec: {
         duration: 400,
         easing: Easing.out(Easing.poly(4)),
-        timing: Animated.timing
+        timing: Animated.timing 
     },
     screenInterpolator: sceneProps => {
 
