@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Dimensions, FlatList } from 'react-native';
+import { StyleSheet, View, Dimensions, FlatList, Modal } from 'react-native';
 import { Block, Button, Text, theme, Input } from "galio-framework";
 import { CalendarList, Calendar, Agenda } from 'react-native-calendars';
 import moment from 'moment';
 
 import List from './CalendarList';
+import AddEventModal from '../screens/AddEventModal';
+import DateTimePickModal from '../screens/DateTimePickModal';
 
-const { width } = Dimensions.get("screen");
+const { width, height } = Dimensions.get("screen");
 let calendarDate = moment();
 
 class Calendars extends Component {
@@ -16,11 +18,12 @@ class Calendars extends Component {
 
         this.state = {
             selectDate: calendarDate.format('YYYY-MM-DD'),
+            modalVisible: false,
+            dateModalVisible: false,
         }
 
-        this.onDayPress = this.onDayPress.bind(this)
+        // this.onDayPress = this.onDayPress.bind(this)
     }
-
 
     onDayPress = (date) => {
         calendarDate = moment(date.dateString);
@@ -29,18 +32,45 @@ class Calendars extends Component {
         })
     }
 
+    setModalVisible = (visible) => {
+        this.setState({ modalVisible: visible })
+    }
+
+    setDateModalVisible = () => {
+        this.setState({ dateModalVisible: true })
+    }
+
+    closeModal = (e) => {
+        if (this.state.modalVisible) {
+            this.setState({
+                modalVisible: false
+            })
+        }
+    }
+
+    closeDateModal = (e) => {
+        if (this.state.modalVisible) {
+            this.setState({
+                dateModalVisible: false
+            })
+        }
+    }
+
     render() {
         return (
             <Block style={styles.container} >
-                 <Block space-between style={styles.calendarContainer}>
+                <Block space-between style={styles.calendarContainer}>
                     <Calendar
                         onDayPress={(day) => { this.onDayPress(day) }}
                         // hideExtraDays={false}
                         // horizontal pagingEnabled
+                        pagingEnabled
                         markedDates={{
                             [this.state.selectDate]: { selected: true, marked: true }
                         }}
                         currnet={this.state.calendarDate}
+                        onPressArrowLeft={substractMonth => substractMonth()}
+                        onPressArrowRight={addMonth => addMonth()}
                         theme={{
                             backgroundColor: '#ffffff',
                             calendarBackground: '#ffffff',
@@ -67,11 +97,19 @@ class Calendars extends Component {
                         }} />
                 </Block>
                 <Block style={styles.listContainer}>
-                    <List/>
+                    <List />
                 </Block>
                 <Block style={styles.buttonContainer}>
-                    <Button style={styles.button} textStyle={{fontSize: 20}}>+</Button>
-                </Block> 
+                    <Button style={styles.button} textStyle={{ fontSize: 20 }}
+                        onPress={() => this.setModalVisible(!this.state.modalVisible)}>+</Button>
+                    <Modal middle visible={this.state.modalVisible} >
+                        <AddEventModal closeModal={this.closeModal} setModalVisible={this.setDateModalVisible} visible={this.state.dateModalVisible} />
+                        <Modal middle style={styles.Modal}
+                        visible={this.state.dateModalVisible} transparent={true} >
+                            <DateTimePickModal closeModal={this.closeDateModal} />
+                        </Modal>
+                    </Modal>
+                </Block>
             </Block>
         );
     }
@@ -94,14 +132,26 @@ const styles = StyleSheet.create({
         flex: 1,
         // height: '15%',
         alignItems: 'flex-end',
-        paddingRight: '5%',
         justifyContent: 'center',
+        paddingRight: '5%',
+        // paddingBottom: '5%',
     },
     button: {
         width: 50,
         height: 50,
         borderRadius: 100,
     },
+    Modal: {
+        // alignItems: 'stretch',
+        // justifyContent: 'flex-end',
+        // width: width * 0.8,
+        // height: height * 0.3,
+        // marginHorizontal: '10%',
+        // marginVertical: '20%',
+        // borderWidth: 1,
+        // backgroundColor: 'white',
+        // borderRadius: 20,
+    }
 })
 
 export default Calendars;
