@@ -3,7 +3,8 @@ import { withNavigation } from 'react-navigation';
 import { StyleSheet, Platform, Dimensions } from 'react-native';
 import { Block, NavBar, theme } from 'galio-framework';
 
-import Icon from './Icon';
+// import Icon from './Icon';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import argonTheme from '../constants/Theme';
 
 const { height, width } = Dimensions.get('window');
@@ -36,16 +37,16 @@ class Header extends React.Component {
           style={navbarStyles}
           transparent={transparent}
           rightStyle={{ alignItems: 'center' }}
-          left={
-            <Icon 
-              name={back ? 'nav-left' : "menu-8"} family="ArgonExtra" 
-              size={14} onPress={this.handleLeftPress} 
-              color={iconColor || argonTheme.COLORS.ICON}/>
-          }
+          left={<Icon name='navicon' size={20}
+            onPress={this.handleLeftPress}
+            color={argonTheme.COLORS.ICON} />}
+          // right={title == '동아리' ? 
+          // <Icon name='search' size={20} color={argonTheme.COLORS.ICON} /> 
+          // : <Icon />}
           leftStyle={{ paddingVertical: 12, flex: 0.2 }}
           titleStyle={[styles.title,
-            { color: argonTheme.COLORS[white ? 'WHITE' : 'HEADER'] },
-            titleColor && { color: titleColor }]}
+          { color: argonTheme.COLORS[white ? 'WHITE' : 'HEADER'] },
+          titleColor && { color: titleColor }]}
           {...props}
         />
       </Block>
@@ -62,6 +63,7 @@ const styles = StyleSheet.create({
     width: '100%',
     fontSize: 16,
     fontWeight: 'bold',
+    paddingBottom: '0.8%'
   },
   navbar: {
     paddingVertical: 0,

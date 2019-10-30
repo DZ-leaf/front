@@ -22,18 +22,7 @@ class ClubAtHome extends React.Component {
                 </Text>
                 <Block flex>
                     <Block style={{ paddingHorizontal: theme.SIZES.BASE }}>
-                        {/* <Card item={articles[0]} horizontal /> */}
-                        <ScrollView horizontal showsHorizontalScrollIndicator={false}
-                        scrollEventThrottle={10}  pagingEnabled snapToInterval={width-160}  /* snapToAlignment={'center'}  */>
-                        <Block flex row>
-                            <Card item={articles[1]} style={{ marginRight: theme.SIZES.BASE }}/>
-                            <Card item={articles[2]} style={{ marginRight: theme.SIZES.BASE }}/>
-                            <Card item={articles[1]} style={{ marginRight: theme.SIZES.BASE }}/>
-                            <Card item={articles[2]} style={{ marginRight: theme.SIZES.BASE }}/>
-                            <Card item={articles[1]} style={{ marginRight: theme.SIZES.BASE }}/>
-                        </Block>
-                        </ScrollView>
-                        <Card item={articles[4]} full />
+                    <Card item={articles[4]} full />
                         <Block flex card shadow style={styles.category}>
                             <ImageBackground
                                 source={{ uri: Images.Products["View article"] }}
@@ -47,17 +36,6 @@ class ClubAtHome extends React.Component {
                             </ImageBackground>
                         </Block>
                     </Block>
-                    {/* <Block flex style={{ marginTop: theme.SIZES.BASE / 2 }}>
-                        <ScrollView
-                            horizontal={true}
-                            pagingEnabled={true}
-                            decelerationRate={0}
-                            scrollEventThrottle={16}
-                            snapToAlignment="center"
-                            showsHorizontalScrollIndicator={false}
-                            snapToInterval={cardWidth + theme.SIZES.BASE * 0.375}
-                            contentContainerStyle={{ paddingHorizontal: theme.SIZES.BASE / 2 }} />
-                    </Block> */}
                 </Block>
             </Block>
         );
@@ -67,35 +45,21 @@ class ClubAtHome extends React.Component {
         const { navigation } = this.props;
 
         return (
-            <Block
-                flex
-                style={[styles.group, { paddingBottom: theme.SIZES.BASE * 5 }]}
-            >
+            <Block flex style={[styles.group, { paddingBottom: theme.SIZES.BASE * 5 }]}>
                 <Text bold size={16} style={styles.title}>
                     Album
-        </Text>
+                </Text>
                 <Block style={{ marginHorizontal: theme.SIZES.BASE * 2 }}>
                     <Block flex right>
-                        <Text
-                            size={12}
-                            color={theme.COLORS.PRIMARY}
-                            onPress={() => navigation.navigate("Home")}
-                        >
+                        <Text size={12} color={theme.COLORS.PRIMARY}
+                            onPress={() => navigation.navigate("Home")}>
                             View All
-            </Text>
+                        </Text>
                     </Block>
-                    <Block
-                        row
-                        space="between"
-                        style={{ marginTop: theme.SIZES.BASE, flexWrap: "wrap" }}
-                    >
+                    <Block row space="between" style={{ marginTop: theme.SIZES.BASE, flexWrap: "wrap" }}>
                         {Images.Viewed.map((img, index) => (
                             <Block key={`viewed-${img}`} style={styles.shadow}>
-                                <Image
-                                    resizeMode="cover"
-                                    source={{ uri: img }}
-                                    style={styles.albumThumb}
-                                />
+                                <Image resizeMode="cover" source={{ uri: img }} style={styles.albumThumb}/>
                             </Block>
                         ))}
                     </Block>
