@@ -16,7 +16,7 @@ const DateTimePickModal = (props) => {
             <Block style={styles.buttonContainer}>
                 <Button style={styles.button} onPress={props.closeModal}>취소</Button>
                 <Text>
-                    {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
+                    {/* {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'} */}
                     {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
                 </Text>
                 <Button style={styles.button}>완료</Button>
@@ -50,8 +50,8 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     },
     button: {
-        // marginHorizontal: '5%',
-        width: width - theme.SIZES.BASE * 20
+        marginHorizontal: '5%',
+        width: width - theme.SIZES.BASE * 15
     },
 })
 

@@ -6,7 +6,7 @@ import { createBottomTabNavigator } from "react-navigation-tabs";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 // screens
-import HomeScreen from "../screens/home/HomeScreen";
+import HomeScreen from "../screens/Home/HomeScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import ChatListScreen from '../screens/ChatListScreen';
 import AlarmScreen from '../screens/AlarmScreen';

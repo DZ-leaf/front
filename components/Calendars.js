@@ -104,7 +104,7 @@ class Calendars extends Component {
                         onPress={() => this.setModalVisible(!this.state.modalVisible)}>+</Button>
                     <Modal middle visible={this.state.modalVisible} >
                         <AddEventModal closeModal={this.closeModal} setModalVisible={this.setDateModalVisible} visible={this.state.dateModalVisible} />
-                        <Modal middle style={styles.Modal}
+                        <Modal middle style={styles.Modal} animationType="slide"
                         visible={this.state.dateModalVisible} transparent={true} >
                             <DateTimePickModal closeModal={this.closeDateModal} />
                         </Modal>
