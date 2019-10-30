@@ -1,24 +1,29 @@
 import React from "react";
 import { Easing, Animated } from "react-native";
 import { createStackNavigator } from 'react-navigation-stack';
-import { createBottomTabNavigator } from "react-navigation-tabs";
-
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 // screens
+<<<<<<< HEAD
 import HomeScreen from "../screens/Home/HomeScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import ChatListScreen from '../screens/ChatListScreen';
 import AlarmScreen from '../screens/AlarmScreen';
 import SettingScreen from '../screens/SettingScreen';
 import GroupScreen from '../screens/GroupScreen';
+=======
+import HomeScreen from "../screens/home/HomeScreen";
+import ProfileScreen from "../screens/profile/ProfileScreen";
+import ChatListScreen from '../screens/chat/ChatListScreenen';
+import AlarmScreen from '../screens/alarm/AlarmScreen';
+import SettingScreen from '../screens/setting/SettingScreen';
+import GroupScreen from '../screens/group/GroupScreen';
+>>>>>>> 4abcc748ed9fddef3ad45d9525bb179916f9b8e1
 import CompanyScreen from '../screens/company/CompanyScreen';
-import ClubScreen from '../screens/ClubScreen';
+import ClubScreen from '../screens/club/ClubScreen';
 import CalendarScreen from '../screens/CalendarScreen';
 
 // header for screens
 import Header from "../components/Header";
-import { argonTheme } from "../constants";
 
 const transitionConfig = (transitionProps, prevTransitionProps) => ({
     transitionSpec: {

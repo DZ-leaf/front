@@ -3,7 +3,7 @@ import { StyleSheet, Dimensions, View, Image } from 'react-native';
 import { Block, Button, theme, Text } from 'galio-framework';
 import { Container, Content, Item, Input } from 'native-base';
 
-import { Images, argonTheme } from "../constants";
+import { Images, argonTheme } from "../../constants";
 
 const { width, height } = Dimensions.get("screen");
 
