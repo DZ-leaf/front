@@ -20,7 +20,7 @@ const transitionConfig = (transitionProps, prevTransitionProps) => ({
     transitionSpec: {
         duration: 400,
         easing: Easing.out(Easing.poly(4)),
-        timing: Animated.timing
+        timing: Animated.timing 
     },
     screenInterpolator: sceneProps => {
 
