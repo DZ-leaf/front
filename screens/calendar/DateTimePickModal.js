@@ -12,14 +12,11 @@ const DateTimePickModal = (props) => {
     return (
         <Block felx style={styles.container}>
             {/* <Block styel={styles.calendarPicker} > */}
-            <CalendarPicker />
+            <CalendarPicker/>
             <Block style={styles.buttonContainer}>
-                <Button style={styles.button} onPress={props.closeModal}>취소</Button>
-                <Text>
-                    {/* {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'} */}
-                    {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
-                </Text>
-                <Button style={styles.button}>완료</Button>
+                <Button style={styles.button} textStyle={styles.buttonText} onPress={props.closeModal} shadowless>취소</Button>
+                <Text style={{fontSize: 20}} color={'#E5E7E9'}>|</Text>
+                <Button style={styles.button} textStyle={styles.buttonText} shadowless>완료</Button>
             {/* </Block> */}
             </Block>
         </Block>
@@ -34,25 +31,27 @@ const styles = StyleSheet.create({
         // marginHorizontal: '10%',
         // // marginVertical: '20%',
         borderWidth: 1,
-        // backgroundColor: 'white',
         borderRadius: 20,
         marginTop: 150,
         backgroundColor: 'white',
     },
-
-    calendarPicker: {
-        height: height,
-        backgroundColor: 'white',
-    },
     buttonContainer: {
+        alignItems: 'center',
         justifyContent: 'center',
         flexDirection: 'row',
         marginBottom: 10,
     },
     button: {
         marginHorizontal: '5%',
-        width: width - theme.SIZES.BASE * 15
+        width: width - theme.SIZES.BASE * 16,
+        backgroundColor: 'white',
+        elevation:0.1,
+        borderRadius: 20,
     },
+    buttonText:{
+        color: '#0B5713',
+        fontWeight: 'bold',
+    }
 })
 
 export default DateTimePickModal;

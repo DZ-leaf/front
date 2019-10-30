@@ -57,6 +57,8 @@ class Calendars extends Component {
     }
 
     render() {
+        console.log(calendarDate.format('YYYY-MM-DD-HH:mm'));
+        
         return (
             <Block style={styles.container} >
                 <Block space-between style={styles.calendarContainer}>
@@ -72,8 +74,8 @@ class Calendars extends Component {
                         onPressArrowLeft={substractMonth => substractMonth()}
                         onPressArrowRight={addMonth => addMonth()}
                         theme={{
-                            backgroundColor: '#ffffff',
-                            calendarBackground: '#ffffff',
+                            backgroundColor: '#f2f0f2',
+                            calendarBackground: '#f2f0f2',
                             textSectionTitleColor: '#b6c1cd',   // 요일 글자 색
                             selectedDayBackgroundColor: '#0B5713',
                             selectedDayTextColor: '#ffffff',
@@ -103,7 +105,12 @@ class Calendars extends Component {
                     <Button style={styles.button} textStyle={{ fontSize: 20 }}
                         onPress={() => this.setModalVisible(!this.state.modalVisible)}>+</Button>
                     <Modal middle visible={this.state.modalVisible} >
-                        <AddEventModal closeModal={this.closeModal} setModalVisible={this.setDateModalVisible} visible={this.state.dateModalVisible} />
+                        <AddEventModal
+                         closeModal={this.closeModal} 
+                        setModalVisible={this.setDateModalVisible} 
+                        visible={this.state.dateModalVisible} 
+                        day={calendarDate.format('YYYY-MM-DD-HH:mm')}
+                        />
                         <Modal middle style={styles.Modal} animationType="slide"
                         visible={this.state.dateModalVisible} transparent={true} >
                             <DateTimePickModal closeModal={this.closeDateModal} />
@@ -118,12 +125,12 @@ class Calendars extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'white'
+        backgroundColor: '#F2F0F2',
     },
     calendarContainer: {
         flex: 5,
         borderWidth: 1,
-        borderColor: 'gray',
+        borderColor: '#E5E7E9',
     },
     listContainer: {
         flex: 4,
