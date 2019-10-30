@@ -1,7 +1,7 @@
-import React from "./node_modules/react";
+import React from "react";
 import { ScrollView, StyleSheet, Image, Dimensions } from "react-native";
 
-import { Block, Text, theme } from "./node_modules/galio-framework";
+import { Block, Text, theme } from "galio-framework";
 
 import { articles, Images, argonTheme } from "../../constants";
 import { Card } from "../../components";

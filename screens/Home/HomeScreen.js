@@ -1,6 +1,6 @@
-import React, { Component } from './node_modules/react';
+import React, { Component } from 'react';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
-import { Block, theme } from "./node_modules/galio-framework";
+import { Block, theme } from "galio-framework";
 
 import GroupAtHome from './GroupAtHome';
 import CompanyAtHome from './CompanyAtHome';
