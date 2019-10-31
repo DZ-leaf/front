@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Dimensions, Text, ScrollView } from 'react-native';
+import { withNavigation } from 'react-navigation';
 import { Container, Header, Content, Card, CardItem, Right, Left } from 'native-base';
 import { Block, theme, Button } from "galio-framework";
 
@@ -19,7 +20,7 @@ class CompanyScreen extends Component {
                                     <Text>게시판</Text>
                                 </Left>
                                 <Right>
-                                    <Text onPress={() => alert("This is Card Body")}
+                                    <Text onPress={() => this.props.navigation.navigate("CompanyBoard")}
                                         style={{ color: '#0B5713' }}>More...</Text>
                                 </Right>
                             </CardItem>

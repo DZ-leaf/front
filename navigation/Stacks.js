@@ -12,6 +12,7 @@ import GroupScreen from '../screens/group/GroupScreen';
 import CompanyScreen from '../screens/company/CompanyScreen';
 import ClubScreen from '../screens/club/ClubScreen';
 import CalendarScreen from '../screens/calendar/CalendarScreen';
+import CompanyBoardScreen from '../screens/company/CompanyBoardScreen';
 
 // header for screens
 import Header from "../components/Header";
@@ -20,7 +21,7 @@ const transitionConfig = (transitionProps, prevTransitionProps) => ({
     transitionSpec: {
         duration: 400,
         easing: Easing.out(Easing.poly(4)),
-        timing: Animated.timing 
+        timing: Animated.timing
     },
     screenInterpolator: sceneProps => {
 
@@ -208,50 +209,22 @@ const CalendarStack = createStackNavigator(
     }
 );
 
-// const HomeBottomStack = createBottomTabNavigator({
-//     Home: {
-//         screen: HomeStack,
-//         navigationOptions: () => ({
-//             tabBarIcon: ({ focused, tintColor }) => (
-//                 <Icon name={focused ? 'home' : 'home-outline'}
-//                     size={focused ? 30 : 25} color={tintColor} />
-//             )
-//         })
-//     },
-//     Chat: {
-//         screen: ChatStack,
-//         navigationOptions: () => ({
-//             tabBarIcon: ({ focused, tintColor }) => (
-//                 <Icon name={focused ? 'comment' : 'comment-outline'}
-//                     size={focused ? 30 : 25} color={tintColor} />
-//             )
-//         })
-//     },
-//     Alarm: {
-//         screen: AlarmStack,
-//         navigationOptions: () => ({
-//             tabBarIcon: ({ focused, tintColor }) => (
-//                 <Icon name={focused ? 'bell' : 'bell-outline'}
-//                     size={focused ? 30 : 25} color={tintColor} />
-//             )
-//         })
-//     },
-//     Setting: {
-//         screen: SettingStack,
-//         navigationOptions: () => ({
-//             tabBarIcon: ({ focused, tintColor }) => (
-//                 <Icon name={focused ? 'settings' : 'settings-outline'}
-//                     size={focused ? 30 : 25} color={tintColor} />
-//             )
-//         })
-//     },
-// }, {
-//     tabBarOptions: {
-//         showLabel: false, // hide labels
-//         activeTintColor: argonTheme.COLORS.PRIMARY, // active icon color
-//         inactiveTintColor: '#7D7D7D',  // inactive icon color
-//     }
-// })
+const CompanyBoardStack = createStackNavigator(
+    {
+        Setting: {
+            screen: CompanyBoardScreen,
+            navigationOptions: ({ navigation }) => ({
+                header: <Header back title="회사" navigation={navigation} />
+            })
+        },
+    },
+    {
+        cardStyle: {
+            backgroundColor: "#F8F9FE"
+        },
+        transitionConfig
+    }
+);
 
 export {
     ProfileStack,
@@ -263,5 +236,5 @@ export {
     ChatStack,
     SettingStack,
     AlarmStack,
-    // HomeBottomStack,
+    CompanyBoardStack,
 }

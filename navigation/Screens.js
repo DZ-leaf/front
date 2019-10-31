@@ -2,7 +2,7 @@ import React from "react";
 import { createAppContainer } from "react-navigation";
 import { createDrawerNavigator } from "react-navigation-drawer";
 
-// screens
+// member
 import LoginScreen from "../screens/member/login/LoginScreen";
 import RegisterScreen from "../screens/member/register/RegisterScreen";
 import FindScreen from '../screens/member/find/FindScreen';
@@ -13,7 +13,7 @@ import DrawerItem from "../components/DrawerItem";
 
 import {
   ProfileStack, HomeStack, GroupStack,
-  CompanyStack, ClubStack, CalendarStack
+  CompanyStack, ClubStack, CalendarStack, CompanyBoardStack
 } from './Stacks.js';
 
 import {HomeBottomStack} from './HomeBottomStack.js';
@@ -34,6 +34,12 @@ const AppStack = createDrawerNavigator(
     },
     Find: {
       screen: FindScreen,
+      navigationOptions: {
+        drawerLabel: () => { }
+      },
+    },
+    CompanyBoard: {
+      screen: CompanyBoardStack,
       navigationOptions: {
         drawerLabel: () => { }
       },

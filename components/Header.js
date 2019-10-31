@@ -3,7 +3,6 @@ import { withNavigation } from 'react-navigation';
 import { StyleSheet, Platform, Dimensions } from 'react-native';
 import { Block, NavBar, theme } from 'galio-framework';
 
-// import Icon from './Icon';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import argonTheme from '../constants/Theme';
 
@@ -20,7 +19,7 @@ class Header extends React.Component {
   render() {
     const { back, title, white, transparent, bgColor, iconColor, titleColor, navigation, ...props } = this.props;
     const { routeName } = navigation.state;
-    const noShadow = ['Search', 'Categories', 'Deals', 'Pro', 'Profile'].includes(routeName);
+    const noShadow = ['Profile'].includes(routeName);
     const headerStyles = [
       !noShadow ? styles.shadow : null,
       transparent ? { backgroundColor: 'rgba(0,0,0,0)' } : null,
@@ -29,6 +28,7 @@ class Header extends React.Component {
       styles.navbar,
       bgColor && { backgroundColor: bgColor }
     ];
+
     return (
       <Block style={headerStyles}>
         <NavBar
@@ -37,12 +37,12 @@ class Header extends React.Component {
           style={navbarStyles}
           transparent={transparent}
           rightStyle={{ alignItems: 'center' }}
-          left={<Icon name='navicon' size={20}
-            onPress={this.handleLeftPress}
-            color={argonTheme.COLORS.ICON} />}
-          // right={title == '동아리' ? 
-          // <Icon name='search' size={20} color={argonTheme.COLORS.ICON} /> 
-          // : <Icon />}
+          left={
+            <Icon 
+              name={back ? "chevron-left" : "navicon"}
+              size={20} onPress={this.handleLeftPress} 
+              color={iconColor || argonTheme.COLORS.ICON}/>
+          }
           leftStyle={{ paddingVertical: 12, flex: 0.2 }}
           titleStyle={[styles.title,
           { color: argonTheme.COLORS[white ? 'WHITE' : 'HEADER'] },
