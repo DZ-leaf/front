@@ -3,7 +3,7 @@ import { ScrollView, StyleSheet, Image, ImageBackground, Dimensions, View } from
 import { Container, Header, Content, Footer, FooterTab, Button, Icon } from 'native-base';
 import { Block, Text, theme } from "galio-framework";
 
-import { articles, Images, argonTheme } from "../../constants";
+import { articles, Images } from "../../constants";
 import { Card } from "../../components";
 
 // import Icon from 'react-native-vector-icons/FontAwesome';
@@ -59,7 +59,7 @@ class ClubScreen extends React.Component {
 const styles = StyleSheet.create({
     title: {
         paddingHorizontal: theme.SIZES.BASE,
-        color: argonTheme.COLORS.HEADER
+        color: '#525F7F'
     },
     group: {
         paddingTop: theme.SIZES.BASE

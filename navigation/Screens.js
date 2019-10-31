@@ -10,40 +10,37 @@ import FindScreen from '../screens/member/find/FindScreen';
 // drawer
 import Menu from "./Menu";
 import DrawerItem from "../components/DrawerItem";
-
+import CompanyStack from './stacks/CompanyStack';
 import {
-  ProfileStack, HomeStack, GroupStack,
-  CompanyStack, ClubStack, CalendarStack, CompanyBoardStack
+  ProfileStack, HomeStack, GroupStack, ClubStack, CalendarStack
 } from './Stacks.js';
 
-import {HomeBottomStack} from './HomeBottomStack.js';
+import { HomeBottomStack } from './HomeBottomStack.js';
+import { createStackNavigator } from "react-navigation-stack";
 
-const AppStack = createDrawerNavigator(
+const MemberStack = createStackNavigator({
+  Login: {
+    screen: LoginScreen,
+    navigationOptions: {
+      header: null
+    },
+  },
+  Register: {
+    screen: RegisterScreen,
+    navigationOptions: {
+      header: null
+    },
+  },
+  Find: {
+    screen: FindScreen,
+    navigationOptions: {
+      header: null
+    },
+  },
+})
+
+const DrawerStack = createDrawerNavigator(
   {
-    Login: {
-      screen: LoginScreen,
-      navigationOptions: {
-        drawerLabel: () => { }
-      },
-    },
-    Register: {
-      screen: RegisterScreen,
-      navigationOptions: {
-        drawerLabel: () => { }
-      }
-    },
-    Find: {
-      screen: FindScreen,
-      navigationOptions: {
-        drawerLabel: () => { }
-      },
-    },
-    CompanyBoard: {
-      screen: CompanyBoardStack,
-      navigationOptions: {
-        drawerLabel: () => { }
-      },
-    },
     Home: {
       screen: HomeStack,
       screen: HomeBottomStack,
@@ -94,8 +91,23 @@ const AppStack = createDrawerNavigator(
       })
     },
   },
-  Menu
+  Menu,
 );
+
+const AppStack = createStackNavigator({
+  Member: {
+    screen: MemberStack,
+    navigationOptions: {
+      header: null
+    },
+  },
+  Drawer: {
+    screen: DrawerStack,
+    navigationOptions: {
+      header: null
+    },
+  },
+})
 
 const AppContainer = createAppContainer(AppStack);
 export default AppContainer;

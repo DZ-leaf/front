@@ -3,15 +3,8 @@ import { createBottomTabNavigator } from "react-navigation-tabs";
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import { argonTheme } from "../constants";
-
 import {
-    ProfileStack,
     HomeStack,
-    GroupStack,
-    CompanyStack,
-    ClubStack,
-    CalendarStack,
     ChatStack,
     SettingStack,
     AlarmStack,
@@ -57,7 +50,7 @@ const HomeBottomStack = createBottomTabNavigator({
 }, {
     tabBarOptions: {
         showLabel: false, // hide labels
-        activeTintColor: argonTheme.COLORS.PRIMARY, // active icon color
+        activeTintColor: '#0B5713', // active icon color
         inactiveTintColor: '#7D7D7D',  // inactive icon color
     }
 })

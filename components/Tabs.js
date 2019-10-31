@@ -4,7 +4,7 @@ import { Block, theme } from 'galio-framework';
 import { withNavigation } from 'react-navigation'
 
 const { width } = Dimensions.get('screen');
-import argonTheme from '../constants/Theme';
+
 import FindIdScreen from '../screens/member/find/FindIdScreen';
 import FindPwScreen from '../screens/member/find/FindPwScreen';
 import IdConfirmScreen from '../screens/member/find/IdConfirmScreen';
@@ -77,7 +77,7 @@ const defaultMenu = [
 
     const textColor = this.animatedValue.interpolate({
       inputRange: [0, 1],
-      outputRange: [argonTheme.COLORS.BLACK, isActive ? argonTheme.COLORS.WHITE : argonTheme.COLORS.BLACK],
+      outputRange: ['#000000', isActive ? '#ffffff' : '#000000'],
       extrapolate: 'clamp',
     });
 
@@ -168,7 +168,7 @@ const styles = StyleSheet.create({
   },
   titleContainer: {
     alignItems: 'center',
-    backgroundColor: argonTheme.COLORS.PRIMARY,
+    backgroundColor: '#0B5713',
     width: (width - theme.SIZES.BASE * 6) / 2,
     borderColor: '#0B5713',
     borderWidth: 1
@@ -179,7 +179,7 @@ const styles = StyleSheet.create({
     paddingTop: 15,  //10
     paddingBottom: 25,
     // paddingHorizontal: 15,  //18
-    color: argonTheme.COLORS.MUTED
+    color: '#ADB5BD'
   },
   textView: {
     alignItems: 'flex-start',

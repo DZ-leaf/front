@@ -1,9 +1,8 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
-import { Block, Text, theme } from "galio-framework";
+import { StyleSheet } from "react-native";
+import { Block, Text } from "galio-framework";
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import argonTheme from "../constants/Theme";
 
 class DrawerItem extends React.Component {
   renderIcon = () => {
@@ -11,19 +10,19 @@ class DrawerItem extends React.Component {
 
     switch (title) {
       case "홈":
-        return (<Icon name="home" size={20} color={focused ? "white" : argonTheme.COLORS.BLACK}/>);
+        return (<Icon name="home" size={20} color={focused ? "#ffffff" : "#000000"}/>);
       case "프로필":
-        return (<Icon name="account" size={20} color={focused ? "white" : argonTheme.COLORS.BLACK}/>);
+        return (<Icon name="account" size={20} color={focused ? "#ffffff" : "#000000"}/>);
       case "회사":
-        return (<Icon name="desktop-mac" size={20} color={focused ? "white" : argonTheme.COLORS.BLACK}/>);
+        return (<Icon name="desktop-mac" size={20} color={focused ? "#ffffff" : "#000000"}/>);
       case "동아리":
-        return (<Icon name="arrange-bring-forward" size={20} color={focused ? "white" : argonTheme.COLORS.BLACK}/>);
+        return (<Icon name="arrange-bring-forward" size={20} color={focused ? "#ffffff" : "#000000"}/>);
       case "그룹":
-        return (<Icon name="comment-account" size={20} color={focused ? "white" : argonTheme.COLORS.BLACK}/>);
+        return (<Icon name="comment-account" size={20} color={focused ? "#ffffff" : "#000000"}/>);
       case "일정":
-        return (<Icon name="calendar-text" size={20} color={focused ? "white" : argonTheme.COLORS.BLACK}/>);
+        return (<Icon name="calendar-text" size={20} color={focused ? "#ffffff" : "#000000"}/>);
       case "로그아웃":
-        return (<Icon name="logout-variant" size={20} color={focused ? "white" : argonTheme.COLORS.BLACK}/>);
+        return (<Icon name="logout-variant" size={20} color={focused ? "#ffffff" : "#000000"}/>);
       default:
         return null;
     }
@@ -46,7 +45,7 @@ class DrawerItem extends React.Component {
           <Text
             size={15}
             bold={focused ? true : false}
-            color={focused ? "white" : "rgba(0,0,0,0.5)"}>
+            color={focused ? "#ffffff" : "#000000"}>
             {title}
           </Text>
         </Block>
@@ -61,11 +60,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 13
   },
   activeStyle: {
-    backgroundColor: argonTheme.COLORS.PRIMARY,
+    backgroundColor: '#0B5713',
     borderRadius: 4
   },
   shadow: {
-    shadowColor: theme.COLORS.BLACK,
+    shadowColor: '#000000',
     shadowOffset: {
       width: 0,
       height: 2

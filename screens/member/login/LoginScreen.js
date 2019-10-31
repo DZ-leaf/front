@@ -1,7 +1,7 @@
 import React from "react";
 import { Image, StyleSheet, StatusBar, Dimensions, View } from "react-native";
 import { Block, Button, Text, theme, Input, Checkbox } from "galio-framework";
-import { Images, argonTheme } from "../../../constants";
+import { Images } from "../../../constants";
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -42,12 +42,12 @@ class LoginScreen extends React.Component {
             <Input
               placeholder="ID"
               iconContent={<Icon size={20} style={{ marginRight: 10 }} name="person" />} 
-              color={argonTheme.COLORS.BLACK}
+              color={'#000000'}
               onChangeText={(text) => { this.setState({ userId: text }) }}/>
             <Input
               placeholder="Password"
               iconContent={<Icon size={20} style={{ marginRight: 10 }} name="lock" />} 
-              color={argonTheme.COLORS.BLACK}
+              color={'#000000'}
               onChangeText={(text) => { this.setState({ userPw: text }) }}/>
             <View style={styles.textAuto}>
             <Checkbox color="primary" labelStyle={{ color: '#707070' }} label="자동 로그인" />

@@ -12,7 +12,7 @@ import GroupScreen from '../screens/group/GroupScreen';
 import CompanyScreen from '../screens/company/CompanyScreen';
 import ClubScreen from '../screens/club/ClubScreen';
 import CalendarScreen from '../screens/calendar/CalendarScreen';
-import CompanyBoardScreen from '../screens/company/CompanyBoardScreen';
+import { CompanyBoardList, CompanyBoardDetail } from '../screens/company';
 
 // header for screens
 import Header from "../components/Header";
@@ -158,23 +158,6 @@ const GroupStack = createStackNavigator(
     }
 );
 
-const CompanyStack = createStackNavigator(
-    {
-        Setting: {
-            screen: CompanyScreen,
-            navigationOptions: ({ navigation }) => ({
-                header: <Header search options title="회사" navigation={navigation} />
-            })
-        },
-    },
-    {
-        cardStyle: {
-            backgroundColor: "#F8F9FE"
-        },
-        transitionConfig
-    }
-);
-
 const ClubStack = createStackNavigator(
     {
         Setting: {
@@ -209,32 +192,43 @@ const CalendarStack = createStackNavigator(
     }
 );
 
-const CompanyBoardStack = createStackNavigator(
-    {
-        Setting: {
-            screen: CompanyBoardScreen,
-            navigationOptions: ({ navigation }) => ({
-                header: <Header back title="회사" navigation={navigation} />
-            })
-        },
-    },
-    {
-        cardStyle: {
-            backgroundColor: "#F8F9FE"
-        },
-        transitionConfig
-    }
-);
+// const CompanyStack = createStackNavigator(
+//     {
+//         Company: {
+//             screen: CompanyScreen,
+//             navigationOptions: ({ navigation }) => ({
+//                 header: <Header search options title="회사" navigation={navigation} />
+//             })
+//         },
+//         CompanyBoard: {
+//             screen: CompanyBoardList,
+//             navigationOptions: ({ navigation }) => ({
+//                 header: <Header back={true} title="회사" navigation={navigation} />
+//             })
+//         },
+//         CompanyBoardDetail: {
+//             screen: CompanyBoardDetail,
+//             navigationOptions: ({ navigation }) => ({
+//                 header: <Header back={true} title="회사" navigation={navigation} />
+//             })
+//         },
+//     },
+//     {
+//         cardStyle: {
+//             backgroundColor: "#F8F9FE"
+//         },
+//         transitionConfig
+//     }
+// );
 
 export {
     ProfileStack,
     HomeStack,
     GroupStack,
-    CompanyStack,
+    // CompanyStack,
     ClubStack,
     CalendarStack,
     ChatStack,
     SettingStack,
     AlarmStack,
-    CompanyBoardStack,
 }

@@ -3,7 +3,7 @@ import { StyleSheet, Dimensions, View, Image } from 'react-native';
 import { Block, Button, theme, Text } from 'galio-framework';
 import { Container, Content, Item, Input } from 'native-base';
 
-import { Images, argonTheme } from "../../constants";
+import { Images } from "../../constants";
 
 const { width, height } = Dimensions.get("screen");
 
@@ -20,7 +20,7 @@ const ProfileEditModal = (props) => {
                             <Text bold color="#525F7F" size={20}>프로필 수정</Text>
                         </Block>
                         <Block middle>
-                            <Text bold color={argonTheme.COLORS.PRIMARY}
+                            <Text bold color={'#0B5713'}
                                 size={17} onPress={props.closeModal}>완료</Text>
                         </Block>
                     </Block>

@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, Dimensions, ScrollView, Image, ImageBackground, Platform, Modal } from "react-native";
 import { Block, Text, theme, Button } from "galio-framework";
 
-import { Images, argonTheme } from "../../constants";
+import { Images } from "../../constants";
 import { HeaderHeight } from "../../constants/utils";
 
 const { width, height } = Dimensions.get("screen");
@@ -83,7 +83,7 @@ class ProfileScreen extends React.Component {
                       소개글
                     </Text>
                     <Button color="#F0F2F0" shadowless
-                      textStyle={{ color: argonTheme.COLORS.PRIMARY, fontWeight: "500", fontSize: 13 }}
+                      textStyle={{ color: '#0B5713', fontWeight: "500", fontSize: 13 }}
                       onPress={() => this.setModalVisible(!this.state.modalVisible)}>
                       프로필 수정
                     </Button>

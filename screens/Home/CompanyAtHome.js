@@ -3,7 +3,7 @@ import { ScrollView, StyleSheet, Image, Dimensions } from "react-native";
 
 import { Block, Text, theme } from "galio-framework";
 
-import { articles, Images, argonTheme } from "../../constants";
+import { articles, Images } from "../../constants";
 import { Card } from "../../components";
 
 const { width } = Dimensions.get("screen");
@@ -95,7 +95,7 @@ render() {
 const styles = StyleSheet.create({
 title: {
     paddingHorizontal: theme.SIZES.BASE,
-    color: argonTheme.COLORS.HEADER
+    color: '#525F7F'
 },
 group: {
     paddingTop: theme.SIZES.BASE

@@ -10,7 +10,7 @@ import {
 import { Block, Text, theme } from "galio-framework";
 
 import { Button } from "../../components";
-import { Images, argonTheme } from "../../constants";
+import { Images } from "../../constants";
 import { HeaderHeight } from "../../constants/utils";
 
 const { width, height } = Dimensions.get("screen");
@@ -47,13 +47,13 @@ class Profile extends React.Component {
                   >
                     <Button
                       small
-                      style={{ backgroundColor: argonTheme.COLORS.INFO }}
+                      style={{ backgroundColor: '#11CDEF' }}
                     >
                       CONNECT
                     </Button>
                     <Button
                       small
-                      style={{ backgroundColor: argonTheme.COLORS.DEFAULT }}
+                      style={{ backgroundColor: '#172B4D' }}
                     >
                       MESSAGE
                     </Button>
@@ -179,12 +179,12 @@ class Profile extends React.Component {
               space="evenly"
               style={{ marginTop: 20, paddingBottom: 24 }}
             >
-              <Button small style={{ backgroundColor: argonTheme.COLORS.INFO }}>
+              <Button small style={{ backgroundColor: '#11CDEF' }}>
                 CONNECT
               </Button>
               <Button
                 small
-                style={{ backgroundColor: argonTheme.COLORS.DEFAULT }}
+                style={{ backgroundColor: '#172B4D' }}
               >
                 MESSAGE
               </Button>

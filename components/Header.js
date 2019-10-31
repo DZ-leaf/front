@@ -4,14 +4,13 @@ import { StyleSheet, Platform, Dimensions } from 'react-native';
 import { Block, NavBar, theme } from 'galio-framework';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
-import argonTheme from '../constants/Theme';
 
 const { height, width } = Dimensions.get('window');
 const iPhoneX = () => Platform.OS === 'ios' && (height === 812 || width === 812 || height === 896 || width === 896);
 
 class Header extends React.Component {
 
-  handleLeftPress = () => {
+  handlePress = () => {
     const { back, navigation } = this.props;
     return (back ? navigation.goBack() : navigation.openDrawer());
   }
@@ -22,8 +21,9 @@ class Header extends React.Component {
     const noShadow = ['Profile'].includes(routeName);
     const headerStyles = [
       !noShadow ? styles.shadow : null,
-      transparent ? { backgroundColor: 'rgba(0,0,0,0)' } : null,
+      transparent ? { backgroundColor: '#ffffff' } : null,
     ];
+    
     const navbarStyles = [
       styles.navbar,
       bgColor && { backgroundColor: bgColor }
@@ -32,20 +32,18 @@ class Header extends React.Component {
     return (
       <Block style={headerStyles}>
         <NavBar
-          back={back}
+          back={false}
           title={title}
           style={navbarStyles}
           transparent={transparent}
           rightStyle={{ alignItems: 'center' }}
-          left={
-            <Icon 
-              name={back ? "chevron-left" : "navicon"}
-              size={20} onPress={this.handleLeftPress} 
-              color={iconColor || argonTheme.COLORS.ICON}/>
+          left={ 
+            <Icon name={back ? "chevron-left" : "navicon"} size={20}
+              onPress={this.handlePress} 
+              color={iconColor || '#0B5713'} />
           }
           leftStyle={{ paddingVertical: 12, flex: 0.2 }}
-          titleStyle={[styles.title,
-          { color: argonTheme.COLORS[white ? 'WHITE' : 'HEADER'] },
+          titleStyle={[styles.title,{ color: '#525F7F' },
           titleColor && { color: titleColor }]}
           {...props}
         />
@@ -69,7 +67,7 @@ const styles = StyleSheet.create({
     paddingVertical: 0,
     paddingBottom: theme.SIZES.BASE * 1.5,
     paddingTop: iPhoneX ? theme.SIZES.BASE * 4 : theme.SIZES.BASE,
-    zIndex: 5,
+    // zIndex: 5,
   },
   shadow: {
     backgroundColor: theme.COLORS.WHITE,
@@ -80,7 +78,7 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   notify: {
-    backgroundColor: argonTheme.COLORS.LABEL,
+    backgroundColor: '#FE2472',
     borderRadius: 4,
     height: theme.SIZES.BASE / 2,
     width: theme.SIZES.BASE / 2,

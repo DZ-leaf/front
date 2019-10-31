@@ -5,7 +5,9 @@ import { Asset } from 'expo-asset';
 import { Block, GalioProvider } from 'galio-framework';
 
 import Screens from './navigation/Screens';
-import { Images, articles, argonTheme } from './constants';
+import { Images, articles } from './constants';
+
+import argonTheme from './constants/Theme';
 
 // cache app images
 const assetImages = [ 
