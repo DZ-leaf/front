@@ -6,7 +6,6 @@ import moment from 'moment';
 
 import List from './CalendarList';
 import AddEventModal from '../screens/calendar/AddEventModal';
-import DateTimePickModal from '../screens/calendar/DateTimePickModal';
 
 const { width, height } = Dimensions.get("screen");
 let calendarDate = moment();
@@ -21,8 +20,6 @@ class Calendars extends Component {
             modalVisible: false,
             dateModalVisible: false,
         }
-
-        // this.onDayPress = this.onDayPress.bind(this)
     }
 
     onDayPress = (date) => {
@@ -36,10 +33,6 @@ class Calendars extends Component {
         this.setState({ modalVisible: visible })
     }
 
-    setDateModalVisible = () => {
-        this.setState({ dateModalVisible: true })
-    }
-
     closeModal = (e) => {
         if (this.state.modalVisible) {
             this.setState({
@@ -48,17 +41,27 @@ class Calendars extends Component {
         }
     }
 
-    closeDateModal = (e) => {
-        if (this.state.modalVisible) {
-            this.setState({
-                dateModalVisible: false
-            })
-        }
+    getToday = () => {
+        week = new Array('일', '월', '화', '수', '목', '금', '토');
+
+        selectDay = new Date(this.state.selectDate).getDay();
+        todayLabel = week[selectDay];
+
+        return '('+todayLabel+')'
+    }
+
+    getDateTime = () => {
+        day = this.getToday();        
+        date = calendarDate.format('MM월 DD일 ');
+        time = moment().format('  HH시 mm분');
+
+        console.log(date+day+time);
+        return(date+day+time)
     }
 
     render() {
-        console.log(calendarDate.format('YYYY-MM-DD-HH:mm'));
-        
+    //s    console.log(this.state.selectDate.format('YYYY-MM-DD-HH:mm'));
+        this.getDateTime();
         return (
             <Block style={styles.container} >
                 <Block space-between style={styles.calendarContainer}>
@@ -105,16 +108,7 @@ class Calendars extends Component {
                     <Button style={styles.button} textStyle={{ fontSize: 20 }}
                         onPress={() => this.setModalVisible(!this.state.modalVisible)}>+</Button>
                     <Modal middle visible={this.state.modalVisible} >
-                        <AddEventModal
-                         closeModal={this.closeModal} 
-                        setModalVisible={this.setDateModalVisible} 
-                        visible={this.state.dateModalVisible} 
-                        day={calendarDate.format('YYYY-MM-DD-HH:mm')}
-                        />
-                        <Modal middle style={styles.Modal} animationType="slide"
-                        visible={this.state.dateModalVisible} transparent={true} >
-                            <DateTimePickModal closeModal={this.closeDateModal} />
-                        </Modal>
+                        <AddEventModal closeModal={this.closeModal} day={this.getDateTime()}/>
                     </Modal>
                 </Block>
             </Block>
@@ -134,6 +128,7 @@ const styles = StyleSheet.create({
     },
     listContainer: {
         flex: 4,
+        // paddingTop: '5%',
     },
     buttonContainer: {
         flex: 1,
@@ -148,17 +143,6 @@ const styles = StyleSheet.create({
         height: 50,
         borderRadius: 100,
     },
-    Modal: {
-        // alignItems: 'stretch',
-        // justifyContent: 'flex-end',
-        // width: width * 0.8,
-        // height: height * 0.3,
-        // marginHorizontal: '10%',
-        // marginVertical: '20%',
-        // borderWidth: 1,
-        // backgroundColor: 'white',
-        // borderRadius: 20,
-    }
 })
 
 export default Calendars;
