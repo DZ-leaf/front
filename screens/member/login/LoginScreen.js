@@ -1,7 +1,7 @@
 import React from "react";
 import { Image, StyleSheet, StatusBar, Dimensions, View } from "react-native";
 import { Block, Button, Text, theme, Input, Checkbox } from "galio-framework";
-import { Images } from "../../../constants";
+import Images from "../../../constants/Images";
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 

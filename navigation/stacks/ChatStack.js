@@ -1,0 +1,24 @@
+import React from "react";
+import { createStackNavigator } from 'react-navigation-stack';
+
+import Header from "../../components/Header";
+import transitionConfig from './transitionConfig';
+
+import ChatListScreen from '../../screens/chat/ChatListScreen';
+
+const ChatStack = createStackNavigator(
+    {
+        Chat: {
+            screen: ChatListScreen,
+            navigationOptions: ({ navigation }) => ({
+                header: <Header title="채팅" navigation={navigation} />
+            })
+        }
+    },
+    {
+        cardStyle: { backgroundColor: "#F8F9FE" },
+        transitionConfig
+    }
+);
+
+export default ChatStack;

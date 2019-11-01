@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, Dimensions, ScrollView, Image, ImageBackground, Platform, Modal } from "react-native";
 import { Block, Text, theme, Button } from "galio-framework";
 
-import { Images } from "../../constants";
+import Images from "../../constants/Images";
 import { HeaderHeight } from "../../constants/utils";
 
 const { width, height } = Dimensions.get("screen");

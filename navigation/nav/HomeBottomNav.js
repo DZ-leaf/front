@@ -3,12 +3,7 @@ import { createBottomTabNavigator } from "react-navigation-tabs";
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import {
-    HomeStack,
-    ChatStack,
-    SettingStack,
-    AlarmStack,
-  } from './Stacks.js';
+import { HomeStack, ChatStack, AlarmStack, SettingStack } from '../stacks'
 
 const HomeBottomStack = createBottomTabNavigator({
     Home: {
@@ -55,6 +50,4 @@ const HomeBottomStack = createBottomTabNavigator({
     }
 })
 
-export {
-    HomeBottomStack,
-}
+export default HomeBottomStack;

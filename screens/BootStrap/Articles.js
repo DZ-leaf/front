@@ -10,7 +10,8 @@ import {
 //galio
 import { Block, Text, theme } from "galio-framework";
 //argon
-import { articles, Images } from "../../constants";
+import articles from "../../constants/articles";
+import Images from "../../constants/Images";
 import { Card } from "../../components";
 
 const { width } = Dimensions.get("screen");
