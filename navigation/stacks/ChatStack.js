@@ -4,12 +4,12 @@ import { createStackNavigator } from 'react-navigation-stack';
 import Header from "../../components/Header";
 import transitionConfig from './transitionConfig';
 
-import ChatListScreen from '../../screens/chat/ChatListScreen';
+import ChatScreen from '../../screens/chat/ChatScreen';
 
 const ChatStack = createStackNavigator(
     {
         Chat: {
-            screen: ChatListScreen,
+            screen: ChatScreen,
             navigationOptions: ({ navigation }) => ({
                 header: <Header title="채팅" navigation={navigation} />
             })

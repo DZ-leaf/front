@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Content, List, ListItem, Left, Body, Right, Thumbnail, Text } from 'native-base';
 
-import ChatScreen from './ChatScreen';
-
 class ChatListScreen extends Component {
     render() {
         return (

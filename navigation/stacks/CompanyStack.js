@@ -5,7 +5,10 @@ import Header from "../../components/Header";
 import transitionConfig from './transitionConfig';
 
 import CompanyScreen from '../../screens/company/CompanyScreen';
-import { CompanyBoardList, CompanyBoardDetail } from '../../screens/company';
+import {
+    CompanyBoardList, CompanyBoardDetail,
+    CompanyGallery
+} from '../../screens/company';
 
 const CompanyStack = createStackNavigator(
     {
@@ -23,6 +26,12 @@ const CompanyStack = createStackNavigator(
         },
         CompanyBoardDetail: {
             screen: CompanyBoardDetail,
+            navigationOptions: ({ navigation }) => ({
+                header: <Header back={true} title="회사" navigation={navigation} />
+            })
+        },
+        CompanyGallery: {
+            screen: CompanyGallery,
             navigationOptions: ({ navigation }) => ({
                 header: <Header back={true} title="회사" navigation={navigation} />
             })

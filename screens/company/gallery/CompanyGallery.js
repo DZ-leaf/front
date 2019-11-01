@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { Block} from 'galio-framework';
 
-import ChatListScreen from './ChatListScreen';
-
-class ChatScreen extends Component {
+class CompanyGallery extends Component {
+    
     render() {
         return (
-            <Block flex>
-                <ChatListScreen/>
-            </Block>
+            <View style={styles.container}>
+                <Text>회사 갤러리</Text>
+            </View>
         );
     }
 }
@@ -22,4 +20,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default ChatScreen;
+export default CompanyGallery;
