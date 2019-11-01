@@ -3,9 +3,9 @@ import { Image, StyleSheet, StatusBar, Dimensions, View } from "react-native";
 import { Block, Button, Text, theme, Input, Checkbox } from "galio-framework";
 import Images from "../../../constants/Images";
 
-import Icon from 'react-native-vector-icons/MaterialIcons';
-
 const { width } = Dimensions.get("screen");
+
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import { AjaxUser } from "../../../lib/url/member/userUrl";
 

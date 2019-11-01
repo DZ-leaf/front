@@ -5,7 +5,6 @@ import { withNavigation } from 'react-navigation';
 
 const { width } = Dimensions.get("screen");
 
-
 class IdConfirmScreen extends Component {
     render() {
         const { navigation } = this.props;

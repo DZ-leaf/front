@@ -3,13 +3,10 @@ import { StyleSheet, Image, Dimensions, StatusBar, View, Modal, Alert, ScrollVie
 import { Block, theme, Button, Input } from "galio-framework";
 import Images from "../../../constants/Images";
 
-// import Icon from 'react-native-vector-icons/MaterialIcons';
+const { width } = Dimensions.get("screen");
 
 import CompanyFindModal from './CompanyFindModal';
-
 import { AjaxUser } from "../../../lib/url/member/userUrl";
-
-const { width } = Dimensions.get("screen");
 
 class Register extends React.Component {
 
