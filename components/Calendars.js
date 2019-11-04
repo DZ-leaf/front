@@ -24,9 +24,11 @@ class Calendars extends Component {
 
     onDayPress = (date) => {
         calendarDate = moment(date.dateString);
+        
         this.setState({
             selectDate: calendarDate.format('YYYY-MM-DD')
         })
+        
     }
 
     setModalVisible = (visible) => {
@@ -41,32 +43,40 @@ class Calendars extends Component {
         }
     }
 
-    getToday = () => {
-        week = new Array('일', '월', '화', '수', '목', '금', '토');
+    getDateTime = () => {
+        week = ['(일)', '(월)', '(화)', '(수)', '(목)', '(금)', '(토)'];
 
         selectDay = new Date(this.state.selectDate).getDay();
-        todayLabel = week[selectDay];
 
-        return '('+todayLabel+')'
-    }
-
-    getDateTime = () => {
-        day = this.getToday();        
+        day = week[selectDay] + ' ';       
         date = calendarDate.format('MM월 DD일 ');
-        time = moment().format('  HH시 mm분');
+        time = moment().format('HH');
 
-        console.log(date+day+time);
-        return(date+day+time)
+        startTime = Number(time) + 1;      
+        endTime = Number(time) + 2
+        
+        if(startTime > 24) startTime = startTime -24;
+        if(endTime > 24) endTime = endTime -24;
+
+        startTime %= 12;
+        startTime = startTime || 12; // 0 => 12
+
+        endTime %= 12;
+        endTime = endTime || 12; // 0 => 12
+
+        startAmpm = startTime >= 12 ? '오후 ' : '오전 ';
+        endAmpm = endTime >= 12 ? '오후 ' : '오전 ';
+        
+        return({start: date + day + startAmpm +  startTime + '시 00분', end: date + day + endAmpm + endTime + '시 00분'})
     }
 
     render() {
-    //s    console.log(this.state.selectDate.format('YYYY-MM-DD-HH:mm'));
-        this.getDateTime();
         return (
             <Block style={styles.container} >
                 <Block space-between style={styles.calendarContainer}>
                     <Calendar
-                        onDayPress={(day) => { this.onDayPress(day) }}
+                        onDayPress={(day) => { this.onDayPress(day); console.log(day);
+                        }}
                         // hideExtraDays={false}
                         // horizontal pagingEnabled
                         pagingEnabled
@@ -90,9 +100,6 @@ class Calendars extends Component {
                             arrowColor: 'orange',
                             monthTextColor: 'black',
                             indicatorColor: 'blue',
-                            textDayFontFamily: 'monospace',
-                            textMonthFontFamily: 'monospace',
-                            textDayHeaderFontFamily: 'monospace',
                             textDayFontWeight: '300',
                             textMonthFontWeight: 'bold',
                             textDayHeaderFontWeight: '300',
@@ -106,9 +113,9 @@ class Calendars extends Component {
                 </Block>
                 <Block style={styles.buttonContainer}>
                     <Button style={styles.button} textStyle={{ fontSize: 20 }}
-                        onPress={() => this.setModalVisible(!this.state.modalVisible)}>+</Button>
+                        onPress={() => this.setModalVisible(!this.state.modalVisible)} shadowless>+</Button>
                     <Modal middle visible={this.state.modalVisible} >
-                        <AddEventModal closeModal={this.closeModal} day={this.getDateTime()}/>
+                        <AddEventModal closeModal={this.closeModal} day={this.getDateTime()} selectedDate={this.state.selectDate}/>
                     </Modal>
                 </Block>
             </Block>
