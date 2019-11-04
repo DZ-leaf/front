@@ -4,8 +4,8 @@ import { Block, Text, theme } from "galio-framework";
 
 const { width } = Dimensions.get("screen");
 
-import BoardCard from '../../components/BoardCard';
-import GalleryCard from '../../components/GalleryCard';
+import BoardCard from '../../components/board/BoardCard';
+import GalleryCard from '../../components/gallery/GalleryCard';
 import CalendarCard from '../../components/CalendarCard';
 
 class CompanyAtHome extends React.Component {

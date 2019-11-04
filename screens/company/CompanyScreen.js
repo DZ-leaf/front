@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Block } from 'galio-framework';
 
-import BoardCard from '../../components/BoardCard';
-import GalleryCard from '../../components/GalleryCard';
+import BoardCard from '../../components/board/BoardCard';
+import GalleryCard from '../../components/gallery/GalleryCard';
 import CalendarCard from '../../components/CalendarCard';
 import { ScrollView } from 'react-native-gesture-handler';
 

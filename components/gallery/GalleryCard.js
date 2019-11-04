@@ -4,9 +4,9 @@ import { Image, Text, StyleSheet, Dimensions } from 'react-native';
 import { Block } from 'galio-framework';
 import { Card, CardItem, Left, Right } from 'native-base';
 
-import { HeaderHeight } from "../constants/utils";
+import { HeaderHeight } from "../../constants/utils";
 
-import Images from "../constants/Images";
+import Images from "../../constants/Images";
 
 const { width } = Dimensions.get("screen");
 const thumbMeasure = (width - 48 - 32) / 3;
