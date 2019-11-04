@@ -1,10 +1,9 @@
 import React from "react";
 import { DrawerNavigatorItems } from "react-navigation-drawer";
 import { ScrollView, StyleSheet, Dimensions, Image } from "react-native";
-
 import { Block, theme } from "galio-framework";
 
-import Images from "../constants/Images";
+import Images from "../../constants/Images";
 
 const { width } = Dimensions.get("screen");
 
@@ -27,7 +26,7 @@ const Menu = {
   drawerWidth: width * 0.6,
   contentOptions: {
     activeTintColor: "white",
-    inactiveTintColor: "#000",
+    inactiveTintColor: "#000000",
     activeBackgroundColor: "transparent",
     itemStyle: {
       width: width * 0.55,

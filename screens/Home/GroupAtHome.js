@@ -3,7 +3,8 @@ import { ScrollView, StyleSheet, Image, Dimensions } from "react-native";
 
 import { Block, Text, theme } from "galio-framework";
 
-import { articles, Images } from "../../constants";
+import Images from "../../constants/Images";
+import articles from "../../constants/articles";
 import { Card } from "../../components";
 
 const { width } = Dimensions.get("screen");

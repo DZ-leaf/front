@@ -1,22 +1,17 @@
 import React from "react";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
-import {
-    HomeStack,
-    ChatStack,
-    SettingStack,
-    AlarmStack,
-  } from './Stacks.js';
+import { HomeStack, ChatStack, AlarmStack, SettingStack } from '../stacks'
 
 const HomeBottomStack = createBottomTabNavigator({
     Home: {
         screen: HomeStack,
         navigationOptions: () => ({
             tabBarIcon: ({ focused, tintColor }) => (
-                <Icon name={focused ? 'home' : 'home-outline'}
-                    size={focused ? 30 : 25} color={tintColor} />
+                <Icon name={'leaf'}
+                    size={focused ? 25 : 20} color={tintColor} />
             )
         })
     },
@@ -24,8 +19,8 @@ const HomeBottomStack = createBottomTabNavigator({
         screen: ChatStack,
         navigationOptions: () => ({
             tabBarIcon: ({ focused, tintColor }) => (
-                <Icon name={focused ? 'comment' : 'comment-outline'}
-                    size={focused ? 30 : 25} color={tintColor} />
+                <Icon name={'comment'}
+                    size={focused ? 22 : 19} color={tintColor} />
             )
         })
     },
@@ -33,8 +28,8 @@ const HomeBottomStack = createBottomTabNavigator({
         screen: AlarmStack,
         navigationOptions: () => ({
             tabBarIcon: ({ focused, tintColor }) => (
-                <Icon name={focused ? 'bell' : 'bell-outline'}
-                    size={focused ? 30 : 25} color={tintColor} />
+                <Icon name={'bell'}
+                    size={focused ? 22 : 19} color={tintColor} />
             )
         })
     },
@@ -42,8 +37,8 @@ const HomeBottomStack = createBottomTabNavigator({
         screen: SettingStack,
         navigationOptions: () => ({
             tabBarIcon: ({ focused, tintColor }) => (
-                <Icon name={focused ? 'settings' : 'settings-outline'}
-                    size={focused ? 30 : 25} color={tintColor} />
+                <Icon name={'gear'}
+                    size={focused ? 25 : 20} color={tintColor} />
             )
         })
     },
@@ -55,6 +50,4 @@ const HomeBottomStack = createBottomTabNavigator({
     }
 })
 
-export {
-    HomeBottomStack,
-}
+export default HomeBottomStack;

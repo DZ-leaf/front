@@ -10,7 +10,7 @@ import {
 import { Block, Text, theme } from "galio-framework";
 
 import { Button } from "../../components";
-import { Images } from "../../constants";
+import Images from "../../constants/Images";
 import { HeaderHeight } from "../../constants/utils";
 
 const { width, height } = Dimensions.get("screen");

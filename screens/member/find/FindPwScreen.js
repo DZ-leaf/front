@@ -3,11 +3,9 @@ import { StyleSheet, StatusBar, Dimensions, Alert, } from "react-native";
 import { Block, Button, Text, theme, Input } from "galio-framework";
 import { withNavigation } from 'react-navigation';
 
-import { AjaxUser } from "../../../lib/url/member/userUrl";
-
 const { width } = Dimensions.get("screen");
 
-// import Images from "../constants/Images";
+import { AjaxUser } from "../../../lib/url/member/userUrl";
 
 class FindPwScreen extends React.Component {
   state = {

@@ -3,7 +3,8 @@ import { ScrollView, StyleSheet, Image, TouchableWithoutFeedback, ImageBackgroun
 
 import { Block, Text, theme } from "galio-framework";
 
-import { articles, Images } from "../../constants";
+import articles from "../../constants/articles";
+import Images from "../../constants/Images";
 import { Card } from "../../components";
 
 const { width } = Dimensions.get("screen");

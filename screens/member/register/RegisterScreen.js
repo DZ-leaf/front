@@ -1,15 +1,12 @@
 import React from 'react';
 import { StyleSheet, Image, Dimensions, StatusBar, View, Modal, Alert, ScrollView, Text } from "react-native";
 import { Block, theme, Button, Input } from "galio-framework";
-import { Images } from "../../../constants";
-
-// import Icon from 'react-native-vector-icons/MaterialIcons';
-
-import CompanyFindModal from './CompanyFindModal';
-
-import { AjaxUser } from "../../../lib/url/member/userUrl";
+import Images from "../../../constants/Images";
 
 const { width } = Dimensions.get("screen");
+
+import CompanyFindModal from './CompanyFindModal';
+import { AjaxUser } from "../../../lib/url/member/userUrl";
 
 class Register extends React.Component {
 

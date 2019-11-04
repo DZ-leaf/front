@@ -100,6 +100,12 @@ class Calendars extends Component {
                             arrowColor: 'orange',
                             monthTextColor: 'black',
                             indicatorColor: 'blue',
+<<<<<<< HEAD
+=======
+                            // textDayFontFamily: 'monospace',
+                            // textMonthFontFamily: 'monospace',
+                            // textDayHeaderFontFamily: 'monospace',
+>>>>>>> e819538496823095fc450673fda0f0471b2d5c80
                             textDayFontWeight: '300',
                             textMonthFontWeight: 'bold',
                             textDayHeaderFontWeight: '300',
