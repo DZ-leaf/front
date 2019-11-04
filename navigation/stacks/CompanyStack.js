@@ -38,9 +38,9 @@ const CompanyStack = createStackNavigator(
         },
         CompanyBoardWrite: {
             screen: CompanyBoardWrite,
-            navigationOptions: ({ navigation }) => ({
-                header: <Header back={true} title="글쓰기" navigation={navigation} />
-            })
+            navigationOptions: {
+                header: null
+            },
         },
     },
     {
