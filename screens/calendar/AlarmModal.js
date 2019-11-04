@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { Block, Button } from "galio-framework";
 import RadioForm from 'react-native-simple-radio-button';
 
-class AlarmModal extends Component {    
+class AlarmModal extends Component {
     state = {
         data: [
             { label: '설정 안 함', value: 0 },
@@ -18,15 +18,15 @@ class AlarmModal extends Component {
         ]
     }
 
-    selectButton = (selected) => {        
+    selectButton = (selected) => {
         this.props.setNotify(this.state.data[selected]);
         this.props.closeModal();
     }
 
 
-    render() {        
+    render() {
         console.log(this.state.selectValue);
-        
+
         return (
             <Block flex style={styles.container}>
                 <Block style={styles.radioContainer}>

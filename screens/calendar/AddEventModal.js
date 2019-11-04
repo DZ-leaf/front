@@ -1,9 +1,10 @@
 import React, { Component, useState } from 'react';
-import { View, StyleSheet, Modal, Dimensions, TouchableOpacity, TextInput, Picker } from 'react-native';
-import { Block, Button, Text, theme, Input } from "galio-framework";
+import { View, StyleSheet, Modal, Dimensions, TouchableOpacity, TextInput, Picker, Text } from 'react-native';
+import { Block, Button, theme, Input } from "galio-framework";
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
+import DateTimePicker from 'react-native-modal-datetime-picker';
 import DateTimePickModal from './DateTimePickModal';
 import AlarmModal from './AlarmModal';
 import RepeatModal from './RepeatModal';
@@ -16,7 +17,7 @@ class AddEventModal extends Component {
         data: {
             title: '',
             startTime: '',
-            endtime: '',
+            endTime: '',
             selectedNotifyValue: { label: '10분 전', value: 3 },
             selectedRepeatValue: { label: '안 함', value: 0 },
             location: '',
@@ -25,31 +26,52 @@ class AddEventModal extends Component {
         modal: {
             dateTimeModal: false,
             notifyModal: false,
-            repeatModal: false,    
-        }        
+            repeatModal: false,
+        },
+        startTimeCheck: false,
     }
-     
-   
+
+    getToday = (selectDate) => {
+        const week = ['(일)', '(월)', '(화)', '(수)', '(목)', '(금)', '(토)'];
+        const day = week[selectDate.getDay()];
+
+        const month = selectDate.getMonth() + 1;
+        const date = selectDate.getDate();
+        let hour = selectDate.getHours();
+        let minute = selectDate.getMinutes();
+        const ampm = hour >= 12 ? '오후' : '오전';
+
+        hour %= 12;
+        hour = hour || 12; // 0 => 12
+
+        minute = minute < 10 ? '0' + minute : minute;
+ 
+        return (month + '월 ' + date + '일 ' + day + ' ' + ampm + ' ' + hour + '시 ' + minute + '분')
+    }
 
     // dateTimeModal
-    setDateTimeModalVisible = (visible) => { this.setState({ modal: {...this.state.modal, dateTimeModal: visible }})}
-    closeDateTimeModal = () => { this.setState({ modal: {...this.state.modal, dateTimeModal: false }})}
+    setDateTimeModalVisible = (visible) => { this.setState({ modal: { ...this.state.modal, dateTimeModal: visible } }) }
+    closeDateTimeModal = () => { this.setState({ modal: { ...this.state.modal, dateTimeModal: false }, startTimeCheck: false }) }
+    datePicked = date => {
+        this.state.startTimeCheck? this.setState({data: {...this.state.data, startTime: this.getToday(date)}}) : this.setState({data: {...this.state.data, endTime: this.getToday(date)}});
+        this.closeDateTimeModal();
+    }
 
     // alarmModal
-    setAlarmModalVisible = (visible) => { this.setState({ modal:{...this.state.modal, notifyModal: visible }})}
-    closeAlarmModal = () => { this.setState({ modal: {...this.state.modal, notifyModal: false }})}
+    setAlarmModalVisible = (visible) => { this.setState({ modal: { ...this.state.modal, notifyModal: visible } }) }
+    closeAlarmModal = () => { this.setState({ modal: { ...this.state.modal, notifyModal: false } }) }
 
     // repeatModal
-    setRepeatModalVisible = (visible) => { this.setState({ modal:{...this.state.modal, repeatModal: visible }})}
-    closeRepeatModal = () => { this.setState({ modal: {...this.state.modal, repeatModal: false }})}
+    setRepeatModalVisible = (visible) => { this.setState({ modal: { ...this.state.modal, repeatModal: visible } }) }
+    closeRepeatModal = () => { this.setState({ modal: { ...this.state.modal, repeatModal: false } }) }
 
 
     setNotify = (selectValue) => {
-        this.setState({ data:{...this.state.data, selectedNotifyValue: selectValue}})
+        this.setState({ data: { ...this.state.data, selectedNotifyValue: selectValue } })
     }
 
     setRepeat = (selectValue) => {
-        this.setState({ data:{...this.state.data, selectedRepeatValue: selectValue}})
+        this.setState({ data: { ...this.state.data, selectedRepeatValue: selectValue } })
     }
 
     render() {
@@ -62,37 +84,46 @@ class AddEventModal extends Component {
                 </Block>
                 <Block>
                     <TouchableOpacity style={styles.dateTime} onPress={() => { /* this.props.setModalVisible(this.props.visible) */
-                     this.setDateTimeModalVisible(!this.state.modal.dateTimeModal) }}>
-                        <Text style={[styles.text, {paddingLeft: '0%'}]}>시작          {this.props.day}</Text>
+                        this.setDateTimeModalVisible(!this.state.modal.dateTimeModal); this.setState({ startTimeCheck: true });
+                    }}>
+                        <Text style={[styles.text, { paddingLeft: '0%' }]}>시작          {this.state.data.startTime == '' ? this.props.day.start : this.state.data.startTime}</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.dateTime} onPress={() => {/*  this.props.setModalVisible(this.props.visible) */
-                    this.setDateTimeModalVisible(!this.state.modal.dateTimeModal)} } >
-                        <Text style={[styles.text, {paddingLeft: '0%'}]}>종료          {this.props.day}</Text>
+                        this.setDateTimeModalVisible(!this.state.modal.dateTimeModal)
+                    }} >
+                        <Text style={[styles.text, { paddingLeft: '0%' }]}>종료          {this.state.data.endTime == '' ? this.props.day.end : this.state.data.endTime}</Text>
                     </TouchableOpacity>
                 </Block>
-                <Modal middle  animationType="slide"
-                        visible={this.state.modal.dateTimeModal} transparent={true} >
-                            <DateTimePickModal closeModal={this.closeDateTimeModal} />
-                        </Modal>
+                {/* <Modal middle animationType="slide"
+                    visible={this.state.modal.dateTimeModal} transparent={true} > */}
+                {/* <DateTimePickModal closeModal={this.closeDateTimeModal} selectedDate={this.props.selectedDate} /> */}
+                <DateTimePicker isVisible={this.state.modal.dateTimeModal} mode='datetime' timePickerModeAndroid='spinner'
+                    onConfirm={this.datePicked}
+                    onCancel={this.closeDateTimeModal}
+                    onDayPress={(day) => { console.log(day); }}
+                    date={new Date(this.props.selectedDate)}
+                    is24Hour={false} 
+                    datePickerContainerStyleIOS={{alignItems: 'stretch',}}/>
+                {/* </Modal> */}
 
                 <Block style={{ paddingTop: '5%' }}>
                     <TouchableOpacity /* style={styles.dateTime} */ onPress={() => { this.setAlarmModalVisible(!this.state.modal.notifyModal) }}>
                         <Block style={styles.note}>
                             <Icon size={20} style={{ marginRight: 10 }} name="notifications" />
-                            <Text style={[styles.input, styles.text, {paddingTop:'4%'}]}>{this.state.data.selectedNotifyValue.label}</Text>
+                            <Text style={[styles.input, styles.text, { paddingTop: '4%' }]}>{this.state.data.selectedNotifyValue.label}</Text>
                         </Block>
                     </TouchableOpacity>
                     <Modal visible={this.state.modal.notifyModal} animationType="slide">
-                        <AlarmModal closeModal={this.closeAlarmModal}  setNotify={this.setNotify} selectedValue={this.state.data.selectedNotifyValue.value}/>
+                        <AlarmModal closeModal={this.closeAlarmModal} setNotify={this.setNotify} selectedValue={this.state.data.selectedNotifyValue.value} />
                     </Modal>
                     <TouchableOpacity /* style={styles.dateTime} */ onPress={() => { this.setRepeatModalVisible(!this.state.modal.repeatModal) }}>
-                    <Block style={styles.note}>
-                        <Icon size={20} style={{ marginRight: 10 }} name="repeat" />
-                        <Text style={[styles.input, styles.text, {paddingTop:'4%'}]}>{this.state.data.selectedRepeatValue.label}</Text>
-                    </Block>
+                        <Block style={styles.note}>
+                            <Icon size={20} style={{ marginRight: 10 }} name="repeat" />
+                            <Text style={[styles.input, styles.text, { paddingTop: '4%' }]}>{this.state.data.selectedRepeatValue.label}</Text>
+                        </Block>
                     </TouchableOpacity>
                     <Modal visible={this.state.modal.repeatModal} animationType="slide">
-                        <RepeatModal closeModal={this.closeRepeatModal} setRepeat={this.setRepeat} selectedValue={this.state.data.selectedRepeatValue.value}/>
+                        <RepeatModal closeModal={this.closeRepeatModal} setRepeat={this.setRepeat} selectedValue={this.state.data.selectedRepeatValue.value} />
                     </Modal>
                     <Block style={styles.note}>
                         <Icon size={20} style={{ marginRight: 10 }} name="location-on" />
@@ -104,8 +135,8 @@ class AddEventModal extends Component {
                     </Block>
                 </Block>
                 <Block style={styles.buttonContainer}>
-                    <Button style={styles.button} onPress={this.props.closeModal} textStyle={styles.buttonText} >취소</Button>
-                    <Button style={styles.button} textStyle={styles.buttonText} >저장</Button>
+                    <Button style={styles.button} onPress={this.props.closeModal} textStyle={styles.buttonText} shadowless>취소</Button>
+                    <Button style={styles.button} textStyle={styles.buttonText} shadowless>저장</Button>
                 </Block>
             </Block>
         );
