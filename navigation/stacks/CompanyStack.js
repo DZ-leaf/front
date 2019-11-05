@@ -18,7 +18,7 @@ const CompanyStack = createStackNavigator(
                 header: <Header search options title="회사" navigation={navigation} />
             })
         },
-        CompanyBoard: {
+        CompanyBoardList: {
             screen: CompanyBoardList,
             navigationOptions: ({ navigation }) => ({
                 header: <Header back={true} title="회사" navigation={navigation} />
@@ -39,7 +39,8 @@ const CompanyStack = createStackNavigator(
         CompanyBoardWrite: {
             screen: CompanyBoardWrite,
             navigationOptions: {
-                header: null
+                header: null,
+                gesturesEnabled: false,
             },
         },
     },

@@ -20,7 +20,7 @@ class Header extends React.Component {
   render() {
     const { back, title, white, transparent, bgColor, iconColor, titleColor, navigation, ...props } = this.props;
     const { routeName } = navigation.state;
-    const noShadow = ['Profile'].includes(routeName);
+    const noShadow = ['Profile', 'Company'].includes(routeName);
     const headerStyles = [
       !noShadow ? styles.shadow : null,
       transparent ? { backgroundColor: 'rgba(0,0,0,0)' } : null,
@@ -40,7 +40,7 @@ class Header extends React.Component {
           transparent={transparent}
           rightStyle={{ alignItems: 'center' }}
           left={ 
-            <Icon name={back ? "chevron-left" : "navicon"} size={20}
+            <Icon name={back ? "chevron-left" : "navicon"} size={15}
               onPress={this.handlePress} 
               color={iconColor || '#0B5713'} />
           }

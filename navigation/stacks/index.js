@@ -1,4 +1,4 @@
-import CompanyStack from './CompanyStack';
+// import CompanyStack from './CompanyStack';
 import MemberStack from './MemberStack';
 import HomeStack from './HomeStack';
 import ChatStack from './ChatStack';
@@ -8,6 +8,7 @@ import SettingStack from './SettingStack';
 import GroupStack from './GroupStack';
 import ClubStack from './ClubStack';
 import CalendarStack from './CalendarStack';
+import CompanyStack from './CompanyStack';
 
 export {
     CompanyStack,
