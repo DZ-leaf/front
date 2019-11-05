@@ -20,10 +20,6 @@
     "react-dom": "16.8.3",
     "react-native": "https://github.com/expo/react-native/archive/sdk-35.0.0.tar.gz",
     "react-native-actionsheet": "^2.4.2",
-<<<<<<< HEAD
-=======
-    "react-native-appearance": "^0.1.0",
->>>>>>> 4e8f8681c9d17e705b795f7242598119b8606c53
     "react-native-calendar-picker": "^6.0.2",
     "react-native-calendars": "^1.212.0",
     "react-native-elements": "^1.2.6",
