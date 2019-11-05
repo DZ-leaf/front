@@ -14,7 +14,7 @@ class Calendars extends Component {
 
     constructor(props) {
         super(props);
-
+         
         this.state = {
             selectDate: calendarDate.format('YYYY-MM-DD'),
             modalVisible: false,
@@ -71,6 +71,7 @@ class Calendars extends Component {
     }
 
     render() {
+        
         return (
             <Block style={styles.container} >
                 <Block space-between style={styles.calendarContainer}>
@@ -109,13 +110,14 @@ class Calendars extends Component {
                         }} />
                 </Block>
                 <Block style={styles.listContainer}>
-                    <List />
+                    <List navigation={this.props.navigation} />
                 </Block>
                 <Block style={styles.buttonContainer}>
                     <Button style={styles.button} textStyle={{ fontSize: 20 }}
                         onPress={() => this.setModalVisible(!this.state.modalVisible)} shadowless>+</Button>
-                    <Modal middle visible={this.state.modalVisible} >
-                        <AddEventModal closeModal={this.closeModal} day={this.getDateTime()} selectedDate={this.state.selectDate}/>
+                    <Modal middle visible={this.state.modalVisible} onRequestClose={() => {this.closeModal()}}>
+                        <AddEventModal closeModal={this.closeModal} day={this.getDateTime()} 
+                            selectedDate={this.state.selectDate} navigation={this.props.navigation}/>
                     </Modal>
                 </Block>
             </Block>
@@ -130,8 +132,8 @@ const styles = StyleSheet.create({
     },
     calendarContainer: {
         flex: 5,
-        borderWidth: 1,
-        borderColor: '#E5E7E9',
+        borderBottomWidth: 2,
+        borderColor: '#E5E7E9', //#E5E7E9
     },
     listContainer: {
         flex: 4,
@@ -143,7 +145,9 @@ const styles = StyleSheet.create({
         alignItems: 'flex-end',
         justifyContent: 'center',
         paddingRight: '5%',
+        paddingBottom: '5%',
         // paddingBottom: '5%',
+        // borderWidth: 1,
     },
     button: {
         width: 50,

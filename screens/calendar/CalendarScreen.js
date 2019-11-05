@@ -7,7 +7,7 @@ class CalendarScreen extends Component {
     render() {
         return (
             <View style={{flex:1}}>
-                <Calendars/>
+                <Calendars navigation={this.props.navigation}/>
             </View>
         );
     }

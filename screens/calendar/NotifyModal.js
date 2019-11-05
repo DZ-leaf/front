@@ -3,7 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import { Block, Button } from "galio-framework";
 import RadioForm from 'react-native-simple-radio-button';
 
-class AlarmModal extends Component {
+class NotifyModal extends Component {
     state = {
         data: [
             { label: '설정 안 함', value: 0 },
@@ -55,4 +55,4 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
     },
 })
-export default AlarmModal;
+export default NotifyModal;
