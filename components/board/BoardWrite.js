@@ -29,7 +29,6 @@ class BoardWrite extends Component {
         if(Platform.OS == 'android') {
             this.ActionSheet.show()
         } else {
-            console.log("ㅋㅋㅋ")
             ActionSheetIOS.showActionSheetWithOptions(
                 {
                   options: ['돌아가기', '게시글 삭제'],
