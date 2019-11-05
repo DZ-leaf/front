@@ -14,7 +14,7 @@ import { Navigation } from 'react-native-navigation';
 const { width } = Dimensions.get("screen");
 
 
-class AddEventModal extends Component {
+class EditEventModal extends Component {
 
     // _showNotify(){
     //     this.props.navigator.showModal({
@@ -31,8 +31,8 @@ class AddEventModal extends Component {
     state = {
         data: {
             title: '',
-            startTime: '',
-            endTime: '',
+            startTime: '2019-11-05',
+            endTime: '2019-11-05',
             selectedNotifyValue: { label: '10분 전', value: 3 },
             selectedRepeatValue: { label: '안 함', value: 0 },
             location: '',
@@ -155,7 +155,7 @@ class AddEventModal extends Component {
                     </Block>
                 </Block>
                 <Block style={styles.buttonContainer}>
-                    <Button style={styles.button} onPress={this.props.closeModal} textStyle={styles.buttonText} shadowless>취소</Button>
+                    <Button style={styles.button} onPress={this.props.closeModal} textStyle={styles.buttonText} shadowless onPress={() => {this.props.closeModal()}}>취소</Button>
                     <Button style={styles.button} textStyle={styles.buttonText} shadowless>저장</Button>
                 </Block>
             </Block>
@@ -214,4 +214,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default AddEventModal;
+export default EditEventModal;
