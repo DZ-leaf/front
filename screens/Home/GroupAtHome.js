@@ -5,7 +5,7 @@ import { Block, Text, theme } from "galio-framework";
 
 import Images from "../../constants/Images";
 import articles from "../../constants/articles";
-import { Card } from "../../components";
+import { Cards } from "../../components";
 
 const { width } = Dimensions.get("screen");
 
@@ -23,13 +23,13 @@ class GroupAtHome extends React.Component {
                 </Text>
                 <Block flex>
                     <Block style={{ paddingHorizontal: theme.SIZES.BASE }}>
-                        <Card item={articles[0]} horizontal />
+                        <Cards item={articles[0]} horizontal />
                         <ScrollView horizontal showsHorizontalScrollIndicator={false}
                         scrollEventThrottle={10} pagingEnabled>
                         <Block flex row>
-                            <Card item={articles[1]} style={{ marginRight: theme.SIZES.BASE }}/>
-                            <Card item={articles[2]} style={{ marginRight: theme.SIZES.BASE }}/>
-                            <Card item={articles[1]} style={{ marginRight: theme.SIZES.BASE }}/>
+                            <Cards item={articles[1]} style={{ marginRight: theme.SIZES.BASE }}/>
+                            <Cards item={articles[2]} style={{ marginRight: theme.SIZES.BASE }}/>
+                            <Cards item={articles[1]} style={{ marginRight: theme.SIZES.BASE }}/>
                         </Block>
                         </ScrollView>
                     </Block>

@@ -5,6 +5,7 @@ import Header from "../../components/Header";
 import transitionConfig from './transitionConfig';
 
 import CompanyScreen from '../../screens/company/CompanyScreen';
+import CompanyGalleryDetail from '../../screens/company/gallery/CompanyGalleryDetail'
 import {
     CompanyBoardList, CompanyBoardDetail,
     CompanyGallery, CompanyBoardWrite,
@@ -37,6 +38,12 @@ const CompanyStack = createStackNavigator(
                 header: <Header back={true} title="회사" navigation={navigation} />
             })
         },
+        CompanyGalleryDetail: {
+            screen: CompanyGalleryDetail,
+            navigationOptions: ({ navigation }) => ({
+                header: <Header back={true} title="회사" navigation={navigation} />
+            })
+        },
         CompanyBoardWrite: {
             screen: CompanyBoardWrite,
             navigationOptions: {
@@ -49,7 +56,7 @@ const CompanyStack = createStackNavigator(
             navigationOptions: ({ navigation }) => ({
                 header: <Header back={true} title="회사" navigation={navigation} />
             })
-        },
+        }
     },
     {
         cardStyle: { backgroundColor: "#F8F9FE" },

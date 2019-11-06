@@ -5,7 +5,7 @@ import { Block, Text, theme } from "galio-framework";
 
 import articles from "../../constants/articles";
 import Images from "../../constants/Images";
-import { Card } from "../../components";
+import { Cards } from "../../components";
 
 // import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -16,7 +16,7 @@ const cardWidth = width - theme.SIZES.BASE * 2;
 
 class ClubScreen extends React.Component {
 
-    renderCards = () => {
+    renderCard = () => {
         return (
             <Block flex style={styles.group}>
                 <Block right style={{paddingRight: '5%'}}>
@@ -25,10 +25,10 @@ class ClubScreen extends React.Component {
                 <Block flex>
                     <Block style={{ paddingHorizontal: theme.SIZES.BASE }}>
                         <Block flex row>
-                            <Card item={articles[1]} style={{ marginRight: theme.SIZES.BASE }} />
-                            <Card item={articles[2]} />
+                            <Cards item={articles[1]} style={{ marginRight: theme.SIZES.BASE }} />
+                            <Cards item={articles[2]} />
                         </Block>
-                        <Block flex card shadow style={styles.category}>
+                        <Block flex cards shadow style={styles.category}>
                             <ImageBackground
                                 source={{ uri: Images.Products["View article"] }}
                                 style={[styles.imageBlock, { width: width - theme.SIZES.BASE * 2, height: 252 }]}
@@ -50,7 +50,7 @@ class ClubScreen extends React.Component {
         return (
             <Block flex center>
                 <ScrollView showsVerticalScrollIndicator={false}>
-                    {this.renderCards()}
+                    {this.renderCard()}
                 </ScrollView>
             </Block>
         );

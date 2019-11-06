@@ -18,7 +18,7 @@ class BoardCard extends Component {
                             <Text>게시판</Text>
                         </Left>
                         <Right>
-                            <Text onPress={() => navigation.navigate("CompanyBoardList")}
+                            <Text onPress={() => navigation.navigate("CompanyBoardList")}   
                                 style={{ color: '#0B5713' }}>More...</Text>
                         </Right>
                     </CardItem>

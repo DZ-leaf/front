@@ -5,7 +5,7 @@ import { Block, Text, theme } from "galio-framework";
 
 import articles from "../../constants/articles";
 import Images from "../../constants/Images";
-import { Card } from "../../components";
+import { Cards } from "../../components";
 
 const { width } = Dimensions.get("screen");
 
@@ -23,7 +23,7 @@ class ClubAtHome extends React.Component {
                 </Text>
                 <Block flex>
                     <Block style={{ paddingHorizontal: theme.SIZES.BASE }}>
-                    <Card item={articles[4]} full />
+                    <Cards item={articles[4]} full />
                         <Block flex card shadow style={styles.category}>
                             <ImageBackground
                                 source={{ uri: Images.Products["View article"] }}
