@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { SafeAreaView, View, FlatList, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { Container, Content, List, ListItem, Body, Right } from 'native-base'
 
-import EventDetail from '../screens/calendar/EventDetailModal';
+import EventDetail from '../../screens/calendar/EventDetailModal';
 
 const DATA = [
   {

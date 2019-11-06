@@ -3,7 +3,7 @@ import { Block } from 'galio-framework';
 
 import BoardCard from '../../components/board/BoardCard';
 import GalleryCard from '../../components/gallery/GalleryCard';
-import CalendarCard from '../../components/CalendarCard';
+import CalendarCard from '../../components/calendar/CalendarCard';
 import { ScrollView } from 'react-native-gesture-handler';
 
 class CompanyScreen extends Component {
