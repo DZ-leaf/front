@@ -16,7 +16,7 @@ class BoardList extends Component {
                 <Content>
                     <Block right>
                         <View style={{ paddingRight: '5%', paddingTop: '4%' }}>
-                            <Icon name="pencil" size={20}
+                            <Icon name="pencil" size={25}
                                 onPress={() => navigation.navigate("CompanyBoardWrite")}></Icon>
                         </View>
                     </Block>

@@ -88,13 +88,14 @@ class FindPwScreen extends React.Component {
         <Block flex space="between" style={styles.padded}>
           <Block style={{ paddingHorizontal: theme.SIZES.BASE }}>
             <Block style={styles.input}>
-              <Input placeholder="아이디" color={'black'}
+              <Input placeholder="아이디" color={'black'} placeholderTextColor="#ADB5BD"
                 onChangeText={(text) => { this.setState({ data: { ...this.state.data, memberId: text } }) }} />
             </Block>
 
             {this.state.emailCheck == false ?
               <Block style={[styles.input, styles.email]}>
-                <Input placeholder='이메일' style={{ width: width - theme.SIZES.BASE * 9.5 }} color={'black'}
+                <Input placeholder='이메일' style={{ width: width - theme.SIZES.BASE * 9.5 }} 
+                color={'black'} placeholderTextColor="#ADB5BD"
                   onChangeText={(text) => { this.setState({ data: { ...this.state.data, email: text } }) }} />
                 <Button style={styles.mailButton} shadowless
                   onPress={() => { this.sendEmail(this.state.data) }}>전송</Button>
@@ -109,7 +110,8 @@ class FindPwScreen extends React.Component {
             {this.state.authCheck == false ?
               <Block style={styles.input, styles.email}>
                 <Input
-                  placeholder="인증번호" style={{ width: width - theme.SIZES.BASE * 9.5 }} color={'black'}
+                  placeholder="인증번호" style={{ width: width - theme.SIZES.BASE * 9.5 }} 
+                  color={'black'} placeholderTextColor="#ADB5BD"
                   onChangeText={(text) => { this.setState({ authNumCheck: text }) }} />
                 <Button style={styles.mailButton} shadowless
                   onPress={() => { this.authNumCheck() }}>확인</Button>

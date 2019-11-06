@@ -62,13 +62,14 @@ class IdConfirmScreen extends Component {
                 <Block style={styles.container}>
                     <Text style={styles.text}>비밀번호를 다시 설정해 주세요</Text>
                     <Block style={styles.input}>
-                        <Input placeholder='비밀번호 : 4~12자의 영문 대소문자와 숫자' style={{ marginTop: -8 }}
+                        <Input placeholder='비밀번호 : 4~12자의 영문 대소문자와 숫자' 
+                        style={{ marginTop: -8 }} placeholderTextColor="#ADB5BD"
                             color={'black'} secureTextEntry={true}
                             onChangeText={(text) => { this.setState({ data: { ...this.state.data, memberPw: text } }) }} />
                         <Input color={theme.COLORS.BLACK}
                             onChangeText={(text) => { this.setState({ memberPwCheck: text }) }}
                             secureTextEntry={true}
-                            placeholder="비밀번호 확인"
+                            placeholder="비밀번호 확인" placeholderTextColor="#ADB5BD"
                             right
                             icon={this.state.memberPwCheck ?
                                 (this.state.data.memberPw === this.state.memberPwCheck ? 'check' : 'exclamation') : ''}

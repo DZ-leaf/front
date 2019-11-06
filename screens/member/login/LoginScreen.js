@@ -40,14 +40,14 @@ class LoginScreen extends React.Component {
         <Block flex space="between" style={styles.padded}>
           <Block style={{ paddingHorizontal: theme.SIZES.BASE }}>
             <Input
-              placeholder="ID"
+              placeholder="ID" 
               iconContent={<Icon size={20} style={{ marginRight: 10 }} name="person" />} 
-              color={'#000000'}
+              color={'#000000'} placeholderTextColor="#ADB5BD"
               onChangeText={(text) => { this.setState({ userId: text }) }}/>
             <Input
               placeholder="Password"
               iconContent={<Icon size={20} style={{ marginRight: 10 }} name="lock" />} 
-              color={'#000000'}
+              color={'#000000'} placeholderTextColor="#ADB5BD"
               onChangeText={(text) => { this.setState({ userPw: text }) }}/>
             <View style={styles.textAuto}>
             <Checkbox color="primary" labelStyle={{ color: '#707070' }} label="자동 로그인" />

@@ -164,13 +164,13 @@ class Register extends React.Component {
             <Block width={width * 0.9}>
               <View style={styles.inputs}>
                 <Input placeholder="이름" iconContent={<Block />}
-                  style={{ borderRadius: 0 }} color={theme.COLORS.BLACK}
+                  style={{ borderRadius: 0 }} color={theme.COLORS.BLACK} placeholderTextColor="#ADB5BD"
                   onChangeText={(text) => { this.setState({ data: { ...this.state.data, memberNm: text } }) }} />
               </View>
               {this.state.idCheck == false ?
                 <View style={styles.inputs, styles.inputButton}>
                   <Input placeholder="아이디" iconContent={<Block />}
-                    style={{ borderRadius: 0 }} color={theme.COLORS.BLACK}
+                    style={{ borderRadius: 0 }} color={theme.COLORS.BLACK} placeholderTextColor="#ADB5BD"
                     onChangeText={(text) => { this.setState({ data: { ...this.state.data, memberId: text } }) }} />
                   <Button style={styles.button, { width: '10%' }} shadowless
                     onPress={() => this.idCheck(this.state.data.memberId)}>확인</Button>
@@ -186,13 +186,13 @@ class Register extends React.Component {
               <View style={styles.inputs}>
                 <Input placeholder="비밀번호 : 4~12자의 영문 대소문자와 숫자" iconContent={<Block />}
                   style={{ borderRadius: 0 }} color={theme.COLORS.BLACK}
-                  secureTextEntry={true}
+                  secureTextEntry={true} placeholderTextColor="#ADB5BD"
                   onChangeText={(text) => { this.setState({ data: { ...this.state.data, memberPw: text } }) }} />
               </View>
               <View style={styles.inputs}>
                 <Input style={{ borderRadius: 0 }} color={theme.COLORS.BLACK}
                   onChangeText={(text) => { this.setState({ userPwCheck: text }) }}
-                  secureTextEntry={true}
+                  secureTextEntry={true} placeholderTextColor="#ADB5BD"
                   placeholder="비밀번호 확인"
                   right
                   icon={this.state.userPwCheck ?
@@ -207,7 +207,7 @@ class Register extends React.Component {
             <Block width={width * 0.9}>
                 <View style={styles.inputs, styles.inputButton}>
                   <Input placeholder="회사" iconContent={<Block />}
-                    style={{ borderRadius: 0 }} color={theme.COLORS.BLACK}
+                    style={{ borderRadius: 0 }} color={theme.COLORS.BLACK} placeholderTextColor="#ADB5BD"
                     editable={false} value={this.state.data.companyNm} />
                   <Button style={styles.button, { width: '10%' }} shadowless
                     onPress={() => this.setModalVisible(!this.state.modalVisible)}>찾기</Button>
@@ -221,7 +221,7 @@ class Register extends React.Component {
               </Modal>
 
               <View style={styles.inputs} width={width * 0.9}>
-                <Input placeholder="부서" iconContent={<Block />}
+                <Input placeholder="부서" iconContent={<Block />} placeholderTextColor="#ADB5BD"
                   style={{ borderRadius: 0 }} color={theme.COLORS.BLACK}
                   onChangeText={(text) => { this.setState({ data: { ...this.state.data, departmentNm: text } }) }} />
               </View>
@@ -230,7 +230,7 @@ class Register extends React.Component {
             <Block width={width * 0.9}>
               {this.state.emailCheck == false ?
                 <View style={styles.inputs, styles.inputButton}>
-                  <Input placeholder="이메일" iconContent={<Block />}
+                  <Input placeholder="이메일" iconContent={<Block />} placeholderTextColor="#ADB5BD"
                     style={{ borderRadius: 0 }} color={theme.COLORS.BLACK}
                     onChangeText={(text) => { this.setState({ data: { ...this.state.data, email: text } }) }} />
                   <Button style={styles.button, { width: '10%' }} shadowless
@@ -246,7 +246,7 @@ class Register extends React.Component {
               }
               {this.state.authCheck == false ?
                 <View style={styles.inputs, styles.inputButton}>
-                  <Input placeholder="인증 번호" iconContent={<Block />}
+                  <Input placeholder="인증 번호" iconContent={<Block />} placeholderTextColor="#ADB5BD"
                     style={{ borderRadius: 0 }} color={theme.COLORS.BLACK}
                     onChangeText={(text) => { this.setState({ authNumCheck: text }) }} />
                   <Button style={styles.button, { width: '10%' }} shadowless

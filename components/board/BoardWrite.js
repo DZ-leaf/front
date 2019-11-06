@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { withNavigation } from 'react-navigation';
+import { withNavigation, ScrollView } from 'react-navigation';
 import { Block, theme } from 'galio-framework';
 import {
-    StyleSheet, Text, View, TextInput, KeyboardAvoidingView, Platform, Dimensions,
-    ActionSheetIOS, Alert, BackHandler,
+    StyleSheet, Text, View, TextInput, KeyboardAvoidingView, 
+    Platform, Dimensions, ActionSheetIOS, BackHandler,
 } from 'react-native';
 import { Header, Content, Item, Input, Footer, FooterTab, Left, Body, Right, Button } from 'native-base';
 import ActionSheet from 'react-native-actionsheet'
@@ -114,8 +114,10 @@ class BoardWrite extends Component {
                             onChangeText={(text) => { this.setState({ content: text }) }} />
                     </View>
                 </Content>
-                <KeyboardAvoidingView behavior="padding"
-                    keyboardVerticalOffset={Platform.OS == 'ios' ? -34 : 0}>
+                <KeyboardAvoidingView behavior={Platform.OS == 'ios' ? 'padding' : 'position'}
+                    keyboardVerticalOffset={Platform.OS == 'ios' ? -34 : 0}
+                    >
+                    <ScrollView>
                     <Footer>
                         <FooterTab transparent style={{ backgroundColor: '#f2f0f2' }}>
                             <View style={{ paddingLeft: '5%', paddingTop: '4%' }}>
@@ -123,6 +125,7 @@ class BoardWrite extends Component {
                             </View>
                         </FooterTab>
                     </Footer>
+                    </ScrollView>
                 </KeyboardAvoidingView>
             </Block >
         );
@@ -133,14 +136,10 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 16,
         fontWeight: 'bold',
-        paddingBottom: Platform.OS == 'ios' ? '15%' : '0%',
+        paddingBottom: Platform.OS == 'ios' ? '10%' : '0%',
         color: '#525F7F',
     },
     navbar: {
-        paddingVertical: 0,
-        paddingBottom: theme.SIZES.BASE * 1.5,
-        paddingTop: iPhoneX ? theme.SIZES.BASE * 2 : theme.SIZES.BASE,
-        zIndex: 5,
         backgroundColor: 'white'
     }
 

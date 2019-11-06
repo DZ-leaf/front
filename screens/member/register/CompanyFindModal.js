@@ -21,8 +21,8 @@ const CompanyFindModal = (props) => {
     return (
         <Block flex style={styles.container}>
             <Block width={width * 0.9}>
-                <View style={styles.inputs, styles.inputButton}>
-                    <Input placeholder="회사" iconContent={<Block />}
+                <View style={styles.inputs, styles.inputButton}> 
+                    <Input placeholder="회사" iconContent={<Block />} placeholderTextColor="#ADB5BD"
                         style={{ borderRadius: 0 }} color={theme.COLORS.BLACK}
                         onChangeText={(text) => { setCompany(text) }} />
                     <Button style={styles.button, { width: '10%' }} shadowless
