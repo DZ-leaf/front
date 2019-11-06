@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import Calendars from '../../components/Calendars';
+import Calendars from '../../components/calendar/Calendars';
 
 class CalendarScreen extends Component {
     
@@ -12,6 +12,5 @@ class CalendarScreen extends Component {
         );
     }
 }
-
 
 export default CalendarScreen;

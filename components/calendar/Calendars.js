@@ -5,7 +5,7 @@ import { CalendarList, Calendar, Agenda } from 'react-native-calendars';
 import moment from 'moment';
 
 import List from './CalendarList';
-import AddEventModal from '../screens/calendar/AddEventModal';
+import AddEventModal from '../../screens/calendar/AddEventModal';
 
 const { width, height } = Dimensions.get("screen");
 let calendarDate = moment();

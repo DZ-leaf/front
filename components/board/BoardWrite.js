@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { withNavigation } from 'react-navigation';
 import { Block, theme } from 'galio-framework';
-import { StyleSheet, Text, View, TextInput, KeyboardAvoidingView, Platform, Dimensions, 
-    ActionSheetIOS, Alert, BackHandler, } from 'react-native';
+import {
+    StyleSheet, Text, View, TextInput, KeyboardAvoidingView, Platform, Dimensions,
+    ActionSheetIOS, Alert, BackHandler,
+} from 'react-native';
 import { Header, Content, Item, Input, Footer, FooterTab, Left, Body, Right, Button } from 'native-base';
 import ActionSheet from 'react-native-actionsheet'
 
@@ -25,30 +27,35 @@ class BoardWrite extends Component {
         return true;
     }
 
+    state = {
+        title: '',
+        content: ''
+    }
+
     cancleButton = () => {
-        if(Platform.OS == 'android') {
+        if (Platform.OS == 'android') {
             this.ActionSheet.show()
         } else {
             ActionSheetIOS.showActionSheetWithOptions(
                 {
-                  options: ['돌아가기', '게시글 삭제'],
-                  destructiveButtonIndex: 1,
-                  cancelButtonIndex: 0,
+                    options: ['돌아가기', '게시글 삭제'],
+                    destructiveButtonIndex: 1,
+                    cancelButtonIndex: 0,
                 },
                 (index) => {
                     // 1: 게시글 삭제
-                    if(index == 1){
+                    if (index == 1) {
                         this.props.navigation.navigate("CompanyBoardList");
                     }
                 },
-              );
+            );
         }
     }
 
     optionButton = (index) => {
         // 0: 게시글 삭제
         // 1: 돌아가기
-        if(index == 0){
+        if (index == 0) {
             this.props.navigation.navigate("CompanyBoardList");
         }
     }
@@ -72,8 +79,13 @@ class BoardWrite extends Component {
                     </Body>
                     <Right>
                         <Button hasText transparent>
-                            <Text style={{ fontSize: 15 }}
-                            onPress={this.clearButton}>완료</Text>
+                            {
+                                this.state.title != '' && this.state.content != '' ?
+                                    <Text style={{ fontSize: 15, color: '#000000' }}
+                                        onPress={this.clearButton}>완료</Text>
+                                    :
+                                    <Text style={{ fontSize: 15, color: '#ADB5BD' }}>완료</Text>
+                            }
                         </Button>
                     </Right>
                 </Header>
@@ -83,13 +95,13 @@ class BoardWrite extends Component {
                     options={['게시글 삭제', '돌아가기']}
                     cancelButtonIndex={1}
                     destructiveButtonIndex={1}
-                    onPress={(index) => this.optionButton(index)}
-                />
+                    onPress={(index) => this.optionButton(index)} />
 
                 <Content>
                     <View style={{ padding: '3%' }}>
                         <Item>
-                            <Input placeholder='제목' style={{ fontSize: 20 }} />
+                            <Input placeholder='제목' style={{ fontSize: 20 }}
+                                onChangeText={(text) => { this.setState({ title: text }) }} />
                         </Item>
                     </View>
                     <View style={{ padding: '4%' }}>
@@ -99,7 +111,7 @@ class BoardWrite extends Component {
                             placeholder="게시글 써봐"
                             textAlignVertical={'top'}
                             style={{ fontSize: 17 }}
-                        />
+                            onChangeText={(text) => { this.setState({ content: text }) }} />
                     </View>
                 </Content>
                 <KeyboardAvoidingView behavior="padding"

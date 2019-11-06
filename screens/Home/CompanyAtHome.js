@@ -6,16 +6,13 @@ const { width } = Dimensions.get("screen");
 
 import BoardCard from '../../components/board/BoardCard';
 import GalleryCard from '../../components/gallery/GalleryCard';
-import CalendarCard from '../../components/CalendarCard';
+import CalendarCard from '../../components/calendar/CalendarCard';
 
 class CompanyAtHome extends React.Component {
 
     renderCards = () => {
         return (
             <Block row>
-                <View style={{ width: width }}>
-                    <BoardCard />
-                </View>
                 <View style={{ width: width }}>
                     <BoardCard />
                 </View>
@@ -26,9 +23,6 @@ class CompanyAtHome extends React.Component {
     renderGallery = () => {
         return (
             <Block row>
-                <View style={{ width: width }}>
-                    <GalleryCard />
-                </View>
                 <View style={{ width: width }}>
                     <GalleryCard />
                 </View>

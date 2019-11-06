@@ -7,7 +7,8 @@ import transitionConfig from './transitionConfig';
 import CompanyScreen from '../../screens/company/CompanyScreen';
 import {
     CompanyBoardList, CompanyBoardDetail,
-    CompanyGallery, CompanyBoardWrite
+    CompanyGallery, CompanyBoardWrite,
+    CompanyCalendar
 } from '../../screens/company';
 
 const CompanyStack = createStackNavigator(
@@ -42,6 +43,12 @@ const CompanyStack = createStackNavigator(
                 header: null,
                 gesturesEnabled: false,
             },
+        },
+        CompanyCalendar: {
+            screen: CompanyCalendar,
+            navigationOptions: ({ navigation }) => ({
+                header: <Header back={true} title="회사" navigation={navigation} />
+            })
         },
     },
     {

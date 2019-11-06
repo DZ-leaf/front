@@ -70,7 +70,7 @@ class CalendarCard extends Component {
                             <Text>일정</Text>
                         </Left>
                         <Right>
-                            <Text onPress={() => navigation.navigate("CalendarList")}
+                            <Text onPress={() => navigation.navigate("CompanyCalendar")}
                                 style={{ color: '#0B5713' }}>More...</Text>
                         </Right>
                     </CardItem>
