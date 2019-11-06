@@ -1,5 +1,5 @@
 import React, { Component, useState } from 'react';
-import { View, StyleSheet, Modal, Dimensions, TouchableOpacity, TextInput, Picker, Text } from 'react-native';
+import { View, StyleSheet, Modal, Dimensions, TouchableOpacity, TextInput, Picker, Text, Platform } from 'react-native';
 import { Block, Button, theme, Input } from "galio-framework";
 import ActionSheet from 'react-native-actionsheet';
 
@@ -85,9 +85,28 @@ class EventDetailModal extends Component {
         this.setState({ data: { ...this.state.data, selectedRepeatValue: selectValue } })
     }
 
+    deleteButton = () => {
+        if (Platform.OS == 'android') {
+            this.ActionSheet.show()
+        } else {
+            ActionSheetIOS.showActionSheetWithOptions(
+                {
+                    options: ['삭제', '취소'],
+                    cancelButtonIndex: 1,
+                    destructiveButtonIndex: 0,
+                },
+                (index) => {
+                    if (index == 0) {
+                        this.props.navigation.navigate.goBack();
+                    }
+                }
+            );
+        }
+    }
+
     render() {
         // console.log(this.props.day);        
-        
+
         return (
             <Block flex style={styles.container}>
                 <Block style={styles.inputContainer}>
@@ -127,7 +146,7 @@ class EventDetailModal extends Component {
                     </Block>
                 </Block>
                 <Block style={styles.buttonContainer}>
-                    <Button style={styles.button} onPress={this.props.closeModal} textStyle={styles.buttonText} shadowless onPress={() => {this.setEditModalVisible(!this.state.modal.editModal)}} >수정</Button>
+                    <Button style={styles.button} onPress={this.props.closeModal} textStyle={styles.buttonText} shadowless onPress={() => { this.setEditModalVisible(!this.state.modal.editModal) }} >수정</Button>
                     <Button style={styles.button} textStyle={styles.buttonText} shadowless onPress={this.showActionSheet} >삭제</Button>
                     <ActionSheet
                         ref={o => this.ActionSheet = o}
@@ -135,11 +154,15 @@ class EventDetailModal extends Component {
                         options={['삭제', '취소']}
                         cancelButtonIndex={1}
                         destructiveButtonIndex={0}
-                        onPress={(index) => { console.log(index); }}
+                        onPress={(index) => {
+                            if (index == 0) {
+                                this.props.navigation.goBack();
+                            }
+                        }}
                     />
 
-                    <Modal visible={this.state.modal.editModal} animationType="slide" onRequestClose={() => {this.closeNotifyModal()}}>
-                        <EditEventModal closeModal={this.closeEditModal}/>
+                    <Modal visible={this.state.modal.editModal} animationType="slide" onRequestClose={() => { this.closeNotifyModal() }}>
+                        <EditEventModal closeModal={this.closeEditModal} navigation={this.props.navigation} />
                     </Modal>
                 </Block>
             </Block>

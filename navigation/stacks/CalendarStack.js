@@ -10,7 +10,7 @@ import EditEventModal from '../../screens/calendar/EditEventModal';
 
 const CalendarStack = createStackNavigator(
     {
-        Setting: {
+        Calendar: {
             screen: CalendarScreen,
             navigationOptions: ({ navigation }) => ({
                 header: <Header search options title="일정" navigation={navigation} />

@@ -6,27 +6,13 @@ import { Block, Button, theme, Input } from "galio-framework";
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import DateTimePicker from 'react-native-modal-datetime-picker';
-import DateTimePickModal from './DateTimePickModal';
 import NotifyModal from './NotifyModal';
 import RepeatModal from './RepeatModal';
-import { Navigation } from 'react-native-navigation';
 
 const { width } = Dimensions.get("screen");
 
 
 class EditEventModal extends Component {
-
-    // _showNotify(){
-    //     this.props.navigator.showModal({
-    //       screen: 'NotifyModal', // unique ID registered with Navigation.registerScreen
-    //       title: "Notice", // title of the screen as appears in the nav bar (optional)
-    //       passProps: {}, // simple serializable object that will pass as props to the modal (optional)
-    //       navigatorStyle: {
-    //         //navBarHidden: true,
-    //       }, // override the navigator style for the screen, see "Styling the navigator" below (optional)
-    //       animationType: 'slide-up' // 'none' / 'slide-up' , appear animation for the modal (optional, default 'slide-up')
-    //     });
-    //   }
 
     state = {
         data: {
@@ -60,7 +46,7 @@ class EditEventModal extends Component {
         hour = hour || 12; // 0 => 12
 
         minute = minute < 10 ? '0' + minute : minute;
- 
+
         return (month + '월 ' + date + '일 ' + day + ' ' + ampm + ' ' + hour + '시 ' + minute + '분')
     }
 
@@ -68,7 +54,7 @@ class EditEventModal extends Component {
     setDateTimeModalVisible = (visible) => { this.setState({ modal: { ...this.state.modal, dateTimeModal: visible } }) }
     closeDateTimeModal = () => { this.setState({ modal: { ...this.state.modal, dateTimeModal: false }, startTimeCheck: false }) }
     datePicked = date => {
-        this.state.startTimeCheck? this.setState({data: {...this.state.data, startTime: this.getToday(date)}}) : this.setState({data: {...this.state.data, endTime: this.getToday(date)}});
+        this.state.startTimeCheck ? this.setState({ data: { ...this.state.data, startTime: this.getToday(date) } }) : this.setState({ data: { ...this.state.data, endTime: this.getToday(date) } });
         this.closeDateTimeModal();
     }
 
@@ -90,7 +76,6 @@ class EditEventModal extends Component {
     }
 
     render() {
-        // console.log(this.props.day);        
 
         return (
             <Block flex style={styles.container}>
@@ -109,54 +94,47 @@ class EditEventModal extends Component {
                         <Text style={[styles.text, { paddingLeft: '0%' }]}>종료          {this.state.data.endTime == '' ? this.props.day.end : this.state.data.endTime}</Text>
                     </TouchableOpacity>
                 </Block>
-                {/* <Modal middle animationType="slide"
-                    visible={this.state.modal.dateTimeModal} transparent={true} > */}
-                {/* <DateTimePickModal closeModal={this.closeDateTimeModal} selectedDate={this.props.selectedDate} /> */}
                 <Block>
-                <DateTimePicker isVisible={this.state.modal.dateTimeModal} mode='datetime' timePickerModeAndroid='spinner'
-                    // confirmTextStyle={{color: '#0B5713'}}
-                    // cancelTextStyle={{color: '#0B5713'}}
-                    onConfirm={this.datePicked}
-                    onCancel={this.closeDateTimeModal}
-                    onDayPress={(day) => { console.log(day); }}
-                    date={new Date(this.props.selectedDate)}
-                    is24Hour={false} 
-                    
-                    // isDarkModeEnabled={true}
-                /></Block>
-                {/* </Modal> */}
+                    <DateTimePicker isVisible={this.state.modal.dateTimeModal} mode='datetime' timePickerModeAndroid='spinner'
+                        onConfirm={this.datePicked}
+                        onCancel={this.closeDateTimeModal}
+                        onDayPress={(day) => { console.log(day); }}
+                        date={new Date(this.props.selectedDate)}
+                        is24Hour={false}
+                    />
+                </Block>
 
-                <Block style={[{ paddingTop: '5%' }, {marginTop: 10}]}>
-                    <TouchableOpacity /* style={styles.dateTime} */ onPress={() => {this.setNotifyModalVisible(!this.state.modal.notifyModal)}}>
+                <Block style={[{ paddingTop: '5%' }, { marginTop: 10 }]}>
+                    <TouchableOpacity  style={styles.dateTime}  onPress={() => { this.setNotifyModalVisible(!this.state.modal.notifyModal) }}>
                         <Block style={styles.note}>
                             <Icon size={20} style={{ marginRight: 10 }} name="notifications" />
                             <Text style={[styles.input, styles.text, { paddingTop: '4%' }]}>{this.state.data.selectedNotifyValue.label}</Text>
                         </Block>
                     </TouchableOpacity>
-                    <Modal visible={this.state.modal.notifyModal} animationType="slide" onRequestClose={() => {this.closeNotifyModal()}}>
+                    <Modal visible={this.state.modal.notifyModal} animationType="slide" onRequestClose={() => { this.closeNotifyModal() }}>
                         <NotifyModal closeModal={this.closeNotifyModal} setNotify={this.setNotify} selectedValue={this.state.data.selectedNotifyValue.value} />
                     </Modal>
-                    <TouchableOpacity /* style={styles.dateTime} */ onPress={() => { this.setRepeatModalVisible(!this.state.modal.repeatModal) }}>
+                    <TouchableOpacity  style={styles.dateTime}  onPress={() => { this.setRepeatModalVisible(!this.state.modal.repeatModal) }}>
                         <Block style={styles.note}>
                             <Icon size={20} style={{ marginRight: 10 }} name="repeat" />
-                            <Text style={[styles.input, styles.text,  { paddingTop: '4%' } ]}>{this.state.data.selectedRepeatValue.label}</Text>
+                            <Text style={[styles.input, styles.text, { paddingTop: '4%' }]}>{this.state.data.selectedRepeatValue.label}</Text>
                         </Block>
                     </TouchableOpacity>
-                    <Modal visible={this.state.modal.repeatModal} animationType="slide" onRequestClose={() => {this.closeRepeatModal()}}>
+                    <Modal visible={this.state.modal.repeatModal} animationType="slide" onRequestClose={() => { this.closeRepeatModal() }}>
                         <RepeatModal closeModal={this.closeRepeatModal} setRepeat={this.setRepeat} selectedValue={this.state.data.selectedRepeatValue.value} />
                     </Modal>
                     <Block style={styles.note}>
                         <Icon size={20} style={{ marginRight: 10 }} name="location-on" />
-                        <TextInput multiline={true} placeholder='위치'  style={[styles.input, styles.text]} ></TextInput>
+                        <TextInput multiline={true} placeholder='위치' style={[styles.input, styles.text]} ></TextInput>
                     </Block>
                     <Block style={styles.note}>
                         <Icon size={20} style={{ marginRight: 10 }} name="event-note" />
-                        <TextInput multiline={true} placeholder='메모'  style={[styles.input, styles.text]} ></TextInput>
+                        <TextInput multiline={true} placeholder='메모' style={[styles.input, styles.text]} ></TextInput>
                     </Block>
                 </Block>
                 <Block style={styles.buttonContainer}>
-                    <Button style={styles.button} onPress={this.props.closeModal} textStyle={styles.buttonText} shadowless onPress={() => {this.props.closeModal()}}>취소</Button>
-                    <Button style={styles.button} textStyle={styles.buttonText} shadowless>저장</Button>
+                    <Button style={styles.button} onPress={this.props.closeModal} textStyle={styles.buttonText} shadowless onPress={() => { this.props.closeModal() }}>취소</Button>
+                    <Button style={styles.button} textStyle={styles.buttonText} shadowless onPress={() => { this.props.navigation.goBack(); this.props.closeModal(); }}>저장</Button>
                 </Block>
             </Block>
         );

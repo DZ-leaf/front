@@ -9,24 +9,11 @@ import DateTimePicker from 'react-native-modal-datetime-picker';
 import DateTimePickModal from './DateTimePickModal';
 import NotifyModal from './NotifyModal';
 import RepeatModal from './RepeatModal';
-import { Navigation } from 'react-native-navigation';
 
 const { width } = Dimensions.get("screen");
 
 
 class AddEventModal extends Component {
-
-    // _showNotify(){
-    //     this.props.navigator.showModal({
-    //       screen: 'NotifyModal', // unique ID registered with Navigation.registerScreen
-    //       title: "Notice", // title of the screen as appears in the nav bar (optional)
-    //       passProps: {}, // simple serializable object that will pass as props to the modal (optional)
-    //       navigatorStyle: {
-    //         //navBarHidden: true,
-    //       }, // override the navigator style for the screen, see "Styling the navigator" below (optional)
-    //       animationType: 'slide-up' // 'none' / 'slide-up' , appear animation for the modal (optional, default 'slide-up')
-    //     });
-    //   }
 
     state = {
         data: {
@@ -91,7 +78,7 @@ class AddEventModal extends Component {
 
     render() {
         // console.log(this.props.day);        
-
+        
         return (
             <Block flex style={styles.container}>
                 <Block style={styles.inputContainer}>
@@ -156,7 +143,7 @@ class AddEventModal extends Component {
                 </Block>
                 <Block style={styles.buttonContainer}>
                     <Button style={styles.button} onPress={this.props.closeModal} textStyle={styles.buttonText} shadowless>취소</Button>
-                    <Button style={styles.button} textStyle={styles.buttonText} shadowless>저장</Button>
+                    <Button style={styles.button} textStyle={styles.buttonText} shadowless onPress={() => {this.props.closeModal()}}>저장</Button>
                 </Block>
             </Block>
         );
