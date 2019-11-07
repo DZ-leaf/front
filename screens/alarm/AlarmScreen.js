@@ -96,9 +96,6 @@ class AlarmScreen extends Component {
                     )}
                     leftOpenValue={0}
                     rightOpenValue={-70}
-                    // previewRowKey={'0'}
-                    // previewOpenValue={-40}
-                    // previewOpenDelay={3000}
                     onSwipeValueChange={this.onSwipeValueChange}
                 />
             </View>
