@@ -1,5 +1,5 @@
 import React from "react";
-import { Image, StyleSheet, StatusBar, Dimensions, View } from "react-native";
+import { Image, StyleSheet, StatusBar, Dimensions, View, Alert } from "react-native";
 import { Block, Button, Text, theme, Input, Checkbox } from "galio-framework";
 import Images from "../../../constants/Images";
 
@@ -12,45 +12,50 @@ import { AjaxUser } from "../../../lib/url/member/userUrl";
 class LoginScreen extends React.Component {
 
   state = {
-    userId:'',
-    userPw:'',
+    memberId: '',
+    memberPw: '',
   }
 
   handleSubmit = () => {
-    this.loginAjax(this.state);
     this.props.navigation.navigate("Home");
+    // this.loginAjax(this.state);
   }
 
   loginAjax = (data) => {
     return AjaxUser.login(data)
-      .catch((error) => {
-        console.error(error);
-      });
+    .then((responseJson) => {
+      // console.log(responseJson);
+      if(responseJson.message == 'success') {
+        this.props.navigation.navigate("Home");
+      } else if (responseJson.message == 'fail') {
+        Alert.alert("로그인에 실패했습니다")
+      }
+    })
   }
 
   render() {
     const { navigation } = this.props;
-    
+
     return (
       <Block flex style={styles.container}>
         <StatusBar hidden />
-        <Block center style={{paddingTop: '8%'}}>
-          <Image source={Images.LogoOnboarding}/>
+        <Block center style={{ paddingTop: '8%' }}>
+          <Image source={Images.LogoOnboarding} />
         </Block>
         <Block flex space="between" style={styles.padded}>
           <Block style={{ paddingHorizontal: theme.SIZES.BASE }}>
             <Input
               placeholder="ID" 
-              iconContent={<Icon size={20} style={{ marginRight: 10 }} name="person" />} 
+              iconContent={<Icon size={20} style={{ marginRight: 10 }} name="person" />}
               color={'#000000'} placeholderTextColor="#ADB5BD"
-              onChangeText={(text) => { this.setState({ userId: text }) }}/>
+              onChangeText={(text) => { this.setState({ memberId: text }) }} />
             <Input
-              placeholder="Password"
-              iconContent={<Icon size={20} style={{ marginRight: 10 }} name="lock" />} 
+              placeholder="Password" password
+              iconContent={<Icon size={20} style={{ marginRight: 10 }} name="lock" />}
               color={'#000000'} placeholderTextColor="#ADB5BD"
-              onChangeText={(text) => { this.setState({ userPw: text }) }}/>
+              onChangeText={(text) => { this.setState({ memberPw: text }) }} />
             <View style={styles.textAuto}>
-            <Checkbox color="primary" labelStyle={{ color: '#707070' }} label="자동 로그인" />
+              <Checkbox color="primary" labelStyle={{ color: '#707070' }} label="자동 로그인" />
             </View>
             <Button
               style={styles.button}
@@ -59,7 +64,7 @@ class LoginScreen extends React.Component {
             </Button>
             <View style={styles.textView}>
               <Text style={styles.text}
-                onPress={() => navigation.navigate("Find", {order: 1})}>
+                onPress={() => navigation.navigate("Find", { order: 1 })}>
                 아이디 비밀번호 찾기 {'\u00A0'}{'\u00A0'}{'\u00A0'}
               </Text>
               <Text style={styles.text}>

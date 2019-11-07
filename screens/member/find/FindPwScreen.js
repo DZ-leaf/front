@@ -40,9 +40,7 @@ class FindPwScreen extends React.Component {
           console.log("num__" + responseJson.authNum);
           this.setState({ authNum: responseJson.authNum })
         })
-        .catch((error) => {
-          console.error(error);
-        })
+
     }
   }
 
@@ -65,13 +63,13 @@ class FindPwScreen extends React.Component {
     var re = /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
     if (data.email == '' || data.memberId == '') {
       Alert.alert("입력란이 비어있습니다");
-    }else if (!re.test(data.email)) {
+    } else if (!re.test(data.email)) {
       Alert.alert("이메일 형식에 맞지 않습니다");
-    }else if (!this.state.authCheck || !this.state.emailCheck) {
+    } else if (!this.state.authCheck || !this.state.emailCheck) {
       Alert.alert("메일을 통해 인증번호를 받아주세요");
-    }else {
-    console.log(data);
-    navigation.navigate('Find', { order: 2, memberId: data.memberId })
+    } else {
+      console.log(data);
+      navigation.navigate('Find', { order: 2, memberId: data.memberId })
     }
   }
 
@@ -94,8 +92,8 @@ class FindPwScreen extends React.Component {
 
             {this.state.emailCheck == false ?
               <Block style={[styles.input, styles.email]}>
-                <Input placeholder='이메일' style={{ width: width - theme.SIZES.BASE * 9.5 }} 
-                color={'black'} placeholderTextColor="#ADB5BD"
+                <Input placeholder='이메일' style={{ width: width - theme.SIZES.BASE * 9.5 }}
+                  color={'black'} placeholderTextColor="#ADB5BD"
                   onChangeText={(text) => { this.setState({ data: { ...this.state.data, email: text } }) }} />
                 <Button style={styles.mailButton} shadowless
                   onPress={() => { this.sendEmail(this.state.data) }}>전송</Button>
@@ -110,7 +108,7 @@ class FindPwScreen extends React.Component {
             {this.state.authCheck == false ?
               <Block style={styles.input, styles.email}>
                 <Input
-                  placeholder="인증번호" style={{ width: width - theme.SIZES.BASE * 9.5 }} 
+                  placeholder="인증번호" style={{ width: width - theme.SIZES.BASE * 9.5 }}
                   color={'black'} placeholderTextColor="#ADB5BD"
                   onChangeText={(text) => { this.setState({ authNumCheck: text }) }} />
                 <Button style={styles.mailButton} shadowless

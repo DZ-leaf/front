@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
-// import { StyleSheet, Text, View } from 'react-native';
-import { Container, Body, Content, List, ListItem, Text, Left, Right, Icon } from 'native-base';
+import { StyleSheet, View } from 'react-native';
+import { Container, Body, Text, Content, List, ListItem, Left, Right } from 'native-base';
+import { Block } from 'galio-framework'
+
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 class SettingScreen extends Component {
 
@@ -12,38 +15,23 @@ class SettingScreen extends Component {
 
                         <ListItem selected>
                             <Left>
-                                <Icon active name="settings" />
+                                <Icon name="settings" size={20} />
                             </Left>
-                            <Body>
+                            <View style={{ paddingRight: '70%' }}>
                                 <Text>설정 1</Text>
-                            </Body>
+                            </View>
                             <Right>
-                                <Icon name="arrow-forward" />
+                                <Icon name="arrow-right-thick" size={20} />
                             </Right>
                         </ListItem>
 
                         <ListItem>
                             <Left>
-                                <Icon active name="settings" />
+                                <Icon name="logout-variant" size={20} />
                             </Left>
-                            <Body>
-                                <Text>설정 2</Text>
-                            </Body>
-                            <Right>
-                                <Icon name="arrow-forward" />
-                            </Right>
-                        </ListItem>
-
-                        <ListItem>
-                            <Left>
-                                <Icon active name="settings" />
-                            </Left>
-                            <Body>
-                                <Text>설정 3</Text>
-                            </Body>
-                            <Right>
-                                <Icon name="arrow-forward" />
-                            </Right>
+                            <View style={{ paddingRight: '70%' }}>
+                                <Text>로그아웃</Text>
+                            </View>
                         </ListItem>
 
                     </List>
