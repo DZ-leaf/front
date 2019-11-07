@@ -35,8 +35,8 @@ class Register extends React.Component {
   handleSubmit = () => {
     const nameRe = RegExp(/^[가-힣]+$/);
     const pwRe = RegExp(/^[a-zA-Z0-9]{4,12}$/);
-    if (this.state.data.memberNm === '' || this.state.data.memberPw === ''|| this.state.data.companyNm === '' 
-    || this.state.data.departmentNm === '' || this.state.userPwCheck === '') {
+    if (this.state.data.memberNm === '' || this.state.data.memberPw === '' || this.state.data.companyNm === ''
+      || this.state.data.departmentNm === '' || this.state.userPwCheck === '') {
       Alert.alert('입력란이 비어있습니다');
     } else if (!nameRe.test(this.state.data.memberNm)) {
       Alert.alert('이름을 다시 입력해주세요');
@@ -53,17 +53,14 @@ class Register extends React.Component {
 
   register = (data) => {
     return AjaxUser.register(data)
-    .then((responseJson) => {
-      console.log("회원가입 : " + responseJson.message);
-      if(responseJson.message === 'success'){
-        this.props.navigation.navigate("Login");
-      } else if(responseJson.message === 'fail'){
-        Alert.alert("회원가입에 실패하였습니다");
-      }
-    })
-      .catch((error) => {
-        console.error(error);
-      });
+      .then((responseJson) => {
+        console.log("회원가입 : " + responseJson.message);
+        if (responseJson.message === 'success') {
+          this.props.navigation.navigate("Login");
+        } else if (responseJson.message === 'fail') {
+          Alert.alert("회원가입에 실패하였습니다");
+        }
+      })
   }
 
   idCheck = (userId) => {
@@ -79,9 +76,6 @@ class Register extends React.Component {
           } if (responseJson.message === 'fail') {
             Alert.alert('중복되는 아이디 입니다');
           }
-        })
-        .catch((error) => {
-          console.error(error);
         })
     }
   }
@@ -102,9 +96,6 @@ class Register extends React.Component {
     return AjaxUser.findCompany(data)
       .then((responseJson) => {
         this.setState({ companyList: responseJson.data })
-      })
-      .catch((error) => {
-        console.error(error);
       })
   }
 
@@ -130,9 +121,6 @@ class Register extends React.Component {
           }
           console.log(responseJson.authNum);
           this.setState({ authNum: responseJson.authNum })
-        })
-        .catch((error) => {
-          console.error(error);
         })
     }
   }
@@ -205,19 +193,19 @@ class Register extends React.Component {
             </Block>
 
             <Block width={width * 0.9}>
-                <View style={styles.inputs, styles.inputButton}>
-                  <Input placeholder="회사" iconContent={<Block />}
-                    style={{ borderRadius: 0 }} color={theme.COLORS.BLACK} placeholderTextColor="#ADB5BD"
-                    editable={false} value={this.state.data.companyNm} />
-                  <Button style={styles.button, { width: '10%' }} shadowless
-                    onPress={() => this.setModalVisible(!this.state.modalVisible)}>찾기</Button>
-                </View>
+              <View style={styles.inputs, styles.inputButton}>
+                <Input placeholder="회사" iconContent={<Block />}
+                  style={{ borderRadius: 0 }} color={theme.COLORS.BLACK} placeholderTextColor="#ADB5BD"
+                  editable={false} value={this.state.data.companyNm} />
+                <Button style={styles.button, { width: '10%' }} shadowless
+                  onPress={() => this.setModalVisible(!this.state.modalVisible)}>찾기</Button>
+              </View>
 
               <Modal middle visible={this.state.modalVisible} transparent={false}>
                 <CompanyFindModal closeModal={this.closeModal} width={width * 0.8}
                   findCompany={this.findCompany} selectCompany={this.selectCompany}
                   companyList={this.state.companyList}
-                  />
+                />
               </Modal>
 
               <View style={styles.inputs} width={width * 0.9}>

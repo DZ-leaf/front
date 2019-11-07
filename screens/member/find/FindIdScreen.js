@@ -28,7 +28,7 @@ class FindIdScreen extends React.Component {
       Alert.alert("입력란이 비어있습니다");
     } else if (!nameRe.test(data.memberNm)) {
       Alert.alert("이름을 다시 입력해주세요");
-    }else if (!re.test(data.email)) {
+    } else if (!re.test(data.email)) {
       Alert.alert("이메일 형식에 맞지 않습니다");
     } else {
       return AjaxUser.findIdAuthNm(data)
@@ -42,9 +42,6 @@ class FindIdScreen extends React.Component {
           }
           console.log("num__" + responseJson.authNum);
           this.setState({ authNum: responseJson.authNum })
-        })
-        .catch((error) => {
-          console.error(error);
         })
     }
   }
@@ -71,19 +68,16 @@ class FindIdScreen extends React.Component {
       Alert.alert("입력란이 비어있습니다");
     } else if (!nameRe.test(data.memberNm)) {
       Alert.alert("이름을 다시 입력해주세요");
-    }else if (!re.test(data.email)) {
+    } else if (!re.test(data.email)) {
       Alert.alert("이메일 형식에 맞지 않습니다");
-    }else if (!this.state.authCheck || !this.state.emailCheck) {
+    } else if (!this.state.authCheck || !this.state.emailCheck) {
       Alert.alert("메일을 통해 인증번호를 받아주세요");
-    }else {
-    return AjaxUser.findId(data)
-      .then((responseJson) => {
-        console.log("message__" + responseJson.memberId);
-        navigation.navigate('Find', { order: 2, memberId: responseJson.memberId })
-      })
-      .catch((error) => {
-        console.error(error);
-      })
+    } else {
+      return AjaxUser.findId(data)
+        .then((responseJson) => {
+          console.log("message__" + responseJson.memberId);
+          navigation.navigate('Find', { order: 2, memberId: responseJson.memberId })
+        })
     }
   }
 
@@ -107,8 +101,8 @@ class FindIdScreen extends React.Component {
 
             {this.state.emailCheck == false ?
               <Block style={[styles.input, styles.email]}>
-                <Input placeholder='이메일' style={{ width: width - theme.SIZES.BASE * 9.5 }} 
-                color={'black'} placeholderTextColor="#ADB5BD"
+                <Input placeholder='이메일' style={{ width: width - theme.SIZES.BASE * 9.5 }}
+                  color={'black'} placeholderTextColor="#ADB5BD"
                   onChangeText={(text) => { this.setState({ data: { ...this.state.data, email: text } }) }} />
                 <Button style={styles.mailButton} shadowless
                   onPress={() => { this.sendEmail(this.state.data) }}>전송</Button>
@@ -123,7 +117,7 @@ class FindIdScreen extends React.Component {
             {this.state.authCheck == false ?
               <Block style={styles.input, styles.email}>
                 <Input
-                  placeholder="인증번호" style={{ width: width - theme.SIZES.BASE * 9.5 }} 
+                  placeholder="인증번호" style={{ width: width - theme.SIZES.BASE * 9.5 }}
                   color={'black'} placeholderTextColor="#ADB5BD"
                   onChangeText={(text) => { this.setState({ authNumCheck: text }) }} />
                 <Button style={styles.mailButton} shadowless

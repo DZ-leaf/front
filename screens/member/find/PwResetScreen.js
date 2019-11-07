@@ -29,7 +29,7 @@ class IdConfirmScreen extends Component {
 
     changePw = (data, navigation) => {
         const pwRe = RegExp(/^[a-zA-Z0-9]{4,12}$/);
-        if(this.state.data.memberPw == '' || this.state.data.memberPwCheck == ''){
+        if (this.state.data.memberPw == '' || this.state.data.memberPwCheck == '') {
             Alert.alert('입력란이 비어있습니다')
         }
         else if (!pwRe.test(this.state.data.memberPw)) {
@@ -48,9 +48,6 @@ class IdConfirmScreen extends Component {
                         Alert.alert("이전 비밀번호와 같습니다")
                     }
                 })
-                .catch((error) => {
-                    console.error(error);
-                })
         }
     }
 
@@ -62,8 +59,8 @@ class IdConfirmScreen extends Component {
                 <Block style={styles.container}>
                     <Text style={styles.text}>비밀번호를 다시 설정해 주세요</Text>
                     <Block style={styles.input}>
-                        <Input placeholder='비밀번호 : 4~12자의 영문 대소문자와 숫자' 
-                        style={{ marginTop: -8 }} placeholderTextColor="#ADB5BD"
+                        <Input placeholder='비밀번호 : 4~12자의 영문 대소문자와 숫자'
+                            style={{ marginTop: -8 }} placeholderTextColor="#ADB5BD"
                             color={'black'} secureTextEntry={true}
                             onChangeText={(text) => { this.setState({ data: { ...this.state.data, memberPw: text } }) }} />
                         <Input color={theme.COLORS.BLACK}
