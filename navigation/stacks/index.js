@@ -6,7 +6,6 @@ import ProfileStack from './ProfileStack';
 import AlarmStack from './AlarmStack';
 import SettingStack from './SettingStack';
 import GroupStack from './GroupStack';
-import ClubStack from './ClubStack';
 import CalendarStack from './CalendarStack';
 import CompanyStack from './CompanyStack';
 
@@ -19,6 +18,5 @@ export {
     AlarmStack,
     SettingStack,
     GroupStack,
-    ClubStack,
     CalendarStack
 };

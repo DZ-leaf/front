@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withNavigation, ScrollView } from 'react-navigation';
-import { Block, theme } from 'galio-framework';
+import { Block } from 'galio-framework';
 import {
     StyleSheet, Text, View, TextInput, KeyboardAvoidingView, 
     Platform, Dimensions, ActionSheetIOS, BackHandler,
@@ -9,9 +9,6 @@ import { Header, Content, Item, Input, Footer, FooterTab, Left, Body, Right, But
 import ActionSheet from 'react-native-actionsheet'
 
 import Icon from 'react-native-vector-icons/FontAwesome';
-
-const { height, width } = Dimensions.get('window');
-const iPhoneX = () => Platform.OS === 'ios' && (height === 812 || width === 812 || height === 896 || width === 896);
 
 class BoardWrite extends Component {
 
@@ -94,7 +91,7 @@ class BoardWrite extends Component {
                     ref={o => this.ActionSheet = o}
                     options={['게시글 삭제', '돌아가기']}
                     cancelButtonIndex={1}
-                    destructiveButtonIndex={1}
+                    destructiveButtonIndex={0}
                     onPress={(index) => this.optionButton(index)} />
 
                 <Content>

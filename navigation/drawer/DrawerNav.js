@@ -4,7 +4,7 @@ import { createDrawerNavigator } from "react-navigation-drawer";
 import Menu from "./Menu";
 import DrawerItem from "../../components/DrawerItem";
 
-import { CompanyStack, HomeStack, ProfileStack, GroupStack, ClubStack, CalendarStack } from '../stacks'
+import { CompanyStack, HomeStack, ProfileStack, GroupStack,  CalendarStack } from '../stacks'
 import HomeBottomStack from '../nav/HomeBottomNav';
 
 const DrawerStack = createDrawerNavigator(
@@ -39,14 +39,6 @@ const DrawerStack = createDrawerNavigator(
       navigationOptions: navOpt => ({
         drawerLabel: ({ focused }) => (
           <DrawerItem focused={focused} title="회사" />
-        )
-      })
-    },
-    Club: {
-      screen: ClubStack,
-      navigationOptions: navOpt => ({
-        drawerLabel: ({ focused }) => (
-          <DrawerItem focused={focused} title="동아리" />
         )
       })
     },
