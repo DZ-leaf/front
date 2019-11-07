@@ -6,7 +6,7 @@ export default class CompanyGalleryDetail extends Component {
     render() {
         return (
         <View style={styles.container}>
-            <Gallery/>
+            <Gallery navigation={this.props.navigation}/>
          </View>
         );
     }

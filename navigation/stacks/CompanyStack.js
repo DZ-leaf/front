@@ -6,10 +6,11 @@ import transitionConfig from './transitionConfig';
 
 import CompanyScreen from '../../screens/company/CompanyScreen';
 import CompanyGalleryDetail from '../../screens/company/gallery/CompanyGalleryDetail'
+
 import {
     CompanyBoardList, CompanyBoardDetail,
     CompanyGallery, CompanyBoardWrite,
-    CompanyCalendar
+    CompanyCalendar,
 } from '../../screens/company';
 
 const CompanyStack = createStackNavigator(
@@ -57,11 +58,12 @@ const CompanyStack = createStackNavigator(
                 header: <Header back={true} title="회사" navigation={navigation} />
             })
         }
-    },
+    },  
     {
         cardStyle: { backgroundColor: "#F8F9FE" },
         transitionConfig
     }
 );
+
 
 export default CompanyStack;

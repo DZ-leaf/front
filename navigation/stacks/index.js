@@ -18,5 +18,5 @@ export {
     AlarmStack,
     SettingStack,
     GroupStack,
-    CalendarStack
+    CalendarStack,
 };
