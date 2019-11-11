@@ -38,8 +38,6 @@ autoLogin = async () => {
   try {
     const memberId = await AsyncStorage.getItem('memberId')
     const memberPw = await AsyncStorage.getItem('memberPw')
-    console.log("id : " + memberId)
-    console.log("pw : " + memberPw)
     if (memberId != null && memberPw != null) {
       let data = {
         "memberId": memberId,
@@ -47,10 +45,7 @@ autoLogin = async () => {
       }
       return AjaxUser.login(data)
         .then((responseJson) => {
-          if (responseJson.message == 'success') {
-            // this.props.navigation.navigate("Home");
-            console.log("성공")
-          } else if (responseJson.message == 'fail') {
+          if (responseJson.message == 'fail') {
             Alert.alert("로그인에 실패했습니다")
           }
         })
@@ -65,10 +60,9 @@ export default class App extends React.Component {
   componentWillMount() {
     autoLogin = async () => {
       try {
-        const memberAuth = await AsyncStorage.getItem('memberAuth')
-        console.log(memberAuth);
+        const memberAuth = await AsyncStorage.getItem('memberAuth') 
         this.setState({ memberAuth: memberAuth })
-        console.log(this.state.memberAuth);
+        console.log("요기 : " + this.state.memberAuth)
       } catch (e) {
         console.error(e)
       }
@@ -94,7 +88,7 @@ export default class App extends React.Component {
       return (
         <GalioProvider theme={argonTheme}>
           <Block flex>
-            {this.state.memberAuth == '' ?
+            {this.state.memberAuth == null ?
               <Screens />
               :
               <ScreenAuth />
