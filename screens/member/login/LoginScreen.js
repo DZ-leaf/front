@@ -1,5 +1,5 @@
 import React from "react";
-import { Image, StyleSheet, StatusBar, Dimensions, View, Alert } from "react-native";
+import { Image, StyleSheet, StatusBar, Dimensions, View, Alert, AsyncStorage } from "react-native";
 import { Block, Button, Text, theme, Input, Checkbox } from "galio-framework";
 import Images from "../../../constants/Images";
 
@@ -14,23 +14,51 @@ class LoginScreen extends React.Component {
   state = {
     memberId: '',
     memberPw: '',
+    autoLogin: false,
   }
 
   handleSubmit = () => {
-    this.props.navigation.navigate("Home");
-    // this.loginAjax(this.state);
+    if (this.state.memberId == '') {
+      Alert.alert("입력란에 아이디를 입력해주세요")
+    } else if (this.state.memberPw == '') {
+      Alert.alert("입력란에 비밀번호를 입력해주세요")
+    } else {
+      this.loginAjax(this.state);
+    }
   }
 
   loginAjax = (data) => {
     return AjaxUser.login(data)
-    .then((responseJson) => {
-      // console.log(responseJson);
-      if(responseJson.message == 'success') {
-        this.props.navigation.navigate("Home");
-      } else if (responseJson.message == 'fail') {
-        Alert.alert("로그인에 실패했습니다")
+      .then((responseJson) => {
+        if (responseJson.message == 'success') {
+          this.props.navigation.navigate("Home");
+        } else if (responseJson.message == 'fail') {
+          Alert.alert("로그인에 실패했습니다")
+        }
+      })
+  }
+
+  setData = async () => {
+    try {
+      if (this.state.autoLogin == true) {
+        await AsyncStorage.setItem('memberId', this.state.memberId);
+        await AsyncStorage.setItem('memberPw', this.state.memberPw);
+      } else if (this.state.autoLogin == false) {
+        await AsyncStorage.removeItem('memberId');
+        await AsyncStorage.removeItem('memberPw');
       }
-    })
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
+  autoLogin = () => {
+    if (this.state.autoLogin == false) {
+      this.setState({ autoLogin: true })
+    } else if (this.state.autoLogin == true) {
+      this.setState({ autoLogin: false })
+    }
+    this.setData();
   }
 
   render() {
@@ -45,7 +73,7 @@ class LoginScreen extends React.Component {
         <Block flex space="between" style={styles.padded}>
           <Block style={{ paddingHorizontal: theme.SIZES.BASE }}>
             <Input
-              placeholder="ID" 
+              placeholder="ID"
               iconContent={<Icon size={20} style={{ marginRight: 10 }} name="person" />}
               color={'#000000'} placeholderTextColor="#ADB5BD"
               onChangeText={(text) => { this.setState({ memberId: text }) }} />
@@ -55,7 +83,8 @@ class LoginScreen extends React.Component {
               color={'#000000'} placeholderTextColor="#ADB5BD"
               onChangeText={(text) => { this.setState({ memberPw: text }) }} />
             <View style={styles.textAuto}>
-              <Checkbox color="primary" labelStyle={{ color: '#707070' }} label="자동 로그인" />
+              <Checkbox color="primary" labelStyle={{ color: '#707070' }} label="자동 로그인"
+                onChange={this.autoLogin} />
             </View>
             <Button
               style={styles.button}

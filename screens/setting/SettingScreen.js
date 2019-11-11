@@ -1,11 +1,21 @@
 import React, { Component } from 'react';
-import { StyleSheet, View } from 'react-native';
-import { Container, Body, Text, Content, List, ListItem, Left, Right } from 'native-base';
+import { StyleSheet, View, Text, AsyncStorage } from 'react-native';
+import { Container, Body, Content, List, ListItem, Left, Right } from 'native-base';
 import { Block } from 'galio-framework'
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 class SettingScreen extends Component {
+
+    logout = async () => {
+        try {
+            await AsyncStorage.clear();
+            this.props.navigation.navigate('Member')
+        } catch(e) {
+            console.error(e);
+        }
+        // this.props.navigation.navigate('Member')
+    }
 
     render() {
         return (
@@ -13,7 +23,7 @@ class SettingScreen extends Component {
                 <Content>
                     <List>
 
-                        <ListItem selected>
+                        <ListItem>
                             <Left>
                                 <Icon name="settings" size={20} />
                             </Left>
@@ -25,7 +35,7 @@ class SettingScreen extends Component {
                             </Right>
                         </ListItem>
 
-                        <ListItem>
+                        <ListItem onPress={this.logout}>
                             <Left>
                                 <Icon name="logout-variant" size={20} />
                             </Left>
