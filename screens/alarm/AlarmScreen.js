@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Icon } from 'native-base';
-import { Animated, StyleSheet, Text, TouchableOpacity, TouchableHighlight, View, } from 'react-native';
+import { Animated, StyleSheet, Text, TouchableOpacity, TouchableHighlight, View, Alert } from 'react-native';
 
 import { SwipeListView } from 'react-native-swipe-list-view';
 
@@ -43,6 +43,7 @@ class AlarmScreen extends Component {
     }
 
     deleteRow(rowMap, rowKey) {
+        Alert.alert("삭제하시겠습니까?")
         this.closeRow(rowMap, rowKey);
         const newData = [...this.state.listViewData];
         const prevIndex = this.state.listViewData.findIndex(
@@ -88,7 +89,8 @@ class AlarmScreen extends Component {
                         <View style={styles.rowBack}>
                             <TouchableOpacity
                                 style={[styles.backRightBtn, styles.backRightBtnRight]}>
-                                <Button style={{ height: 50 }} full danger onPress={() => this.deleteRow(rowMap, data.item.key)}>
+                                <Button style={{ height: 50 }} full danger 
+                                onPress={() => this.deleteRow(rowMap, data.item.key)}>
                                     <Icon active name="trash" />
                                 </Button>
                             </TouchableOpacity>
