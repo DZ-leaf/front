@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Image, FlatList, TouchableOpacity, Text, Dimensions, KeyboardAvoidingView, Platform } from 'react-native';
+import { StyleSheet, View, Image, FlatList, TouchableOpacity, Text, Dimensions } from 'react-native';
 import { withNavigation, ScrollView } from 'react-navigation';
 import { Block, theme, Input } from 'galio-framework';
 import { Content, List, ListItem, Thumbnail, Left, Body, Right, Button, Footer, FooterTab } from 'native-base';
 
-import Icon from 'react-native-vector-icons/SimpleLineIcons';
 import Icons from 'react-native-vector-icons/FontAwesome';
-import IconF from 'react-native-vector-icons/Feather';
 
 const { width, height } = Dimensions.get("screen");
 
@@ -18,7 +16,7 @@ class CompanyGalleryCommentModal extends Component {
 
     render() {
         return (
-            <Block flex style={{marginTop: 5}}>
+            <Block flex style={{marginTop: 5, backgroundColor: '#f2f0f2'}}>
                 <ScrollView>
                     <Content>
                         <List>
@@ -105,26 +103,6 @@ class CompanyGalleryCommentModal extends Component {
                         </List>
                     </Content>
                 </ScrollView>
-
-                {/* <KeyboardAvoidingView behavior={Platform.OS == 'ios' ? 'padding' : 'position'}
-                    keyboardVerticalOffset={Platform.OS == 'ios' ? -34 : -230}
-                    style={styles.key}>
-                    <Footer>
-                        <FooterTab transparent style={{ backgroundColor: '#ffffff' }}>
-                            <Block row>
-                                <View style={{ paddingLeft: '3%' }}>
-                                    <Input style={styles.text} placeholder="댓글"
-                                        placeholderTextColor="#ADB5BD"
-                                        onChangeText={(text) => { this.setState({ comment: text }) }} />
-                                </View>
-                                <View style={styles.send}>
-                                    <IconF name="send" size={25}
-                                        color={this.state.comment == '' ? '#ADB5BD' : '#0B5713'} />
-                                </View>
-                            </Block>
-                        </FooterTab>
-                    </Footer>
-                </KeyboardAvoidingView> */}
             </Block>
         );
     }
@@ -144,14 +122,6 @@ const styles = StyleSheet.create({
         color: '#707070',
         paddingTop: '4%'
     },
-    key: {
-        position: 'relative',
-        bottom: -10,
-        // top: 600,
-        flex: 1,
-        width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height,
-    }
 })
 
 export default CompanyGalleryCommentModal;

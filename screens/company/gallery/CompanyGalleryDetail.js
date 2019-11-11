@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import Gallery from '../../../components/gallery/Gallery';
+import GalleryDetail from '../../../components/gallery/GalleryDetail';
 
 export default class CompanyGalleryDetail extends Component {
     render() {
         return (
         <View style={styles.container}>
-            <Gallery navigation={this.props.navigation}/>
+            <GalleryDetail navigation={this.props.navigation}/>
          </View>
         );
     }

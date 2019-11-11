@@ -162,7 +162,7 @@ class BoardRead extends Component {
                             <Block row>
                                 <View style={{ paddingLeft: '3%' }}>
                                     <Input style={styles.text} placeholder="댓글"
-                                        placeholderTextColor="#ADB5BD" 
+                                        placeholderTextColor="#ADB5BD" color='black'
                                         onChangeText={(text) => { this.setState({ comment: text }) }}/>
                                 </View>
                                 <View style={styles.send}>

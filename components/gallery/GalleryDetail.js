@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Image, FlatList, TouchableOpacity, Text, Modal, KeyboardAvoidingView, Platform } from 'react-native';
-import { Block, theme, Input } from 'galio-framework';
-import { Container, Header, Content, Card, CardItem, Thumbnail, Button, Left, Body, Right, Footer, FooterTab } from 'native-base';
+import { StyleSheet, View, Image, FlatList, TouchableOpacity, Text, Modal, KeyboardAvoidingView, Platform, Dimensions } from 'react-native';
+import { Block, theme, Input, } from 'galio-framework';
+import { Container, Header, Content, Card, CardItem, Thumbnail, Left, Body, Right, Footer, FooterTab, Button } from 'native-base';
+import ActionSheet from 'react-native-actionsheet';
 
 import Images from "../../constants/Images";
-import { Cards } from "../../components";
+import { Cards } from "..";
 
 import Icon from 'react-native-vector-icons/FontAwesome';
-import Icons from 'react-native-vector-icons/FontAwesome';
 import IconF from 'react-native-vector-icons/Feather';
 import LineIcon from 'react-native-vector-icons/SimpleLineIcons';
 
 import CompanyGalleryCommentModal from '../../screens/company/gallery/CompanyGalleryCommentModal';
+
+const { width } = Dimensions.get('screen');
 
 class Gallery extends Component {
     state = {
@@ -33,14 +35,13 @@ class Gallery extends Component {
             }
         ],
         commentModal: false,
+        comment: '',
     }
 
-    setCommentModalVisible = (visible) => { this.setState({ commentModal : visible })}
-    closeCommnetModal = () => { this.setState({ commentModal : false })}
+    setCommentModalVisible = (visible) => { this.setState({ commentModal: visible }) }
+    closeCommnetModal = () => { this.setState({ commentModal: false }) }
 
     renderItem(item) {
-        // console.log(item);        
-
         return (
             <TouchableOpacity style={{ marginHorizontal: 1 }}>
                 <Cards item={item} style={{ width: 200, height: 200, }} />
@@ -48,6 +49,26 @@ class Gallery extends Component {
             </TouchableOpacity>
         )
     }
+
+    optionButton = () => {
+        if (Platform.OS == 'android') {
+            this.ActionSheet.show()
+        } else {
+            ActionSheetIOS.showActionSheetWithOptions(
+                {
+                    options: ['삭제', '취소'],
+                    cancelButtonIndex: 1,
+                    destructiveButtonIndex: 0,
+                },
+                (index) => {
+                    if (index == 0) {
+                        this.props.navigation.navigate.goBack();
+                    }
+                }
+            );
+        }
+    }
+
     render() {
         return (
             <Block flex>
@@ -64,7 +85,7 @@ class Gallery extends Component {
                                     </Body>
                                 </Left>
                                 <Right>
-                                    <LineIcon name="options-vertical" color='#000000' size={20} />
+                                    <LineIcon name="options-vertical" color='#000000' size={20} onPress={() => {this.optionButton()}}/>
                                 </Right>
                             </CardItem>
                             <CardItem cardBody>
@@ -76,7 +97,7 @@ class Gallery extends Component {
                                         <Icon name="leaf" color='#0B5713' size={20} />
                                         <Text> 1313</Text>
                                     </Button>
-                                    <Button transparent onPress={() => {this.setCommentModalVisible(!this.state.commentModal)}}>
+                                    <Button transparent onPress={() => { this.setCommentModalVisible(!this.state.commentModal) }}>
                                         <Icon active name="comments" color='#000000' size={20} />
                                         <Text> 4</Text>
                                     </Button>
@@ -97,30 +118,46 @@ class Gallery extends Component {
                         horizontal
                         showsHorizontalScrollIndicator={false} />
                 </Block>
-                
-                <Modal visible={this.state.commentModal} animationType="slide" onRequestClose={() => {this.closeCommnetModal()}}>
+
+                <Modal visible={this.state.commentModal} animationType="slide" onRequestClose={() => { this.closeCommnetModal() }}>
                     <CompanyGalleryCommentModal />
 
                     <KeyboardAvoidingView behavior={/* Platform.OS == 'ios' ? 'padding' : 'padding' */'padding'}
-                    keyboardVerticalOffset={ Platform.OS == 'ios' ? -34 : -230 }
+                        keyboardVerticalOffset={Platform.OS == 'ios' ? -34 : -230}
                     >
-                    <Footer>
-                        <FooterTab transparent style={{ backgroundColor: '#ffffff' }}>
-                            <Block row>
-                                <View style={{ paddingLeft: '3%' }}>
-                                    <Input style={styles.text} placeholder="댓글"
-                                        placeholderTextColor="#ADB5BD"
-                                        onChangeText={(text) => { this.setState({ comment: text }) }} />
-                                </View>
-                                <View style={styles.send}>
-                                    <IconF name="send" size={25}
-                                        color={this.state.comment == '' ? '#ADB5BD' : '#0B5713'} />
-                                </View>
-                            </Block>
-                        </FooterTab>
-                    </Footer>
-                </KeyboardAvoidingView>
+                        <Footer>
+                            <FooterTab transparent style={{ backgroundColor: '#ffffff' }}>
+                                <Block row>
+                                    <View style={{ paddingLeft: '3%' }}>
+                                        <Input style={styles.text} placeholder="댓글"
+                                            placeholderTextColor="#ADB5BD" color='black'
+                                            onChangeText={(text) => { this.setState({ comment: text }) }} />
+
+                                    </View>
+                                    <View style={styles.send}>
+                                        <IconF name="send" size={25}
+                                            color={this.state.comment == '' ? '#ADB5BD' : '#0B5713'} />
+                                    </View>
+                                </Block>
+                            </FooterTab>
+                        </Footer>
+                    </KeyboardAvoidingView>
                 </Modal>
+                <ActionSheet
+                    ref={o => this.ActionSheet = o}
+                    // title={'일정을 삭제할까요?'}
+                    options={['수정', '삭제', '취소']}
+                    cancelButtonIndex={2}
+                    destructiveButtonIndex={1}
+                    onPress={(index) => {
+                        if(index == 0) {
+                            // this.props.navigation.navigate()
+                        }
+                        else if (index == 1) {
+                            this.props.navigation.goBack();
+                        }
+                    }}
+                />
             </Block>
         );
     }
@@ -141,6 +178,15 @@ const styles = StyleSheet.create({
     },
     cardContainer: {
         flex: 7,
+    },
+    send: {
+        paddingTop: '4%',
+        paddingLeft: '3%',
+        paddingRight: '2%'
+    },
+    text: {
+        backgroundColor: '#f2f0f2',
+        width: width * 0.85,
     },
 })
 export default Gallery;

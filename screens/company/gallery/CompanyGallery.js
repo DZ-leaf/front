@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import Gallery from '../../../components/gallery/Gallery';
+import { StyleSheet, View, Platform } from 'react-native';
 import GalleryList from '../../../components/gallery/GalleryList';
+import FAB from 'react-native-fab';
+
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 class CompanyGallery extends Component {
     
@@ -9,6 +11,8 @@ class CompanyGallery extends Component {
         return (
             <View style={styles.container}>
                 <GalleryList navigation={this.props.navigation}/>
+                <FAB  buttonColor="#0B5713" iconTextColor="#FFFFFF" onClickAction={() => {this.props.navigation.navigate('CompanyAddGallery')}} visible={true} 
+                    iconTextComponent={<Icon name="add"/>}  snackOffset={Platform.OS == 'ios'? 30 : 10}/>
             </View>
         );
     }

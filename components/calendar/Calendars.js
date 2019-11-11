@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Dimensions, FlatList, Modal } from 'react-native';
+import { StyleSheet, View, Dimensions, Modal, Platform } from 'react-native';
 import { Block, Button, Text, theme, Input } from "galio-framework";
 import { CalendarList, Calendar, Agenda } from 'react-native-calendars';
 import moment from 'moment';
+import FAB from 'react-native-fab';
+
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import List from './CalendarList';
 import AddEventModal from '../../screens/calendar/AddEventModal';
@@ -112,14 +115,16 @@ class Calendars extends Component {
                 <Block style={styles.listContainer}>
                     <List navigation={this.props.navigation} />
                 </Block>
-                <Block style={styles.buttonContainer}>
-                    <Button style={styles.button} textStyle={{ fontSize: 20 }}
-                        onPress={() => this.setModalVisible(!this.state.modalVisible)} shadowless>+</Button>
+                <FAB  buttonColor="#0B5713" iconTextColor="#FFFFFF" onClickAction={() => {this.setModalVisible(!this.state.modalVisible)}} visible={true} 
+                    iconTextComponent={<Icon name="add"/>}  snackOffset={Platform.OS == 'ios'? 30 : 10}/>
+                {/* <Block style={styles.buttonContainer}> */}
+                    {/* <Button style={styles.button} textStyle={{ fontSize: 20 }}
+                        onPress={() => this.setModalVisible(!this.state.modalVisible)} shadowless>+</Button> */}
                     <Modal middle visible={this.state.modalVisible} onRequestClose={() => {this.closeModal()}}>
                         <AddEventModal closeModal={this.closeModal} day={this.getDateTime()} 
                             selectedDate={this.state.selectDate} navigation={this.props.navigation}/>
                     </Modal>
-                </Block>
+                {/* </Block> */}
             </Block>
         );
     }
