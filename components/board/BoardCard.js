@@ -10,6 +10,10 @@ class BoardCard extends Component {
 
     render() {
         const { navigation } = this.props;
+        const {routeName} = navigation.state;  // 현재 경로
+        
+        console.log(routeName);
+
         return (
             <Block style={{ padding: '3%' }}>
                 <Card>
@@ -18,7 +22,7 @@ class BoardCard extends Component {
                             <Text>게시판</Text>
                         </Left>
                         <Right>
-                            <Text onPress={() => navigation.navigate("CompanyBoardList")}   
+                            <Text onPress={() => navigation.navigate("CompanyBoardList")}
                                 style={{ color: '#0B5713' }}>More...</Text>
                         </Right>
                     </CardItem>

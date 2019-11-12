@@ -7,7 +7,7 @@ import AlarmStack from './AlarmStack';
 import SettingStack from './SettingStack';
 import GroupStack from './GroupStack';
 import CalendarStack from './CalendarStack';
-import CompanyStack from './CompanyStack';
+import CompanyStack from './company/CompanyStack';
 
 export {
     CompanyStack,

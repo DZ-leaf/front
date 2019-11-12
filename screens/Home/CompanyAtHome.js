@@ -14,7 +14,7 @@ class CompanyAtHome extends React.Component {
         return (
             <Block row>
                 <View style={{ width: width }}>
-                    <BoardCard />
+                    <BoardCard/>
                 </View>
             </Block>
         );

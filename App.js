@@ -11,7 +11,16 @@ import articles from './constants/articles';
 
 import argonTheme from './constants/Theme';
 
-import { AjaxUser } from "./lib/url/member/userUrl";
+import {AjaxMember} from "./lib/url/memberUrl";
+
+const reducer = () => {
+
+}
+
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+// import reducer from './src/reducers';
+const store = createStore(reducer);
 
 // cache app images
 const assetImages = [
@@ -43,7 +52,7 @@ autoLogin = async () => {
         "memberId": memberId,
         "memberPw": memberPw
       }
-      return AjaxUser.login(data)
+      return AjaxMember.login(data)
         .then((responseJson) => {
           if (responseJson.message == 'fail') {
             Alert.alert("로그인에 실패했습니다")
@@ -60,7 +69,7 @@ export default class App extends React.Component {
   componentWillMount() {
     autoLogin = async () => {
       try {
-        const memberAuth = await AsyncStorage.getItem('memberAuth') 
+        const memberAuth = await AsyncStorage.getItem('memberAuth')
         this.setState({ memberAuth: memberAuth })
         console.log("요기 : " + this.state.memberAuth)
       } catch (e) {
@@ -86,15 +95,17 @@ export default class App extends React.Component {
       );
     } else {
       return (
-        <GalioProvider theme={argonTheme}>
-          <Block flex>
-            {this.state.memberAuth == null ?
-              <Screens />
-              :
-              <ScreenAuth />
-            }
-          </Block>
-        </GalioProvider>
+        <Provider store={store}>
+          <GalioProvider theme={argonTheme}>
+            <Block flex>
+              {this.state.memberAuth == null ?
+                <Screens />
+                :
+                <ScreenAuth />
+              }
+            </Block>
+          </GalioProvider>
+        </Provider>
       );
     }
   }
