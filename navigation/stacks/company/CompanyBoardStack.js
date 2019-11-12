@@ -4,7 +4,6 @@ import { createStackNavigator } from 'react-navigation-stack';
 import Header from "../../../components/Header";
 import transitionConfig from '../transitionConfig';
 
-
 import { CompanyBoardList, CompanyBoardDetail, CompanyBoardWrite } from '../../../screens/company';
 
 const CompanyBoardStack = createStackNavigator(
