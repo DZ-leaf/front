@@ -6,6 +6,7 @@ import DrawerItem from "../../components/DrawerItem";
 
 import { CompanyStack, HomeStack, ProfileStack, GroupStack,  CalendarStack } from '../stacks'
 import HomeBottomStack from '../nav/HomeBottomNav';
+import CompanyBottomStack from '../nav/CompanyBottomNav'
 
 const DrawerStack = createDrawerNavigator(
   {
@@ -36,6 +37,7 @@ const DrawerStack = createDrawerNavigator(
     },
     Company: {
       screen: CompanyStack,
+      screen: CompanyBottomStack,
       navigationOptions: navOpt => ({
         drawerLabel: ({ focused }) => (
           <DrawerItem focused={focused} title="회사" />

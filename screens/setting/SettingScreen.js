@@ -14,7 +14,6 @@ class SettingScreen extends Component {
         } catch(e) {
             console.error(e);
         }
-        // this.props.navigation.navigate('Member')
     }
 
     render() {
@@ -27,8 +26,20 @@ class SettingScreen extends Component {
                             <Left>
                                 <Icon name="settings" size={20} />
                             </Left>
-                            <View style={{ paddingRight: '70%' }}>
+                            <View style={{ marginRight: 310 }}>
                                 <Text>설정 1</Text>
+                            </View>
+                            <Right>
+                                <Icon name="arrow-right-thick" size={20} />
+                            </Right>
+                        </ListItem>
+
+                        <ListItem>
+                            <Left>
+                                <Icon name="settings" size={20} />
+                            </Left>
+                            <View style={{ marginRight: 290 }}>
+                                <Text>회사 설정</Text>
                             </View>
                             <Right>
                                 <Icon name="arrow-right-thick" size={20} />
@@ -39,7 +50,7 @@ class SettingScreen extends Component {
                             <Left>
                                 <Icon name="logout-variant" size={20} />
                             </Left>
-                            <View style={{ paddingRight: '70%' }}>
+                            <View style={{ marginRight: 310 }}>
                                 <Text>로그아웃</Text>
                             </View>
                         </ListItem>

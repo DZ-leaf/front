@@ -11,7 +11,7 @@ class CompanyGallery extends Component {
         return (
             <View style={styles.container}>
                 <GalleryList navigation={this.props.navigation}/>
-                <FAB  buttonColor="#0B5713" iconTextColor="#FFFFFF" onClickAction={() => {this.props.navigation.navigate('CompanyAddGallery')}} visible={true} 
+                <FAB buttonColor="#0B5713" iconTextColor="#FFFFFF" onClickAction={() => {this.props.navigation.navigate('CompanyAddGallery')}} visible={true} 
                     iconTextComponent={<Icon name="add"/>}  snackOffset={Platform.OS == 'ios'? 30 : 10}/>
             </View>
         );

@@ -7,11 +7,13 @@ import CompanyGallery from './gallery/CompanyGallery';
 
 import CompanyCalendar from './calendar/CompanyCalendar';
 
+import CompanyAddressList from './address/CompanyAddressList';
 
 export {
     CompanyBoardList,
     CompanyBoardDetail,
     CompanyGallery,
     CompanyBoardWrite,
-    CompanyCalendar
+    CompanyCalendar,
+    CompanyAddressList
 };

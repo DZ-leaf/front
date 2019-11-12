@@ -1,19 +1,19 @@
 import React from "react";
 import { createStackNavigator } from 'react-navigation-stack';
 
-import Header from "../../components/Header";
-import transitionConfig from './transitionConfig';
+import Header from "../../../components/Header";
+import transitionConfig from '../transitionConfig';
 
-import CompanyScreen from '../../screens/company/CompanyScreen';
-import CompanyGalleryDetail from '../../screens/company/gallery/CompanyGalleryDetail';
-import CompanyAddGallery from '../../screens/company/gallery/CompanyAddGallery';
-import CompanyGalleryWrite from '../../screens/company/gallery/CompanyGalleryWrite';
+import CompanyScreen from '../../../screens/company/CompanyScreen';
+import CompanyGalleryDetail from '../../../screens/company/gallery/CompanyGalleryDetail';
+import CompanyAddGallery from '../../../screens/company/gallery/CompanyAddGallery';
+import CompanyGalleryWrite from '../../../screens/company/gallery/CompanyGalleryWrite';
 
 import {
     CompanyBoardList, CompanyBoardDetail,
     CompanyGallery, CompanyBoardWrite,
     CompanyCalendar,
-} from '../../screens/company';
+} from '../../../screens/company';
 
 const CompanyStack = createStackNavigator(
     {
