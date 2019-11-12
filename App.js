@@ -11,7 +11,7 @@ import articles from './constants/articles';
 
 import argonTheme from './constants/Theme';
 
-import AjaxMember from "./lib/url/memberUrl";
+import {AjaxMember} from "./lib/url/memberUrl";
 
 const reducer = () => {
 

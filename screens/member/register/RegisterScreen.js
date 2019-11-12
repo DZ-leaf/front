@@ -6,7 +6,7 @@ import Images from "../../../constants/Images";
 const { width } = Dimensions.get("screen");
 
 import CompanyFindModal from './CompanyFindModal';
-import AjaxMember from "../../../lib/url/memberUrl";
+import {AjaxMember} from "../../../lib/url/memberUrl";
 
 class Register extends React.Component {
 

@@ -7,7 +7,7 @@ const { width } = Dimensions.get("screen");
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-import AjaxMember from "../../../lib/url/memberUrl";
+import {AjaxMember} from "../../../lib/url/memberUrl";
 
 class LoginScreen extends React.Component {
 

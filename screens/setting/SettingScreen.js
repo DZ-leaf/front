@@ -9,8 +9,8 @@ class SettingScreen extends Component {
 
     logout = async () => {
         try {
-            await AsyncStorage.clear();
             this.props.navigation.navigate('Member')
+            await AsyncStorage.clear();
         } catch(e) {
             console.error(e);
         }
