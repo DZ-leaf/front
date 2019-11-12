@@ -8,6 +8,7 @@ import CompanyScreen from '../../screens/company/CompanyScreen';
 import CompanyGalleryDetail from '../../screens/company/gallery/CompanyGalleryDetail';
 import CompanyAddGallery from '../../screens/company/gallery/CompanyAddGallery';
 import CompanyGalleryWrite from '../../screens/company/gallery/CompanyGalleryWrite';
+import CompanyCamera from '../../screens/company/gallery/CompanyCamera';
 
 import {
     CompanyBoardList, CompanyBoardDetail,
@@ -62,16 +63,23 @@ const CompanyStack = createStackNavigator(
         },
         CompanyAddGallery: {
             screen: CompanyAddGallery,
-            // navigationOptions: ({ navigation }) => ({
-            //     header: <Header back={true} title="회사" navigation={navigation} />
-            // }),
-            mode: 'modal',
+            navigationOptions: {
+                header: null,
+            }
             
         },
         CompanyGalleryWrite: {
             screen: CompanyGalleryWrite,
-            // mode: 'modal'
+            navigationOptions: {
+                header: null,
+            }
         },
+        CompanyCamera: {
+            screen: CompanyCamera,
+            navigationOptions: {
+                header: null,
+            }
+        }
     },  
     {
         cardStyle: { backgroundColor: "#F8F9FE" },

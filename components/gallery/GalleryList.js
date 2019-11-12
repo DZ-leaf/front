@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withNavigation } from 'react-navigation';
-import { StyleSheet, View, Image, FlatList, TouchableOpacity, Text, Dimensions } from 'react-native';
+import { StyleSheet, View, Image, FlatList, TouchableOpacity, Text, Dimensions, Modal } from 'react-native';
 import { Block, theme } from 'galio-framework';
 
 import Gallerys from "../../constants/gallerys";
