@@ -14,12 +14,6 @@ const CompanyStack = createStackNavigator(
                 header: <Header search options title="회사" navigation={navigation} />
             })
         },
-        // CompanyCamera: {
-        //     screen: CompanyCamera,
-        //     navigationOptions: {
-        //         header: null,
-        //     }
-        // }
     },  
     {
         cardStyle: { backgroundColor: "#F8F9FE" },

@@ -36,6 +36,12 @@ const CompanyGalleryStack = createStackNavigator(
             screen: CompanyGalleryWrite,
             // mode: 'modal'
         },
+        // CompanyCamera: {
+        //     screen: CompanyCamera,
+        //     navigationOptions: {
+        //         header: null,
+        //     }
+        // }
     },  
     {
         cardStyle: { backgroundColor: "#F8F9FE" },
