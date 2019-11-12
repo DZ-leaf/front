@@ -5,7 +5,7 @@ import { withNavigation } from 'react-navigation'
 
 const { width } = Dimensions.get("screen");
 
-import { AjaxUser } from "../../../lib/url/member/userUrl";
+import AjaxMember from "../../../lib/url/memberUrl";
 
 class FindIdScreen extends React.Component {
   state = {
@@ -31,7 +31,7 @@ class FindIdScreen extends React.Component {
     } else if (!re.test(data.email)) {
       Alert.alert("이메일 형식에 맞지 않습니다");
     } else {
-      return AjaxUser.findIdAuthNm(data)
+      return AjaxMember.findIdAuthNm(data)
         .then((responseJson) => {
           console.log("message__" + responseJson.message);
           if (responseJson.message === "success") {
@@ -73,7 +73,7 @@ class FindIdScreen extends React.Component {
     } else if (!this.state.authCheck || !this.state.emailCheck) {
       Alert.alert("메일을 통해 인증번호를 받아주세요");
     } else {
-      return AjaxUser.findId(data)
+      return AjaxMember.findId(data)
         .then((responseJson) => {
           console.log("message__" + responseJson.memberId);
           navigation.navigate('Find', { order: 2, memberId: responseJson.memberId })

@@ -5,7 +5,7 @@ import { withNavigation } from 'react-navigation';
 
 const { width } = Dimensions.get("screen");
 
-import { AjaxUser } from "../../../lib/url/member/userUrl";
+import AjaxMember from "../../../lib/url/memberUrl";
 
 class FindPwScreen extends React.Component {
   state = {
@@ -28,7 +28,7 @@ class FindPwScreen extends React.Component {
     } else if (!re.test(data.email)) {
       Alert.alert("이메일 형식에 맞지 않습니다");
     } else {
-      return AjaxUser.findPwAuthNm(data)
+      return AjaxMember.findPwAuthNm(data)
         .then((responseJson) => {
           console.log(responseJson.message);
           if (responseJson.message === "success") {

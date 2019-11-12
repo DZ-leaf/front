@@ -5,7 +5,7 @@ import { withNavigation } from 'react-navigation'
 
 const { width } = Dimensions.get("screen");
 
-import { AjaxUser } from "../../../lib/url/member/userUrl";
+import AjaxMember from "../../../lib/url/memberUrl";
 
 class IdConfirmScreen extends Component {
     state = {
@@ -37,7 +37,7 @@ class IdConfirmScreen extends Component {
         } else if (this.state.data.memberPw !== this.state.memberPwCheck) {
             Alert.alert('비밀번호가 서로 맞지 않습니다.')
         } else {
-            return AjaxUser.changePw(data)
+            return AjaxMember.changePw(data)
                 .then((responseJson) => {
                     console.log(responseJson.message);
                     if (responseJson.message === "success") {

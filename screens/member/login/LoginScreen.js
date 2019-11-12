@@ -7,7 +7,7 @@ const { width } = Dimensions.get("screen");
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-import { AjaxUser } from "../../../lib/url/member/userUrl";
+import AjaxMember from "../../../lib/url/memberUrl";
 
 class LoginScreen extends React.Component {
 
@@ -28,7 +28,7 @@ class LoginScreen extends React.Component {
   }
 
   loginAjax = (data) => {
-    return AjaxUser.login(data)
+    return AjaxMember.login(data)
       .then((responseJson) => {
         if (responseJson.message == 'success') {
           this.props.navigation.navigate("Home");

@@ -6,7 +6,7 @@ import Images from "../../../constants/Images";
 const { width } = Dimensions.get("screen");
 
 import CompanyFindModal from './CompanyFindModal';
-import { AjaxUser } from "../../../lib/url/member/userUrl";
+import AjaxMember from "../../../lib/url/memberUrl";
 
 class Register extends React.Component {
 
@@ -52,7 +52,7 @@ class Register extends React.Component {
   }
 
   register = (data) => {
-    return AjaxUser.register(data)
+    return AjaxMember.register(data)
       .then((responseJson) => {
         console.log("회원가입 : " + responseJson.message);
         if (responseJson.message === 'success') {
@@ -67,7 +67,7 @@ class Register extends React.Component {
     if (userId === '') {
       Alert.alert("입력란이 비어있습니다");
     } else {
-      return AjaxUser.idCheck(userId)
+      return AjaxMember.idCheck(userId)
         .then((responseJson) => {
           console.log("아이디 확인 : " + responseJson.message);
           if (responseJson.message === 'success') {
@@ -93,7 +93,7 @@ class Register extends React.Component {
   }
 
   findCompany = (data) => {
-    return AjaxUser.findCompany(data)
+    return AjaxMember.findCompany(data)
       .then((responseJson) => {
         this.setState({ companyList: responseJson.data })
       })
@@ -110,7 +110,7 @@ class Register extends React.Component {
     } else if (!re.test(data)) {
       Alert.alert("이메일 형식에 맞지 않습니다");
     } else {
-      return AjaxUser.sendEmail(data)
+      return AjaxMember.sendEmail(data)
         .then((responseJson) => {
           console.log(responseJson.message);
           if (responseJson.message === "success") {
