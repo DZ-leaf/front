@@ -3,8 +3,8 @@ import { StyleSheet, Text, View, Button, ScrollView, Image, Modal } from 'react-
 import * as Permissions from 'expo-permissions';
 import { ImageBrowser } from 'expo-multiple-imagepicker';
 
-import CompanyGalleryWrite from '../screens/company/gallery/CompanyGalleryWrite';
-import CompanyCamera from '../screens/company/gallery/CompanyCamera';
+import CompanyGalleryWrite from '../../screens/company/gallery/CompanyGalleryWrite';
+import CompanyCamera from '../../screens/company/gallery/CompanyCamera';
 
 export default class CameraRoll extends React.Component {
     // _isMounted = false;

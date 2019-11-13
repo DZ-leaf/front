@@ -7,8 +7,6 @@ import moment from 'moment';
 
 import { CalendarList, Calendar, Agenda } from 'react-native-calendars';
 
-import Icon from 'react-native-vector-icons/FontAwesome';
-
 let calendarDate = moment();
 
 class CalendarCard extends Component {
@@ -61,7 +59,7 @@ class CalendarCard extends Component {
     }
 
     render() {
-        const { navigation } = this.props;
+        const { navigation, move } = this.props;
         return (
             <Block style={{ padding: '3%' }}>
                 <Card>
@@ -70,7 +68,7 @@ class CalendarCard extends Component {
                             <Text>일정</Text>
                         </Left>
                         <Right>
-                            <Text onPress={() => navigation.navigate("CompanyCalendar")}
+                            <Text onPress={() => navigation.navigate(move)}
                                 style={{ color: '#0B5713' }}>More...</Text>
                         </Right>
                     </CardItem>

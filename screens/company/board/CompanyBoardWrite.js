@@ -5,7 +5,7 @@ import BoardWrite from '../../../components/board/BoardWrite'
 class CompanyBoardWrite extends Component {
     render() {
         return (
-            <BoardWrite/>
+            <BoardWrite move={"CompanyBoardList"}/>
         );
     }
 }

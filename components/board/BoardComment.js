@@ -1,17 +1,15 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image, KeyboardAvoidingView, Platform, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, KeyboardAvoidingView, Platform, Dimensions } from 'react-native';
 import { withNavigation, ScrollView } from 'react-navigation';
 import { Block, Input } from 'galio-framework';
 
-import { Content, List, ListItem, Thumbnail, Left, Body, Right, Button, Footer, FooterTab } from 'native-base';
+import { Content, List, ListItem, Body, Right, Footer, FooterTab } from 'native-base';
 
-import Icon from 'react-native-vector-icons/SimpleLineIcons';
 import Icons from 'react-native-vector-icons/FontAwesome';
 import IconF from 'react-native-vector-icons/Feather';
 
-import Images from "../../constants/Images";
 
-const { width, height } = Dimensions.get("screen");
+const { width } = Dimensions.get("screen");
 
 class BoardRead extends Component {
 

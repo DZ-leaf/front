@@ -3,7 +3,7 @@ import BoardList from '../../../components/board/BoardList';
 class CompanyBoardScreen extends Component {
     render() {
         return (
-            <BoardList/>
+            <BoardList move={"CompanyBoardWrite"}/>
         );
     }
 }

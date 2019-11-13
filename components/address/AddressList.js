@@ -18,7 +18,8 @@ class AddressList extends Component {
                         <View style={{ width: width * 0.85 }}>
                             <Input
                                 placeholder="검색"
-                                iconContent={<Icon size={20} style={{ marginRight: 10 }} name="account-search" />}
+                                iconContent={<Icon size={20} style={{ marginRight: 10 }} 
+                                name="account-search" />}
                                 color={'#000000'} placeholderTextColor="#ADB5BD" />
                         </View>
                         <View style={{ paddingTop: '4.5%', paddingLeft: '3.5%' }}>

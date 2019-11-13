@@ -14,7 +14,7 @@ class CompanyAtHome extends React.Component {
         return (
             <Block row>
                 <View style={{ width: width }}>
-                    <BoardCard/>
+                    <BoardCard move={"CompanyBoardList"}/>
                 </View>
             </Block>
         );
@@ -34,7 +34,7 @@ class CompanyAtHome extends React.Component {
         return (
             <Block row>
                 <View style={{ width: width }}>
-                    <CalendarCard />
+                    <CalendarCard move={"CompanyCalendar"}/>
                 </View>
             </Block>
         )

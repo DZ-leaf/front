@@ -34,14 +34,14 @@ class BoardRead extends Component {
     }
 
     optionButton = (index) => {
-       // 0: 수정
-            // 1: 돌아가기
-            // 2: 삭제
-            if (index == 0) { // 수정
+        // 0: 수정
+        // 1: 돌아가기
+        // 2: 삭제
+        if (index == 0) { // 수정
 
-            } else if (index == 2) { // 삭제
-                this.cancleAlert();
-            }
+        } else if (index == 2) { // 삭제
+            this.cancleAlert();
+        }
     }
 
     callOptionButton = () => {
@@ -66,6 +66,7 @@ class BoardRead extends Component {
     }
 
     cancleAlert = () => {
+        const { navigation, moveDelete } = this.props;
         Alert.alert(
             '삭제하시겠습니까?',
             '삭제하시면 게시글을 볼수 없습니다',
@@ -78,7 +79,7 @@ class BoardRead extends Component {
                     text: 'OK',
                     onPress: () => {
                         console.log('OK Pressed');
-                        this.props.navigation.navigate("CompanyBoardList")
+                        navigation.navigate(moveDelete)
                     }
                 },
             ],
@@ -90,11 +91,11 @@ class BoardRead extends Component {
         return (
             <Block flex>
                 <ActionSheet
-                            ref={o => this.ActionSheet = o}
-                            options={['수정', '돌아가기', '삭제']}
-                            cancelButtonIndex={1}
-                            destructiveButtonIndex={2}
-                            onPress={(index) => this.optionButton(index)} />
+                    ref={o => this.ActionSheet = o}
+                    options={['수정', '돌아가기', '삭제']}
+                    cancelButtonIndex={1}
+                    destructiveButtonIndex={2}
+                    onPress={(index) => this.optionButton(index)} />
                 <List>
                     <ListItem thumbnail>
                         <Left>
