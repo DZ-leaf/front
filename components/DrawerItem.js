@@ -18,7 +18,7 @@ class DrawerItem extends React.Component {
       case "동아리":
         return (<Icon name="arrange-bring-forward" size={20} color={focused ? "#ffffff" : "#000000"}/>);
       case "그룹":
-        return (<Icon name="comment-account" size={20} color={focused ? "#ffffff" : "#000000"}/>);
+        return (<Icon name="account-multiple" size={20} color={focused ? "#ffffff" : "#000000"}/>);
       case "일정":
         return (<Icon name="calendar-text" size={20} color={focused ? "#ffffff" : "#000000"}/>);
       case "로그아웃":

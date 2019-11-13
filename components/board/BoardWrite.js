@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import { withNavigation, ScrollView } from 'react-navigation';
 import { Block } from 'galio-framework';
-import {
-    StyleSheet, Text, View, TextInput, KeyboardAvoidingView, 
-    Platform, Dimensions, ActionSheetIOS, BackHandler,
-} from 'react-native';
+import { StyleSheet, Text, View, TextInput, KeyboardAvoidingView, Platform, ActionSheetIOS, BackHandler } from 'react-native';
 import { Header, Content, Item, Input, Footer, FooterTab, Left, Body, Right, Button } from 'native-base';
 import ActionSheet from 'react-native-actionsheet'
 
@@ -41,8 +38,9 @@ class BoardWrite extends Component {
                 },
                 (index) => {
                     // 1: 게시글 삭제
+                    const {navigation, move} = this.props;
                     if (index == 1) {
-                        this.props.navigation.navigate("CompanyBoardList");
+                        navigation.navigate(move);
                     }
                 },
             );
@@ -52,13 +50,15 @@ class BoardWrite extends Component {
     optionButton = (index) => {
         // 0: 게시글 삭제
         // 1: 돌아가기
+        const {navigation, move} = this.props;
         if (index == 0) {
-            this.props.navigation.navigate("CompanyBoardList");
+            navigation.navigate(move);
         }
     }
 
     clearButton = () => {
-        this.props.navigation.navigate("CompanyBoardList");
+        const {navigation, move} = this.props;
+        navigation.navigate(move);
     }
 
     render() {

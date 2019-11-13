@@ -18,8 +18,7 @@ class GroupAtHome extends React.Component {
         return (
             <Block flex style={styles.group}>
                 <Text bold size={16} style={styles.title}>
-                {"\n"}{"\n"}
-                    그룹
+                    {"\n"}그룹
                 </Text>
                 <Block flex>
                     <Block style={{ paddingHorizontal: theme.SIZES.BASE }}>

@@ -5,7 +5,7 @@ import { Block, theme, Input, } from 'galio-framework';
 import Camera from '../../../components/camera/Camera';
 import CameraRoll from '../../../components/camera/CameraRoll';
 
-class CompanyAddGallery extends Component {
+class GroupAddGallery extends Component {
     // componentDidMount(){
         
     // }   
@@ -20,4 +20,4 @@ class CompanyAddGallery extends Component {
     }
 }
 
-export default CompanyAddGallery;
+export default GroupAddGallery;

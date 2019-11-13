@@ -5,7 +5,7 @@ import ChatStack from './ChatStack';
 import ProfileStack from './ProfileStack';
 import AlarmStack from './AlarmStack';
 import SettingStack from './SettingStack';
-import GroupStack from './GroupStack';
+import GroupStack from './group/GroupStack';
 import CalendarStack from './CalendarStack';
 import CompanyStack from './company/CompanyStack';
 

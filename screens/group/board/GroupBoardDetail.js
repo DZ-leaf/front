@@ -2,13 +2,12 @@ import React, { Component } from 'react';
 
 import BoardRead from '../../../components/board/BoardRead';
 
-class CompanyBoardDetail extends Component {
-    
+class GroupBoardDetail extends Component {
     render() {
         return (
-            <BoardRead moveDelete={"CompanyBoardList"}/>
+            <BoardRead moveDelete={"GroupBoardList"}/>
         );
     }
 }
 
-export default CompanyBoardDetail;
+export default GroupBoardDetail;

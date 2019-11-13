@@ -14,15 +14,13 @@ class AddressList extends Component {
         return (
             <Container>
                 <Content>
-                    <Block row style={{ paddingLeft: '2%', paddingRight: '2%' }}>
-                        <View style={{ width: width * 0.85 }}>
+                    <Block middle row style={{ paddingLeft: '2%', paddingRight: '2%' }}>
+                        <View style={{ width: width * 0.97 }}>
                             <Input
                                 placeholder="검색"
-                                iconContent={<Icon size={20} style={{ marginRight: 10 }} name="account-search" />}
+                                iconContent={<Icon size={20} style={{ marginRight: 10 }} 
+                                name="account-search" />}
                                 color={'#000000'} placeholderTextColor="#ADB5BD" />
-                        </View>
-                        <View style={{ paddingTop: '4.5%', paddingLeft: '3.5%' }}>
-                            <Text>찾기</Text>
                         </View>
                     </Block>
                     

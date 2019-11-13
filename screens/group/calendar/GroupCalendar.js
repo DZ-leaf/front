@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import Calendar from '../../../components/calendar/Calendars';
 
-class CompanyCalendar extends Component {
+class GroupCalendar extends Component {
 
     render() {
         return (
@@ -11,4 +11,4 @@ class CompanyCalendar extends Component {
     }
 }
 
-export default CompanyCalendar;
+export default GroupCalendar;
