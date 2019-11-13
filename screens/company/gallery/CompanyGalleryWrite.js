@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+<<<<<<< HEAD
 import { StyleSheet, Text, View, ScrollView, Image, FlatList, Dimensions } from 'react-native';
 import { Block, theme, Input, } from 'galio-framework';
 import { Button } from 'native-base';
@@ -6,22 +7,14 @@ import { Button } from 'native-base';
 import Tag from '../../../components/Tag';
 
 const { width, height } = Dimensions.get('screen');
+=======
+import { StyleSheet, Text, View, Button, ScrollView, Image } from 'react-native';
+>>>>>>> parent of c89d42b... 갤러리 등록 폼
 
 class CompanyGalleryWrite extends Component {
-
-    renderItem(item) {
-        return (
-            <View style={{ width: width*0.95, alignItems: 'center' }}>
-                <Image style={{ width: width * 0.8, height: width * 0.8 }} resizeMode='cover' source={{ uri: item.uri }} />
-                {/* <Text>{item.file}</Text> */}
-            </View>
-        )
-    }
-
     render() {
-        console.log(this.props.photos);
-
         return (
+<<<<<<< HEAD
             <Block flex>
                 {/* <View style={{flex: 1, width: width, height: 30, borderWidth:1}}>  */}
                 <View style={styles.header}>
@@ -51,28 +44,13 @@ class CompanyGalleryWrite extends Component {
                     />
                 </View>
             </Block>
+=======
+            <View>
+                <Text>글작성</Text>
+            </View>
+>>>>>>> parent of c89d42b... 갤러리 등록 폼
         );
     }
 }
 
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    },
-    header: {
-        height: 50,
-        width: width,
-        justifyContent: 'space-between',
-        flexDirection: 'row',
-        alignItems: 'center',
-        padding: 10,
-        // marginTop: 10,
-    },
-    buttonText: {
-        fontWeight: 'bold',
-        color: '#0B5713',
-        fontSize: 18,
-    }
-})
 export default CompanyGalleryWrite;
