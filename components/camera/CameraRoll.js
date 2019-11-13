@@ -1,53 +1,23 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, ScrollView, Image, Modal } from 'react-native';
-import * as Permissions from 'expo-permissions';
+import { StyleSheet, Text, View, Button, ScrollView, Image } from 'react-native';
 import { ImageBrowser } from 'expo-multiple-imagepicker';
 
-import CompanyGalleryWrite from '../../screens/company/gallery/CompanyGalleryWrite';
-import CompanyCamera from '../../screens/company/gallery/CompanyCamera';
-
 export default class CameraRoll extends React.Component {
-    // _isMounted = false;
-
     constructor(props) {
         super(props);
         this.state = {
-            // hasCameraPermission: null,
             imageBrowserOpen: true,
-            writeModalVisible: false,
-            cameraModalVisible: false,
             photos: []
         }
     }
-
-    // async componentDidMount() {
-    //     this._isMounted = true;
-
-    //     const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
-    //     this.setState({ hasCameraPermission: status === 'granted' });
-    // }
-
-    // componentWillUnmount() {
-    //     this._isMounted = false;
-    //   }
-
-    // wirteModal
-    setWriteModalVisible = (visible) => {this.setState({writeModalVisible: visible, })}
-    closeWriteModal = () => {this.setState({ writeModalVisible: false, }) }
-
-    // cameraModal
-    setcameraModalVisible = (visible) => { this.setState({ cameraModalVisible: visible, })}
-    closeCameraModal = () => { this.setState({ cameraModalVisible: false, })}
-
     imageBrowserCallback = (callback) => {
         callback.then((photos) => {
             this.setState({
                 imageBrowserOpen: false,
-                photos,
+                photos
             })
-            // console.log(this.state.photos, this.props.navigation.navigate('CompanyGalleryWrite', {photos: this.state.photos}));
+            console.log(this.state.photos, this.props.navigation.navigate('CompanyGalleryWrite'));
             // this.props.navigation.navigate('CompanyGalleryWrite');
-            this.setWriteModalVisible(!this.state.writeModalVisible)
         }).catch((e) => console.log(e))
     }
 
@@ -62,29 +32,17 @@ export default class CameraRoll extends React.Component {
     }
 
     render() {
-        const { hasCameraPermission } = this.state;
-        if (hasCameraPermission === null) {
-            return <View><Text>null</Text></View>
-        } else if (hasCameraPermission === false) {
-            return <View><Text>false</Text></View>
-        } else {
-            return (
-
-                <View style={{ flex: 1 }}>
-                    <ImageBrowser max={10} callback={this.imageBrowserCallback} 
-                        closeModal={this.props.closeModal} 
-                        cameraModalVisible={this.setcameraModalVisible}
-                        cameraVisible={this.state.cameraModalVisible}/>
-
-                    <Modal visible={this.state.writeModalVisible} onRequestClose={() => { this.closeWriteModal() }}>
-                        <CompanyGalleryWrite closeModal={this.closeWriteModal} photos={this.state.photos} />
-                    </Modal>
-
-                    <Modal visible={this.state.cameraModalVisible} onRequestClose={() => { this.closeCameraModal() }}>
-                        <CompanyCamera closeModal={this.closeCameraModal} photos={this.state.photos} />
-                    </Modal>
-                </View>
-            );
-        }
+        return (<ImageBrowser max={10} callback={this.imageBrowserCallback} />);
     }
+
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        marginTop: 30,
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+});

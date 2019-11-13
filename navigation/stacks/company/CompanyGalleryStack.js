@@ -26,22 +26,18 @@ const CompanyGalleryStack = createStackNavigator(
         },
         CompanyAddGallery: {
             screen: CompanyAddGallery,
-            // navigationOptions: ({ navigation }) => ({
-            //     header: <Header back={true} title="회사" navigation={navigation} />
-            // }),
-            mode: 'modal',
+            navigationOptions: {
+                header: null
+            }
             
         },
         CompanyGalleryWrite: {
             screen: CompanyGalleryWrite,
-            // mode: 'modal'
+            navigationOptions: {
+                header: null
+            }
         },
-        // CompanyCamera: {
-        //     screen: CompanyCamera,
-        //     navigationOptions: {
-        //         header: null,
-        //     }
-        // }
+
     },  
     {
         cardStyle: { backgroundColor: "#F8F9FE" },

@@ -3,22 +3,12 @@ import { StyleSheet, Text, View, ScrollView, Image, FlatList, Dimensions } from 
 import { Block, theme, Input, } from 'galio-framework';
 import { Button } from 'native-base';
 
+import Tag from '../../../components/Tag';
+
 const { width, height } = Dimensions.get('screen');
 
 class CompanyGalleryWrite extends Component {
-
-    renderItem(item) {
-        return (
-            <View style={{ width: width*0.95, alignItems: 'center' }}>
-                <Image style={{ width: width * 0.8, height: width * 0.8 }} resizeMode='cover' source={{ uri: item.uri }} />
-                {/* <Text>{item.file}</Text> */}
-            </View>
-        )
-    }
-
     render() {
-        console.log(this.props.photos);
-
         return (
             <Block flex>
                 {/* <View style={{flex: 1, width: width, height: 30, borderWidth:1}}>  */}
@@ -37,7 +27,7 @@ class CompanyGalleryWrite extends Component {
                 </View>
                 {/* </View> */}
                 <View style={{ flex: 1, borderWidth: 1 }}>
-                    <Text> 태그작성 </Text>
+                    <Tag/>
                 </View>
                 <View style={{ flex: 2 }}>
                     <FlatList
@@ -53,24 +43,4 @@ class CompanyGalleryWrite extends Component {
     }
 }
 
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    },
-    header: {
-        height: 50,
-        width: width,
-        justifyContent: 'space-between',
-        flexDirection: 'row',
-        alignItems: 'center',
-        padding: 10,
-        // marginTop: 10,
-    },
-    buttonText: {
-        fontWeight: 'bold',
-        color: '#0B5713',
-        fontSize: 18,
-    }
-})
 export default CompanyGalleryWrite;
