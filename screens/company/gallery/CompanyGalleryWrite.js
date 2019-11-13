@@ -3,6 +3,8 @@ import { StyleSheet, Text, View, ScrollView, Image, FlatList, Dimensions } from 
 import { Block, theme, Input, } from 'galio-framework';
 import { Button } from 'native-base';
 
+import Tag from '../../../components/Tag';
+
 const { width, height } = Dimensions.get('screen');
 
 class CompanyGalleryWrite extends Component {
@@ -37,7 +39,7 @@ class CompanyGalleryWrite extends Component {
                 </View>
                 {/* </View> */}
                 <View style={{ flex: 1, borderWidth: 1 }}>
-                    <Text> 태그작성 </Text>
+                    <Tag/>
                 </View>
                 <View style={{ flex: 2 }}>
                     <FlatList
