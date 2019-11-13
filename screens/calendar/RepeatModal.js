@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
 import { Block, Button } from "galio-framework";
-import RadioForm from 'react-native-simple-radio-button';
+import { Container, Header, Content, ListItem, Text, Radio, Right, Left } from 'native-base';
 
 class RepeatModal extends Component {
     state = {
@@ -16,23 +16,31 @@ class RepeatModal extends Component {
     }
 
     selectButton = (selected) => {
-        // this.setState({ selectValue: this.state.data[selected] });
         this.props.setRepeat(this.state.data[selected]);
         this.props.closeModal();
     }
 
 
-    render() {        
+    render() {
         return (
-            <Block flex style={styles.container}>
+            <Block style={styles.container}>
                 <Block style={styles.radioContainer}>
-                    <RadioForm radio_props={this.state.data}
-                        initial={this.props.selectedValue}
-                        animation={false}
-                        buttonColor={'gray'}
-                        onPress={(value) => { this.selectButton(value) }} />
+                    {this.state.data.map((list, index) => {
+                        return (
+                            <ListItem key={index}
+                                onPress={
+                                    () => { this.selectButton(index) }}>
+                                <Left>
+                                    <Text>{list.label}</Text>
+                                </Left>
+                                <Right>
+                                    <Radio selected={this.props.selectedValue === index ? true : false}
+                                        color='gray' selectedColor='#0B5713' />
+                                </Right>
+                            </ListItem>
+                        )
+                    })}
                 </Block>
-                {/* <Button onPress={() => { this.props.closeModal() }}>취소</Button> */}
             </Block>
         );
     }

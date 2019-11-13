@@ -76,9 +76,7 @@ class AddEventModal extends Component {
         this.setState({ data: { ...this.state.data, selectedRepeatValue: selectValue } })
     }
 
-    render() {
-        // console.log(this.props.day);        
-        
+    render() {        
         return (
             <Block flex style={styles.container}>
                 <Block style={styles.inputContainer}>

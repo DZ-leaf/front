@@ -161,7 +161,7 @@ class EventDetailModal extends Component {
                         }}
                     />
 
-                    <Modal visible={this.state.modal.editModal} animationType="slide" onRequestClose={() => { this.closeNotifyModal() }}>
+                    <Modal visible={this.state.modal.editModal} animationType="slide" onRequestClose={() => { this.closeEditModal() }}>
                         <EditEventModal closeModal={this.closeEditModal} navigation={this.props.navigation} />
                     </Modal>
                 </Block>

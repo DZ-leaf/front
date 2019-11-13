@@ -76,6 +76,7 @@ class EditEventModal extends Component {
     }
 
     render() {
+        let selectDate = this.state.startTimeCheck? this.state.data.startTime : this.state.data.endTime;
 
         return (
             <Block flex style={styles.container}>
@@ -99,8 +100,9 @@ class EditEventModal extends Component {
                         onConfirm={this.datePicked}
                         onCancel={this.closeDateTimeModal}
                         onDayPress={(day) => { console.log(day); }}
-                        date={new Date(this.props.selectedDate)}
-                        is24Hour={false}
+                        date={new Date(selectDate)}
+                        is24Hour={false} 
+                        onRequestClose={() => {this.closeDateTimeModal()}}     
                     />
                 </Block>
 
