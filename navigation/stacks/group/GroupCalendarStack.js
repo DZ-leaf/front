@@ -4,14 +4,14 @@ import { createStackNavigator } from 'react-navigation-stack';
 import Header from "../../../components/Header";
 import transitionConfig from '../transitionConfig';
 
-import { CompanyCalendar } from '../../../screens/company';
+import { GroupCalendar } from '../../../screens/group';
 
-const CompanyCalendarStack = createStackNavigator(
+const GroupCalendarStack = createStackNavigator(
     {
-        CompanyCalendar: {
-            screen: CompanyCalendar,
+        GroupCalendar: {
+            screen: GroupCalendar,
             navigationOptions: ({ navigation }) => ({
-                header: <Header title="회사" navigation={navigation} />
+                header: <Header title="그룹" navigation={navigation} />
             })
         },
     },  
@@ -21,5 +21,4 @@ const CompanyCalendarStack = createStackNavigator(
     }
 );
 
-
-export default CompanyCalendarStack;
+export default GroupCalendarStack;
