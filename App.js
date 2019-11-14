@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Image, AsyncStorage } from 'react-native';
 import { AppLoading } from 'expo';
 import { Asset } from 'expo-asset';
@@ -7,7 +7,6 @@ import { Block, GalioProvider } from 'galio-framework';
 import Screens from './navigation/Screens';
 import ScreenAuth from './navigation/ScreenAuth';
 import Images from './constants/Images'
-import articles from './constants/articles';
 
 import argonTheme from './constants/Theme';
 
@@ -27,9 +26,6 @@ const assetImages = [
   Images.androidLogo
 ];
 
-// cache product images
-articles.map(article => assetImages.push(article.image));
-
 function cacheImages(images) {
   return images.map(image => {
     if (typeof image === 'string') {
@@ -40,51 +36,38 @@ function cacheImages(images) {
   });
 }
 
-export default class App extends React.Component {
+const App = () => {
 
-  state = {
-    isLoadingComplete: false,
-    memberAuth: '',
-  }
+  const [isLoadingComplete, setIsLoadingComplete] = useState(false);
+  const [memberAuth, setMemberAuth] = useState('');
+  const [memberName, setMemberName] = useState('');
 
-  componentWillMount() {
-    autoLogin = async () => {
-      try {
-        let keys = await AsyncStorage.getAllKeys();
-        let items = await AsyncStorage.multiGet(keys)
+  autoLogin = async () => {
+    try {
+      let keys = await AsyncStorage.getAllKeys();
+      let items = await AsyncStorage.multiGet(keys)
 
-        AsyncStorage.getAllKeys((err, keys) => {
-          AsyncStorage.multiGet(keys, (error, stores) => {
-            console.log(stores.length)
-            stores.map((result, i, store) => {
-              console.log({ [store[i][0]]: store[i][1] });
-              // return true;
-            });
-          });
-        });
-
-        if (items.length > 0) {
-          const memberId = await AsyncStorage.getItem('memberId')
-          const memberPw = await AsyncStorage.getItem('memberPw')
-          if (memberId != null && memberPw != null) {
-            let data = {
-              "memberId": memberId,
-              "memberPw": memberPw
-            }
-            this.loginAjax(data);
+      if (items.length > 0) {
+        const memberId = await AsyncStorage.getItem('memberId')
+        const memberPw = await AsyncStorage.getItem('memberPw')
+        if (memberId != null && memberPw != null) {
+          let data = {
+            "memberId": memberId,
+            "memberPw": memberPw
           }
+          this.loginAjax(data);
         }
-      } catch (e) {
-        console.error(e)
       }
+    } catch (e) {
+      console.error(e)
     }
   }
 
   loginAjax = (data) => {
     return AjaxMember.login(data)
       .then((responseJson) => {
-        console.log("name : " + responseJson.info);
         if (responseJson.message == 'success') {
+          setMemberName(responseJson.memberName);
           this.setAuth();
         } else if (responseJson.message == 'fail') {
           Alert.alert("로그인에 실패했습니다")
@@ -95,54 +78,49 @@ export default class App extends React.Component {
   setAuth = async () => {
     try {
       const memberAuth = await AsyncStorage.getItem('Authorization')
-      this.setState({ memberAuth: memberAuth })
+      setMemberAuth(memberAuth);
+      await AsyncStorage.setItem("memberName", memberName);
     } catch (error) {
       console.error(error)
     }
   }
 
-  render() {
-
-    if (!this.state.isLoadingComplete) {
-      return (
-        <AppLoading
-          startAsync={this._loadResourcesAsync}
-          onError={this._handleLoadingError}
-          onFinish={this._handleFinishLoading}
-        />
-      );
-    } else {
-      return (
-        <Provider store={store}>
-          <GalioProvider theme={argonTheme}>
-            <Block flex>
-              {this.state.memberAuth == '' ?
-                <Screens />
-                :
-                <ScreenAuth />
-              }
-            </Block>
-          </GalioProvider>
-        </Provider>
-      );
-    }
+  if (!isLoadingComplete) {
+    return (
+      <AppLoading
+        startAsync={_loadResourcesAsync}
+        onError={_handleLoadingError}
+        onFinish={() => setIsLoadingComplete(true)}
+      />
+    );
+  } else {
+    return (
+      <Provider store={store}>
+        <GalioProvider theme={argonTheme}>
+          <Block flex>
+            {memberAuth == '' ?
+              <Screens />
+              :
+              <ScreenAuth />
+            }
+          </Block>
+        </GalioProvider>
+      </Provider>
+    );
   }
-
-  _loadResourcesAsync = async () => {
-    return Promise.all([
-      autoLogin(),
-      ...cacheImages(assetImages),
-    ]);
-  };
-
-  _handleLoadingError = error => {
-    // In this case, you might want to report the error to your error
-    // reporting service, for example Sentry
-    console.warn(error);
-  };
-
-  _handleFinishLoading = () => {
-    this.setState({ isLoadingComplete: true });
-  };
-
 }
+
+const _loadResourcesAsync = async () => {
+  return Promise.all([
+    this.autoLogin(),
+    ...cacheImages(assetImages),
+  ]);
+};
+
+const _handleLoadingError = error => {
+  // In this case, you might want to report the error to your error
+  // reporting service, for example Sentry
+  console.warn(error);
+};
+
+export default App;

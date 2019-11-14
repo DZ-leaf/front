@@ -14,6 +14,7 @@ class LoginScreen extends React.Component {
   state = {
     memberId: '',
     memberPw: '',
+    memberName: '',
     checked: true,
   }
 
@@ -30,10 +31,11 @@ class LoginScreen extends React.Component {
   loginAjax = (data) => {
     return AjaxMember.login(data)
       .then((responseJson) => {
-        console.log("name : " + responseJson.info);
         if (responseJson.message == 'success') {
+          this.setState({memberName: responseJson.info});
           this.setData();
           this.props.navigation.navigate("Home");
+          this.setName();
         } else if (responseJson.message == 'fail') {
           Alert.alert("로그인에 실패했습니다")
         }
@@ -48,6 +50,14 @@ class LoginScreen extends React.Component {
       } else if (!this.state.checked) {
         await AsyncStorage.clear();
       }
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
+  setName = async () => {
+    try {
+      await AsyncStorage.setItem("memberName", this.state.memberName);
     } catch (e) {
       console.error(e)
     }

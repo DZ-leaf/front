@@ -1,7 +1,7 @@
 import React from 'react';
 import LoginScreen from '../../screens/member/login/LoginScreen';
-import RegisterScreen from '../../screens/member/register/RegisterScreen';
-import FindScreen from '../../screens/member/find/FindScreen';
+import RegisterScreen from '../../screens/member/register/RegisterScreen.jsx';
+import FindScreen from '../../screens/member/find/FindScreen.jsx';
 
 import { createStackNavigator } from "react-navigation-stack";
 
