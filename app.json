@@ -27,8 +27,12 @@
       "supportsTablet": true,
       "userInterfaceStyle": "automatic"
     },
+<<<<<<< HEAD
     "packagerOpts": {
       "sourceExts": ["js", "json", "ts", "tsx", "jsx", "vue"]
     }
+=======
+    "description": ""
+>>>>>>> 0bffe0338692fef48694fac64275d9029d580d2b
   }
 }
