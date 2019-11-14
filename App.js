@@ -66,7 +66,7 @@ export default class App extends React.Component {
   componentWillMount() {
     autoLogin = async () => {
       try {
-        const memberAuth = await AsyncStorage.getItem('memberAuth')
+        const memberAuth = await AsyncStorage.getItem('Authorization')
         this.setState({ memberAuth: memberAuth })
         console.log("요기 : " + this.state.memberAuth)
       } catch (e) {

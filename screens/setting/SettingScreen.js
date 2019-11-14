@@ -8,8 +8,8 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 class SettingScreen extends Component {
 
     logout = async () => {
+        this.props.navigation.navigate('Member')
         try {
-            this.props.navigation.navigate('Member')
             await AsyncStorage.clear();
         } catch (e) {
             console.error(e);
