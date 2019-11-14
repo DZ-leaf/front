@@ -7,14 +7,14 @@ const { width } = Dimensions.get("screen");
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-import {AjaxMember} from "../../../lib/url/memberUrl";
+import { AjaxMember } from "../../../lib/url/memberUrl";
 
 class LoginScreen extends React.Component {
 
   state = {
     memberId: '',
     memberPw: '',
-    autoLogin: false,
+    checked: true,
   }
 
   handleSubmit = () => {
@@ -30,7 +30,9 @@ class LoginScreen extends React.Component {
   loginAjax = (data) => {
     return AjaxMember.login(data)
       .then((responseJson) => {
+        console.log("name : " + responseJson.info);
         if (responseJson.message == 'success') {
+          this.setData();
           this.props.navigation.navigate("Home");
         } else if (responseJson.message == 'fail') {
           Alert.alert("로그인에 실패했습니다")
@@ -40,25 +42,23 @@ class LoginScreen extends React.Component {
 
   setData = async () => {
     try {
-      if (this.state.autoLogin == true) {
-        await AsyncStorage.setItem('memberId', this.state.memberId);
-        await AsyncStorage.setItem('memberPw', this.state.memberPw);
-      } else if (this.state.autoLogin == false) {
-        await AsyncStorage.removeItem('memberId');
-        await AsyncStorage.removeItem('memberPw');
+      if (this.state.checked) {
+        await AsyncStorage.setItem("memberId", this.state.memberId);
+        await AsyncStorage.setItem("memberPw", this.state.memberPw);
+      } else if (!this.state.checked) {
+        await AsyncStorage.clear();
       }
     } catch (e) {
       console.error(e)
     }
   }
 
-  autoLogin = () => {
-    if (this.state.autoLogin == false) {
-      this.setState({ autoLogin: true })
-    } else if (this.state.autoLogin == true) {
-      this.setState({ autoLogin: false })
+  checked = () => {
+    if (this.state.checked ) {
+      this.setState({ checked: false })
+    } else if (!this.state.checked) {
+      this.setState({ checked: true })
     }
-    this.setData();
   }
 
   render() {
@@ -84,7 +84,7 @@ class LoginScreen extends React.Component {
               onChangeText={(text) => { this.setState({ memberPw: text }) }} />
             <View style={styles.textAuto}>
               <Checkbox color="primary" labelStyle={{ color: '#707070' }} label="자동 로그인"
-                onChange={this.autoLogin} />
+                onChange={this.checked} />
             </View>
             <Button
               style={styles.button}
@@ -104,6 +104,7 @@ class LoginScreen extends React.Component {
                 회원가입
                 </Text>
             </View>
+
           </Block>
         </Block>
       </Block>

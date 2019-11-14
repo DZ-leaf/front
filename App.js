@@ -40,44 +40,65 @@ function cacheImages(images) {
   });
 }
 
-autoLogin = async () => {
-  try {
-    const memberId = await AsyncStorage.getItem('memberId')
-    const memberPw = await AsyncStorage.getItem('memberPw')
-    if (memberId != null && memberPw != null) {
-      let data = {
-        "memberId": memberId,
-        "memberPw": memberPw
-      }
-      return AjaxMember.login(data)
-        .then((responseJson) => {
-          if (responseJson.message == 'fail') {
-            Alert.alert("로그인에 실패했습니다")
-          }
-        })
-    }
-  } catch (e) {
-    console.error(e)
-  }
-}
-
 export default class App extends React.Component {
+
+  state = {
+    isLoadingComplete: false,
+    memberAuth: '',
+  }
 
   componentWillMount() {
     autoLogin = async () => {
       try {
-        const memberAuth = await AsyncStorage.getItem('Authorization')
-        this.setState({ memberAuth: memberAuth })
-        console.log("요기 : " + this.state.memberAuth)
+        let keys = await AsyncStorage.getAllKeys();
+        let items = await AsyncStorage.multiGet(keys)
+
+        AsyncStorage.getAllKeys((err, keys) => {
+          AsyncStorage.multiGet(keys, (error, stores) => {
+            console.log(stores.length)
+            stores.map((result, i, store) => {
+              console.log({ [store[i][0]]: store[i][1] });
+              // return true;
+            });
+          });
+        });
+
+        if (items.length > 0) {
+          const memberId = await AsyncStorage.getItem('memberId')
+          const memberPw = await AsyncStorage.getItem('memberPw')
+          if (memberId != null && memberPw != null) {
+            let data = {
+              "memberId": memberId,
+              "memberPw": memberPw
+            }
+            this.loginAjax(data);
+          }
+        }
       } catch (e) {
         console.error(e)
       }
     }
   }
 
-  state = {
-    isLoadingComplete: false,
-    memberAuth: '',
+  loginAjax = (data) => {
+    return AjaxMember.login(data)
+      .then((responseJson) => {
+        console.log("name : " + responseJson.info);
+        if (responseJson.message == 'success') {
+          this.setAuth();
+        } else if (responseJson.message == 'fail') {
+          Alert.alert("로그인에 실패했습니다")
+        }
+      })
+  }
+
+  setAuth = async () => {
+    try {
+      const memberAuth = await AsyncStorage.getItem('Authorization')
+      this.setState({ memberAuth: memberAuth })
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   render() {
@@ -95,7 +116,7 @@ export default class App extends React.Component {
         <Provider store={store}>
           <GalioProvider theme={argonTheme}>
             <Block flex>
-              {this.state.memberAuth == null ?
+              {this.state.memberAuth == '' ?
                 <Screens />
                 :
                 <ScreenAuth />
