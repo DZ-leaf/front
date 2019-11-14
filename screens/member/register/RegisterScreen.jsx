@@ -69,6 +69,7 @@ const Register = ({ navigation }) => {
   }
 
   const register = (data) => {
+    console.log(data);
     return AjaxMember.register(data)
       .then((responseJson) => {
         console.log("회원가입 : " + responseJson.message);
