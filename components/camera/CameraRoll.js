@@ -1,48 +1,80 @@
-import React from 'react';
-import { StyleSheet, Text, View, Button, ScrollView, Image } from 'react-native';
-import { ImageBrowser } from 'expo-multiple-imagepicker';
+import * as React from 'react';
+import { Image, View, Text } from 'react-native';
+import { Button } from 'native-base';
 
-export default class CameraRoll extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            imageBrowserOpen: true,
-            photos: []
-        }
-    }
-    imageBrowserCallback = (callback) => {
-        callback.then((photos) => {
-            this.setState({
-                imageBrowserOpen: false,
-                photos
-            })
-            console.log(this.state.photos, this.props.navigation.navigate('CompanyGalleryWrite'));
-            // this.props.navigation.navigate('CompanyGalleryWrite');
-        }).catch((e) => console.log(e))
-    }
+import * as ImagePicker from 'expo-image-picker';
+import Constants from 'expo-constants';
+import * as Permissions from 'expo-permissions';
 
-    renderImage(item, i) {
-        return (
-            <Image
-                style={{ height: 100, width: 100 }}
-                source={{ uri: item.file }}
-                key={i}
-            />
-        )
-    }
+export default class ImagePickerExample extends React.Component {
+    state = {
+        image: null,
+        hasCameraRollPermission: null,
+    };
 
     render() {
-        return (<ImageBrowser max={10} callback={this.imageBrowserCallback} />);
+        let { image } = this.state;
+
+        if (Constants.platform.ios) {
+            if (this.state.hasCameraRollPermission === null) {
+                return (
+                    <View>
+                        <Text>null</Text>
+                    </View>
+                )
+            } else if (this.state.hasCameraRollPermission === false) {
+                <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+                    <Button
+                        onPress={this.getPermissionAsync}
+                    ><Text>설정</Text>
+                    </Button>
+                </View>
+            } else {
+                return (
+                    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+                        <Button onPress={this._pickImage}>
+                            <Text>Pick an image from camera roll</Text>
+                        </Button>
+                        {image &&
+                            <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
+                    </View>
+                );
+            }
+        } else {
+            return (
+                <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+                    <Button onPress={this._pickImage}>
+                        <Text>Pick an image from camera roll</Text>
+                    </Button>
+                    {image &&
+                        <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
+                </View>
+            );
+        }
     }
 
-}
+    componentDidMount() {
+        this.getPermissionAsync();
+    }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        marginTop: 30,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-});
+    getPermissionAsync = async () => {
+        if (Constants.platform.ios) {
+            const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+            this.setState({ hasCameraRollPermission: status === 'granted' })
+        }
+    }
+
+    _pickImage = async () => {
+        let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.All,
+            allowsEditing: true,
+            aspect: [4, 3],
+        });
+
+        console.log(result);
+
+        if (!result.cancelled) {
+            this.setState({ image: result.uri });
+        }
+    };
+}
