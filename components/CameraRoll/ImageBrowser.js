@@ -2,10 +2,12 @@ import React from 'react';
 import { StyleSheet, Text, View, CameraRoll, FlatList, Dimensions } from 'react-native';
 import { Button } from 'native-base';
 import * as FileSystem from 'expo-file-system'
+import * as Permissions from 'expo-permissions';
 
 import ImageTile from './ImageTile';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { Platform } from '@unimodules/core';
 
 const { width } = Dimensions.get('window')
 
@@ -16,14 +18,28 @@ export default class ImageBrowser extends React.Component {
       photos: [],
       selected: {},
       after: null,
-      has_next_page: true
+      has_next_page: true,
+      hasCameraRollPermission: null,
     }
   }
 
-  componentDidMount() {
-    this.getPhotos()
-  }
+  async componentDidMount() {
+    console.log('cdm');
 
+    const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+    console.log(status);
+
+    this.setState({ hasCameraRollPermission: status === 'granted' });
+
+    console.log(this.state.hasCameraRollPermission);
+
+    if (this.state.hasCameraRollPermission) {
+      console.log("cdm_if");
+
+      this.getPhotos()
+    }
+
+  }
   selectImage = (index) => {
     let newSelected = { ...this.state.selected };
     if (newSelected[index]) {
@@ -37,7 +53,9 @@ export default class ImageBrowser extends React.Component {
   }
 
   getPhotos = () => {
-    let params = { first: 500, mimeTypes: ['image/jpeg'] };
+    console.log('getPhoto');
+
+    let params = { first: 500, mimeTypes: ['image/jpeg'], assetType: 'Photos' };
     if (this.state.after) params.after = this.state.after
     if (!this.state.has_next_page) return
     CameraRoll
@@ -120,8 +138,10 @@ export default class ImageBrowser extends React.Component {
       />
     )
   }
-  
+
   renderImages() {
+    console.log("renderImage");
+
     return (
       <FlatList
         data={this.state.photos}
@@ -138,12 +158,45 @@ export default class ImageBrowser extends React.Component {
   }
 
   render() {
-    return (
-      <View style={styles.container}>
-        {this.renderHeader()}
-        {this.renderImages()}
-      </View>
-    );
+    if (this.state.hasCameraRollPermission === null) {
+      return (
+        <View />
+      )
+    } else if (this.state.hasCameraRollPermission === false) {
+      return (
+        <View style={styles.container}>
+          {this.renderHeader()}
+          <View style={{ flex: 2, backgroundColor: 'black', alignItems: 'center', justifyContent: 'center' }} >
+            <Text style={{ fontSize: 20, color: 'white', fontWeight: 'bold', paddingBottom: '3%' }}>갤러리 접근</Text>
+            {Platform.OS !== 'ios' ?  <Button transparent
+              style={{ size: 30 }}
+              onPress={
+                async () => {
+                  console.log('뭐지');
+
+                  const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+                  console.log(status);
+
+                  this.setState({ hasCameraRollPermission: status === 'granted' });
+                }}>
+              <Text style={{ fontSize: 20, color: '#0B5713' }} >설정</Text>
+            </Button> : null}
+           
+            <Button>
+              <Text style={{ fontSize: 20, color: '#0B5713' }}>뒤로가기</Text>
+            </Button>
+          </View>
+        </View>
+      )
+    } else {
+      return (
+        <View style={styles.container}>
+          {this.renderHeader()}
+          {this.renderImages()}
+        </View>
+      );
+    }
+
   }
 }
 

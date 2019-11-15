@@ -6,6 +6,9 @@ import { Content, List, ListItem, Body, Right, Footer, FooterTab } from 'native-
 import CompanyGalleryWrite from '../../screens/company/gallery/CompanyGalleryWrite';
 import CompanyCamera from '../../screens/company/gallery/CompanyCamera';
 
+
+import Camera from '../../components/Camera';
+
 export default class Roll extends React.Component {
   constructor(props) {
     super(props);
@@ -16,6 +19,7 @@ export default class Roll extends React.Component {
       writeModalVisible: false,
     }
   }
+
 
   //cameraModal
   setCameraModalVisible = (visible) => { this.setState({ cameraModalVisible: visible }) }
@@ -39,7 +43,7 @@ export default class Roll extends React.Component {
   }
 
   render() {
-    console.log(this.props.navigation);
+    console.log('roll!!!!');
     
     return (
       <View style={{flex: 1}}>
@@ -49,7 +53,8 @@ export default class Roll extends React.Component {
           navigation={this.props.navigation}/>
 
         <Modal visible={this.state.cameraModalVisible} onRequestClose={this.closeCameraModal}>
-          <CompanyCamera />
+          {/* <CompanyCamera closeModal={this.closeCameraModal}/> */}
+          <Camera closeModal={this.closeCameraModal}/>
         </Modal>
 
         <Modal visible={this.state.writeModalVisible} onRequestClose={this.closeWriteModal}>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, StatusBar, Modal } from 'react-native';
 import { Block, theme, Input, } from 'galio-framework';
-import Camera from '../../../components/camera/Camera';
+import Camera from '../../../components/Camera';
 
 
 class CompanyAddGallery extends Component {

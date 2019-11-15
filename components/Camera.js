@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, TouchableOpacity, Dimensions, StyleSheet } from 'react-native';
+import { Text, View, TouchableOpacity, Dimensions, StyleSheet, Platform } from 'react-native';
 import * as Permissions from 'expo-permissions';
 import { Camera } from 'expo-camera';
 import { Button } from 'native-base';
@@ -40,6 +40,8 @@ export default class Cameras extends Component {
 
   render() {
     const { hasCameraPermission } = this.state;
+    console.log(hasCameraPermission);
+    
     if (hasCameraPermission === null) {
       return <View />;
     } else if (hasCameraPermission === false) {
@@ -47,12 +49,25 @@ export default class Cameras extends Component {
         <View style={{ flex: 2, backgroundColor: 'black', alignItems: 'center', justifyContent: 'center' }} >
           <Text style={{ fontSize: 20, color: 'white', fontWeight: 'bold', paddingBottom: '3%' }}>카메라 사용</Text>
           <Text style={{ fontSize: 15, color: 'white', }}>앱으로 사진 및 동영상을 찍을 수 있습니다.</Text>
-          <Button transparent><Text style={{ fontSize: 15, color: '#0B5713' }}
+          {Platform.OS !== 'ios'? 
+            <Button transparent
+            style={{size: 30}}
             onPress={
-              async () => {
+              async () => {                
                 const { status } = await Permissions.askAsync(Permissions.CAMERA);
+                console.log(status);
+                
                 this.setState({ hasCameraPermission: status === 'granted' });
-              }}>설정</Text></Button>
+              }}>
+            <Text style={{ fontSize: 20, color: '#0B5713' }}
+            >설정</Text></Button> : null
+          }
+            <Button transparent
+              style={{size: 30}}
+              onPress={() => {this.props.closeModal()}}
+            >
+              <Text style={{fongSize: 20, color: '#0B5713'}}>돌아가기</Text>
+            </Button>
         </View>
       </View>)
     } else {
@@ -80,7 +95,7 @@ export default class Cameras extends Component {
           </Camera>
           <View style={styles.buttonContainer}>
             {/* <IconC name='circle-o' size={80} style={{color: 'lightgray'}} onPress={() =>  {this.snapPhoto()}}/> */}
-            <IconC name='circle-slice-8' size={80} style={{color: 'lightgray'}} onPress={() =>  {this.snapPhoto()}}/>
+            <IconC name='circle-slice-8' size={80} style={{ color: 'lightgray' }} onPress={() => { this.snapPhoto() }} />
           </View>
         </View>
       );
