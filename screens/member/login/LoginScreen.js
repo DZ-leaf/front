@@ -13,13 +13,13 @@ const LoginScreen = ({ navigation }) => {
 
   const [memberId, setMemberId] = useState('');
   const [memberPw, setMemberPw] = useState('');
-  const [memberNm, setMemberNm] = useState('');
+  const [memberName, setMemberName] = useState('');
   const [checked, setChecked] = useState(true);
 
   const data = {
     "memberId": memberId,
     "memberPw": memberPw,
-    "memberNm": memberNm,
+    "memberName": memberName,
     "checked": true,
   }
 
@@ -37,7 +37,7 @@ const LoginScreen = ({ navigation }) => {
     return AjaxMember.login(data)
       .then((responseJson) => {
         if (responseJson.message == 'success') {
-          setMemberNm(responseJson.info);
+          setMemberName(responseJson.info);
           setData();
           navigation.navigate("Home");
           setName();
@@ -62,7 +62,7 @@ const LoginScreen = ({ navigation }) => {
 
   const setName = async () => {
     try {
-      await AsyncStorage.setItem("memberNm", memberNm);
+      await AsyncStorage.setItem("memberName", memberName);
     } catch (e) {
       console.error(e)
     }
