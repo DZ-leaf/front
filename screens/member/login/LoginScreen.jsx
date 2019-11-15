@@ -52,7 +52,7 @@ const LoginScreen = ({ navigation }) => {
         await AsyncStorage.setItem("memberPw", memberPw);
       } else if (!checked) {
         await AsyncStorage.clear();
-      }
+      } 
     } catch (e) {
       console.error(e)
     }
