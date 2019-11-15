@@ -14,9 +14,14 @@ import { AjaxMember } from "./lib/member/memberUrl";
 
 // Redux
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from './src/modules';
-const store = createStore(rootReducer);
+
+const store = createStore(rootReducer, composeWithDevTools(
+  applyMiddleware(),
+  // other store enhancers if any
+))
 
 // cache app images
 const assetImages = [

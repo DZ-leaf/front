@@ -1,31 +1,16 @@
 import { createAction, handleActions } from 'redux-actions';
-import produce from 'immer';
 
-// Action Type
-const CHANGE_NAME = 'member/CHANGE_NAME';
+const SAMPLE_ACTION = 'member/SAMPLE_ACTION';
 
-// Action Creator
-export const changeName = createAction(CHANGE_NAME, ({key, value}) => ({
-    key,
-    value
-}));
+export const sampleAction = createAction(SAMPLE_ACTION);
 
-// Reducer : 상태가 어떻게 바뀌는지
-const initialState = {
-    name: '',
-}
+const initialState = {};
 
 const member = handleActions(
     {
-        [CHANGE_NAME]: (state, { payload: key, value }) => {
-            console.log(key)
-            console.log(value)
-        }
-        // produce(state, draft => {
-        //     draft[key] = value;
-        // }),
+        [SAMPLE_ACTION] : (state, action) => state,
     },
     initialState,
-)
+);
 
 export default member;

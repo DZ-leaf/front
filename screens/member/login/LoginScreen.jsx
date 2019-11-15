@@ -35,7 +35,8 @@ const LoginScreen = ({ navigation }) => {
     return AjaxMember.login(data)
       .then((responseJson) => {
         if (responseJson.message == 'success') {
-          setMemberName(responseJson.member.memberName);
+          console.log(responseJson.member)
+          setMemberName(responseJson.member);
           setData();
           navigation.navigate("Home");
         } else if (responseJson.message == 'fail') {
