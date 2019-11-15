@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         padding: 10,
-        // marginTop: 10
+        marginTop: 20
     },
     photoContainer: {
         flex: 2,
