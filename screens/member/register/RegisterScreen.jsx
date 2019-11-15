@@ -6,15 +6,15 @@ import Images from "../../../constants/Images";
 const { width } = Dimensions.get("screen");
 
 import CompanyFindModal from './CompanyFindModal.jsx';
-import { AjaxMember } from "../../../lib/url/memberUrl";
+import { AjaxMember } from "../../../lib/member/memberUrl";
 
 const Register = ({ navigation }) => {
 
   const [memberId, setMemberId] = useState('');
   const [memberPw, setMemberPw] = useState('');
-  const [memberNm, setMemberNm] = useState('');
-  const [companyNm, setCompanyNm] = useState('');
-  const [departmentNm, setDepartmentNm] = useState('');
+  const [memberName, setMemberName] = useState('');
+  const [companyName, setCompanyName] = useState('');
+  const [departmentName, setDepartmentName] = useState('');
   const [email, setEmail] = useState('');
   const [position, setPosition] = useState('ㅋ');
   const [profile, setProfile] = useState('안녕하세요');
@@ -31,9 +31,9 @@ const Register = ({ navigation }) => {
   const data = {
     "memberId": memberId,
     "memberPw": memberPw,
-    "memberNm": memberNm,
-    "companyNm": companyNm,
-    "departmentNm": departmentNm,
+    "memberName": memberName,
+    "companyName": companyName,
+    "departmentName": departmentName,
     "email": email,
     "position": 'ㅋ',
     "profile": '안녕하세요',
@@ -52,10 +52,10 @@ const Register = ({ navigation }) => {
   const handleSubmit = () => {
     const nameRe = RegExp(/^[가-힣]+$/);
     const pwRe = RegExp(/^[a-zA-Z0-9]{4,12}$/);
-    if (memberNm === '' || memberPw === '' || companyNm === ''
-      || departmentNm === '' || userPwCheck === '') {
+    if (memberName === '' || memberPw === '' || companyName === ''
+      || departmentName === '' || userPwCheck === '') {
       Alert.alert('입력란이 비어있습니다');
-    } else if (!nameRe.test(memberNm)) {
+    } else if (!nameRe.test(memberName)) {
       Alert.alert('이름을 다시 입력해주세요');
     } else if (idCheck === false) {
       Alert.alert('아이디 중복확인을 해주세요');
@@ -69,10 +69,8 @@ const Register = ({ navigation }) => {
   }
 
   const register = (data) => {
-    console.log(data);
     return AjaxMember.register(data)
       .then((responseJson) => {
-        console.log("회원가입 : " + responseJson.message);
         if (responseJson.message === 'success') {
           navigation.navigate("Login");
         } else if (responseJson.message === 'fail') {
@@ -98,7 +96,6 @@ const Register = ({ navigation }) => {
   }
 
   const findCompany = (data) => {
-    console.log(data);
     return AjaxMember.findCompany(data)
       .then((responseJson) => {
         setCompanyList(responseJson.data)
@@ -106,36 +103,30 @@ const Register = ({ navigation }) => {
   }
 
   const selectCompany = (data) => {
-    setCompanyNm(data)
+    setCompanyName(data)
   }
 
   const sendEmail = (data) => {
     var re = /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
-    console.log(data);
     if (data == '') {
       Alert.alert("입력란이 비어있습니다");
-    }
-    // else if (!re.test(data)) {
-    //   Alert.alert("이메일 형식에 맞지 않습니다");
-    // } 
-    else {
+    } else if (!re.test(data)) {
+      Alert.alert("이메일 형식에 맞지 않습니다");
+    } else {
       return AjaxMember.sendEmail(data)
         .then((responseJson) => {
-          console.log("여기" + responseJson.message);
           if (responseJson.message === "success") {
             setEmailCheck(true)
             Alert.alert("메일을 확인해주세요")
           } else if (responseJson.message === "fail") {
             Alert.alert("다시 입력해주세요")
           }
-          console.log(responseJson.authNum);
           setAuthNum(responseJson.authNum);
         })
     }
   }
 
   const checkAuthNum = () => {
-    console.log("authNum" + authNum);
     if (authNumCheck === '') {
       Alert.alert("메일을 통해 인증번호를 받아주세요")
     } else if (authNumCheck === null) {
@@ -160,7 +151,7 @@ const Register = ({ navigation }) => {
             <View style={styles.inputs}>
               <Input placeholder="이름" iconContent={<Block />}
                 style={{ borderRadius: 0 }} color={theme.COLORS.BLACK} placeholderTextColor="#ADB5BD"
-                onChangeText={(text) => setMemberNm(text)} />
+                onChangeText={(text) => setMemberName(text)} />
             </View>
             {!idCheck ?
               <View style={styles.inputs, styles.inputButton}>
@@ -201,7 +192,7 @@ const Register = ({ navigation }) => {
             <View style={styles.inputs, styles.inputButton}>
               <Input placeholder="회사" iconContent={<Block />}
                 style={{ borderRadius: 0 }} color={theme.COLORS.BLACK} placeholderTextColor="#ADB5BD"
-                editable={false} value={companyNm} />
+                editable={false} value={companyName} />
               <Button style={styles.button, { width: '10%' }} shadowless
                 onPress={() => showModal(!modalVisible)}>찾기</Button>
             </View>
@@ -216,7 +207,7 @@ const Register = ({ navigation }) => {
             <View style={styles.inputs} width={width * 0.9}>
               <Input placeholder="부서" iconContent={<Block />} placeholderTextColor="#ADB5BD"
                 style={{ borderRadius: 0 }} color={theme.COLORS.BLACK}
-                onChangeText={(text) => setDepartmentNm(text)} />
+                onChangeText={(text) => setDepartmentName(text)} />
             </View>
           </Block>
 

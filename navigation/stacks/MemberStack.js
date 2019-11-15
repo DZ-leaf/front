@@ -1,5 +1,5 @@
 import React from 'react';
-import LoginScreen from '../../screens/member/login/LoginScreen';
+import LoginScreen from '../../screens/member/login/LoginScreen.jsx';
 import RegisterScreen from '../../screens/member/register/RegisterScreen.jsx';
 import FindScreen from '../../screens/member/find/FindScreen.jsx';
 

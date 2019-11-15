@@ -7,7 +7,7 @@ const { width } = Dimensions.get("screen");
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-import { AjaxMember } from "../../../lib/url/memberUrl";
+import { AjaxMember } from "../../../lib/member/memberUrl";
 
 const LoginScreen = ({ navigation }) => {
 
@@ -19,30 +19,25 @@ const LoginScreen = ({ navigation }) => {
   const data = {
     "memberId": memberId,
     "memberPw": memberPw,
-    // "memberName": memberName,
-    // "checked": true,
   }
 
   const handleSubmit = () => {
-    navigation.navigate("Home");
-    // if (memberId == '') {
-    //   Alert.alert("입력란에 아이디를 입력해주세요")
-    // } else if (memberPw == '') {
-    //   Alert.alert("입력란에 비밀번호를 입력해주세요")
-    // } else {
-    //   login(data);
-    // }
+    if (memberId == '') {
+      Alert.alert("입력란에 아이디를 입력해주세요")
+    } else if (memberPw == '') {
+      Alert.alert("입력란에 비밀번호를 입력해주세요")
+    } else {
+      login(data);
+    }
   }
 
   const login = (data) => {
     return AjaxMember.login(data)
       .then((responseJson) => {
-        console.log(responseJson);
         if (responseJson.message == 'success') {
-          setMemberName(responseJson.info);
+          setMemberName(responseJson.member.memberName);
           setData();
           navigation.navigate("Home");
-          setName();
         } else if (responseJson.message == 'fail') {
           Alert.alert("로그인에 실패했습니다")
         }
@@ -57,14 +52,6 @@ const LoginScreen = ({ navigation }) => {
       } else if (!checked) {
         await AsyncStorage.clear();
       }
-    } catch (e) {
-      console.error(e)
-    }
-  }
-
-  const setName = async () => {
-    try {
-      await AsyncStorage.setItem("memberName", memberName);
     } catch (e) {
       console.error(e)
     }
@@ -118,7 +105,6 @@ const LoginScreen = ({ navigation }) => {
               회원가입
                 </Text>
           </View>
-
         </Block>
       </Block>
     </Block>

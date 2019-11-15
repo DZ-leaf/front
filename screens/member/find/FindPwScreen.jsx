@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { StyleSheet, StatusBar, Dimensions, Alert, } from "react-native";
+import { StyleSheet, StatusBar, Dimensions, Alert } from "react-native";
 import { Block, Button, Text, theme, Input } from "galio-framework";
 import { withNavigation } from 'react-navigation';
 
 const { width } = Dimensions.get("screen");
 
-import { AjaxMember } from "../../../lib/url/memberUrl";
+import { AjaxMember } from "../../../lib/member/memberUrl";
 
 const FindPwScreen = ({ navigation }) => {
 
@@ -30,7 +30,6 @@ const FindPwScreen = ({ navigation }) => {
     } else {
       return AjaxMember.findPwAuthNm(data)
         .then((responseJson) => {
-          console.log(responseJson.message);
           if (responseJson.message === "success") {
             setEmailCheck(true);
             Alert.alert("메일을 확인해주세요")
@@ -66,7 +65,6 @@ const FindPwScreen = ({ navigation }) => {
     } else if (!authCheck || !emailCheck) {
       Alert.alert("메일을 통해 인증번호를 받아주세요");
     } else {
-      console.log(data);
       navigation.navigate('Find', { order: 2, memberId: data.memberId })
     }
   }
