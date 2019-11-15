@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, StatusBar, Dimensions, Alert, } from "react-native";
+import { StyleSheet, StatusBar, Dimensions, Alert } from "react-native";
 import { Block, Button, Text, theme, Input } from "galio-framework";
 import { withNavigation } from 'react-navigation';
 

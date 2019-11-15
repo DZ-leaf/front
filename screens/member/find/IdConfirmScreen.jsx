@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Dimensions } from 'react-native';
-import { Block, Button, Text, theme, } from 'galio-framework';
+import { Block, Button, Text, theme } from 'galio-framework';
 import { withNavigation } from 'react-navigation';
 
 const { width } = Dimensions.get("screen");
