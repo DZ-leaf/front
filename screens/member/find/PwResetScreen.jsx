@@ -12,10 +12,6 @@ const IdConfirmScreen = (props) => {
     const [memberId, setMemberId] = useState('');
     const [memberPw, setMemberPw] = useState('');
     const [memberPwCheck, setMemberPwCheck] = useState('');
-    // const [data, setData] = useState({
-    //     "memberId": memberId,
-    //     "memberPw": memberPw,
-    // })
 
     const data = {
         "memberId": memberId,
@@ -23,28 +19,10 @@ const IdConfirmScreen = (props) => {
     }
 
     useEffect(() => {
-        console.log(props.navigation.getParam('memberId'));
         setMemberId(props.navigation.getParam('memberId'));
-        // setData({
-        //         // ...data,
-        //         memberId: props.navigation.getParam('memberId'),
-        //     }
-        // )
     }, [])
 
-    // componentDidMount() {
-    //     console.log(this.props.navigation.getParam('memberId'));
-    //     //      this.props.onClickListener()
-    //     this.setState({
-    //         data: {
-    //             ...this.state.data,
-    //             memberId: this.props.navigation.getParam('memberId'),
-    //         }
-    //     })
-    // }
-
     const changePw = (data) => {
-        console.log(data);
         const pwRe = RegExp(/^[a-zA-Z0-9]{4,12}$/);
         if (memberPw == '' || memberPwCheck == '') {
             Alert.alert('입력란이 비어있습니다')
@@ -56,7 +34,6 @@ const IdConfirmScreen = (props) => {
         } else {
             return AjaxMember.changePw(data)
                 .then((responseJson) => {
-                    console.log(responseJson.message);
                     if (responseJson.message === "success") {
                         Alert.alert("비밀번호가 변경되었습니다.")
                         props.onClickListener()    //Components/Tabs _ order

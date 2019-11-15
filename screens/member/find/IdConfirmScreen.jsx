@@ -37,7 +37,6 @@ const styles = StyleSheet.create({
     },
     text: {
         fontSize: 17,
-        // paddingHorizontal: 56,
     },
     msgContiner: {
         backgroundColor: "white",

@@ -69,10 +69,8 @@ const Register = ({ navigation }) => {
   }
 
   const register = (data) => {
-    console.log(data);
     return AjaxMember.register(data)
       .then((responseJson) => {
-        console.log("회원가입 : " + responseJson.message);
         if (responseJson.message === 'success') {
           navigation.navigate("Login");
         } else if (responseJson.message === 'fail') {
@@ -98,7 +96,6 @@ const Register = ({ navigation }) => {
   }
 
   const findCompany = (data) => {
-    console.log(data);
     return AjaxMember.findCompany(data)
       .then((responseJson) => {
         setCompanyList(responseJson.data)
@@ -111,31 +108,25 @@ const Register = ({ navigation }) => {
 
   const sendEmail = (data) => {
     var re = /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
-    console.log(data);
     if (data == '') {
       Alert.alert("입력란이 비어있습니다");
-    }
-    // else if (!re.test(data)) {
-    //   Alert.alert("이메일 형식에 맞지 않습니다");
-    // } 
-    else {
+    } else if (!re.test(data)) {
+      Alert.alert("이메일 형식에 맞지 않습니다");
+    } else {
       return AjaxMember.sendEmail(data)
         .then((responseJson) => {
-          console.log("여기" + responseJson.message);
           if (responseJson.message === "success") {
             setEmailCheck(true)
             Alert.alert("메일을 확인해주세요")
           } else if (responseJson.message === "fail") {
             Alert.alert("다시 입력해주세요")
           }
-          console.log(responseJson.authNum);
           setAuthNum(responseJson.authNum);
         })
     }
   }
 
   const checkAuthNum = () => {
-    console.log("authNum" + authNum);
     if (authNumCheck === '') {
       Alert.alert("메일을 통해 인증번호를 받아주세요")
     } else if (authNumCheck === null) {

@@ -30,7 +30,6 @@ const FindPwScreen = ({ navigation }) => {
     } else {
       return AjaxMember.findPwAuthNm(data)
         .then((responseJson) => {
-          console.log(responseJson.message);
           if (responseJson.message === "success") {
             setEmailCheck(true);
             Alert.alert("메일을 확인해주세요")
@@ -66,7 +65,6 @@ const FindPwScreen = ({ navigation }) => {
     } else if (!authCheck || !emailCheck) {
       Alert.alert("메일을 통해 인증번호를 받아주세요");
     } else {
-      console.log(data);
       navigation.navigate('Find', { order: 2, memberId: data.memberId })
     }
   }
