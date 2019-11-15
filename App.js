@@ -36,17 +36,22 @@ function cacheImages(images) {
   });
 }
 
+
 const App = () => {
 
   const [isLoadingComplete, setIsLoadingComplete] = useState(false);
   const [memberAuth, setMemberAuth] = useState('');
   const [memberName, setMemberName] = useState('');
 
-  autoLogin = async () => {
+  const autoLogin = async () => {
     try {
       let keys = await AsyncStorage.getAllKeys();
       let items = await AsyncStorage.multiGet(keys)
 
+      console.log(items);
+  
+      console.log(items.length);
+  
       if (items.length > 0) {
         const memberId = await AsyncStorage.getItem('memberId')
         const memberPw = await AsyncStorage.getItem('memberPw')
@@ -55,7 +60,7 @@ const App = () => {
             "memberId": memberId,
             "memberPw": memberPw
           }
-          this.loginAjax(data);
+          loginAjax(data);
         }
       }
     } catch (e) {
@@ -63,23 +68,22 @@ const App = () => {
     }
   }
 
-  loginAjax = (data) => {
+  const loginAjax = (data) => {
     return AjaxMember.login(data)
       .then((responseJson) => {
         if (responseJson.message == 'success') {
-          setMemberName(responseJson.memberName);
-          this.setAuth();
+          setMemberName(responseJson.member.memberName);
+          setAuth();
         } else if (responseJson.message == 'fail') {
           Alert.alert("로그인에 실패했습니다")
         }
       })
   }
 
-  setAuth = async () => {
+  const setAuth = async () => {
     try {
       const memberAuth = await AsyncStorage.getItem('Authorization')
       setMemberAuth(memberAuth);
-      await AsyncStorage.setItem("memberName", memberName);
     } catch (error) {
       console.error(error)
     }
@@ -88,8 +92,13 @@ const App = () => {
   if (!isLoadingComplete) {
     return (
       <AppLoading
-        startAsync={_loadResourcesAsync}
-        onError={_handleLoadingError}
+        startAsync={async () => {
+          return Promise.all([
+            autoLogin(),
+            ...cacheImages(assetImages),
+          ]); 
+        }}
+        onError={(error) => console.warn(error)}
         onFinish={() => setIsLoadingComplete(true)}
       />
     );
@@ -109,18 +118,5 @@ const App = () => {
     );
   }
 }
-
-const _loadResourcesAsync = async () => {
-  return Promise.all([
-    this.autoLogin(),
-    ...cacheImages(assetImages),
-  ]);
-};
-
-const _handleLoadingError = error => {
-  // In this case, you might want to report the error to your error
-  // reporting service, for example Sentry
-  console.warn(error);
-};
 
 export default App;

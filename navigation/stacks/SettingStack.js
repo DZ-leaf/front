@@ -4,7 +4,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import Header from "../../components/Header";
 import transitionConfig from './transitionConfig';
 
-import SettingScreen from '../../screens/setting/SettingScreen';
+import SettingScreen from '../../screens/setting/SettingScreen.jsx';
 
 const SettingStack = createStackNavigator(
     {

@@ -35,10 +35,9 @@ const LoginScreen = ({ navigation }) => {
     return AjaxMember.login(data)
       .then((responseJson) => {
         if (responseJson.message == 'success') {
-          setMemberName(responseJson.info);
+          setMemberName(responseJson.member.memberName);
           setData();
           navigation.navigate("Home");
-          setName();
         } else if (responseJson.message == 'fail') {
           Alert.alert("로그인에 실패했습니다")
         }
@@ -53,14 +52,6 @@ const LoginScreen = ({ navigation }) => {
       } else if (!checked) {
         await AsyncStorage.clear();
       }
-    } catch (e) {
-      console.error(e)
-    }
-  }
-
-  const setName = async () => {
-    try {
-      await AsyncStorage.setItem("memberName", memberName);
     } catch (e) {
       console.error(e)
     }

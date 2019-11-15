@@ -1,8 +1,6 @@
-// import CompanyStack from './CompanyStack';
 import MemberStack from './MemberStack';
 import HomeStack from './HomeStack';
 import ChatStack from './ChatStack';
-import ProfileStack from './ProfileStack';
 import AlarmStack from './AlarmStack';
 import SettingStack from './SettingStack';
 import GroupStack from './group/GroupStack';
@@ -14,7 +12,6 @@ export {
     MemberStack,
     HomeStack,
     ChatStack,
-    ProfileStack,
     AlarmStack,
     SettingStack,
     GroupStack,
