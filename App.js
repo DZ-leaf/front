@@ -10,7 +10,7 @@ import Images from './constants/Images'
 
 import argonTheme from './constants/Theme';
 
-import { AjaxMember } from "./lib/url/memberUrl";
+import { AjaxMember } from "./lib/member/memberUrl";
 
 // Redux
 import { Provider } from 'react-redux';

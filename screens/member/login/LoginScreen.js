@@ -7,7 +7,7 @@ const { width } = Dimensions.get("screen");
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-import { AjaxMember } from "../../../lib/url/memberUrl";
+import { AjaxMember } from "../../../lib/member/memberUrl";
 
 const LoginScreen = ({ navigation }) => {
 
@@ -34,7 +34,6 @@ const LoginScreen = ({ navigation }) => {
   const login = (data) => {
     return AjaxMember.login(data)
       .then((responseJson) => {
-        console.log(responseJson);
         if (responseJson.message == 'success') {
           setMemberName(responseJson.info);
           setData();
@@ -115,7 +114,6 @@ const LoginScreen = ({ navigation }) => {
               회원가입
                 </Text>
           </View>
-
         </Block>
       </Block>
     </Block>

@@ -6,7 +6,7 @@ import Images from "../../../constants/Images";
 const { width } = Dimensions.get("screen");
 
 import CompanyFindModal from './CompanyFindModal.jsx';
-import { AjaxMember } from "../../../lib/url/memberUrl";
+import { AjaxMember } from "../../../lib/member/memberUrl";
 
 const Register = ({ navigation }) => {
 

@@ -5,7 +5,7 @@ import { withNavigation } from 'react-navigation'
 
 const { width } = Dimensions.get("screen");
 
-import { AjaxMember } from "../../../lib/url/memberUrl";
+import { AjaxMember } from "../../../lib/member/memberUrl";
 
 const IdConfirmScreen = (props) => {
 
