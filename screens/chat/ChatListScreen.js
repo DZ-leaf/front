@@ -1,39 +1,55 @@
-import React, { Component } from 'react';
-import { Container, Content, List, ListItem, Left, Body, Right, Thumbnail, Text } from 'native-base';
 
+import React, { Component } from 'react';
+import { Container, Content, List, ListItem, Left, Body, Right, Thumbnail, Text, Spinner } from 'native-base';
+import { AjaxWS } from "../../lib/url/webSocketUrl";
+import { AjaxChat } from "../../lib/url/chatUrl";
 class ChatListScreen extends Component {
+
+    state = {
+        rooms: [],
+    }
+
+    async getrooms() {
+        console.log("testtsyt");
+        const data = await AjaxChat.getRooms();
+        console.log("testtsyt");
+
+        this.setState({
+            rooms: data.rooms
+        })
+
+    }
+
+    componentWillMount() {
+        this.getrooms();
+    }
+
+    enterRoom = (a) =>{
+        console.log(a);
+    }
+
     render() {
+        console.log("testtsyt");
+        const { rooms } = this.state;
+        const {navigation} = this.props;
+        console.log("testtsyt");
+        console.log(rooms);
         return (
             <Container>
                 <Content>
                     <List>
-
-                        <ListItem avatar>
-                            <Left>
-                                <Thumbnail source={{ uri: 'Image URL' }} />
-                            </Left>
-                            <Body>
-                                <Text>Kumar Pratik</Text>
-                                <Text note>Doing what you like will always keep you happy . .</Text>
-                            </Body>
-                            <Right>
-                                <Text note>3:43 pm</Text>
-                            </Right>
-                        </ListItem>
-
-                        <ListItem avatar>
-                            <Left>
-                                <Thumbnail source={{ uri: 'Image URL' }} />
-                            </Left>
-                            <Body>
-                                <Text>Kumar Pratik</Text>
-                                <Text note>Doing what you like will always keep you happy . .</Text>
-                            </Body>
-                            <Right>
-                                <Text note>3:43 pm</Text>
-                            </Right>
-                        </ListItem>
-
+                        {rooms.map((item) => {
+                            return (
+                                <ListItem key={item.roomCd} onPress={() => {
+                                    console.log("testtsyt");
+                                    
+                                    navigation.navigate("Room", {RoomId:item.roomNm})}}>
+                                    <Body>
+                                        <Text>{item.roomNm } {(item.roomType==1)?"회사":"그룹"}</Text>
+                                    </Body>
+                                </ListItem>
+                            )
+                        })}
                     </List>
                 </Content>
             </Container>

@@ -7,9 +7,8 @@ import ChatListScreen from './ChatListScreen';
 class ChatScreen extends Component {
     render() {
         return (
-            <Block flex>
-                <ChatListScreen/>
-            </Block>
+            <ChatListScreen/>
+            
         );
     }
 }

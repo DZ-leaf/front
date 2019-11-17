@@ -5,11 +5,19 @@ import Header from "../../components/Header";
 import transitionConfig from './transitionConfig';
 
 import ChatScreen from '../../screens/chat/ChatScreen';
+import ChatListScreen from '../../screens/chat/ChatListScreen';
+import ChatRoomScreen from '../../screens/chat/ChatRoomScreen';
 
 const ChatStack = createStackNavigator(
     {
         Chat: {
-            screen: ChatScreen,
+            screen: ChatListScreen,
+            navigationOptions: ({ navigation }) => ({
+                header: <Header title="채팅방" navigation={navigation} />
+            })
+        },
+        Room:{
+            screen: ChatRoomScreen,
             navigationOptions: ({ navigation }) => ({
                 header: <Header title="채팅" navigation={navigation} />
             })
