@@ -31,7 +31,7 @@ class CompanyGalleryWrite extends Component {
                     </Button>
                     {/* <Text>{headerText}</Text> */}
                     <Button style={{ marginHorizontal: 5 }}
-                        // onPress={() => this.prepareCallback()}
+                        onPress={() => {this.props.closeModal(); this.props.closeAddModal(); this.props.navigation.navigate('CompanyGalleryDetail')}}
                         transparent>
                         <Text style={styles.buttonText}>공유</Text>
                     </Button>

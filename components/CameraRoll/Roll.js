@@ -58,7 +58,7 @@ export default class Roll extends React.Component {
         </Modal>
 
         <Modal visible={this.state.writeModalVisible} onRequestClose={this.closeWriteModal}>
-          <CompanyGalleryWrite photos={this.state.photos} closeModal={this.closeWriteModal}/>
+          <CompanyGalleryWrite photos={this.state.photos} closeModal={this.closeWriteModal} closeAddModal={this.props.closeAddModal} navigation={this.props.navigation}/>
         </Modal>
       </View>
     );

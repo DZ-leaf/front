@@ -10,7 +10,7 @@ class CompanyAddGallery extends Component {
          
         return (
             <Block flex>
-                <Roll navigation={this.props.navigation}/>
+                <Roll closeAddModal={this.props.closeModal} navigation={this.props.navigation}/>
             </Block>
         );
     }
