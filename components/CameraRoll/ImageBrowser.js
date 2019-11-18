@@ -182,7 +182,7 @@ export default class ImageBrowser extends React.Component {
               <Text style={{ fontSize: 20, color: '#0B5713' }} >설정</Text>
             </Button> : null}
            
-            <Button>
+            <Button transparent>
               <Text style={{ fontSize: 20, color: '#0B5713' }}>뒤로가기</Text>
             </Button>
           </View>
