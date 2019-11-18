@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Content, List, ListItem, Left, Body, Right, Thumbnail, Text, Spinner } from 'native-base';
-import { AjaxWS } from "../../lib/webSocketUrl";
+import { AjaxWS } from "../../lib/websocket/webSocketUrl";
 import { AjaxChat } from "../../lib/chatUrl";
 class ChatListScreen extends Component {
 
@@ -11,7 +11,6 @@ class ChatListScreen extends Component {
     getrooms() {
         return AjaxChat.getRooms()
             .then((responseJson) => {
-                console.log(responseJson)
                 this.setState({
                     rooms: responseJson.rooms
                 })
@@ -21,28 +20,20 @@ class ChatListScreen extends Component {
     componentWillMount() {
         this.getrooms();
     }
-
-    enterRoom = (a) => {
-        console.log(a);
-    }
-
     render() {
         const { rooms } = this.state;
         const { navigation } = this.props;
-        console.log(rooms);
         return (
             <Container>
                 <Content>
                     <List>
-                        {rooms.map((item) => {
+                        {rooms.map((room) => {
                             return (
-                                <ListItem key={item.roomCd} onPress={() => {
-                                    console.log("testtsyt");
-
-                                    navigation.navigate("Room", { RoomId: item.roomNm })
+                                <ListItem key={room.roomCd} onPress={() => {
+                                    navigation.navigate("Room", { room: room })
                                 }}>
                                     <Body>
-                                        <Text>{item.roomNm} {(item.roomType == 1) ? "회사" : "그룹"}</Text>
+                                        <Text>{room.roomNm} {(room.roomType == 1) ? "회사" : "그룹"}</Text>
                                     </Body>
                                 </ListItem>
                             )
