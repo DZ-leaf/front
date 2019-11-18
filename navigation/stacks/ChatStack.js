@@ -19,7 +19,7 @@ const ChatStack = createStackNavigator(
         Room:{
             screen: ChatRoomScreen,
             navigationOptions: ({ navigation }) => ({
-                header: <Header title="채팅" navigation={navigation} />
+                header: <Header title="채팅" back={true} navigation={navigation} />
             })
         }
     },

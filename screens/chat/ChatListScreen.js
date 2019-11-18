@@ -8,15 +8,14 @@ class ChatListScreen extends Component {
         rooms: [],
     }
 
-    async getrooms() {
-        console.log("testtsyt");
-        const data = await AjaxChat.getRooms();
-        console.log("testtsyt");
-
-        this.setState({
-            rooms: data.rooms
-        })
-
+    getrooms() {
+        return AjaxChat.getRooms()
+            .then((responseJson) => {
+                console.log(responseJson)
+                this.setState({
+                    rooms: responseJson.rooms
+                })
+            })
     }
 
     componentWillMount() {
@@ -28,10 +27,8 @@ class ChatListScreen extends Component {
     }
 
     render() {
-        console.log("testtsyt");
         const { rooms } = this.state;
         const { navigation } = this.props;
-        console.log("testtsyt");
         console.log(rooms);
         return (
             <Container>
