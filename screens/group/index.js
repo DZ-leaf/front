@@ -1,13 +1,16 @@
 
-import GroupBoardList from './board/GroupBoardList';
-import GroupBoardDetail from './board/GroupBoardDetail';
-import GroupBoardWrite from './board/GroupBoardWrite';
+//board
+import GroupBoardList from './board/GroupBoardList.jsx';
+import GroupBoardDetail from './board/GroupBoardDetail.jsx';
+import GroupBoardWrite from './board/GroupBoardWrite.jsx';
 
 import GroupGallery from './gallery/GroupGallery';
 
-import GroupCalendar from './calendar/GroupCalendar';
+//calendar
+import GroupCalendar from './calendar/GroupCalendar.jsx';
 
-import GroupAddressList from './address/GroupAddressList';
+//address
+import GroupAddressList from './address/GroupAddressList.jsx';
 
 export {
     GroupBoardList,

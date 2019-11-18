@@ -4,9 +4,9 @@ import { createStackNavigator } from 'react-navigation-stack';
 import Header from "../../components/Header";
 import transitionConfig from './transitionConfig';
 
-import CalendarScreen from '../../screens/calendar/CalendarScreen';
-import EventDetailModal from '../../screens/calendar/EventDetailModal';
-import EditEventModal from '../../screens/calendar/EditEventModal';
+import CalendarScreen from '../../screens/calendar/CalendarScreen.jsx';
+import EventDetailModal from '../../screens/calendar/EventDetailModal.jsx';
+// import EditEventModal from '../../screens/calendar/EditEventModal';
 
 const CalendarStack = createStackNavigator(
     {

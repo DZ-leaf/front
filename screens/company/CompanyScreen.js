@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Block } from 'galio-framework';
 
-import BoardCard from '../../components/board/BoardCard';
+import BoardCard from '../../components/board/BoardCard.jsx';
 import GalleryCard from '../../components/gallery/GalleryCard';
-import CalendarCard from '../../components/calendar/CalendarCard';
+import CalendarCard from '../../components/calendar/CalendarCard.jsx';
 import { ScrollView } from 'react-native-gesture-handler';
 
 class CompanyScreen extends Component {
