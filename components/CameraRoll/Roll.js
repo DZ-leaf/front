@@ -67,9 +67,7 @@ export default class Roll extends React.Component {
     return (
       <View style={{ flex: 1 }}>
         <ImageBrowser max={10} callback={this.imageBrowserCallback}
-          setCameraModal={this.setCameraModalVisible} cameraVisible={this.state.cameraModalVisible}
-          // setWriteModal={this.setWriteModalVisible} writeVisible={this.state.writeModalVisible} 
-          navigation={this.props.navigation} />
+          setCameraModal={this.setCameraModalVisible} cameraVisible={this.state.cameraModalVisible} closeAddModal={this.props.closeAddModal}/>
 
         <Modal visible={this.state.cameraModalVisible} onRequestClose={this.closeCameraModal}>
           {/* <CompanyCamera closeModal={this.closeCameraModal}/> */}

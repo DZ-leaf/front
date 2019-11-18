@@ -18,7 +18,7 @@ const CompanyGallery = (props) => {
         <View style={styles.container}>
             <GalleryList navigation={props.navigation} />
             <FAB buttonColor="#0B5713" iconTextColor="#FFFFFF"
-                onClickAction={() => { addModalVisibleSet(!this.state.addModalVisible) }} visible={true}
+                onClickAction={() => { addModalVisibleSet(!addModalVisible) }} visible={true}
                 iconTextComponent={<Icon name="add" />} snackOffset={Platform.OS == 'ios' ? 30 : 10} />
                 
             <Modal visible={addModalVisible} onRequestClose={() => { closeAddModal() }}>

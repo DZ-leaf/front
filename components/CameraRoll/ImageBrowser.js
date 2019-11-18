@@ -105,7 +105,7 @@ export default class ImageBrowser extends React.Component {
       <View style={styles.header}>
         <Button transparent
           style={{ paddingHorizontal: '3%' }}
-          onPress={() => this.props.navigation.goBack()}>
+          onPress={() => this.props.closeAddModal()}>
           <Text style={styles.buttonText}>취소</Text>
         </Button>
         <Text>{headerText}</Text>
