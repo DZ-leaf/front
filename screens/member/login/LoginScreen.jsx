@@ -10,7 +10,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import { AjaxMember } from "../../../lib/memberUrl";
 
 import { useDispatch } from 'react-redux';
-import { redux_name } from '../../../src/modules/member';
+import { memberInfo } from '../../../src/modules/member';
 
 const LoginScreen = ({ navigation }) => {
 
@@ -40,7 +40,7 @@ const LoginScreen = ({ navigation }) => {
       .then((responseJson) => {
         if (responseJson.message == 'success') {
           setData();
-          setName(responseJson.member.memberName);
+          setName(responseJson.member);
           navigation.navigate("Home");
         } else if (responseJson.message == 'fail') {
           Alert.alert("로그인에 실패했습니다")
@@ -50,7 +50,7 @@ const LoginScreen = ({ navigation }) => {
 
   const setName = (data) => {
     dispatch(
-      redux_name(data)
+      memberInfo(data)
     )
   }
 

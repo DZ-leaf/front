@@ -1,16 +1,16 @@
 import { createAction, handleActions } from 'redux-actions';
 
-const MEMBER_NAME = 'member/MEMBER_NAME';
+const MEMBER_INFO = 'member/MEMBER_INFO';
 
-export const redux_name = createAction(MEMBER_NAME, redux_name => redux_name);
+export const memberInfo = createAction(MEMBER_INFO, memberInfo => memberInfo);
 
 const initialState = {
-    redux_name: '',
+    memberInfo : {},
 };
 
 const member = handleActions(
     {
-        [MEMBER_NAME]: (state, { payload: redux_name }) => ({ ...state, redux_name })
+        [MEMBER_INFO]: (state, { payload: memberInfo }) => ({ ...state, memberInfo })
     },
     initialState,
 );

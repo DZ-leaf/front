@@ -8,7 +8,8 @@ import { useSelector } from 'react-redux';
 
 const SettingScreen = ({ navigation }) => {
 
-    const name = useSelector(state => state.member.redux_name);
+    const info = useSelector(state => state.member.memberInfo);
+    console.log(info)
 
     const logout = async () => {
         Alert.alert(
@@ -40,7 +41,7 @@ const SettingScreen = ({ navigation }) => {
                         <Left>
                             <Thumbnail source={{ uri: 'Image URL' }} />
                             <Body>
-                                <Text>{name}</Text>
+                                <Text>{info.memberName}</Text>
                                 <Text note>GeekyAnts</Text>
                             </Body>
                         </Left>

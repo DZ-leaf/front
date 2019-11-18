@@ -13,7 +13,7 @@ import argonTheme from './constants/Theme';
 import { AjaxMember } from "./lib/memberUrl";
 
 import { useDispatch } from 'react-redux';
-import { redux_name } from './src/modules/member';
+import { memberInfo } from './src/modules/member';
 
 // cache app images
 const assetImages = [
@@ -66,7 +66,7 @@ const Index = () => {
       .then((responseJson) => {
         if (responseJson.message == 'success') {
           setAuth();
-          setName(responseJson.member.memberName);
+          setName(responseJson.member);
         } else if (responseJson.message == 'fail') {
           Alert.alert("로그인에 실패했습니다")
         }
@@ -84,7 +84,7 @@ const Index = () => {
 
   const setName = (data) => {
     dispatch(
-      redux_name(data)
+      memberInfo(data)
     )
   }
 
