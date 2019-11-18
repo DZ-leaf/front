@@ -14,6 +14,9 @@ export default class Cameras extends Component {
   state = {
     hasCameraPermission: null,
     type: Camera.Constants.Type.back,
+
+    tags: [],
+    inputText: '',
   };
 
   async componentDidMount() {
@@ -26,17 +29,29 @@ export default class Cameras extends Component {
     if (this.camera) {
       console.log('Taking photo');
       const options = {
-        quality: 1, base64: true, fixOrientation: true,
+        quality: 1, base64: false, fixOrientation: true,
         exif: true
       };
       await this.camera.takePictureAsync(options).then(photo => {
         photo.exif.Orientation = 1;
+        this.props.setPhoto(photo)
+        this.props.closeModal();
+        this.props.setWriteModal(!this.props.writeModalVisible)
         console.log(photo);
       });
     }
     else (console.log("???")
     )
   }
+
+  // deleteTag
+  deleteTag = (index) => {
+    this.setState({ tags: this.state.tags.slice(0, index).concat(this.state.tags.slice(index + 1, this.state.tags.length)) }) 
+  }
+
+   //writeModal
+   setWriteModalVisible = (visible) => { this.setState({ writeModalVisible: visible }) }
+   closeWriteModal = () => { this.setState({ writeModalVisible: false }) }
 
   render() {
     const { hasCameraPermission } = this.state;
@@ -73,7 +88,7 @@ export default class Cameras extends Component {
     } else {
       return (
         <View style={{ flex: 1 }}>
-          <Camera style={{ flex: 2 }} type={this.state.type}>
+          <Camera style={{ flex: 2 }} type={this.state.type} ref={(ref) => {this.camera = ref}}>
             <View
               style={{
                 flex: 1,

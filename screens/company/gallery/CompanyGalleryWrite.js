@@ -32,6 +32,8 @@ class CompanyGalleryWrite extends Component {
                         <Text style={styles.buttonText}>취소</Text>
                     </Button>
                     {/* <Text>{headerText}</Text> */}
+                    
+                    {/* 유저명, 파일명, 회사명 전송 */}
                     <Button style={{ marginHorizontal: 5 }}
                         onPress={() => {this.props.closeModal(); this.props.closeAddModal(); this.props.navigation.navigate('CompanyGalleryDetail')}}
                         transparent>
