@@ -6,7 +6,7 @@ const GroupGalleryDetail = (props) => {
 
     return (
         <View style={styles.container}>
-            <GalleryDetail navigation={props.navigation} />
+            {/* <GalleryDetail navigation={props.navigation} /> */}
         </View>
     );
 }

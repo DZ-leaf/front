@@ -9,10 +9,10 @@ const GroupGallery = (props) => {
 
     return (
         <View style={styles.container}>
-            <GalleryList navigation={props.navigation} />
+            {/* <GalleryList navigation={props.navigation} />
             <FAB buttonColor="#0B5713" iconTextColor="#FFFFFF"
                 onClickAction={() => { props.navigation.navigate('GroupAddGallery') }} visible={true}
-                iconTextComponent={<Icon name="add" />} snackOffset={Platform.OS == 'ios' ? 30 : 10} />
+                iconTextComponent={<Icon name="add" />} snackOffset={Platform.OS == 'ios' ? 30 : 10} /> */}
         </View>
     );
 }

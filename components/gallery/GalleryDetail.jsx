@@ -11,7 +11,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import IconF from 'react-native-vector-icons/Feather';
 import LineIcon from 'react-native-vector-icons/SimpleLineIcons';
 
-import CompanyGalleryCommentModal from '../../screens/company/gallery/CompanyGalleryCommentModal.jsx';
+import GalleryCommend from './GalleryCommend';
 
 const { width } = Dimensions.get('screen');
 
@@ -35,6 +35,25 @@ const GalleryDetail = ({ navigation }) => {
         }
     ]
 
+    const tagData = [
+        {
+            title: 'bit',
+            id: 1,
+        },
+        {
+            title: 'douzon',
+            id: 2,
+        },
+        {
+            title: 'leaf',
+            id: 3,
+        },
+        {
+            title: 'gallery',
+            id: 4,
+        },
+    ]
+
     const [commentModal, setCommentModal] = useState(false);
     const [comment, setComment] = useState('');
 
@@ -44,9 +63,17 @@ const GalleryDetail = ({ navigation }) => {
     const renderItem = (item) => {
         return (
             <TouchableOpacity style={{ marginHorizontal: 1 }}>
-                <Cards item={item} style={{ width: 200, height: 200, }} />
+                <Cards item={item} /* style={{ width: 200, height: 150, }} */ />
                 {/* <Image style={{ width: 200, height: 200, }} resizeMode='contain' source={{ uri: item.image }} /> */}
             </TouchableOpacity>
+        )
+    }
+
+    const renderTag = (tag) => {
+        return (
+            <View style={{marginHorizontal: 5 , borderRadius: 5/* , borderColor: '#0B5713' , borderWidth: 2 */}}>
+                <Text style={{fontSize:18, paddingHorizontal: '5%'}}>#{tag.title}</Text>
+            </View> 
         )
     }
 
@@ -72,7 +99,7 @@ const GalleryDetail = ({ navigation }) => {
     return (
         <Block flex>
             <Block style={styles.galleryContainer}>
-                <Block style={styles.cardContainer}>
+                <Block >
                     {/* <Content> */}
                     <Card>
                         <CardItem>
@@ -90,7 +117,15 @@ const GalleryDetail = ({ navigation }) => {
                         <CardItem cardBody>
                             <Image source={{ uri: Images.Viewed[1] }} style={{ height: 280, width: null, flex: 1 }} />
                         </CardItem>
-                        <CardItem>
+                        <Block style={{marginTop: 5}}>
+                            <FlatList
+                                data={tagData}
+                                renderItem={({ item }) => renderTag(item)}
+                                keyExtractor={item => item.id}
+                                horizontal
+                                showsHorizontalScrollIndicator={false} />
+                        </Block>
+                        <CardItem style={{paddingVertical: '-5%'}}>
                             <Left>
                                 <Button transparent >
                                     <Icon name="leaf" color='#0B5713' size={20} />
@@ -118,7 +153,7 @@ const GalleryDetail = ({ navigation }) => {
             </Block>
 
             <Modal visible={commentModal} animationType="slide" onRequestClose={() => { closeCommnetModal() }}>
-                <CompanyGalleryCommentModal />
+                <GalleryCommend />
 
                 <KeyboardAvoidingView behavior={/* Platform.OS == 'ios' ? 'padding' : 'padding' */'padding'}
                     keyboardVerticalOffset={Platform.OS == 'ios' ? -34 : -230}
@@ -165,16 +200,12 @@ const styles = StyleSheet.create({
 
     },
     galleryContainer: {
-        flex: 2,
+        flex: 2.5,
         paddingHorizontal: '3%',
         paddingTop: '2%',
     },
     listContainer: {
         flex: 1,
-        // borderWidth: 1,
-    },
-    cardContainer: {
-        flex: 7,
     },
     send: {
         paddingTop: '4%',

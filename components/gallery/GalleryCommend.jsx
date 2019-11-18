@@ -8,10 +8,9 @@ import Icons from 'react-native-vector-icons/FontAwesome';
 
 const { width } = Dimensions.get("screen");
 
-const CompanyGalleryCommentModal = () => {
+const GalleryComment = () => {
 
     const [like, setLike] = useState(false);
-    const [comment, setComment] = useState('');
 
     const likeButton = () => {
         if (!like) setLike(true)
@@ -55,6 +54,36 @@ const CompanyGalleryCommentModal = () => {
                                 <Text style={styles.time}>3:43 pm</Text>
                             </Right>
                         </ListItem>
+                        <ListItem>
+                            <Body>
+                                <Text style={{ fontWeight: 'bold' }}>작성자</Text>
+                                <Text>댓글은 짧고 간결하게</Text>
+                            </Body>
+                            <Right>
+                                <Block row>
+                                    <Icons name="leaf" size={20}
+                                        color={!like == false ? '#ADB5BD' : '#0B5713'}
+                                        onPress={likeButton}></Icons>
+                                    <Text>{'\u00A0'}12</Text>
+                                </Block>
+                                <Text style={styles.time}>3:43 pm</Text>
+                            </Right>
+                        </ListItem>
+                        <ListItem>
+                            <Body>
+                                <Text style={{ fontWeight: 'bold' }}>작성자</Text>
+                                <Text>댓글은 짧고 간결하게</Text>
+                            </Body>
+                            <Right>
+                                <Block row>
+                                    <Icons name="leaf" size={20}
+                                        color={!like == false ? '#ADB5BD' : '#0B5713'}
+                                        onPress={likeButton}></Icons>
+                                    <Text>{'\u00A0'}12</Text>
+                                </Block>
+                                <Text style={styles.time}>3:43 pm</Text>
+                            </Right>
+                        </ListItem>
 
                     </List>
                 </Content>
@@ -79,4 +108,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default CompanyGalleryCommentModal;
+export default GalleryComment;

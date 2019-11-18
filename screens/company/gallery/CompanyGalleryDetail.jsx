@@ -6,16 +6,8 @@ import GalleryDetail from '../../../components/gallery/GalleryDetail.jsx';
 const CompanyGalleryDetail = (props) => {
 
     return (
-        <View style={styles.container}>
-            <GalleryDetail navigation={props.navigation} />
-        </View>
+        <GalleryDetail navigation={props.navigation} />
     );
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    },
-})
 
 export default CompanyGalleryDetail;

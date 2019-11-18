@@ -4,9 +4,7 @@ import ImageBrowser from './ImageBrowser';
 import { Block, Input } from 'galio-framework';
 import { Content, List, ListItem, Body, Right, Footer, FooterTab } from 'native-base';
 
-import CompanyGalleryWrite from '../../screens/company/gallery/CompanyGalleryWrite.jsx';
-import CompanyCamera from '../../screens/company/gallery/CompanyCamera.jsx';
-
+import CompanyGalleryWrite from '../gallery/GalleryWrite';
 
 import Camera from '../../components/Camera';
 import IconF from 'react-native-vector-icons/Feather';
