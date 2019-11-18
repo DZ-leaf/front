@@ -1,6 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
-import Calendars from '../../components/calendar/Calendars';
+import Calendars from '../../components/calendar/Calendars.jsx';
 
 const CalendarScreen = ({ navigation }) => {
 

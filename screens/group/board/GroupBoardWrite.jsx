@@ -1,6 +1,6 @@
 import React from 'react';
 
-import BoardWrite from '../../../components/board/BoardWrite'
+import BoardWrite from '../../../components/board/BoardWrite.jsx'
 
 const GroupBoardWrite = () => {
     return (

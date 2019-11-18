@@ -1,6 +1,6 @@
 import React from 'react';
 
-import BoardRead from '../../../components/board/BoardRead';
+import BoardRead from '../../../components/board/BoardRead.jsx';
 
 const GroupBoardDetail = () => {
     return (

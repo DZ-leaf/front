@@ -149,7 +149,7 @@ const EventDetailModal = (props) => {
                     }}
                 />
 
-                <Modal visible={this.state.modal.editModal} animationType="slide" onRequestClose={closeEditModal}>
+                <Modal visible={editModal} animationType="slide" onRequestClose={closeEditModal}>
                     <EditEventModal closeModal={closeEditModal} navigation={props.navigation} />
                 </Modal>
             </Block>

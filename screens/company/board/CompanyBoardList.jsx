@@ -1,5 +1,5 @@
 import React from 'react';
-import BoardList from '../../../components/board/BoardList';
+import BoardList from '../../../components/board/BoardList.jsx';
 
 const CompanyBoardScreen = () => {
     return (
