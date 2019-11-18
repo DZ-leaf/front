@@ -4,8 +4,8 @@ import ImageBrowser from './ImageBrowser';
 import { Block, Input } from 'galio-framework';
 import { Content, List, ListItem, Body, Right, Footer, FooterTab } from 'native-base';
 
-import CompanyGalleryWrite from '../../screens/company/gallery/CompanyGalleryWrite';
-import CompanyCamera from '../../screens/company/gallery/CompanyCamera';
+import CompanyGalleryWrite from '../../screens/company/gallery/CompanyGalleryWrite.jsx';
+import CompanyCamera from '../../screens/company/gallery/CompanyCamera.jsx';
 
 
 import Camera from '../../components/Camera';

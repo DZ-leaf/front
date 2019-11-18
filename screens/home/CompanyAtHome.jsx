@@ -5,7 +5,7 @@ import { Block, Text, theme } from "galio-framework";
 const { width } = Dimensions.get("screen");
 
 import BoardCard from '../../components/board/BoardCard.jsx';
-import GalleryCard from '../../components/gallery/GalleryCard';
+import GalleryCard from '../../components/gallery/GalleryCard.jsx';
 import CalendarCard from '../../components/calendar/CalendarCard.jsx';
 
 const CompanyAtHome = () => {

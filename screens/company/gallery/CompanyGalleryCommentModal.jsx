@@ -1,17 +1,14 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, KeyboardAvoidingView, Platform, Dimensions } from 'react-native';
-import { withNavigation, ScrollView } from 'react-navigation';
-import { Block, Input } from 'galio-framework';
-
-import { Content, List, ListItem, Body, Right, Footer, FooterTab } from 'native-base';
+import { StyleSheet, Text, Dimensions } from 'react-native';
+import { ScrollView } from 'react-navigation';
+import { Block } from 'galio-framework';
+import { Content, List, ListItem, Body, Right } from 'native-base';
 
 import Icons from 'react-native-vector-icons/FontAwesome';
-import IconF from 'react-native-vector-icons/Feather';
-
 
 const { width } = Dimensions.get("screen");
 
-const BoardRead = () => {
+const CompanyGalleryCommentModal = () => {
 
     const [like, setLike] = useState(false);
     const [comment, setComment] = useState('');
@@ -20,13 +17,12 @@ const BoardRead = () => {
         if (!like) setLike(true)
         else if (like) setLike(false)
     }
-    
+
     return (
-        <Block flex>
+        <Block flex style={{ marginTop: 5, backgroundColor: '#f2f0f2' }}>
             <ScrollView>
                 <Content>
                     <List>
-
                         <ListItem>
                             <Body>
                                 <Text style={{ fontWeight: 'bold' }}>작성자</Text>
@@ -43,6 +39,7 @@ const BoardRead = () => {
                             </Right>
                         </ListItem>
 
+
                         <ListItem>
                             <Body>
                                 <Text style={{ fontWeight: 'bold' }}>작성자</Text>
@@ -51,7 +48,7 @@ const BoardRead = () => {
                             <Right>
                                 <Block row>
                                     <Icons name="leaf" size={20}
-                                        color={!like ? '#ADB5BD' : '#0B5713'}
+                                        color={!like == false ? '#ADB5BD' : '#0B5713'}
                                         onPress={likeButton}></Icons>
                                     <Text>{'\u00A0'}12</Text>
                                 </Block>
@@ -62,25 +59,6 @@ const BoardRead = () => {
                     </List>
                 </Content>
             </ScrollView>
-
-            <KeyboardAvoidingView behavior={Platform.OS == 'ios' ? 'padding' : 'position'}
-                keyboardVerticalOffset={Platform.OS == 'ios' ? -34 : 0}>
-                <Footer>
-                    <FooterTab transparent style={{ backgroundColor: '#ffffff' }}>
-                        <Block row>
-                            <View style={{ paddingLeft: '3%' }}>
-                                <Input style={styles.text} placeholder="댓글"
-                                    placeholderTextColor="#ADB5BD" color='black'
-                                    onChangeText={(text) => { setComment(text) }} />
-                            </View>
-                            <View style={styles.send}>
-                                <IconF name="send" size={25}
-                                    color={comment == '' ? '#ADB5BD' : '#0B5713'} />
-                            </View>
-                        </Block>
-                    </FooterTab>
-                </Footer>
-            </KeyboardAvoidingView>
         </Block>
     );
 }
@@ -101,4 +79,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default withNavigation(BoardRead);
+export default CompanyGalleryCommentModal;

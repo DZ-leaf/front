@@ -4,8 +4,8 @@ import FAB from 'react-native-fab';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-import CompanyAddGallery from './CompanyAddGallery'
-import GalleryList from '../../../components/gallery/GalleryList';
+import CompanyAddGallery from './CompanyAddGallery.jsx'
+import GalleryList from '../../../components/gallery/GalleryList.jsx';
 
 const CompanyGallery = (props) => {
 

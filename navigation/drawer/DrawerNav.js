@@ -2,7 +2,7 @@ import React from "react";
 import { createDrawerNavigator } from "react-navigation-drawer";
 
 import Menu from "./Menu";
-import DrawerItem from "../../components/DrawerItem";
+import DrawerItem from "../../components/DrawerItem.jsx";
 
 import { CompanyStack, HomeStack, GroupStack, CalendarStack } from '../stacks'
 import HomeBottomStack from '../nav/HomeBottomNav';

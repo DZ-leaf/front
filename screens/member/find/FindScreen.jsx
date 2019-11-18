@@ -1,5 +1,5 @@
 import React from "react";
-import Tab from '../../../components/Tabs';
+import Tab from '../../../components/member/Tabs';
 
 const FindScreen = ({ navigation }) => {
 
