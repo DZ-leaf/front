@@ -30,6 +30,11 @@ export default class Roll extends React.Component {
     }
   }
 
+  // add camera image
+  setPhoto = (photo) => {
+    this.setState({photos: this.state.photos.concat(photo)})
+  }
+
   // deleteTag
   deleteTag = (index) => {
     this.setState({ tags: this.state.tags.slice(0, index).concat(this.state.tags.slice(index + 1, this.state.tags.length)) }) 
@@ -68,7 +73,7 @@ export default class Roll extends React.Component {
 
         <Modal visible={this.state.cameraModalVisible} onRequestClose={this.closeCameraModal}>
           {/* <CompanyCamera closeModal={this.closeCameraModal}/> */}
-          <Camera closeModal={this.closeCameraModal} />
+          <Camera closeModal={this.closeCameraModal} setPhoto={this.setPhoto} setWriteModal={this.setWriteModalVisible} writeModalVisible={this.state.writeModalVisible}/>
         </Modal>
 
         <Modal visible={this.state.writeModalVisible} onRequestClose={this.closeWriteModal}>

@@ -5,7 +5,6 @@ import Header from "../../../components/Header";
 import transitionConfig from '../transitionConfig';
 
 import CompanyGalleryDetail from '../../../screens/company/gallery/CompanyGalleryDetail';
-import CompanyAddGallery from '../../../screens/company/gallery/CompanyAddGallery';
 import CompanyGalleryWrite from '../../../screens/company/gallery/CompanyGalleryWrite';
 
 import { CompanyGallery } from '../../../screens/company';
@@ -23,13 +22,6 @@ const CompanyGalleryStack = createStackNavigator(
             navigationOptions: ({ navigation }) => ({
                 header: <Header back={true} title="회사" navigation={navigation} />
             })
-        },
-        CompanyAddGallery: {
-            screen: CompanyAddGallery,
-            navigationOptions: {
-                header: null
-            }
-            
         },
         CompanyGalleryWrite: {
             screen: CompanyGalleryWrite,
