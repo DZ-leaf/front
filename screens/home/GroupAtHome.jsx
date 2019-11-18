@@ -1,11 +1,6 @@
 import React from "react";
-import { ScrollView, StyleSheet, Image, Dimensions } from "react-native";
-
+import { ScrollView, StyleSheet, Dimensions } from "react-native";
 import { Block, Text, theme } from "galio-framework";
-
-import Images from "../../constants/Images";
-import articles from "../../constants/articles";
-import { Cards } from "../../components";
 
 const { width } = Dimensions.get("screen");
 
@@ -22,15 +17,7 @@ const GroupAtHome = () => {
                 </Text>
                 <Block flex>
                     <Block style={{ paddingHorizontal: theme.SIZES.BASE }}>
-                        <Cards item={articles[0]} horizontal />
-                        <ScrollView horizontal showsHorizontalScrollIndicator={false}
-                            scrollEventThrottle={10} pagingEnabled>
-                            <Block flex row>
-                                <Cards item={articles[1]} style={{ marginRight: theme.SIZES.BASE }} />
-                                <Cards item={articles[2]} style={{ marginRight: theme.SIZES.BASE }} />
-                                <Cards item={articles[1]} style={{ marginRight: theme.SIZES.BASE }} />
-                            </Block>
-                        </ScrollView>
+                        <Text>뭐 넣겟지</Text>
                     </Block>
                 </Block>
             </Block>
