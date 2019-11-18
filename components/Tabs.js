@@ -1,12 +1,12 @@
 import React from 'react';
-import { StyleSheet, Dimensions, FlatList, Animated, Text } from 'react-native';
+import { StyleSheet, Dimensions, FlatList, Animated } from 'react-native';
 import { Block, theme } from 'galio-framework';
 import { withNavigation } from 'react-navigation'
 
 const { width } = Dimensions.get('screen');
 
-import FindIdScreen from '../screens/member/find/FindIdScreen';
-import FindPwScreen from '../screens/member/find/FindPwScreen';
+import FindIdScreen from '../screens/member/find/FindIdScreen.jsx';
+import FindPwScreen from '../screens/member/find/FindPwScreen.jsx';
 import IdConfirmScreen from '../screens/member/find/IdConfirmScreen';
 import PwResetScreen from '../screens/member/find/PwResetScreen';
 
@@ -15,7 +15,7 @@ const defaultMenu = [
   { id: 'PW', title: '비밀번호 찾기', },
 ];
 
-/* export default */ class Tabs extends React.Component {
+class Tabs extends React.Component {
   static defaultProps = {
     data: defaultMenu,
     initialIndex: null,
@@ -23,8 +23,6 @@ const defaultMenu = [
 
   state = {
     active: 'Id',
-    // order: this.props.order,
-    // order: 1,
     refreshing: false,
   }
 
@@ -90,12 +88,8 @@ const defaultMenu = [
     return (
       <Block style={containerStyles}>
         <Animated.Text
-          style={[
-            styles.menuTitle,
-            { color: textColor }
-          ]}
-          onPress={() => this.selectMenu(item.id)}
-        >
+          style={[ styles.menuTitle, { color: textColor }]}
+          onPress={() => this.selectMenu(item.id)}>
           {item.title}
         </Animated.Text>
       </Block>
@@ -125,19 +119,23 @@ const defaultMenu = [
 
   selectScreen = () => {
     if (this.state.active == 'Id') {
-      if (this.props.order == 1) return <FindIdScreen /*  onClickListener={this.props.onClickListener } */ />
-      else return <IdConfirmScreen onClickListener={this.Reset} />
+      if (this.props.order == 1)
+        return <FindIdScreen />
+      else
+        return <IdConfirmScreen onClickListener={this.Reset} />
     }
     else {
-      if (this.props.order == 1) return <FindPwScreen /*  onClickListener={this.props.onClickListener} */ />
-      else return <PwResetScreen onClickListener={this.Reset} />
+      if (this.props.order == 1)
+        return <FindPwScreen />
+      else
+        return <PwResetScreen onClickListener={this.Reset} />
     }
   }
 
   render() {
     return (
       <Block style={styles.container}>
-        <Block style={[styles.textView /*, styles.tab */]}>
+        <Block style={[styles.textView]}>
           <Block style={styles.menuContainer}>
             {this.renderMenu()}
           </Block>
@@ -178,7 +176,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     paddingTop: 15,  //10
     paddingBottom: 25,
-    // paddingHorizontal: 15,  //18
     color: '#ADB5BD'
   },
   textView: {

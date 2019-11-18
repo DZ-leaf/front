@@ -11,7 +11,7 @@
   "dependencies": {
     "expo": "^35.0.0",
     "expo-camera": "^7.0.0",
-    "expo-multiple-imagepicker": "^1.0.6",
+    "expo-image-picker": "^7.0.0",
     "galio-framework": "^0.6.3",
     "immer": "^5.0.0",
     "immutable": "^4.0.0-rc.12",
@@ -48,6 +48,7 @@
     "react-tag-input": "^6.4.1",
     "redux": "^4.0.4",
     "redux-actions": "^2.6.5",
+    "redux-devtools-extension": "^2.13.8",
     "rn-nodeify": "^10.2.0"
   },
   "devDependencies": {

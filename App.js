@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Image, AsyncStorage } from 'react-native';
 import { AppLoading } from 'expo';
 import { Asset } from 'expo-asset';
@@ -7,17 +7,21 @@ import { Block, GalioProvider } from 'galio-framework';
 import Screens from './navigation/Screens';
 import ScreenAuth from './navigation/ScreenAuth';
 import Images from './constants/Images'
-import articles from './constants/articles';
 
 import argonTheme from './constants/Theme';
 
-import { AjaxMember } from "./lib/url/memberUrl";
+import { AjaxMember } from "./lib/memberUrl";
 
 // Redux
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from './src/modules';
-const store = createStore(rootReducer);
+
+const store = createStore(rootReducer, composeWithDevTools(
+  applyMiddleware(),
+  // other store enhancers if any
+))
 
 // cache app images
 const assetImages = [
@@ -26,9 +30,6 @@ const assetImages = [
   Images.iOSLogo,
   Images.androidLogo
 ];
-
-// cache product images
-articles.map(article => assetImages.push(article.image));
 
 function cacheImages(images) {
   return images.map(image => {
@@ -40,88 +41,87 @@ function cacheImages(images) {
   });
 }
 
-autoLogin = async () => {
-  try {
-    const memberId = await AsyncStorage.getItem('memberId')
-    const memberPw = await AsyncStorage.getItem('memberPw')
-    if (memberId != null && memberPw != null) {
-      let data = {
-        "memberId": memberId,
-        "memberPw": memberPw
-      }
-      return AjaxMember.login(data)
-        .then((responseJson) => {
-          if (responseJson.message == 'fail') {
-            Alert.alert("로그인에 실패했습니다")
+
+const App = () => {
+
+  const [isLoadingComplete, setIsLoadingComplete] = useState(false);
+  const [memberAuth, setMemberAuth] = useState('');
+  const [memberName, setMemberName] = useState('');
+
+  const autoLogin = async () => {
+    try {
+      let keys = await AsyncStorage.getAllKeys();
+      let items = await AsyncStorage.multiGet(keys)
+
+      console.log(items);
+  
+      console.log(items.length);
+  
+      if (items.length > 0) {
+        const memberId = await AsyncStorage.getItem('memberId')
+        const memberPw = await AsyncStorage.getItem('memberPw')
+        if (memberId != null && memberPw != null) {
+          let data = {
+            "memberId": memberId,
+            "memberPw": memberPw
           }
-        })
-    }
-  } catch (e) {
-    console.error(e)
-  }
-}
-
-export default class App extends React.Component {
-
-  componentWillMount() {
-    autoLogin = async () => {
-      try {
-        const memberAuth = await AsyncStorage.getItem('Authorization')
-        this.setState({ memberAuth: memberAuth })
-        console.log("요기 : " + this.state.memberAuth)
-      } catch (e) {
-        console.error(e)
+          loginAjax(data);
+        }
       }
+    } catch (e) {
+      console.error(e)
     }
   }
 
-  state = {
-    isLoadingComplete: false,
-    memberAuth: '',
+  const loginAjax = (data) => {
+    return AjaxMember.login(data)
+      .then((responseJson) => {
+        if (responseJson.message == 'success') {
+          setMemberName(responseJson.member.memberName);
+          setAuth();
+        } else if (responseJson.message == 'fail') {
+          Alert.alert("로그인에 실패했습니다")
+        }
+      })
   }
 
-  render() {
-
-    if (!this.state.isLoadingComplete) {
-      return (
-        <AppLoading
-          startAsync={this._loadResourcesAsync}
-          onError={this._handleLoadingError}
-          onFinish={this._handleFinishLoading}
-        />
-      );
-    } else {
-      return (
-        <Provider store={store}>
-          <GalioProvider theme={argonTheme}>
-            <Block flex>
-              {this.state.memberAuth == null ?
-                <Screens />
-                :
-                <ScreenAuth />
-              }
-            </Block>
-          </GalioProvider>
-        </Provider>
-      );
+  const setAuth = async () => {
+    try {
+      const memberAuth = await AsyncStorage.getItem('Authorization')
+      setMemberAuth(memberAuth);
+    } catch (error) {
+      console.error(error)
     }
   }
 
-  _loadResourcesAsync = async () => {
-    return Promise.all([
-      autoLogin(),
-      ...cacheImages(assetImages),
-    ]);
-  };
-
-  _handleLoadingError = error => {
-    // In this case, you might want to report the error to your error
-    // reporting service, for example Sentry
-    console.warn(error);
-  };
-
-  _handleFinishLoading = () => {
-    this.setState({ isLoadingComplete: true });
-  };
-
+  if (!isLoadingComplete) {
+    return (
+      <AppLoading
+        startAsync={async () => {
+          return Promise.all([
+            autoLogin(),
+            ...cacheImages(assetImages),
+          ]); 
+        }}
+        onError={(error) => console.warn(error)}
+        onFinish={() => setIsLoadingComplete(true)}
+      />
+    );
+  } else {
+    return (
+      <Provider store={store}>
+        <GalioProvider theme={argonTheme}>
+          <Block flex>
+            {memberAuth == '' ?
+              <Screens />
+              :
+              <ScreenAuth />
+            }
+          </Block>
+        </GalioProvider>
+      </Provider>
+    );
+  }
 }
+
+export default App;

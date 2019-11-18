@@ -1,25 +1,16 @@
 import { createAction, handleActions } from 'redux-actions';
 
-// Action Type
-const ID = 'member/ID';
-const NAME = 'member/NAME';
+const SAMPLE_ACTION = 'member/SAMPLE_ACTION';
 
-// Action Creator
-export const id = createAction(ID, id => id);
-export const name = createAction(NAME, name => name);
+export const sampleAction = createAction(SAMPLE_ACTION);
 
-// Reducer : 상태가 어떻게 바뀌는지
-const initialState = {
-    id: '',
-    name: ''
-}
+const initialState = {};
 
 const member = handleActions(
     {
-        [ID]: (state, action) => ({ ...state, id: action.payload }),
-        [NAME]: (state, action) => ({ ...state, name: action.payload }),
+        [SAMPLE_ACTION] : (state, action) => state,
     },
     initialState,
-)
+);
 
 export default member;

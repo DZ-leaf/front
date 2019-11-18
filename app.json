@@ -26,6 +26,9 @@
     "ios": {
       "supportsTablet": true,
       "userInterfaceStyle": "automatic"
+    },
+    "packagerOpts": {
+      "sourceExts": ["js", "json", "ts", "tsx", "jsx", "vue"]
     }
   }
 }
