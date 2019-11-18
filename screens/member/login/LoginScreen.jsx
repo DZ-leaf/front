@@ -9,12 +9,16 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import { AjaxMember } from "../../../lib/memberUrl";
 
+import { useDispatch } from 'react-redux';
+import { redux_name } from '../../../src/modules/member';
+
 const LoginScreen = ({ navigation }) => {
 
   const [memberId, setMemberId] = useState('');
   const [memberPw, setMemberPw] = useState('');
-  const [memberName, setMemberName] = useState('');
   const [checked, setChecked] = useState(true);
+
+  const dispatch = useDispatch();
 
   const data = {
     "memberId": memberId,
@@ -35,9 +39,8 @@ const LoginScreen = ({ navigation }) => {
     return AjaxMember.login(data)
       .then((responseJson) => {
         if (responseJson.message == 'success') {
-          console.log(responseJson.member.memberName)
-          setMemberName(responseJson.member.memberName);
           setData();
+          setName(responseJson.member.memberName);
           navigation.navigate("Home");
         } else if (responseJson.message == 'fail') {
           Alert.alert("로그인에 실패했습니다")
@@ -45,19 +48,23 @@ const LoginScreen = ({ navigation }) => {
       })
   }
 
+  const setName = (data) => {
+    dispatch(
+      redux_name(data)
+    )
+  }
+
   const setData = async () => {
-    await AsyncStorage.removeItem('Authorization')
     try {
       if (checked) {
         await AsyncStorage.setItem("memberId", memberId);
         await AsyncStorage.setItem("memberPw", memberPw);
-      } else if (!checked) {
-        await AsyncStorage.clear();
-      } 
+      }
     } catch (e) {
       console.error(e)
     }
   }
+
 
   const check = () => {
     if (checked) {
