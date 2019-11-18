@@ -4,7 +4,7 @@ import GroupBoardList from './board/GroupBoardList.jsx';
 import GroupBoardDetail from './board/GroupBoardDetail.jsx';
 import GroupBoardWrite from './board/GroupBoardWrite.jsx';
 
-import GroupGallery from './gallery/GroupGallery';
+import GroupGallery from './gallery/GroupGallery.jsx';
 
 //calendar
 import GroupCalendar from './calendar/GroupCalendar.jsx';

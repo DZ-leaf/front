@@ -5,10 +5,10 @@ import { withNavigation } from 'react-navigation'
 
 const { width } = Dimensions.get('screen');
 
-import FindIdScreen from '../screens/member/find/FindIdScreen.jsx';
-import FindPwScreen from '../screens/member/find/FindPwScreen.jsx';
-import IdConfirmScreen from '../screens/member/find/IdConfirmScreen';
-import PwResetScreen from '../screens/member/find/PwResetScreen';
+import FindIdScreen from '../../screens/member/find/FindIdScreen.jsx';
+import FindPwScreen from '../../screens/member/find/FindPwScreen.jsx';
+import IdConfirmScreen from '../../screens/member/find/IdConfirmScreen';
+import PwResetScreen from '../../screens/member/find/PwResetScreen';
 
 const defaultMenu = [
   { id: 'Id', title: '아이디 찾기', },
