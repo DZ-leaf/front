@@ -20,8 +20,6 @@ const CompanyGalleryWrite = (props) => {
         )
     }
 
-    console.log(this.props.photos);
-
     return (
         <Block flex style={{ backgroundColor: '#f2f0f2' }}>
 

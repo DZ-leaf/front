@@ -63,7 +63,8 @@ export default class Roll extends React.Component {
 
   render() {
     console.log('roll!!!!');
-
+    console.log(this.state.photos);
+    
     return (
       <View style={{ flex: 1 }}>
         <ImageBrowser max={10} callback={this.imageBrowserCallback}
