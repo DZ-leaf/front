@@ -4,7 +4,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import Header from "../../../components/Header";
 import transitionConfig from '../transitionConfig';
 
-import CompanyScreen from '../../../screens/company/CompanyScreen';
+import CompanyScreen from '../../../screens/company/CompanyScreen.jsx';
 
 const CompanyStack = createStackNavigator(
     {

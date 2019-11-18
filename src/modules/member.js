@@ -1,14 +1,16 @@
 import { createAction, handleActions } from 'redux-actions';
 
-const SAMPLE_ACTION = 'member/SAMPLE_ACTION';
+const MEMBER_INFO = 'member/MEMBER_INFO';
 
-export const sampleAction = createAction(SAMPLE_ACTION);
+export const memberInfo = createAction(MEMBER_INFO, memberInfo => memberInfo);
 
-const initialState = {};
+const initialState = {
+    memberInfo : {},
+};
 
 const member = handleActions(
     {
-        [SAMPLE_ACTION] : (state, action) => state,
+        [MEMBER_INFO]: (state, { payload: memberInfo }) => ({ ...state, memberInfo })
     },
     initialState,
 );

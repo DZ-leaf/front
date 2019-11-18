@@ -1,20 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { View, Text, AsyncStorage, Alert, Image } from 'react-native';
 import { Container, Content, ListItem, Separator, Left, Right, Card, CardItem, Thumbnail, Body } from 'native-base';
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
+import { useSelector } from 'react-redux';
+
 const SettingScreen = ({ navigation }) => {
 
-    const [memberName, setMemberName] = useState('')
-
-    useEffect(() => {
-        // getName();
-    }, [])
-
-    const getName = async () => {
-
-    }
+    const info = useSelector(state => state.member.memberInfo);
+    console.log(info)
 
     const logout = async () => {
         Alert.alert(
@@ -46,7 +41,7 @@ const SettingScreen = ({ navigation }) => {
                         <Left>
                             <Thumbnail source={{ uri: 'Image URL' }} />
                             <Body>
-                                <Text>{memberName}</Text>
+                                <Text>{info.memberName}</Text>
                                 <Text note>GeekyAnts</Text>
                             </Body>
                         </Left>
