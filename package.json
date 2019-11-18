@@ -17,6 +17,7 @@
     "immutable": "^4.0.0-rc.12",
     "moment": "^2.24.0",
     "native-base": "^2.13.8",
+    "net": "^1.0.2",
     "prop-types": "^15.7.2",
     "prototypes": "^2.3.5",
     "react": "16.8.3",
@@ -50,7 +51,9 @@
     "redux": "^4.0.4",
     "redux-actions": "^2.6.5",
     "redux-devtools-extension": "^2.13.8",
-    "rn-nodeify": "^10.2.0"
+    "rn-nodeify": "^10.2.0",
+    "sockjs-client": "^1.4.0",
+    "stompjs": "^2.3.3"
   },
   "devDependencies": {
     "babel-preset-expo": "^7.0.0"
