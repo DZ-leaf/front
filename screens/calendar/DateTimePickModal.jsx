@@ -1,12 +1,11 @@
-import React, { Component, useState } from 'react';
-import { View, StyleSheet, Dimensions } from 'react-native';
-import { Block, Button, Text, theme, Input } from "galio-framework";
+import React, { useState } from 'react';
+import { StyleSheet, Dimensions } from 'react-native';
+import { Block, Button, Text, theme } from "galio-framework";
 import CalendarPicker from 'react-native-calendar-picker';
 import DateTimePicker from 'react-native-modal-datetime-picker';
-// import TimePicker from './TimePicker';
 import moment from 'moment';
 
-const { width, height } = Dimensions.get("screen");
+const { width } = Dimensions.get("screen");
 
 const DateTimePickModal = (props) => {
 
@@ -24,9 +23,6 @@ const DateTimePickModal = (props) => {
         console.log("A date has been picked: ", date);
         this.hideDateTimePicker();
     };
-
-    // const [company, setCompany] = useState('');
-    console.log(props.selectedDate);
 
     return (
         <Block felx style={styles.container}>
@@ -51,9 +47,6 @@ const styles = StyleSheet.create({
     container: {
         alignItems: 'stretch',
         justifyContent: 'flex-end',
-        // // width: width * 0.8,
-        // marginHorizontal: '10%',
-        // // marginVertical: '20%',
         borderWidth: 1,
         borderRadius: 20,
         marginTop: 150,

@@ -12,9 +12,9 @@ const { width } = Dimensions.get("screen");
 const thumbMeasure = (width - 48 - 32) / 3;
 const cardWidth = width - theme.SIZES.BASE * 2;
 
-class GroupAtHome extends React.Component {
+const GroupAtHome = () => {
 
-    renderCards = () => {
+    const renderCards = () => {
         return (
             <Block flex style={styles.group}>
                 <Text bold size={16} style={styles.title}>
@@ -24,12 +24,12 @@ class GroupAtHome extends React.Component {
                     <Block style={{ paddingHorizontal: theme.SIZES.BASE }}>
                         <Cards item={articles[0]} horizontal />
                         <ScrollView horizontal showsHorizontalScrollIndicator={false}
-                        scrollEventThrottle={10} pagingEnabled>
-                        <Block flex row>
-                            <Cards item={articles[1]} style={{ marginRight: theme.SIZES.BASE }}/>
-                            <Cards item={articles[2]} style={{ marginRight: theme.SIZES.BASE }}/>
-                            <Cards item={articles[1]} style={{ marginRight: theme.SIZES.BASE }}/>
-                        </Block>
+                            scrollEventThrottle={10} pagingEnabled>
+                            <Block flex row>
+                                <Cards item={articles[1]} style={{ marginRight: theme.SIZES.BASE }} />
+                                <Cards item={articles[2]} style={{ marginRight: theme.SIZES.BASE }} />
+                                <Cards item={articles[1]} style={{ marginRight: theme.SIZES.BASE }} />
+                            </Block>
                         </ScrollView>
                     </Block>
                 </Block>
@@ -37,43 +37,13 @@ class GroupAtHome extends React.Component {
         );
     };
 
-    renderAlbum = () => {
-        const { navigation } = this.props;
-
-        return (
-            <Block flex style={[styles.group, { paddingBottom: theme.SIZES.BASE * 5 }]}>
-                <Text bold size={16} style={styles.title}>
-                    Album
-                </Text>
-                <Block style={{ marginHorizontal: theme.SIZES.BASE * 2 }}>
-                    <Block flex right>
-                        <Text size={12} color={theme.COLORS.PRIMARY}
-                            onPress={() => navigation.navigate("Home")}>
-                            View All
-                        </Text>
-                    </Block>
-                    <Block row space="between" style={{ marginTop: theme.SIZES.BASE, flexWrap: "wrap" }}>
-                        {Images.Viewed.map((img, index) => (
-                            <Block key={`viewed-${img}`} style={styles.shadow}>
-                                <Image resizeMode="cover" source={{ uri: img }} style={styles.albumThumb}/>
-                            </Block>
-                        ))}
-                    </Block>
-                </Block>
-            </Block>
-        );
-    };
-
-    render() {
-        return (
-            <Block flex center>
-                <ScrollView showsVerticalScrollIndicator={false}>
-                    {this.renderCards()}
-                    {/* {this.renderAlbum()} */}
-                </ScrollView>
-            </Block>
-        );
-    }
+    return (
+        <Block flex center>
+            <ScrollView showsVerticalScrollIndicator={false}>
+                {renderCards()}
+            </ScrollView>
+        </Block>
+    );
 }
 
 const styles = StyleSheet.create({
@@ -126,7 +96,6 @@ const styles = StyleSheet.create({
     },
     productDescription: {
         paddingTop: theme.SIZES.BASE
-        // paddingBottom: theme.SIZES.BASE * 2,
     }
 });
 

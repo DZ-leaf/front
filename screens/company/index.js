@@ -1,13 +1,16 @@
+// board
+import CompanyBoardList from './board/CompanyBoardList.jsx';
+import CompanyBoardDetail from './board/CompanyBoardDetail.jsx';
+import CompanyBoardWrite from './board/CompanyBoardWrite.jsx';
 
-import CompanyBoardList from './board/CompanyBoardList';
-import CompanyBoardDetail from './board/CompanyBoardDetail';
-import CompanyBoardWrite from './board/CompanyBoardWrite';
+//gallery
+import CompanyGallery from './gallery/CompanyGallery.jsx';
 
-import CompanyGallery from './gallery/CompanyGallery';
+//calendar
+import CompanyCalendar from './calendar/CompanyCalendar.jsx';
 
-import CompanyCalendar from './calendar/CompanyCalendar';
-
-import CompanyAddressList from './address/CompanyAddressList';
+//address
+import CompanyAddressList from './address/CompanyAddressList.jsx';
 
 export {
     CompanyBoardList,

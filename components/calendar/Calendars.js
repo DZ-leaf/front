@@ -8,7 +8,7 @@ import FAB from 'react-native-fab';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import List from './CalendarList';
-import AddEventModal from '../../screens/calendar/AddEventModal';
+import AddEventModal from '../../screens/calendar/AddEventModal.jsx';
 
 const { width, height } = Dimensions.get("screen");
 let calendarDate = moment();

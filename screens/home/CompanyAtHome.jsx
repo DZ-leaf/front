@@ -8,19 +8,19 @@ import BoardCard from '../../components/board/BoardCard';
 import GalleryCard from '../../components/gallery/GalleryCard';
 import CalendarCard from '../../components/calendar/CalendarCard';
 
-class CompanyAtHome extends React.Component {
+const CompanyAtHome = () => {
 
-    renderCards = () => {
+    const renderCards = () => {
         return (
             <Block row>
                 <View style={{ width: width }}>
-                    <BoardCard move={"CompanyBoardList"}/>
+                    <BoardCard move={"CompanyBoardList"} />
                 </View>
             </Block>
         );
     };
 
-    renderGallery = () => {
+    const renderGallery = () => {
         return (
             <Block row>
                 <View style={{ width: width }}>
@@ -30,28 +30,25 @@ class CompanyAtHome extends React.Component {
         );
     };
 
-    renderCalendar = () => {
+    const renderCalendar = () => {
         return (
             <Block row>
                 <View style={{ width: width }}>
-                    <CalendarCard move={"CompanyCalendar"}/>
+                    <CalendarCard move={"CompanyCalendar"} />
                 </View>
             </Block>
         )
     }
-
-    render() {
-        return (
-            <Block>
-                <Text bold size={16} style={styles.title}>{"\n"}{"\n"}회사</Text>
-                <ScrollView horizontal disableIntervalMomentum>
-                    {this.renderCards()}
-                    {this.renderGallery()}
-                    {this.renderCalendar()}
-                </ScrollView>
-            </Block>
-        );
-    }
+    return (
+        <Block>
+            <Text bold size={16} style={styles.title}>{"\n"}{"\n"}회사</Text>
+            <ScrollView horizontal disableIntervalMomentum>
+                {renderCards()}
+                {renderGallery()}
+                {renderCalendar()}
+            </ScrollView>
+        </Block>
+    );
 }
 
 const styles = StyleSheet.create({

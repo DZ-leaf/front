@@ -4,7 +4,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import Header from "../../components/Header";
 import transitionConfig from './transitionConfig';
 
-import HomeScreen from "../../screens/home/HomeScreen";
+import HomeScreen from "../../screens/home/HomeScreen.jsx";
 
 const HomeStack = createStackNavigator(
     {
