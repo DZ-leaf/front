@@ -46,13 +46,10 @@ const LoginScreen = ({ navigation }) => {
   }
 
   const setData = async () => {
-    await AsyncStorage.removeItem('Authorization')
     try {
       if (checked) {
         await AsyncStorage.setItem("memberId", memberId);
         await AsyncStorage.setItem("memberPw", memberPw);
-      } else if (!checked) {
-        await AsyncStorage.clear();
       } 
     } catch (e) {
       console.error(e)

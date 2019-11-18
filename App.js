@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Image, AsyncStorage } from 'react-native';
 import { AppLoading } from 'expo';
 import { Asset } from 'expo-asset';
@@ -49,16 +49,11 @@ const App = () => {
   const [memberName, setMemberName] = useState('');
 
   const autoLogin = async () => {
+    
     try {
       let keys = await AsyncStorage.getAllKeys();
       let items = await AsyncStorage.multiGet(keys)
 
-      console.log(items);
-  
-      console.log(items.length);
-
-      await AsyncStorage.removeItem('Authorization')
-  
       if (items.length > 0) {
         const memberId = await AsyncStorage.getItem('memberId')
         const memberPw = await AsyncStorage.getItem('memberPw')
@@ -79,6 +74,7 @@ const App = () => {
     return AjaxMember.login(data)
       .then((responseJson) => {
         if (responseJson.message == 'success') {
+          console.log(responseJson.member.memberName)
           setMemberName(responseJson.member.memberName);
           setAuth();
         } else if (responseJson.message == 'fail') {
@@ -103,7 +99,7 @@ const App = () => {
           return Promise.all([
             autoLogin(),
             ...cacheImages(assetImages),
-          ]); 
+          ]);
         }}
         onError={(error) => console.warn(error)}
         onFinish={() => setIsLoadingComplete(true)}
@@ -117,7 +113,7 @@ const App = () => {
             {memberAuth == '' ?
               <Screens />
               :
-              <ScreenAuth />
+              <ScreenAuth memberName={memberName}/>
             }
           </Block>
         </GalioProvider>
