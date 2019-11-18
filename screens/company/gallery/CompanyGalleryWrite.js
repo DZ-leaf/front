@@ -11,7 +11,7 @@ class CompanyGalleryWrite extends Component {
 
     renderItem(item, i) {
         return (
-            <View key={item.md5} style={{ marginHorizontal: 5}}>
+            <View key={item.md5} style={{ marginHorizontal: 5, flex: 1}}>
                 <Image
                     style={{ height: width * 0.85, width: width * 0.85 }}
                     source={{ uri: item.uri }}
@@ -20,6 +20,8 @@ class CompanyGalleryWrite extends Component {
         )
     }
     render() {
+        console.log(this.props.photos);        
+        
         return (
             <Block flex style={{ backgroundColor: '#f2f0f2' }}>
                 {/* <View style={{flex: 1, width: width, height: 30, borderWidth:1}}>  */}
@@ -47,7 +49,7 @@ class CompanyGalleryWrite extends Component {
                     />
                 </View>
                 <View style={styles.tagContainer}>
-                    <Tag />
+                    <Tag  tags={this.props.tags} deleteTag={this.props.deleteTag}/>
                 </View>
             </Block>
         );

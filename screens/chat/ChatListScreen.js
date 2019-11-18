@@ -9,9 +9,9 @@ class ChatListScreen extends Component {
     }
 
     async getrooms() {
-        console.log("testtsyt");
+        console.log("1");
         const data = await AjaxChat.getRooms();
-        console.log("testtsyt");
+        console.log("2");
 
         this.setState({
             rooms: data.rooms
@@ -28,10 +28,10 @@ class ChatListScreen extends Component {
     }
 
     render() {
-        console.log("testtsyt");
+        console.log("3");
         const { rooms } = this.state;
         const { navigation } = this.props;
-        console.log("testtsyt");
+        console.log("4");
         console.log(rooms);
         return (
             <Container>
