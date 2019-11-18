@@ -35,8 +35,8 @@ const LoginScreen = ({ navigation }) => {
     return AjaxMember.login(data)
       .then((responseJson) => {
         if (responseJson.message == 'success') {
-          console.log(responseJson.member)
-          setMemberName(responseJson.member);
+          console.log(responseJson.member.memberName)
+          setMemberName(responseJson.member.memberName);
           setData();
           navigation.navigate("Home");
         } else if (responseJson.message == 'fail') {
@@ -46,6 +46,7 @@ const LoginScreen = ({ navigation }) => {
   }
 
   const setData = async () => {
+    await AsyncStorage.removeItem('Authorization')
     try {
       if (checked) {
         await AsyncStorage.setItem("memberId", memberId);

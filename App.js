@@ -56,6 +56,8 @@ const App = () => {
       console.log(items);
   
       console.log(items.length);
+
+      await AsyncStorage.removeItem('Authorization')
   
       if (items.length > 0) {
         const memberId = await AsyncStorage.getItem('memberId')
