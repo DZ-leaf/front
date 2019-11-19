@@ -5,7 +5,7 @@ import Roll from '../CameraRoll/Roll';
 const GalleryAddModal = (props) => {
     
     return (
-        <Roll closeAddModal={props.closeModal} navigation={props.navigation} />
+        <Roll closeAddModal={props.closeModal} navigation={props.navigation} moveDetail={props.moveDetail}/>
     );
 }
 

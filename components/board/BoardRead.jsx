@@ -15,6 +15,8 @@ import Images from "../../constants/Images";
 const { width } = Dimensions.get("screen");
 
 const BoardRead = ({ navigation, moveDelete }) => {
+    console.log(navigation + 'board--------------');
+    
 
     const [like, setLike] = useState(false);
     const [comment, setComment] = useState('');
