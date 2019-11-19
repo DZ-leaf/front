@@ -24,7 +24,7 @@ export default class ImageBrowser extends React.Component {
   }
 
   async componentDidMount() {
-    console.log('cdm');
+    // console.log('cdm');
 
     const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
     console.log(status);
@@ -34,7 +34,7 @@ export default class ImageBrowser extends React.Component {
     console.log(this.state.hasCameraRollPermission);
 
     if (this.state.hasCameraRollPermission) {
-      console.log("cdm_if");
+      // console.log("cdm_if");
 
       this.getPhotos()
     }
@@ -53,7 +53,7 @@ export default class ImageBrowser extends React.Component {
   }
 
   getPhotos = () => {
-    console.log('getPhoto');
+    // console.log('getPhoto');
 
     let params = { first: 500, mimeTypes: ['image/jpeg'], assetType: 'Photos' };
     if (this.state.after) params.after = this.state.after
