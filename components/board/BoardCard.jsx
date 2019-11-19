@@ -7,8 +7,6 @@ import { Block } from "galio-framework";
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 const BoardCard = ({ navigation, move }) => {
-    
-    console.log(move)
 
     return (
         <Block style={{ padding: '3%' }}>

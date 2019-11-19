@@ -68,7 +68,6 @@ const BoardRead = ({ navigation, moveDelete }) => {
                 {
                     text: 'OK',
                     onPress: () => {
-                        console.log('OK Pressed');
                         navigation.navigate(moveDelete)
                     }
                 },
