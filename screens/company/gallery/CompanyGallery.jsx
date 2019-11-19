@@ -3,7 +3,7 @@ import Gallery from '../../../components/gallery/Gallery';
 
 const CompanyGallery = (props) => {
     return (
-       <Gallery navigation={props.navigation}/>
+       <Gallery navigation={props.navigation}  moveDetail={'CompanyGalleryDetail'}/>
     );
 };
 

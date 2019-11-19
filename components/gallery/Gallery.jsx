@@ -7,7 +7,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import GalleryAddModal from './GalleryAddModal';
 import GalleryList from './GalleryList';
 
-const Gallery = (props) => {    
+const Gallery = (props) => {        
     const [addModalVisible, setAddModalVisible] = useState(false)
 
     const addModalVisibleSet = (visible) => { setAddModalVisible(visible) }
@@ -21,7 +21,7 @@ const Gallery = (props) => {
                 iconTextComponent={<Icon name="add" />} snackOffset={Platform.OS == 'ios' ? 30 : 10} />
                 
             <Modal visible={addModalVisible} onRequestClose={() => { closeAddModal() }}>
-                <GalleryAddModal closeModal={closeAddModal} navigation={props.navigation} />
+                <GalleryAddModal closeModal={closeAddModal} navigation={props.navigation}  moveDetail={props.moveDetail}/>
             </Modal>
 
         </View>
