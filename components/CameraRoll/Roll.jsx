@@ -12,9 +12,9 @@ import IconT from 'react-native-vector-icons/FontAwesome5';
 
 const { width } = Dimensions.get('screen')
 
-const Roll = ({ closeAddModal, navigation }) => {
+const Roll = ({ closeAddModal, navigation, moveDetail }) => {
 
-  const [imageBrowserOpen, setImageBrowserOpen] = useState(false);
+  // const [imageBrowserOpen, setImageBrowserOpen] = useState(false);
   const [photos, setPhotos] = useState([]);
   const [cameraModalVisible, setCameraModalVisible] = useState(false);
   const [writeModalVisible, setWriteModalVisible] = useState(false);
@@ -56,7 +56,7 @@ const Roll = ({ closeAddModal, navigation }) => {
 
       <Modal visible={writeModalVisible} onRequestClose={closeWriteModal}>
         <CompanyGalleryWrite photos={photos} closeModal={closeWriteModal} closeAddModal={closeAddModal}
-          navigation={navigation} tags={tags} deleteTag={deleteTag} />
+          navigation={navigation} tags={tags} deleteTag={deleteTag} moveDetail={moveDetail}/>
 
         <KeyboardAvoidingView behavior={'padding'}
           keyboardVerticalOffset={Platform.OS == 'ios' ? -34 : -230} >
