@@ -1,11 +1,11 @@
 import React from 'react';
 
-import Roll from '../CameraRoll/Roll';
+import Roll from '../CameraRoll/Roll.jsx';
 
-const GalleryAddModal = (props) => {
+const GalleryAddModal = ({closeModal, navigation}) => {
     
     return (
-        <Roll closeAddModal={props.closeModal} navigation={props.navigation} />
+        <Roll closeAddModal={closeModal} navigation={navigation} />
     );
 }
 
