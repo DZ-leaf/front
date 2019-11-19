@@ -36,7 +36,7 @@ const GalleryWrite = (props) => {
                 <Button style={{ marginHorizontal: 5 }}
                     onPress={() => {
                         props.closeModal(); props.closeAddModal();
-                        props.navigation.navigate('CompanyGalleryDetail')
+                        props.navigation.navigate(props.moveDetail)
                     }}
                     transparent>
                     <Text style={styles.buttonText}>공유</Text>
