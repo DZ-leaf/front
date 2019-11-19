@@ -73,7 +73,7 @@ const GalleryWrite = (props) => {
                     onPress={() => {
                         photoUpload(data)
                         props.closeModal(); props.closeAddModal();
-                        props.navigation.navigate(props.moveDetail)
+                        props.navigation.navigate('CompnayGalleryDetail')
                     }}
                     transparent>
                     <Text style={styles.buttonText}>공유</Text>
@@ -83,7 +83,7 @@ const GalleryWrite = (props) => {
                 <FlatList
                     data={props.photos}
                     renderItem={({ item }) => renderItem(item)}
-                    keyExtractor={item => item.id}
+                    keyExtractor={item => item.md5}
                     horizontal
                     showsHorizontalScrollIndicator={false}
                 // pagingEnabled

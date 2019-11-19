@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Modal, KeyboardAvoidingView, Dimensions, Platform } from 'react-native';
-import ImageBrowser from './ImageBrowser.jsx';
+import ImageBrowser from './ImageBrowser';
 import { Block, Input } from 'galio-framework';
 import { Footer, FooterTab } from 'native-base';
 
@@ -37,7 +37,7 @@ const Roll = ({ closeAddModal, navigation }) => {
 
   const imageBrowserCallback = (callback) => {
     callback.then((photos) => {
-      setImageBrowserOpen(false);
+      // setImageBrowserOpen(false);
       setPhotos(photos);
       setWriteModalVisible(!writeModalVisible)
     }).catch((e) => console.error(e))

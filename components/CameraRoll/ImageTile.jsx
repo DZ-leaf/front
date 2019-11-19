@@ -12,7 +12,7 @@ const ImageTile = ({ item, index, selected, selectImage, camera }) => {
     <TouchableHighlight style={[camera ? styles.imageSlider : '', { opacity: selected ? 0.8 : 1 }]}
       underlayColor='transparent' onPress={() => selectImage(index)}>
 
-      {this.props.camera ? <View style={{ position: 'relative' }}>
+      {camera ? <View style={{ position: 'relative' }}>
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', }}>
           <Image source={{ uri: item }} style={{ width: width / 6, height: width / 6, marginRight: 3 }} />
           {selected &&

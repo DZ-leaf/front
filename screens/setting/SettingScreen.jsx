@@ -56,7 +56,7 @@ const SettingScreen = ({ navigation }) => {
                     <Left>
                         <Icon name="settings" size={20} />
                     </Left>
-                    <View style={{ marginRight: 290 }}>
+                    <View style={{ marginRight: 200 }}>
                         <Text>회사 설정</Text>
                     </View>
                     <Right>
@@ -71,7 +71,7 @@ const SettingScreen = ({ navigation }) => {
                     <Left>
                         <Icon name="settings" size={20} />
                     </Left>
-                    <View style={{ marginRight: 290 }}>
+                    <View style={{ marginRight: 200 }}>
                         <Text>그룹 설정</Text>
                     </View>
                     <Right>
@@ -87,7 +87,7 @@ const SettingScreen = ({ navigation }) => {
                     <Left>
                         <Icon name="logout-variant" size={20} />
                     </Left>
-                    <View style={{ marginRight: 310 }}>
+                    <View style={{ marginRight: 200 }}>
                         <Text>로그아웃</Text>
                     </View>
                 </ListItem>
