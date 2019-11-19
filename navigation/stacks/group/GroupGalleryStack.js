@@ -7,7 +7,7 @@ import transitionConfig from '../transitionConfig';
 import GroupGalleryDetail from '../../../screens/group/gallery/GroupGalleryDetail.jsx';
 import GroupGalleryWrite from '../../../screens/group/gallery/GroupGalleryWrite.jsx';
 
-import { GroupGallery } from '../../../screens/group';
+import GroupGallery from '../../../screens/group/gallery/GroupGallery.jsx';
 
 const GroupGalleryStack = createStackNavigator(
     {

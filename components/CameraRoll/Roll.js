@@ -61,7 +61,10 @@ export default class Roll extends React.Component {
 
   render() {
     console.log('roll!!!!');
-    console.log(this.state.photos);
+    // console.log(this.state.photos);
+    console.log(this.props.navigation);
+    
+    
     
     return (
       <View style={{ flex: 1 }}>

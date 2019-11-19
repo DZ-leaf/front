@@ -23,12 +23,6 @@ const CompanyGalleryStack = createStackNavigator(
                 header: <Header back={true} title="회사" navigation={navigation} />
             })
         },
-        // CompanyGalleryWrite: {
-        //     screen: CompanyGalleryWrite,
-        //     navigationOptions: {
-        //         header: null
-        //     }
-        // },
 
     },  
     {

@@ -7,8 +7,7 @@ import Tag from './Tag';
 
 const { width } = Dimensions.get('screen');
 
-const GalleryWrite = (props) => {
-    console.log(props + 'write___________________');
+const GalleryWrite = (props) => {    
     
     const renderItem = (item, i) => {
         return (
@@ -20,6 +19,7 @@ const GalleryWrite = (props) => {
             </View>
         )
     }
+    
 
     return (
         <Block flex style={{ backgroundColor: '#f2f0f2' }}>

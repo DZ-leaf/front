@@ -7,8 +7,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import GalleryAddModal from './GalleryAddModal';
 import GalleryList from './GalleryList';
 
-const Gallery = (props) => {
-
+const Gallery = (props) => {    
     const [addModalVisible, setAddModalVisible] = useState(false)
 
     const addModalVisibleSet = (visible) => { setAddModalVisible(visible) }
