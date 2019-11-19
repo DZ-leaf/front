@@ -12,6 +12,7 @@ import { Platform } from '@unimodules/core';
 const { width } = Dimensions.get('window')
 
 export default class ImageBrowser extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -24,22 +25,14 @@ export default class ImageBrowser extends React.Component {
   }
 
   async componentDidMount() {
-    // console.log('cdm');
-
     const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
-    console.log(status);
-
     this.setState({ hasCameraRollPermission: status === 'granted' });
-
     console.log(this.state.hasCameraRollPermission);
-
     if (this.state.hasCameraRollPermission) {
-      // console.log("cdm_if");
-
       this.getPhotos()
     }
-
   }
+
   selectImage = (index) => {
     let newSelected = { ...this.state.selected };
     if (newSelected[index]) {
@@ -53,8 +46,6 @@ export default class ImageBrowser extends React.Component {
   }
 
   getPhotos = () => {
-    // console.log('getPhoto');
-
     let params = { first: 500, mimeTypes: ['image/jpeg'], assetType: 'Photos' };
     if (this.state.after) params.after = this.state.after
     if (!this.state.has_next_page) return
@@ -80,9 +71,7 @@ export default class ImageBrowser extends React.Component {
 
   prepareCallback() {
     let { selected, photos } = this.state;
-    let selectedPhotos = photos.filter((item, index) => {
-      return (selected[index])
-    });
+    let selectedPhotos = photos.filter((item, index) => { return (selected[index]) });
     let files = selectedPhotos
       .map(i => FileSystem.getInfoAsync(i, { md5: true }))
     let callbackResult = Promise
@@ -92,9 +81,6 @@ export default class ImageBrowser extends React.Component {
           return { file: selectedPhotos[i], ...data }
         })
       })
-
-    console.log(callbackResult);
-
     this.props.callback(callbackResult)
   }
 
@@ -140,8 +126,6 @@ export default class ImageBrowser extends React.Component {
   }
 
   renderImages() {
-    console.log("renderImage");
-
     return (
       <FlatList
         data={this.state.photos}
@@ -168,20 +152,15 @@ export default class ImageBrowser extends React.Component {
           {this.renderHeader()}
           <View style={{ flex: 2, backgroundColor: 'black', alignItems: 'center', justifyContent: 'center' }} >
             <Text style={{ fontSize: 20, color: 'white', fontWeight: 'bold', paddingBottom: '3%' }}>갤러리 접근</Text>
-            {Platform.OS !== 'ios' ?  <Button transparent
+            {Platform.OS !== 'ios' ? <Button transparent
               style={{ size: 30 }}
-              onPress={
-                async () => {
-                  console.log('뭐지');
-
-                  const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
-                  console.log(status);
-
-                  this.setState({ hasCameraRollPermission: status === 'granted' });
-                }}>
+              onPress={async () => {
+                const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+                this.setState({ hasCameraRollPermission: status === 'granted' });
+              }}>
               <Text style={{ fontSize: 20, color: '#0B5713' }} >설정</Text>
             </Button> : null}
-           
+
             <Button transparent>
               <Text style={{ fontSize: 20, color: '#0B5713' }}>뒤로가기</Text>
             </Button>
