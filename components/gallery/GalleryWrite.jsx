@@ -15,6 +15,8 @@ const { width } = Dimensions.get('screen');
 const GalleryWrite = (props) => {
     const info = useSelector(state => state.member.memberInfo);
 
+    console.log(props.photos);
+    
     let uri = props.photos.map((photo, index) => {
         return (
             {
@@ -73,7 +75,7 @@ const GalleryWrite = (props) => {
                     onPress={() => {
                         photoUpload(data)
                         props.closeModal(); props.closeAddModal();
-                        props.navigation.navigate('CompnayGalleryDetail')
+                        props.navigation.navigate(props.moveDetail)
                     }}
                     transparent>
                     <Text style={styles.buttonText}>공유</Text>
