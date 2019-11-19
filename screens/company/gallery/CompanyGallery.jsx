@@ -1,9 +1,9 @@
 import React from 'react';
 import Gallery from '../../../components/gallery/Gallery';
 
-const CompanyGallery = () => {
+const CompanyGallery = (props) => {
     return (
-       <Gallery/>
+       <Gallery navigation={props.navigation}/>
     );
 };
 
