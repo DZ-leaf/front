@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Button, ScrollView, Image, Modal, KeyboardAvoidingView, Dimensions, Platform } from 'react-native';
+import { StyleSheet, View, Modal, KeyboardAvoidingView, Dimensions, Platform } from 'react-native';
 import ImageBrowser from './ImageBrowser';
 import { Block, Input } from 'galio-framework';
-import { Content, List, ListItem, Body, Right, Footer, FooterTab } from 'native-base';
+import { Footer, FooterTab } from 'native-base';
 
 import CompanyGalleryWrite from '../gallery/GalleryWrite';
 
-import Camera from '../../components/Camera';
+import Camera from '../../components/Camera.jsx';
 import IconF from 'react-native-vector-icons/Feather';
 import IconT from 'react-native-vector-icons/FontAwesome5';
 
 const { width } = Dimensions.get('screen')
 
-const Roll = ({closeAddModal, navigation}) => {
+const Roll = ({ closeAddModal, navigation }) => {
 
   const [imageBrowserOpen, setImageBrowserOpen] = useState(false);
   const [photos, setPhotos] = useState([]);
@@ -21,71 +21,32 @@ const Roll = ({closeAddModal, navigation}) => {
   const [tags, setTags] = useState([]);
   const [inputText, setInputText] = useState('');
 
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     imageBrowserOpen: false,
-  //     photos: [],
-  //     cameraModalVisible: false,
-  //     writeModalVisible: false,
-
-  //     tags: [],
-  //     inputText: '',
-  //   }
-  // }
-
   // add camera image
-  const setPhoto = (photo) => {
-    setPhotos(photos.concat(photo))
-    // this.setState({photos: this.state.photos.concat(photo)})
-  }
+  const setPhoto = (photo) => { setPhotos(photos.concat(photo)) }
 
   // deleteTag
-  const deleteTag = (index) => {
-    setTags(tags.slice(0, index).concat(tags.slice(index + 1, tags.length)));
-    // this.setState({ tags: this.state.tags.slice(0, index).concat(this.state.tags.slice(index + 1, this.state.tags.length)) }) 
-  }
+  const deleteTag = (index) => { setTags(tags.slice(0, index).concat(tags.slice(index + 1, tags.length))) }
 
   //cameraModal
-  const cameraModalVisibleSet = (visible) => {
-    setCameraModalVisible(visible)
-    // this.setState({ cameraModalVisible: visible }) 
-  }
-  const closeCameraModal = () => {
-    setCameraModalVisible(false)
-    // this.setState({ cameraModalVisible: false }) 
-  }
+  const cameraModalVisibleSet = (visible) => { setCameraModalVisible(visible) }
+  const closeCameraModal = () => { setCameraModalVisible(false) }
 
   //writeModal
-  const writeModalVisibleSet = (visible) => {
-    setWriteModalVisible(visible)
-    // this.setState({ writeModalVisible: visible }) 
-  }
-  const closeWriteModal = () => {
-    setWriteModalVisible(false)
-    // this.setState({ writeModalVisible: false }) 
-  }
+  const writeModalVisibleSet = (visible) => { setWriteModalVisible(visible) }
+  const closeWriteModal = () => { setWriteModalVisible(false) }
 
   const imageBrowserCallback = (callback) => {
     callback.then((photos) => {
-      // console.log(photos)
-      setImageBrowserOpen(false);
+      // setImageBrowserOpen(false);
       setPhotos(photos);
-      // this.setState({
-      //   imageBrowserOpen: false,
-      //   photos: photos,
-      // })
-      // console.log(this.state.photos);
-
       setWriteModalVisible(!writeModalVisible)
     }).catch((e) => console.error(e))
   }
 
-
   return (
     <View style={{ flex: 1 }}>
       <ImageBrowser max={10} callback={imageBrowserCallback}
-        setCameraModal={cameraModalVisibleSet} 
+        setCameraModal={cameraModalVisibleSet}
         cameraVisible={cameraModalVisible} closeAddModal={closeAddModal} />
 
       <Modal visible={cameraModalVisible} onRequestClose={closeCameraModal}>
@@ -111,10 +72,8 @@ const Roll = ({closeAddModal, navigation}) => {
                         if (text.length === 1) return;
                         setTags(tags.concat(text));
                         setInputText('');
-                        // this.setState({ tags: tags.concat(text), inputText: '' })
-                      } else { 
+                      } else {
                         setInputText(text)
-                        // this.setState({ inputText: text }) 
                       }
                     }}
                   />
