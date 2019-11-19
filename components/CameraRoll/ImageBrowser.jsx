@@ -19,36 +19,17 @@ const ImageBrowser = (props) => {
   const [has_next_page, set_has_next_page] = useState(true);
   const [hasCameraRollPermission, setHasCameraRollPermission] = useState(null);
 
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     photos: [],
-  //     selected: {},
-  //     after: null,
-  //     has_next_page: true,
-  //     hasCameraRollPermission: null,
-  //   }
-  // }
-
   useEffect(() => {
     getStatus();
   }, [])
 
-  const getStatus = async() => {
+  const getStatus = async () => {
     const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
     setHasCameraRollPermission(status === 'granted')
     if (hasCameraRollPermission) {
       getPhotos()
     }
   }
-
-  // async componentDidMount() {
-  //   const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
-  //   this.setState({ hasCameraRollPermission: status === 'granted' });
-  //   if (this.state.hasCameraRollPermission) {
-  //     this.getPhotos()
-  //   }
-  // }
 
   const selectImage = (index) => {
     let newSelected = { ...selected };
@@ -60,7 +41,6 @@ const ImageBrowser = (props) => {
     if (Object.keys(newSelected).length > props.max) return;
     if (!newSelected) newSelected = {};
     setSelected(newSelected)
-    // this.setState({ selected: newSelected })
   }
 
   const getPhotos = () => {
@@ -78,11 +58,6 @@ const ImageBrowser = (props) => {
     setPhotos([...photos, ...uris])
     setAfter(r.page_info.end_cursor);
     set_has_next_page(r.page_info.has_next_page);
-    // this.setState({
-    //   photos: [...photos, ...uris],
-    //   after: r.page_info.end_cursor,
-    //   has_next_page: r.page_info.has_next_page
-    // });
   }
 
   const getItemLayout = (data, index) => {
@@ -176,15 +151,14 @@ const ImageBrowser = (props) => {
         {renderHeader()}
         <View style={{ flex: 2, backgroundColor: 'black', alignItems: 'center', justifyContent: 'center' }} >
           <Text style={{ fontSize: 20, color: 'white', fontWeight: 'bold', paddingBottom: '3%' }}>갤러리 접근</Text>
-          {Platform.OS !== 'ios' ? 
-          <Button transparent style={{ size: 30 }}
-            onPress={ async () => {
+          {Platform.OS !== 'ios' ?
+            <Button transparent style={{ size: 30 }}
+              onPress={async () => {
                 const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
                 setHasCameraRollPermission(status === 'granted')
-                // this.setState({ hasCameraRollPermission: status === 'granted' });
               }}>
-            <Text style={{ fontSize: 20, color: '#0B5713' }} >설정</Text>
-          </Button> : null}
+              <Text style={{ fontSize: 20, color: '#0B5713' }} >설정</Text>
+            </Button> : null}
 
           <Button transparent>
             <Text style={{ fontSize: 20, color: '#0B5713' }}>뒤로가기</Text>
