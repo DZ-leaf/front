@@ -30,17 +30,37 @@ const ImageBrowser = (props) => {
   //   }
   // }
 
-  useEffect(() => {
-    getStatus();
-  }, [])
+  // useEffect(() => {
+  //   console.log("useEffect");
 
-  const getStatus = async() => {
-    const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
-    setHasCameraRollPermission(status === 'granted')
-    if (hasCameraRollPermission) {
-      getPhotos()
-    }
-  }
+  //   getStatus();
+  // }, [])
+
+  // const getStatus = async() => {
+  //   console.log('getStatus');
+
+  //   const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+
+  //   setHasCameraRollPermission( status === 'granted')
+  //   if (hasCameraRollPermission) {   
+  //     getPhotos()
+  //   }
+  // }
+
+  useEffect(() => {
+      const checkPermission = async () => {
+        const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+        console.log(status);
+        
+        setHasCameraRollPermission( status === 'granted')
+        console.log(hasCameraRollPermission);
+        
+        if (status === 'granted') {   
+              getPhotos()
+            }
+      }
+      checkPermission()
+  }, [])
 
   // async componentDidMount() {
   //   const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
@@ -64,6 +84,8 @@ const ImageBrowser = (props) => {
   }
 
   const getPhotos = () => {
+    console.log('getPhoto');
+    
     let params = { first: 500, mimeTypes: ['image/jpeg'], assetType: 'Photos' };
     if (after) params.after = after
     if (!has_next_page) return
@@ -167,24 +189,27 @@ const ImageBrowser = (props) => {
   }
 
   if (hasCameraRollPermission === null) {
+    console.log("here");
+
     return (
-      <View />
+      <View ><Text>null</Text></View>
     )
   } else if (hasCameraRollPermission === false) {
+    console.log("false");
     return (
       <View style={styles.container}>
         {renderHeader()}
         <View style={{ flex: 2, backgroundColor: 'black', alignItems: 'center', justifyContent: 'center' }} >
           <Text style={{ fontSize: 20, color: 'white', fontWeight: 'bold', paddingBottom: '3%' }}>갤러리 접근</Text>
-          {Platform.OS !== 'ios' ? 
-          <Button transparent style={{ size: 30 }}
-            onPress={ async () => {
+          {Platform.OS !== 'ios' ?
+            <Button transparent style={{ size: 30 }}
+              onPress={async () => {
                 const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
                 setHasCameraRollPermission(status === 'granted')
                 // this.setState({ hasCameraRollPermission: status === 'granted' });
               }}>
-            <Text style={{ fontSize: 20, color: '#0B5713' }} >설정</Text>
-          </Button> : null}
+              <Text style={{ fontSize: 20, color: '#0B5713' }} >설정</Text>
+            </Button> : null}
 
           <Button transparent>
             <Text style={{ fontSize: 20, color: '#0B5713' }}>뒤로가기</Text>
@@ -193,6 +218,7 @@ const ImageBrowser = (props) => {
       </View>
     )
   } else {
+    console.log("return true");
     return (
       <View style={styles.container}>
         {renderHeader()}

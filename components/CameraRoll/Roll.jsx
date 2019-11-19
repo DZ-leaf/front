@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, Button, ScrollView, Image, Modal, KeyboardAvoidingView, Dimensions, Platform } from 'react-native';
-import ImageBrowser from './ImageBrowser.jsx';
+import ImageBrowser from './ImageBrowser';
 import { Block, Input } from 'galio-framework';
 import { Content, List, ListItem, Body, Right, Footer, FooterTab } from 'native-base';
 
