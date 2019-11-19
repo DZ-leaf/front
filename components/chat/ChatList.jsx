@@ -1,28 +1,23 @@
-import React, { Component } from 'react';
+import React, {useState, useEffect} from 'react';
 import { Container, Content, List, ListItem, Left, Body, Right, Thumbnail, Text, Spinner } from 'native-base';
 import { AjaxWS } from "../../lib/websocket/webSocketUrl";
 import { AjaxChat } from "../../lib/chatUrl";
-class ChatListScreen extends Component {
 
-    state = {
-        rooms: [],
-    }
+const ChatListScreen = ({navigation}) => {
 
-    getrooms() {
+    const [rooms, setRooms] = useState([]);
+
+    const getRooms = () => {
         return AjaxChat.getRooms()
             .then((responseJson) => {
-                this.setState({
-                    rooms: responseJson.rooms
-                })
+                setRooms(responseJson.rooms)
             })
     }
 
-    componentWillMount() {
-        this.getrooms();
-    }
-    render() {
-        const { rooms } = this.state;
-        const { navigation } = this.props;
+    useEffect(() => {
+        getRooms();
+    }, []);
+
         return (
             <Container>
                 <Content>
@@ -42,7 +37,6 @@ class ChatListScreen extends Component {
                 </Content>
             </Container>
         );
-    }
 }
 
 

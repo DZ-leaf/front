@@ -1,24 +1,11 @@
-import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { Block} from 'galio-framework';
+import React from 'react';
 
-import ChatListScreen from './ChatListScreen';
+import ChatList from '../../components/chat/ChatList.jsx';
 
-class ChatScreen extends Component {
-    render() {
-        return (
-            <ChatListScreen/>
-            
-        );
-    }
+const ChatScreen = ({navigation}) => {
+    return (
+        <ChatList navigation={navigation}/>
+    );
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-    }
-})
 
 export default ChatScreen;

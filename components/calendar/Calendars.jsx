@@ -64,7 +64,7 @@ const Calendars = ({ navigation }) => {
         <Block style={styles.container} >
             <Block space-between style={styles.calendarContainer}>
                 <Calendar
-                    onDayPress={(day) => { onDayPress(day); console.log(day); }}
+                    onDayPress={(day) => { onDayPress(day) }}
                     pagingEnabled
                     markedDates={{ [selectDate]: { selected: true, marked: true } }}
                     currnet={calendarDate}

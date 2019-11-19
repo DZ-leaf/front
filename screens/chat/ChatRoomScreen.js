@@ -1,97 +1,71 @@
 
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Content, List, ListItem, Left, Body, Right, Thumbnail, Text, Spinner } from 'native-base';
 import { AjaxWS } from "../../lib/websocket/webSocketUrl";
 import { AjaxChat } from "../../lib/chatUrl";
 import { GiftedChat } from 'react-native-gifted-chat';
 
-class ChatRoomScreen extends Component {
+import { useSelector } from 'react-redux';
 
-    state = {
-        messages: [
-            // {
-            //     _id: 1,
-            //     text: 'This is a system message',
-            //     createdAt: new Date(Date.UTC(2016, 5, 11, 17, 20, 0)),
-            //     system: true,
-            //     // Any additional custom parameters are passed through
-            // },
-            // {
-            //     _id: 2,
-            //     text: 'Hello developer',
-            //     createdAt: new Date(),
-            //     user: {
-            //         _id: 'sadb0101',
-            //         name: '은우',
-            //     },
-            // },
-            // {
-            //     _id: 3,
-            //     text: 'My message',
-            //     createdAt: new Date(),
-            //     user: {
-            //         _id: 'sadb0101',
-            //         name: '은우',
-            //     },
-            // },
-            // {
-            //     _id: 4,
-            //     text: 'My message',
-            //     createdAt: new Date(),
-            //     user: {
-            //         _id: 'id',
-            //         name: 'nm',
-            //     },
-            // },
-        ],
-        room: this.props.navigation.getParam("room")
+const ChatRoomScreen = ({navigation}) => {
+
+    console.log(navigation)
+
+    const info = useSelector(state => state.member.memberInfo);
+
+    const [messages, setMessages] = useState('');
+
+    let user = {
+        name: info.memberName,
+        _id: info.memberId,
     }
 
-    // onMessageReceived = (data) =>{
-    //     console.log();
+    let room = navigation.state.params.room
+    console.log("ㅋㅋㅋㅋ"+room)
 
-    // }
-    tmp = (data) => {
-        console.log("!@#!@#!@#!@#!@#!@#!@#!@#!@#!@#");
+    const update = (data) => {
 
-        console.log(data.body);
         var message = JSON.parse(data.body);
-        this.setState(previousState => ({
-            messages: GiftedChat.append(previousState.messages, message),
-        }))
-        console.log("!@#!@#!@#!@#!@#!@#!@#!@#!@#!@#");
+        console.log("ㅁㄴㅇㄹ"+message)
+        
+        const onSend = (message = []) => {
+            setMessages(GiftedChat.append(messages, message))
+        }
+        // setMessages((previousState) => {
+        //     GiftedChat.append(previousState.messages, message), messages
+        // })
+
+        // this.setState(previousState => ({
+        //     messages: GiftedChat.append(previousState.messages, message),
+        // }))
+    }
+
+    useEffect(() => {
+        const roomCd = room.roomCd;
+        AjaxWS.connect(roomCd, update);
+        getMessage();
+    }, [])
+
+    // const getUser = () => {
+    //     return {
+    //         name: 'nm',
+    //         _id: 'id',
+    //     };
+    // }
+
+    const getMessage = async () => {
+        const data = await AjaxChat.getPastMessage(room.roomCd)
+        setMessages(data)
         // this.setState({
-        //     data:data
+        //     ...this.state,
+        //     messages: data
         // })
     }
-    componentWillMount() {
-        const roomCd = this.state.room.roomCd;
-        AjaxWS.connect(roomCd, this.tmp);
 
-        this.getMessage();
-    }
+    const send = messages => {
 
-    get user() {
-        return {
-            name: 'nm',
-            _id: 'id',
-        };
-    }
-    async getMessage() {
-        const data = await AjaxChat.getPastMessage(this.state.room.roomCd)
-        this.setState({
-            ...this.state,
-            messages: data
-        })
-    }
-
-    send = messages => {
-        const { room } = this.state;
-
-        // let createdAt = new Date().toString();
         for (let i = 0; i < messages.length; i++) {
             const { text, user } = messages[i];
-            // 4.
             const message = {
                 text,
                 user,
@@ -102,20 +76,13 @@ class ChatRoomScreen extends Component {
         }
     };
 
-
-    render() {
-
-        if (this.state.data)
-            console.log(data);
-
-        return (
-            <GiftedChat
-                messages={this.state.messages}
-                onSend={this.send}
-                user={this.user}
-            />
-        );
-    }
+    return (
+        <GiftedChat
+            messages={messages}
+            onSend={send}
+            user={user}
+        />
+    );
 }
 
 export default ChatRoomScreen;
