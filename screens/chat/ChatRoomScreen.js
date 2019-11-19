@@ -1,43 +1,38 @@
 
 import React, { useState, useEffect } from 'react';
-import { Container, Content, List, ListItem, Left, Body, Right, Thumbnail, Text, Spinner } from 'native-base';
 import { AjaxWS } from "../../lib/websocket/webSocketUrl";
 import { AjaxChat } from "../../lib/chatUrl";
 import { GiftedChat } from 'react-native-gifted-chat';
 
 import { useSelector } from 'react-redux';
 
+let msg=[]
+
 const ChatRoomScreen = ({navigation}) => {
 
-    console.log(navigation)
 
     const info = useSelector(state => state.member.memberInfo);
 
-    const [messages, setMessages] = useState('');
+    const [messages, setMessages] = useState([]);
 
     let user = {
         name: info.memberName,
         _id: info.memberId,
     }
 
+    let msgs = messages;
+
     let room = navigation.state.params.room
-    console.log("ㅋㅋㅋㅋ"+room)
+
+    msg = messages;
 
     const update = (data) => {
 
-        var message = JSON.parse(data.body);
-        console.log("ㅁㄴㅇㄹ"+message)
         
-        const onSend = (message = []) => {
-            setMessages(GiftedChat.append(messages, message))
-        }
-        // setMessages((previousState) => {
-        //     GiftedChat.append(previousState.messages, message), messages
-        // })
-
-        // this.setState(previousState => ({
-        //     messages: GiftedChat.append(previousState.messages, message),
-        // }))
+        var message = JSON.parse(data.body);
+        
+        
+        setMessages(GiftedChat.append(msg, message))     
     }
 
     useEffect(() => {
@@ -46,26 +41,24 @@ const ChatRoomScreen = ({navigation}) => {
         getMessage();
     }, [])
 
-    // const getUser = () => {
-    //     return {
-    //         name: 'nm',
-    //         _id: 'id',
-    //     };
-    // }
+
 
     const getMessage = async () => {
         const data = await AjaxChat.getPastMessage(room.roomCd)
-        setMessages(data)
-        // this.setState({
-        //     ...this.state,
-        //     messages: data
-        // })
+        console.log(data);
+        
+        await setMessages(data)
+        console.log("%%%");
+        
+        console.log(messages);
+        
+        
     }
 
-    const send = messages => {
-
-        for (let i = 0; i < messages.length; i++) {
-            const { text, user } = messages[i];
+    const send = mes => {
+        console.log("dddd"+mes);
+        for (let i = 0; i < mes.length; i++) {
+            const { text, user } = mes[i];
             const message = {
                 text,
                 user,

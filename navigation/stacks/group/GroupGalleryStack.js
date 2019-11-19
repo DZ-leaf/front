@@ -5,7 +5,7 @@ import Header from "../../../components/Header";
 import transitionConfig from '../transitionConfig';
 
 import GroupGalleryDetail from '../../../screens/group/gallery/GroupGalleryDetail.jsx';
-import GroupGalleryWrite from '../../../screens/group/gallery/GroupGalleryWrite.jsx';
+// import GroupGalleryWrite from '../../../screens/group/gallery/GroupGalleryWrite.jsx';
 
 import GroupGallery from '../../../screens/group/gallery/GroupGallery.jsx';
 
@@ -23,12 +23,12 @@ const GroupGalleryStack = createStackNavigator(
                 header: <Header back={true} title="그룹" navigation={navigation} />
             })
         },
-        GroupGalleryWrite: {
-            screen: GroupGalleryWrite,
-            navigationOptions: {
-                header: null
-            }
-        },
+        // GroupGalleryWrite: {
+        //     screen: GroupGalleryWrite,
+        //     navigationOptions: {
+        //         header: null
+        //     }
+        // },
 
     },  
     {
