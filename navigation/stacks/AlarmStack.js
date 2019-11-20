@@ -4,7 +4,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import Header from "../../components/Header";
 import transitionConfig from './transitionConfig';
 
-import AlarmScreen from '../../screens/alarm/AlarmScreen';
+import AlarmScreen from '../../screens/alarm/AlarmScreen.jsx';
 
 const AlarmStack = createStackNavigator(
     {

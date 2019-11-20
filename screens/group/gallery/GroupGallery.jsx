@@ -1,9 +1,9 @@
 import React from 'react';
 import Gallery from '../../../components/gallery/Gallery';
 
-const GroupGallery = () => {
+const GroupGallery = ({navigation}) => {
     return (
-       <Gallery navigation={props.navigation}  moveDetail={'GroupGalleryDetail'}/>
+       <Gallery navigation={navigation}  moveDetail={'GroupGalleryDetail'}/>
     );
 };
 

@@ -1,15 +1,16 @@
 import React from 'react';
-import { View, Text, AsyncStorage, Alert, Image } from 'react-native';
+import { Text, AsyncStorage, Alert } from 'react-native';
 import { Container, Content, ListItem, Separator, Left, Right, Card, CardItem, Thumbnail, Body } from 'native-base';
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import { useSelector } from 'react-redux';
 
+import Images from '../../constants/Images';
+
 const SettingScreen = ({ navigation }) => {
 
     const info = useSelector(state => state.member.memberInfo);
-    console.log(info)
 
     const logout = async () => {
         Alert.alert(
@@ -23,13 +24,17 @@ const SettingScreen = ({ navigation }) => {
                 {
                     text: 'OK',
                     onPress: async () => {
-                        await AsyncStorage.clear();
                         navigation.navigate('Member')
+                        await AsyncStorage.clear();
                     }
                 },
             ],
             { cancelable: false },
         );
+    }
+
+    const profileDetail = () => {
+        console.log("여기")
     }
 
     return (
@@ -39,14 +44,13 @@ const SettingScreen = ({ navigation }) => {
                 <Card>
                     <CardItem>
                         <Left>
-                            <Thumbnail source={{ uri: 'Image URL' }} />
+                            <Thumbnail source={Images.ProfilePicture} />
                             <Body>
-                                <Text>{info.memberName}</Text>
-                                <Text note>GeekyAnts</Text>
+                                <Text onPress={profileDetail}>{info.memberName}</Text>
+                                <Text style={{ color: '#707070' }} onPress={profileDetail}>내 프로필</Text>
                             </Body>
                         </Left>
                     </CardItem>
-
                 </Card>
 
                 <Separator bordered>
@@ -54,11 +58,11 @@ const SettingScreen = ({ navigation }) => {
                 </Separator>
                 <ListItem>
                     <Left>
-                        <Icon name="settings" size={20} />
+                        <Icon name="desktop-mac" size={20} />
+                        <Body>
+                            <Text>{'\u00A0'}{'\u00A0'}회사 설정</Text>
+                        </Body>
                     </Left>
-                    <View style={{ marginRight: 200 }}>
-                        <Text>회사 설정</Text>
-                    </View>
                     <Right>
                         <Icon name="arrow-right-thick" size={20} />
                     </Right>
@@ -69,11 +73,11 @@ const SettingScreen = ({ navigation }) => {
                 </Separator>
                 <ListItem>
                     <Left>
-                        <Icon name="settings" size={20} />
+                        <Icon name="account-multiple" size={20} />
+                        <Body>
+                            <Text>{'\u00A0'}{'\u00A0'}그룹 설정</Text>
+                        </Body>
                     </Left>
-                    <View style={{ marginRight: 200 }}>
-                        <Text>그룹 설정</Text>
-                    </View>
                     <Right>
                         <Icon name="arrow-right-thick" size={20} />
                     </Right>
@@ -86,10 +90,10 @@ const SettingScreen = ({ navigation }) => {
                 <ListItem onPress={logout}>
                     <Left>
                         <Icon name="logout-variant" size={20} />
+                        <Body>
+                            <Text>{'\u00A0'}{'\u00A0'}로그아웃</Text>
+                        </Body>
                     </Left>
-                    <View style={{ marginRight: 200 }}>
-                        <Text>로그아웃</Text>
-                    </View>
                 </ListItem>
 
             </Content>

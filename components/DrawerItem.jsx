@@ -11,12 +11,8 @@ const DrawerItem = ({ focused, title }) => {
     switch (title) {
       case "홈":
         return (<Icon name="home" size={20} color={focused ? "#ffffff" : "#000000"} />);
-      case "프로필":
-        return (<Icon name="account" size={20} color={focused ? "#ffffff" : "#000000"} />);
       case "회사":
         return (<Icon name="desktop-mac" size={20} color={focused ? "#ffffff" : "#000000"} />);
-      case "동아리":
-        return (<Icon name="arrange-bring-forward" size={20} color={focused ? "#ffffff" : "#000000"} />);
       case "그룹":
         return (<Icon name="account-multiple" size={20} color={focused ? "#ffffff" : "#000000"} />);
       case "일정":

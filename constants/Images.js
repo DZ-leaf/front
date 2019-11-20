@@ -1,7 +1,7 @@
 const Logo = require("../assets/images/c3.png"); // 메뉴바 로고
 const LogoOnboarding = require("../assets/images/letter1.png"); // 로그인창 로고
 const ProfileBackground = require("../assets/images/bg.png"); // 프로필 뒷배경
-const ProfilePicture = require("../assets/images/default.png"); // 프로필 기본 사진
+const ProfilePicture = require("../assets/images/profileImg.png"); // 프로필 기본 사진
 const iOSLogo = require("../assets/images/ios.png"); // ios 로고
 const androidLogo = require("../assets/images/android.png"); // android 로고
 
