@@ -6,6 +6,8 @@ import { Container, Content, List, ListItem, Thumbnail, Left, Body, Right } from
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
+import Images from '../../constants/Images';
+
 const { width } = Dimensions.get('screen');
 
 const AddressList = () => {
@@ -27,7 +29,7 @@ const AddressList = () => {
 
                     <ListItem thumbnail>
                         <Left>
-                            <Thumbnail square source={{ uri: 'Image URL' }} />
+                            <Thumbnail source={Images.ProfilePicture} />
                         </Left>
                         <Body>
                             <Text>김아무개</Text>
