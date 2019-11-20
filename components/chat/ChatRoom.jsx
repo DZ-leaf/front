@@ -20,18 +20,11 @@ const ChatRoomScreen = ({navigation}) => {
         _id: info.memberId,
     }
 
-    let msgs = messages;
-
     let room = navigation.state.params.room
-
     msg = messages;
 
     const update = (data) => {
-
-        
         var message = JSON.parse(data.body);
-        
-        
         setMessages(GiftedChat.append(msg, message))     
     }
 
@@ -42,21 +35,12 @@ const ChatRoomScreen = ({navigation}) => {
     }, [])
 
 
-
     const getMessage = async () => {
         const data = await AjaxChat.getPastMessage(room.roomCd)
-        console.log(data);
-        
-        await setMessages(data)
-        console.log("%%%");
-        
-        console.log(messages);
-        
-        
+        await setMessages(data)   
     }
 
     const send = mes => {
-        console.log("dddd"+mes);
         for (let i = 0; i < mes.length; i++) {
             const { text, user } = mes[i];
             const message = {

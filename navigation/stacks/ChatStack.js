@@ -4,9 +4,8 @@ import { createStackNavigator } from 'react-navigation-stack';
 import Header from "../../components/Header";
 import transitionConfig from './transitionConfig';
 
-import ChatScreen from '../../screens/chat/ChatScreen';
-// import ChatListScreen from '../../screens/chat/ChatListScreen';
-import ChatRoomScreen from '../../screens/chat/ChatRoomScreen';
+import ChatScreen from '../../screens/chat/ChatScreen.jsx';
+import ChatRoomScreen from '../../screens/chat/ChatRoomScreen.jsx';
 
 const ChatStack = createStackNavigator(
     {
