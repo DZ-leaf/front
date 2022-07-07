@@ -15,7 +15,7 @@
     "galio-framework": "^0.6.3",
     "immer": "^5.0.0",
     "immutable": "^4.0.0-rc.12",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "native-base": "^2.13.8",
     "net": "^1.0.2",
     "prop-types": "^15.7.2",
